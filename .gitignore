@@ -76,3 +76,6 @@ Makefile
 *.DS_Store
 .AppleDouble
 .LSOverride
+
+### doctest.h ###
+doctest.h
