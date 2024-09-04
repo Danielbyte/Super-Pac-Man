@@ -19,6 +19,7 @@ class DisplayManager
     raylib::Color green;
     raylib::Color black;
     bool isSplashScreen; //flag to monitor if player is withing splash screen
+    bool isPlaying;
 
     void displaySplashScreen();
 };

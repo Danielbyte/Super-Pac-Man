@@ -4,7 +4,8 @@ DisplayManager::DisplayManager() :
 quitGame{false},
 green{38, 185, 154},
 black{0,0,0,255},
-isSplashScreen{true}
+isSplashScreen{true},
+isPlaying{false}// Player initially not playing
 {
     InitWindow(screen_width, screen_height, "SUPER PAC-MAN");
 }
@@ -20,12 +21,31 @@ void DisplayManager::startGame()
 
         if(isSplashScreen)
            displaySplashScreen();
+
+        handleUserInput();
+
         EndDrawing();
     }
 }
 
 void DisplayManager::handleUserInput()
 {
+    if (IsKeyPressed)
+    {
+        switch (GetKeyPressed())
+        {
+        case KEY_ENTER:
+            if (isSplashScreen)
+            {
+                isSplashScreen = false;
+                isPlaying = true;
+            }
+            break;
+
+        default:
+            break;
+        }
+    }
 }
 
 void DisplayManager::displaySplashScreen()
