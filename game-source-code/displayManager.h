@@ -1,7 +1,7 @@
 #ifndef DISPLAYMANAGER
 #define DISPLAYMANAGER
 
-#include "raylib-cpp.hpp"
+#include <raylib-cpp.hpp>
 //using namespace raylib;
 #include <iostream>
 
@@ -17,5 +17,9 @@ class DisplayManager
     const int screen_height = 900;
     bool quitGame;//use to control game window
     raylib::Color green;
+    raylib::Color black;
+    bool isSplashScreen; //flag to monitor if player is withing splash screen
+
+    void displaySplashScreen();
 };
 #endif //DISPLAYMANAGER
