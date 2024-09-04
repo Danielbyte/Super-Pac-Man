@@ -1,11 +1,25 @@
 #include "displayManager.h"
 
-DisplayManager::DisplayManager()
+DisplayManager::DisplayManager() :
+quitGame{false},
+green{38, 185, 154}
 {
     InitWindow(screen_width, screen_height, "SUPER PAC-MAN");
 }
 
 void DisplayManager::startGame()
 {
-    std::cout << "Screen Width: "<<screen_width<< " Screen height: "<<screen_height << std::endl;
+    while(!WindowShouldClose())
+    {
+        //Handle user Input
+        //update game
+        //Draw
+        BeginDrawing();
+        ClearBackground(green);
+        EndDrawing();
+    }
+}
+
+void DisplayManager::handleUserInput()
+{
 }
