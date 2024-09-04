@@ -42,3 +42,8 @@ void Player::movePlayer(bool rightArrowKeyPressed, bool leftArrowKeyPressed,
             yPosition = 188.5f;
     }
 }
+
+std::tuple<float, float> Player::getPlayerPosition() const
+{
+    return {xPosition, yPosition};
+}

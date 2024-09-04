@@ -1,5 +1,6 @@
 #ifndef PLAYER
 #define PLAYER
+#include<tuple>
 
 class Player
 {
@@ -10,6 +11,7 @@ private:
 public:
     Player();
     void movePlayer(bool rightArrowKeyPressed, bool leftArrowKeyPressed, bool downArrowKeyPressed, bool upArrowKeyPressed);
+    std::tuple<float, float> getPlayerPosition() const;
 };
 #endif //PLAYER
 
