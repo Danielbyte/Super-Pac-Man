@@ -18,9 +18,11 @@ class DisplayManager
     bool quitGame;//use to control game window
     raylib::Color green;
     raylib::Color black;
+    raylib::Color background;
     bool isSplashScreen; //flag to monitor if player is withing splash screen
     bool isPlaying;
 
     void displaySplashScreen();
+    void displayInGameScreen();
 };
 #endif //DISPLAYMANAGER

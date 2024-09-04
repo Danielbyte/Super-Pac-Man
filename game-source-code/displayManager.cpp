@@ -22,7 +22,12 @@ void DisplayManager::startGame()
         if(isSplashScreen)
            displaySplashScreen();
 
+        if(isPlaying)
+           displayInGameScreen();
+
         handleUserInput();
+
+        ClearBackground(background);
 
         EndDrawing();
     }
@@ -35,6 +40,7 @@ void DisplayManager::handleUserInput()
         switch (GetKeyPressed())
         {
         case KEY_ENTER:
+        case KEY_KP_ENTER:
             if (isSplashScreen)
             {
                 isSplashScreen = false;
@@ -50,9 +56,14 @@ void DisplayManager::handleUserInput()
 
 void DisplayManager::displaySplashScreen()
 {
-    ClearBackground(green);
+    background = green;
     raylib::DrawText("WELCOME TO SUPER-PACMAN",150,450,20,black);
     raylib::DrawText("PRESS ENTER TO START GAME",150,500,20,black);
     raylib::DrawText("PRESS ARROW KEYS TO MOVE PLAYER",150,550,20,black);
     raylib::DrawText("PRESS ESCAPE(Esc) TO QUIT GAME",150,600,20,black);
+}
+
+void DisplayManager::displayInGameScreen()
+{
+    background = black;
 }
