@@ -1,9 +1,11 @@
 #ifndef DISPLAYMANAGER
 #define DISPLAYMANAGER
-
+#include <raylib.h>
 #include <raylib-cpp.hpp>
 //using namespace raylib;
 #include <iostream>
+#include <memory>
+#include "player.h"
 
 class DisplayManager
 {
@@ -22,7 +24,16 @@ class DisplayManager
     bool isSplashScreen; //flag to monitor if player is withing splash screen
     bool isPlaying;
 
+    //Utility Functions
     void displaySplashScreen();
     void displayInGameScreen();
+    void loadTextures();
+    
+    //Create Player objects
+    std::shared_ptr<Player> player_obj = std::make_shared<Player>(); 
+
+    //Texture objects
+    raylib::Texture2D playerT;
+    raylib::Image playerI;
 };
 #endif //DISPLAYMANAGER

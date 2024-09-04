@@ -8,6 +8,7 @@ isSplashScreen{true},
 isPlaying{false}// Player initially not playing
 {
     InitWindow(screen_width, screen_height, "SUPER PAC-MAN");
+    loadTextures();
 }
 
 void DisplayManager::startGame()
@@ -65,5 +66,13 @@ void DisplayManager::displaySplashScreen()
 
 void DisplayManager::displayInGameScreen()
 {
-    background = black;
+    background = black;//Updating background
+
+    //Display game objects
+}
+
+void DisplayManager::loadTextures()
+{
+    playerI = LoadImage("resources/pacman.png");
+    playerT = LoadTextureFromImage(playerI);
 }
