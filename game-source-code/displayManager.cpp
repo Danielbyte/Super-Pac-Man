@@ -18,6 +18,7 @@ rightArrowKeyPressed{false}
 
 void DisplayManager::startGame()
 {
+    SetTargetFPS(60);
     while(!WindowShouldClose() && !quitGame)
     {
         //Handle user Input
@@ -44,38 +45,24 @@ void DisplayManager::handleUserInput()
     leftArrowKeyPressed = false;
     rightArrowKeyPressed = false;
 
-    if (IsKeyPressed)
+
+    if(IsKeyDown(KEY_UP))
     {
-        switch (GetKeyPressed())
-        {
-        case KEY_ENTER:
-        case KEY_KP_ENTER:
-            if (isSplashScreen)
-            {
-                isSplashScreen = false;
-                isPlaying = true;
-            }
-            break;
-        case KEY_DOWN:
-             downArrowKeyPressed = true;
-             player_obj->movePlayer(rightArrowKeyPressed,leftArrowKeyPressed,downArrowKeyPressed,upArrowKeyPressed);
-             break;
-        case KEY_UP:
-             upArrowKeyPressed = true;
-             player_obj->movePlayer(rightArrowKeyPressed,leftArrowKeyPressed,downArrowKeyPressed,upArrowKeyPressed);
-             break;   
-        case KEY_LEFT:
-             leftArrowKeyPressed = true;
-             player_obj->movePlayer(rightArrowKeyPressed,leftArrowKeyPressed,downArrowKeyPressed,upArrowKeyPressed);
-             break;
-        case KEY_RIGHT:
-             rightArrowKeyPressed = true;
-             player_obj->movePlayer(rightArrowKeyPressed,leftArrowKeyPressed,downArrowKeyPressed,upArrowKeyPressed);
-             break;         
-        default:
-            break;
-        }
+        upArrowKeyPressed = true;
+         player_obj->movePlayer(rightArrowKeyPressed,leftArrowKeyPressed,downArrowKeyPressed,upArrowKeyPressed);
     }
+
+    if(IsKeyDown(KEY_DOWN))
+    {
+        downArrowKeyPressed = true;
+        player_obj->movePlayer(rightArrowKeyPressed,leftArrowKeyPressed,downArrowKeyPressed,upArrowKeyPressed);
+    }
+
+    if(IsKeyDown(KEY_ENTER) || IsKeyDown(KEY_KP_ENTER))
+    {
+        isSplashScreen = false;
+        isPlaying = true;
+    }    
 }
 
 void DisplayManager::displaySplashScreen()
