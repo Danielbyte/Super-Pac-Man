@@ -4,10 +4,11 @@ DisplayManager::DisplayManager() :
 quitGame{false},
 green{38, 185, 154},
 black{0,0,0,255},
+white{255, 255, 255, 255},
 isSplashScreen{true},
 isPlaying{false}// Player initially not playing
 {
-    InitWindow(screen_width, screen_height, "SUPER PAC-MAN");
+    window->Init(screen_width, screen_height, "SUPER PAC-MAN");
     loadTextures();
 }
 
@@ -16,19 +17,16 @@ void DisplayManager::startGame()
     while(!WindowShouldClose() && !quitGame)
     {
         //Handle user Input
+        handleUserInput();
         //update game
         //Draw
         BeginDrawing();
-
+        ClearBackground(background);
         if(isSplashScreen)
            displaySplashScreen();
 
         if(isPlaying)
            displayInGameScreen();
-
-        handleUserInput();
-
-        ClearBackground(background);
 
         EndDrawing();
     }
@@ -67,12 +65,14 @@ void DisplayManager::displaySplashScreen()
 void DisplayManager::displayInGameScreen()
 {
     background = black;//Updating background
-
-    //Display game objects
+    auto [xPlayerPos, yPlayerPos] = player_obj->getPlayerPosition();
+    playerT.Draw(xPlayerPos, yPlayerPos);
+    //EndDrawing();
 }
 
 void DisplayManager::loadTextures()
 {
-    playerI = LoadImage("resources/pacman.png");
-    playerT = LoadTextureFromImage(playerI);
+    playerI = LoadImage("resources/pacman.png");     // Loaded in CPU memory (RAM)
+    playerT = LoadTextureFromImage(playerI);          // Image converted to texture, GPU memory (VRAM)
+    UnloadImage(playerI);  
 }
