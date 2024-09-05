@@ -25,6 +25,9 @@ class DisplayManager
     bool isSplashScreen; //flag to monitor if player is withing splash screen
     bool isPlaying;
 
+    //variables to capture player input
+    bool downArrowKeyPressed, upArrowKeyPressed, leftArrowKeyPressed, rightArrowKeyPressed;
+
     //Utility Functions
     void displaySplashScreen();
     void displayInGameScreen();

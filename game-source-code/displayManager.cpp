@@ -6,7 +6,11 @@ green{38, 185, 154},
 black{0,0,0,255},
 white{255, 255, 255, 255},
 isSplashScreen{true},
-isPlaying{false}// Player initially not playing
+isPlaying{false},// Player initially not playing
+downArrowKeyPressed{false},
+upArrowKeyPressed{false}, 
+leftArrowKeyPressed{false}, 
+rightArrowKeyPressed{false}
 {
     window->Init(screen_width, screen_height, "SUPER PAC-MAN");
     loadTextures();
@@ -34,6 +38,12 @@ void DisplayManager::startGame()
 
 void DisplayManager::handleUserInput()
 {
+    //Reset Arrow key booleans
+    downArrowKeyPressed = false;
+    upArrowKeyPressed = false;
+    leftArrowKeyPressed = false;
+    rightArrowKeyPressed = false;
+
     if (IsKeyPressed)
     {
         switch (GetKeyPressed())
@@ -46,7 +56,10 @@ void DisplayManager::handleUserInput()
                 isPlaying = true;
             }
             break;
-
+        case KEY_DOWN:
+             downArrowKeyPressed = true;
+             player_obj->movePlayer(rightArrowKeyPressed,leftArrowKeyPressed,downArrowKeyPressed,upArrowKeyPressed);
+             break;
         default:
             break;
         }
