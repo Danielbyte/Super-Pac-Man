@@ -63,7 +63,15 @@ void DisplayManager::handleUserInput()
         case KEY_UP:
              upArrowKeyPressed = true;
              player_obj->movePlayer(rightArrowKeyPressed,leftArrowKeyPressed,downArrowKeyPressed,upArrowKeyPressed);
-             break;            
+             break;   
+        case KEY_LEFT:
+             leftArrowKeyPressed = true;
+             player_obj->movePlayer(rightArrowKeyPressed,leftArrowKeyPressed,downArrowKeyPressed,upArrowKeyPressed);
+             break;
+        case KEY_RIGHT:
+             rightArrowKeyPressed = true;
+             player_obj->movePlayer(rightArrowKeyPressed,leftArrowKeyPressed,downArrowKeyPressed,upArrowKeyPressed);
+             break;         
         default:
             break;
         }
