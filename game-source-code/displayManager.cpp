@@ -45,7 +45,6 @@ void DisplayManager::handleUserInput()
     leftArrowKeyPressed = false;
     rightArrowKeyPressed = false;
 
-
     if(IsKeyDown(KEY_UP))
     {
         upArrowKeyPressed = true;
@@ -62,7 +61,20 @@ void DisplayManager::handleUserInput()
     {
         isSplashScreen = false;
         isPlaying = true;
-    }    
+    }
+
+    if(IsKeyDown(KEY_LEFT))
+    {
+        leftArrowKeyPressed = true;
+        player_obj->movePlayer(rightArrowKeyPressed,leftArrowKeyPressed,downArrowKeyPressed,upArrowKeyPressed);
+    }
+
+    if(IsKeyDown(KEY_RIGHT))
+    {
+        rightArrowKeyPressed = true;
+        player_obj->movePlayer(rightArrowKeyPressed,leftArrowKeyPressed,downArrowKeyPressed,upArrowKeyPressed);
+    }  
+
 }
 
 void DisplayManager::displaySplashScreen()
