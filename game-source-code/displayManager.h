@@ -15,8 +15,8 @@ class DisplayManager
     void handleUserInput();
     
     private:
-    const int screen_width = 1600;
-    const int screen_height = 900;
+    const int window_width;
+    const int window_height;
     bool quitGame;//use to control game window
     raylib::Color green;
     raylib::Color black;

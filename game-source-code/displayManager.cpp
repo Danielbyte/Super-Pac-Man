@@ -1,6 +1,8 @@
 #include "displayManager.h"
 
 DisplayManager::DisplayManager() :
+window_width{800},
+window_height{700},
 quitGame{false},
 green{38, 185, 154},
 black{0,0,0,255},
@@ -12,7 +14,7 @@ upArrowKeyPressed{false},
 leftArrowKeyPressed{false}, 
 rightArrowKeyPressed{false}
 {
-    window->Init(screen_width, screen_height, "SUPER PAC-MAN");
+    window->Init(window_width, window_height, "SUPER PAC-MAN");
     loadTextures();
 }
 
