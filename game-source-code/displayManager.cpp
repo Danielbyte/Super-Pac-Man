@@ -2,7 +2,7 @@
 
 DisplayManager::DisplayManager() :
 window_width{800},
-window_height{700},
+window_height{704},
 quitGame{false},
 green{38, 185, 154},
 black{0,0,0,255},
@@ -99,7 +99,7 @@ void DisplayManager::displayInGameScreen()
 
 void DisplayManager::loadTextures()
 {
-    playerI = LoadImage("resources/pacman.png");     // Loaded in CPU memory (RAM)
+    playerI = LoadImage("resources/pacmanRight1.png");     // Loaded in CPU memory (RAM)
     playerT = LoadTextureFromImage(playerI);          // Image converted to texture, GPU memory (VRAM)
     UnloadImage(playerI);  
 }
