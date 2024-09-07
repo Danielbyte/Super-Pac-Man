@@ -1,8 +1,8 @@
 #include "player.h"
 
 Player::Player():
-xPosition{800.0f},
-yPosition{450.0f},
+xPosition{376.0f},//New player center
+yPosition{326.0f},//New player center
 playerSpeed{2.0f}
 {}
 
