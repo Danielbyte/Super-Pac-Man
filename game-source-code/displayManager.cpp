@@ -110,14 +110,17 @@ void DisplayManager::loadTextures()
 void DisplayManager::loadMap()
 {
     std::ifstream gameMapFile("resources/gameMap.txt");
-    std::string line;
+    int count = 0;
     if(gameMapFile.is_open())
     {
-        while (getline(gameMapFile, line))
+        int tileId;
+        while (gameMapFile>>tileId)
         {
-            std::cout << line << std::endl;
+            std::cout << tileId << std::endl;
+            ++count;
         }
         
     }
     gameMapFile.close();
+    std::cout << "Number of tiles: "<< count << std::endl; 
 }
