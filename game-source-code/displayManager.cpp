@@ -37,6 +37,7 @@ void DisplayManager::startGame()
 
         EndDrawing();
     }
+    window->Close();
 }
 
 void DisplayManager::handleUserInput()

@@ -2,7 +2,8 @@
 
 Player::Player():
 xPosition{800.0f},
-yPosition{450.0f}
+yPosition{450.0f},
+playerSpeed{2.0f}
 {}
 
 void Player::movePlayer(bool rightArrowKeyPressed, bool leftArrowKeyPressed,
@@ -11,7 +12,7 @@ void Player::movePlayer(bool rightArrowKeyPressed, bool leftArrowKeyPressed,
     if (rightArrowKeyPressed)
     {
         //move player to the right
-        xPosition += 2.5f;
+        xPosition += playerSpeed;
         if (xPosition >= 1426.0f)
            xPosition = 1426.0f;
     }
@@ -19,7 +20,7 @@ void Player::movePlayer(bool rightArrowKeyPressed, bool leftArrowKeyPressed,
     if(leftArrowKeyPressed)
     {
         //Move player to the left
-        xPosition -= 2.5f;
+        xPosition -= playerSpeed;
         if (xPosition <= 174.0f)
             xPosition = 174.0f;
     }
@@ -27,7 +28,7 @@ void Player::movePlayer(bool rightArrowKeyPressed, bool leftArrowKeyPressed,
     if(downArrowKeyPressed)
     {
         //move player downwards
-        yPosition += 2.5f;
+        yPosition += playerSpeed;
 
         if (yPosition >= 711.5f)
             yPosition = 711.5f;
@@ -36,7 +37,7 @@ void Player::movePlayer(bool rightArrowKeyPressed, bool leftArrowKeyPressed,
     if (upArrowKeyPressed)
     {
         //move player upwards
-        yPosition -= 2.5f;
+        yPosition -= playerSpeed;
         //Restrict player within bounds
         if (yPosition <= 188.5f)
             yPosition = 188.5f;

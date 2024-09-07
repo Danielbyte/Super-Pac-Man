@@ -7,6 +7,7 @@ class Player
 private:
  float xPosition;
  float yPosition;
+ float playerSpeed;
 
 public:
     Player();
