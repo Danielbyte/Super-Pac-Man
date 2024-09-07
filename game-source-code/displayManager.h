@@ -39,5 +39,7 @@ class DisplayManager
     raylib::Image playerI;
     //Texture objects
     std::shared_ptr<raylib::Window>window = std::make_shared<raylib::Window>();
+
+    void loadMap();
 };
 #endif //DISPLAYMANAGER

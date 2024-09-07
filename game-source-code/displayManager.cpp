@@ -1,4 +1,6 @@
 #include "displayManager.h"
+#include <fstream>
+#include <string>
 
 DisplayManager::DisplayManager() :
 window_width{800},
@@ -16,6 +18,7 @@ rightArrowKeyPressed{false}
 {
     window->Init(window_width, window_height, "SUPER PAC-MAN");
     loadTextures();
+    loadMap();
 }
 
 void DisplayManager::startGame()
@@ -102,4 +105,19 @@ void DisplayManager::loadTextures()
     playerI = LoadImage("resources/pacmanRight1.png");     // Loaded in CPU memory (RAM)
     playerT = LoadTextureFromImage(playerI);          // Image converted to texture, GPU memory (VRAM)
     UnloadImage(playerI);  
+}
+
+void DisplayManager::loadMap()
+{
+    std::ifstream gameMapFile("resources/gameMap.txt");
+    std::string line;
+    if(gameMapFile.is_open())
+    {
+        while (getline(gameMapFile, line))
+        {
+            std::cout << line << std::endl;
+        }
+        
+    }
+    gameMapFile.close();
 }
