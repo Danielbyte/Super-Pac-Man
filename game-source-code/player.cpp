@@ -13,8 +13,8 @@ void Player::movePlayer(bool rightArrowKeyPressed, bool leftArrowKeyPressed,
     {
         //move player to the right
         xPosition += playerSpeed;
-        if (xPosition >= 752.0f)
-           xPosition = 752.0f;
+        if (xPosition >= 768.0f)
+           xPosition = 768.0f;
     }
 
     if(leftArrowKeyPressed)
@@ -30,8 +30,8 @@ void Player::movePlayer(bool rightArrowKeyPressed, bool leftArrowKeyPressed,
         //move player downwards
         yPosition += playerSpeed;
 
-        if (yPosition >= 652.0f)
-            yPosition = 652.0f;
+        if (yPosition >= 672.0f)
+            yPosition = 672.0f;
     }
 
     if (upArrowKeyPressed)
