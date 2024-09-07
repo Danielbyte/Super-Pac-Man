@@ -27,7 +27,7 @@ void DisplayManager::startGame()
         handleUserInput();
         //update game
         //Draw
-        BeginDrawing();
+        window->BeginDrawing();
         ClearBackground(background);
         if(isSplashScreen)
            displaySplashScreen();
@@ -35,7 +35,7 @@ void DisplayManager::startGame()
         if(isPlaying)
            displayInGameScreen();
 
-        EndDrawing();
+        window->EndDrawing();
     }
     window->Close();
 }
