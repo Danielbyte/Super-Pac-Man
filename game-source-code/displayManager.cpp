@@ -100,6 +100,14 @@ void DisplayManager::displayInGameScreen()
     //EndDrawing();
 }
 
+void DisplayManager::drawGameWorld()
+{
+}
+
+void DisplayManager::updateGameWorldTextures()
+{
+}
+
 void DisplayManager::loadTextures()
 {
     playerI = LoadImage("resources/pacmanRight1.png");     // Loaded in CPU memory (RAM)

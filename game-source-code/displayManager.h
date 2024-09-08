@@ -33,6 +33,8 @@ class DisplayManager
     //Utility Functions
     void displaySplashScreen();
     void displayInGameScreen();
+    void drawGameWorld();
+    void updateGameWorldTextures();
     void loadTextures();
     
     //Create Player objects
@@ -49,5 +51,6 @@ class DisplayManager
     std::shared_ptr<raylib::Window>window = std::make_shared<raylib::Window>();
     std::shared_ptr<GameWorld>game_world = std::make_shared<GameWorld>();
     std::shared_ptr<GameWorldResources>world_resources = std::make_shared<GameWorldResources>();
+    std::vector<std::shared_ptr<raylib::Texture2D>>game_world_textures = {};
 };
 #endif //DISPLAYMANAGER
