@@ -16,3 +16,7 @@ GameWorldResources::GameWorldResources(int tilePosX, int tilePosY)
 void GameWorldResources::loadTextures()
 {
 }
+std::tuple<float, float> GameWorldResources::getTileScreenPosition() const
+{
+    return {tileScreenPosX, tileScreenPosY};
+}
