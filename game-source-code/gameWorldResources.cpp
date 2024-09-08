@@ -9,8 +9,8 @@ tileScreenPosY{0.0f}
 
 GameWorldResources::GameWorldResources(int tilePosX, int tilePosY)
 {
-    tileScreenPosX = tilePosX * 16.0f;
-    tileScreenPosY = tilePosY * 16.0f;
+    tileScreenPosX = tilePosX * 16.0f + 8.0f + 8.0f;
+    tileScreenPosY = tilePosY * 16.0f + 8.0f;
 }
 
 void GameWorldResources::loadTextures()

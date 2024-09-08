@@ -19,6 +19,7 @@ rightArrowKeyPressed{false}
     window->Init(window_width, window_height, "SUPER PAC-MAN");
     loadTextures();
     game_world->loadMapFromFile();
+    InitGameWorldTextures();
 }
 
 void DisplayManager::startGame()
@@ -69,7 +70,6 @@ void DisplayManager::handleUserInput()
     {
         isSplashScreen = false;
         isPlaying = true;
-        InitGameWorldTextures();
         std::cout << "Game world Init!" << std::endl;
     }
 
@@ -132,8 +132,8 @@ void DisplayManager::InitGameWorldTextures()
         tilePosY++;
         for (char cell : row)
         {
-            tilePosX++;
             processTileTexture(cell, tilePosX, tilePosY);
+            tilePosX++;
         }
         tilePosX = 0;
     }
@@ -156,7 +156,7 @@ void DisplayManager::setWallProperties(int tilePosX, int tilePosY)
 {
     auto texture = std::make_shared<raylib::Texture2D>();
     auto maxCol = game_world->getNumberOfColumns();
-    if (tilePosX == maxCol && tilePosY != 0 && (tilePosY != (game_world->getGameMap()).size()))
+    if (tilePosX == 0 || tilePosX == maxCol - 1)
         texture->Load("resources/verticalWallPiece.png");
     
     else
