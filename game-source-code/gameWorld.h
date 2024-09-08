@@ -3,12 +3,13 @@
 #include <vector>
 #include <fstream>
 #include <string>
+#include <iostream>
 
 class GameWorld
 {
 public:
  GameWorld();
- std::vector<std::vector<char>>loadMapFromFile();
+ void loadMapFromFile();
 private:
     /* data */
 };

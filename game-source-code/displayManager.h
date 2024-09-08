@@ -1,6 +1,7 @@
 #ifndef DISPLAYMANAGER
 #define DISPLAYMANAGER
 #include "raylib-cpp.hpp"
+#include "gameWorld.h"
 
 using namespace raylib;
 #include <iostream>
