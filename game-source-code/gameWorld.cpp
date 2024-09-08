@@ -23,12 +23,10 @@ void GameWorld::loadMapFromFile()
                 gameMap.push_back(row);
                 
             numberOfColumns = std::max(numberOfColumns, static_cast<int>(row.size()));
-            ++count;
+            ++numberOfRows;
         }
     }
     gameMapFile.close();
-    std::cout << "Number of Rows: " << gameMap.size() << std::endl;
-    std::cout << "Number of Columns: " << numberOfColumns << std::endl;
 }
 
 int GameWorld::getNumberOfColumns() const
@@ -36,9 +34,16 @@ int GameWorld::getNumberOfColumns() const
     return numberOfColumns;
 }
 
+int GameWorld::getNumberOfRows() const
+{
+    return numberOfRows;
+}
+
 std::vector<std::vector<char>> GameWorld::gameMap = {};//Static member variables are accessed at class level
 
 int GameWorld::numberOfColumns = 0;
+
+int GameWorld::numberOfRows = 0;
 
 const std::vector<std::vector<char>>& GameWorld::getGameMap()
 {

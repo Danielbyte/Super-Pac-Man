@@ -153,22 +153,20 @@ void DisplayManager::processTileTexture(const char element, int tilePosX, int ti
 }
 
 void DisplayManager::setWallProperties(int tilePosX, int tilePosY)
-{
-     
+{  
     auto texture = std::make_shared<raylib::Texture2D>();
     auto maxCol = game_world->getNumberOfColumns();
 
-    if (tilePosX == 0 || tilePosX == (maxCol-1))
+    if ((tilePosX == 0 || tilePosX == (maxCol-1)) && (tilePosY >= 1 && tilePosY < ((game_world->getGameMap().size())-1)))
     {
-        if(tilePosY == 1 || tilePosY == ((game_world->getGameMap().size())-1))
-           texture->Load("resources/verticalWallPiece.png");
-
-        else
-           texture->Load("resources/verticalWallPiece.png");
+        texture->Load("resources/verticalWallPiece.png"); 
     }
         
-    else
-     texture->Load("resources/horizontalWallPiece.png");
+    else if (tilePosY == 0 || tilePosY == ((game_world->getGameMap().size())-1))
+    {
+        texture->Load("resources/horizontalWallPiece.png");
+    }
+        
 
     game_world_textures.push_back(texture);
     auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY);

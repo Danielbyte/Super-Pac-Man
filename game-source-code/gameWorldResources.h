@@ -4,6 +4,8 @@
 #include "raylib-cpp.hpp"
 #include<tuple>
 #include<iostream>
+#include <memory>
+#include "gameWorld.h"
 using namespace raylib;
 
 //This class is for updating maze texture/s
@@ -17,5 +19,6 @@ private:
 void loadTextures();
 float tileScreenPosX;
 float tileScreenPosY;
+std::shared_ptr<GameWorld>game_world = std::make_shared<GameWorld>();
 };
 #endif
