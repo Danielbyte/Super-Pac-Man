@@ -1,3 +1,10 @@
 #include "gameWorldResources.h"
 
-GameWorldResources::GameWorldResources(){};
+GameWorldResources::GameWorldResources()
+{
+    loadTextures();
+}
+
+void GameWorldResources::loadTextures()
+{
+}

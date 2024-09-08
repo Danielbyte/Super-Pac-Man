@@ -105,4 +105,11 @@ void DisplayManager::loadTextures()
     playerI = LoadImage("resources/pacmanRight1.png");     // Loaded in CPU memory (RAM)
     playerT = LoadTextureFromImage(playerI);          // Image converted to texture, GPU memory (VRAM)
     UnloadImage(playerI);  
+
+    horizontalWallPieceI = LoadImage("resources/horizontalWallPiece.png");
+    horizontalWallPieceT = LoadTextureFromImage(horizontalWallPieceI);
+    verticalWallPieceI = LoadImage("resources/verticalWallPiece.png");
+    verticalWallPieceT = LoadTextureFromImage(verticalWallPieceI);
+    UnloadImage(horizontalWallPieceI);
+    UnloadImage(verticalWallPieceI);
 }

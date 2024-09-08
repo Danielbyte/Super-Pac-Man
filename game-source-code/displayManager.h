@@ -1,9 +1,10 @@
 #ifndef DISPLAYMANAGER
 #define DISPLAYMANAGER
-#include "raylib-cpp.hpp"
-#include "gameWorld.h"
 
-using namespace raylib;
+#include "gameWorld.h"
+#include "gameWorldResources.h"
+
+//using namespace raylib;
 #include <iostream>
 #include <memory>
 #include "player.h"
@@ -39,8 +40,14 @@ class DisplayManager
     raylib::Texture2D playerT;
     raylib::Image playerI;
 
+    raylib::Texture2D horizontalWallPieceT;
+    raylib::Image horizontalWallPieceI;
+    raylib::Texture2D verticalWallPieceT;
+    raylib::Image verticalWallPieceI;
+
     //Game objects
     std::shared_ptr<raylib::Window>window = std::make_shared<raylib::Window>();
     std::shared_ptr<GameWorld>game_world = std::make_shared<GameWorld>();
+    std::shared_ptr<GameWorldResources>world_resources = std::make_shared<GameWorldResources>();
 };
 #endif //DISPLAYMANAGER
