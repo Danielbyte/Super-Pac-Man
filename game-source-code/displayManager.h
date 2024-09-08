@@ -36,6 +36,7 @@ class DisplayManager
     void drawGameWorld();
     void updateGameWorldTextures();
     void processTileTexture(const char element, int tilePosX, int tilePosY);
+    void setWallProperties(int tilePosX, int tilePosY, int column);
     void loadTextures();
     
     //Create Player objects

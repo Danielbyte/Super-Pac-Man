@@ -135,6 +135,17 @@ void DisplayManager::processTileTexture(const char element, int tilePosX, int ti
     }
 }
 
+void DisplayManager::setWallProperties(int tilePosX, int tilePosY, int column)
+{
+    auto texture = std::make_shared<raylib::Texture2D>();
+    auto maxCol = game_world->getNumberOfColumns();
+    if (column == maxCol && tilePosY != 0 && (tilePosY != (game_world->getGameMap()).size()))
+        texture->Load("resources/verticalWallPiece.png");
+    
+    else
+     texture->Load("resources/horizontalWallPiece.png");
+}
+
 void DisplayManager::loadTextures()
 {
     playerI = LoadImage("resources/pacmanRight1.png");     // Loaded in CPU memory (RAM)

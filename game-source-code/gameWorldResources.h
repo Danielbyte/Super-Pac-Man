@@ -9,8 +9,11 @@ class GameWorldResources
 {
 public:
 GameWorldResources();
+GameWorldResources(int tilePosX, int tilePosY);
 
 private:
 void loadTextures();
+float tileScreenPosX;
+float tileScreenPosY;
 };
 #endif
