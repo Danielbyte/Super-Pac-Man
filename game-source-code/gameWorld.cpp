@@ -23,3 +23,8 @@ void GameWorld::loadMapFromFile()
 }
 
 std::vector<std::vector<char>> GameWorld::gameMap = {};//Static member variables are accessed at class level
+
+const std::vector<std::vector<char>>& GameWorld::getGameMap()
+{
+    return gameMap;
+}
