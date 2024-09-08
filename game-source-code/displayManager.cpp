@@ -18,7 +18,6 @@ rightArrowKeyPressed{false}
 {
     window->Init(window_width, window_height, "SUPER PAC-MAN");
     loadTextures();
-    loadMap();
 }
 
 void DisplayManager::startGame()
@@ -105,22 +104,4 @@ void DisplayManager::loadTextures()
     playerI = LoadImage("resources/pacmanRight1.png");     // Loaded in CPU memory (RAM)
     playerT = LoadTextureFromImage(playerI);          // Image converted to texture, GPU memory (VRAM)
     UnloadImage(playerI);  
-}
-
-void DisplayManager::loadMap()
-{
-    std::ifstream gameMapFile("resources/gameMap.txt");
-    int count = 0;
-    if(gameMapFile.is_open())
-    {
-        int tileId;
-        while (gameMapFile>>tileId)
-        {
-            std::cout << tileId << std::endl;
-            ++count;
-        }
-        
-    }
-    gameMapFile.close();
-    std::cout << "Number of tiles: "<< count << std::endl; 
 }
