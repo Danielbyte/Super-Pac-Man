@@ -3,6 +3,7 @@
 
 #include "raylib-cpp.hpp"
 #include<tuple>
+#include<iostream>
 using namespace raylib;
 
 //This class is for updating maze texture/s

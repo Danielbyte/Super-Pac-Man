@@ -129,12 +129,12 @@ void DisplayManager::InitGameWorldTextures()
     int tilePosX = 0;
     for (const auto& row : game_maze)
     {
-        tilePosY++;
         for (char cell : row)
         {
             processTileTexture(cell, tilePosX, tilePosY);
             tilePosX++;
         }
+        tilePosY++;
         tilePosX = 0;
     }
 }
@@ -154,11 +154,19 @@ void DisplayManager::processTileTexture(const char element, int tilePosX, int ti
 
 void DisplayManager::setWallProperties(int tilePosX, int tilePosY)
 {
+     
     auto texture = std::make_shared<raylib::Texture2D>();
     auto maxCol = game_world->getNumberOfColumns();
-    if (tilePosX == 0 || tilePosX == maxCol - 1)
-        texture->Load("resources/verticalWallPiece.png");
-    
+
+    if (tilePosX == 0 || tilePosX == (maxCol-1))
+    {
+        if(tilePosY == 1 || tilePosY == ((game_world->getGameMap().size())-1))
+           texture->Load("resources/verticalWallPiece.png");
+
+        else
+           texture->Load("resources/verticalWallPiece.png");
+    }
+        
     else
      texture->Load("resources/horizontalWallPiece.png");
 
