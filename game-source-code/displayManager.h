@@ -34,9 +34,9 @@ class DisplayManager
     void displaySplashScreen();
     void displayInGameScreen();
     void drawGameWorld();
-    void updateGameWorldTextures();
+    void InitGameWorldTextures();
     void processTileTexture(const char element, int tilePosX, int tilePosY);
-    void setWallProperties(int tilePosX, int tilePosY, int column);
+    void setWallProperties(int tilePosX, int tilePosY);
     void loadTextures();
     
     //Create Player objects
@@ -52,7 +52,7 @@ class DisplayManager
     //Game objects
     std::shared_ptr<raylib::Window>window = std::make_shared<raylib::Window>();
     std::shared_ptr<GameWorld>game_world = std::make_shared<GameWorld>();
-    std::shared_ptr<GameWorldResources>world_resources = std::make_shared<GameWorldResources>();
+    std::vector<std::shared_ptr<GameWorldResources>>maze_resources = {};
     std::vector<std::shared_ptr<raylib::Texture2D>>game_world_textures = {};
 };
 #endif //DISPLAYMANAGER

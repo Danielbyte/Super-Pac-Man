@@ -29,7 +29,7 @@ void DisplayManager::startGame()
         //Handle user Input
         handleUserInput();
         //update game
-        updateGameWorldTextures();
+
         //Draw
         window->BeginDrawing();
         ClearBackground(background);
@@ -65,10 +65,12 @@ void DisplayManager::handleUserInput()
         player_obj->movePlayer(rightArrowKeyPressed,leftArrowKeyPressed,downArrowKeyPressed,upArrowKeyPressed);
     }
 
-    if(IsKeyDown(KEY_ENTER) || IsKeyDown(KEY_KP_ENTER))
+    if(IsKeyDown(KEY_ENTER) || IsKeyDown(KEY_KP_ENTER) && !isPlaying && isSplashScreen)
     {
         isSplashScreen = false;
         isPlaying = true;
+        InitGameWorldTextures();
+        std::cout << "Game world Init!" << std::endl;
     }
 
     if(IsKeyDown(KEY_LEFT))
@@ -106,7 +108,7 @@ void DisplayManager::drawGameWorld()
 {
 }
 
-void DisplayManager::updateGameWorldTextures()
+void DisplayManager::InitGameWorldTextures()
 {
     auto game_maze = game_world->getGameMap();
     int tilePosY = 0;
@@ -117,6 +119,7 @@ void DisplayManager::updateGameWorldTextures()
         for (char cell : row)
         {
             tilePosX++;
+            processTileTexture(cell, tilePosX, tilePosY);
         }
         tilePosX = 0;
     }
@@ -127,7 +130,7 @@ void DisplayManager::processTileTexture(const char element, int tilePosX, int ti
     switch (element)
     {
     case '*':
-        /* code */
+        setWallProperties(tilePosX,tilePosY);
         break;
     
     default:
@@ -135,15 +138,19 @@ void DisplayManager::processTileTexture(const char element, int tilePosX, int ti
     }
 }
 
-void DisplayManager::setWallProperties(int tilePosX, int tilePosY, int column)
+void DisplayManager::setWallProperties(int tilePosX, int tilePosY)
 {
     auto texture = std::make_shared<raylib::Texture2D>();
     auto maxCol = game_world->getNumberOfColumns();
-    if (column == maxCol && tilePosY != 0 && (tilePosY != (game_world->getGameMap()).size()))
+    if (tilePosX == maxCol && tilePosY != 0 && (tilePosY != (game_world->getGameMap()).size()))
         texture->Load("resources/verticalWallPiece.png");
     
     else
      texture->Load("resources/horizontalWallPiece.png");
+
+    game_world_textures.push_back(texture);
+    auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY);
+    maze_resources.push_back(tile_property);
 }
 
 void DisplayManager::loadTextures()
