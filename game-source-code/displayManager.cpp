@@ -146,7 +146,12 @@ void DisplayManager::processTileTexture(const char element, int tilePosX, int ti
     case '*':
         setWallProperties(tilePosX,tilePosY);
         break;
-    
+    case '=':
+        rightCornerDown(tilePosX,tilePosY);
+        break;
+    case '-':
+        leftCornerDown(tilePosX,tilePosY);
+        break;
     default:
         break;
     }
@@ -171,6 +176,24 @@ void DisplayManager::setWallProperties(int tilePosX, int tilePosY)
     game_world_textures.push_back(texture);
     auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY);
     maze_resources.push_back(tile_property);
+}
+
+void DisplayManager::rightCornerDown(int tilePosX, int tilePosY)
+{
+  auto texture = std::make_shared<raylib::Texture2D>();
+  texture->Load("resources/RightCornerDown.png");
+  game_world_textures.push_back(texture);
+  auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY);
+  maze_resources.push_back(tile_property);
+}
+
+void DisplayManager::leftCornerDown(int tilePosX, int tilePosY)
+{
+  auto texture = std::make_shared<raylib::Texture2D>();
+  texture->Load("resources/LeftCornerDown.png");
+  game_world_textures.push_back(texture);
+  auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY);
+  maze_resources.push_back(tile_property);
 }
 
 void DisplayManager::loadTextures()

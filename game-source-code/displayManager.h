@@ -37,6 +37,8 @@ class DisplayManager
     void InitGameWorldTextures();
     void processTileTexture(const char element, int tilePosX, int tilePosY);
     void setWallProperties(int tilePosX, int tilePosY);
+    void rightCornerDown(int tilePosX, int tilePosY);
+    void leftCornerDown(int tilePosX, int tilePosY);
     void drawMaze();
     void loadTextures();
     
