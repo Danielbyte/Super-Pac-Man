@@ -101,7 +101,21 @@ void DisplayManager::displayInGameScreen()
     background = black;//Updating background
     auto [xPlayerPos, yPlayerPos] = player_obj->getPlayerPosition();
     playerT.Draw(xPlayerPos, yPlayerPos);
+    drawMaze();
     //EndDrawing();
+}
+
+void DisplayManager::drawMaze()
+{
+    auto tile_property = maze_resources.begin();
+    auto tile_texture = game_world_textures.begin();
+    while(tile_property != maze_resources.end())
+    {
+        auto [tileScreenPosX, tileScreenPosY] = (*tile_property)->getTileScreenPosition();
+        (*tile_texture)->Draw(tileScreenPosX,tileScreenPosY);
+        ++tile_property;
+        ++tile_texture;
+    }
 }
 
 void DisplayManager::drawGameWorld()
