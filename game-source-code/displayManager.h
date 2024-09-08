@@ -35,6 +35,7 @@ class DisplayManager
     void displayInGameScreen();
     void drawGameWorld();
     void updateGameWorldTextures();
+    void processTileTexture(const char element, int tilePosX, int tilePosY);
     void loadTextures();
     
     //Create Player objects

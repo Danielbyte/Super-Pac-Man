@@ -29,9 +29,11 @@ void DisplayManager::startGame()
         //Handle user Input
         handleUserInput();
         //update game
+        updateGameWorldTextures();
         //Draw
         window->BeginDrawing();
         ClearBackground(background);
+
         if(isSplashScreen)
            displaySplashScreen();
 
@@ -106,6 +108,31 @@ void DisplayManager::drawGameWorld()
 
 void DisplayManager::updateGameWorldTextures()
 {
+    auto game_maze = game_world->getGameMap();
+    int tilePosY = 0;
+    int tilePosX = 0;
+    for (const auto& row : game_maze)
+    {
+        tilePosY++;
+        for (char cell : row)
+        {
+            tilePosX++;
+        }
+        tilePosX = 0;
+    }
+}
+
+void DisplayManager::processTileTexture(const char element, int tilePosX, int tilePosY)
+{
+    switch (element)
+    {
+    case '*':
+        /* code */
+        break;
+    
+    default:
+        break;
+    }
 }
 
 void DisplayManager::loadTextures()
