@@ -18,6 +18,7 @@ rightArrowKeyPressed{false}
 {
     window->Init(window_width, window_height, "SUPER PAC-MAN");
     loadTextures();
+    game_world->loadMapFromFile();
 }
 
 void DisplayManager::startGame()

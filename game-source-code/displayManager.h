@@ -38,7 +38,9 @@ class DisplayManager
     std::shared_ptr<Player> player_obj = std::make_shared<Player>(); 
     raylib::Texture2D playerT;
     raylib::Image playerI;
-    //Texture objects
+
+    //Game objects
     std::shared_ptr<raylib::Window>window = std::make_shared<raylib::Window>();
+    std::shared_ptr<GameWorld>game_world = std::make_shared<GameWorld>();
 };
 #endif //DISPLAYMANAGER

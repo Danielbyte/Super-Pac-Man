@@ -9,7 +9,8 @@ class GameWorld
 {
 public:
  GameWorld();
- void loadMapFromFile();
+ static void loadMapFromFile();
+ static std::vector<std::vector<char>>gameMap; //All game objects should modify and share the same coppy of the game maze
 private:
     /* data */
 };
