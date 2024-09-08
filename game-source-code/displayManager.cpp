@@ -159,10 +159,10 @@ void DisplayManager::loadTextures()
     playerT = LoadTextureFromImage(playerI);          // Image converted to texture, GPU memory (VRAM)
     UnloadImage(playerI);  
 
-    horizontalWallPieceI = LoadImage("resources/horizontalWallPiece.png");
+    /*horizontalWallPieceI = LoadImage("resources/horizontalWallPiece.png");
     horizontalWallPieceT = LoadTextureFromImage(horizontalWallPieceI);
     verticalWallPieceI = LoadImage("resources/verticalWallPiece.png");
     verticalWallPieceT = LoadTextureFromImage(verticalWallPieceI);
     UnloadImage(horizontalWallPieceI);
-    UnloadImage(verticalWallPieceI);
+    UnloadImage(verticalWallPieceI);*/
 }
