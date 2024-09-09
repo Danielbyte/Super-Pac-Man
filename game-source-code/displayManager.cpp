@@ -30,7 +30,7 @@ void DisplayManager::startGame()
         //Handle user Input
         handleUserInput();
         //update game
-
+        updateGame();
         //Draw
         window->BeginDrawing();
         ClearBackground(background);
@@ -44,6 +44,11 @@ void DisplayManager::startGame()
         window->EndDrawing();
     }
     window->Close();
+}
+
+void DisplayManager::updateGame()
+{
+    collision_manager->playerWallCollisions(maze_resources,player_obj);
 }
 
 void DisplayManager::handleUserInput()

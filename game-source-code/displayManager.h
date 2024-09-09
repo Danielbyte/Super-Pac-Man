@@ -32,6 +32,7 @@ class DisplayManager
     bool downArrowKeyPressed, upArrowKeyPressed, leftArrowKeyPressed, rightArrowKeyPressed;
 
     //Utility Functions
+    void updateGame();
     void displaySplashScreen();
     void displayInGameScreen();
     void drawGameWorld();
@@ -62,5 +63,6 @@ class DisplayManager
     std::shared_ptr<GameWorld>game_world = std::make_shared<GameWorld>();
     std::vector<std::shared_ptr<GameWorldResources>>maze_resources = {};
     std::vector<std::shared_ptr<raylib::Texture2D>>game_world_textures = {};
+    std::unique_ptr<CollisionsManager>collision_manager = std::make_unique<CollisionsManager>();
 };
 #endif //DISPLAYMANAGER
