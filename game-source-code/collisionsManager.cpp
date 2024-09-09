@@ -25,6 +25,14 @@ void CollisionsManager::playerWallCollisions(std::vector<std::shared_ptr<GameWor
             if (isCollided)
             std::cout << "Collided" << std::endl;
         }
+
+        if (tile_type == ObjectType::VerticalWall)
+        {
+            auto isCollided = collision->checkCollision(xPlayerPos,yPlayerPos,playerWidth,playerLength,tileXpos,tileYpos,
+             verticalWallWidth, verticalWallLength);
+            if (isCollided)
+            std::cout << "Collided" << std::endl;
+        }
         ++maze_tile;
     }
 }
