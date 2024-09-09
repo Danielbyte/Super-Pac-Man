@@ -41,6 +41,8 @@ class DisplayManager
     void leftCornerDown(int tilePosX, int tilePosY);
     void leftCornerUp(int tilePosX, int tilePosY);
     void rightCornerUp(int tilePosX, int tilePosY);
+    void verticalWall(int tilePosX, int tilePosY);
+    void horizontalWall(int tilePosX, int tilePosY);
     void drawMaze();
     void loadTextures();
     
