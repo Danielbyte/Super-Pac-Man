@@ -5,15 +5,15 @@ Collisions::Collisions(){}
 bool Collisions::checkCollision(float obj1Xposition, float obj1Yposition, float obj1Width, float obj1Length,
 	float obj2Xposition, float obj2Yposition, float obj2Width, float obj2Length)
 {
-	float obj1Left = obj1Xposition - (obj1Length / 2.0f);
-	float obj1Right = obj1Xposition + (obj1Length / 2.0f);
-	float obj1Top = obj1Yposition - (obj1Width / 2.0f);
-	float obj1Bottom = obj1Yposition + (obj1Width / 2.0f);
+	float obj1Left = obj1Xposition;
+	float obj1Right = obj1Xposition + obj1Length;
+	float obj1Top = obj1Yposition;
+	float obj1Bottom = obj1Yposition + obj1Width;
 
-	float obj2Left = obj2Xposition - (obj2Length / 2.0f);
-	float obj2Right = obj2Xposition + (obj2Length / 2.0f);
-	float obj2Top = obj2Yposition - (obj2Width / 2.0f);
-	float obj2Bottom = obj2Yposition + (obj2Width / 2.0f);
+	float obj2Left = obj2Xposition;
+	float obj2Right = obj2Xposition + obj2Length;
+	float obj2Top = obj2Yposition;
+	float obj2Bottom = obj2Yposition + obj2Width;
 
 	auto horizontalCol = checkHorizontalCollisions(obj1Right, obj1Left, obj2Right, obj2Left);
 	auto verticalCol = checkVerticalCollisions(obj1Top, obj1Bottom, obj2Top, obj2Bottom);
