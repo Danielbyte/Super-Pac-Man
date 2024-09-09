@@ -13,16 +13,16 @@ void Player::movePlayer(bool rightArrowKeyPressed, bool leftArrowKeyPressed,
     {
         //move player to the right
         xPosition += playerSpeed;
-        if (xPosition >= 768.0f)
-           xPosition = 768.0f;
+        if (xPosition >= 760.0f)
+           xPosition = 760.0f; //Cater for wall width of 8 pixels
     }
 
     if(leftArrowKeyPressed)
     {
         //Move player to the left
         xPosition -= playerSpeed;
-        if (xPosition <= 0.0f)
-            xPosition = 0.0f;
+        if (xPosition <= 8.0f)
+            xPosition = 8.0f; //Cater for wall width of 8 pixels
     }
 
     if(downArrowKeyPressed)
@@ -30,8 +30,8 @@ void Player::movePlayer(bool rightArrowKeyPressed, bool leftArrowKeyPressed,
         //move player downwards
         yPosition += playerSpeed;
 
-        if (yPosition >= 672.0f)
-            yPosition = 672.0f;
+        if (yPosition >= 664.0f)
+            yPosition = 664.0f; //Cater for wall width of 8 pixels
     }
 
     if (upArrowKeyPressed)
@@ -39,8 +39,8 @@ void Player::movePlayer(bool rightArrowKeyPressed, bool leftArrowKeyPressed,
         //move player upwards
         yPosition -= playerSpeed;
         //Restrict player within bounds
-        if (yPosition <= 0.0f)
-            yPosition = 0.0f;
+        if (yPosition <= 8.0f)
+            yPosition = 8.0f; //Cater for wall width of 8 pixels
     }
 }
 
