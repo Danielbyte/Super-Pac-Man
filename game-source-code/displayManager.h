@@ -2,6 +2,7 @@
 #define DISPLAYMANAGER
 
 #include "gameWorld.h"
+#include "collisionsManager.h"
 #include "gameWorldResources.h"
 
 //using namespace raylib;

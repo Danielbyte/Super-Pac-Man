@@ -12,5 +12,19 @@ verticalWallLength{8.0f}
 void CollisionsManager::playerWallCollisions(std::vector<std::shared_ptr<GameWorldResources>>& maze,
  std::shared_ptr<Player>& player)
 {
-    
+    auto maze_tile = maze.begin();
+    auto [xPlayerPos, yPlayerPos] = player->getPlayerPosition();
+    while(maze_tile != maze.end())
+    {
+        auto tile_type = (*maze_tile)->getObjectType();
+        auto [tileXpos, tileYpos] = (*maze_tile)->getTileScreenPosition();
+        if (tile_type == ObjectType::HorizontalWall)
+        {
+            auto isCollided = collision->checkCollision(xPlayerPos,yPlayerPos,playerWidth,playerLength,tileXpos,tileYpos,
+             horizontalWallWidth, horizontalWallLength);
+            if (isCollided)
+            std::cout << "Collided" << std::endl;
+        }
+        ++maze_tile;
+    }
 }

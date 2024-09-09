@@ -15,5 +15,6 @@ private:
 public:
     CollisionsManager();
     void playerWallCollisions(std::vector<std::shared_ptr<GameWorldResources>>& maze, std::shared_ptr<Player>& player);
+    std::unique_ptr<Collisions>collision = std::make_unique<Collisions>();
 };
 #endif
