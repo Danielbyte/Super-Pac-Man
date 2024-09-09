@@ -13,11 +13,11 @@ GameWorldResources::GameWorldResources(int tilePosX, int tilePosY)
     tileScreenPosY = tilePosY * 32.0f;
     
     auto numberOfRows = game_world->getNumberOfRows();
-    if (tilePosY == (numberOfRows - 1))//minus one since tile position start from zero
-       tileScreenPosY += 24.0f;
-
     auto numberOfColumns = game_world->getNumberOfColumns();
-    if((tilePosY > 0 && tilePosY != (numberOfRows - 1)) && tilePosX == (numberOfColumns - 1))
+    if (tilePosY == (numberOfRows - 1) && (tilePosX > 0 && tilePosX < (numberOfColumns - 1)))//minus one since tile position start from zero
+       tileScreenPosY += 24.0f;
+    
+    if((tilePosY > 0 && tilePosY != (numberOfRows - 1)) && (tilePosX == (numberOfColumns - 1) || tilePosX != 0))
       tileScreenPosX += 24.0f;
 }
 
