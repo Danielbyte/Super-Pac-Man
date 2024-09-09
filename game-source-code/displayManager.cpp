@@ -161,6 +161,9 @@ void DisplayManager::processTileTexture(const char element, int tilePosX, int ti
     case '#':
     horizontalWall(tilePosX, tilePosY);
         break;
+    case '1':
+        verticalWall(tilePosX, tilePosY);
+        break;
     default:
         break;
     }
@@ -168,6 +171,11 @@ void DisplayManager::processTileTexture(const char element, int tilePosX, int ti
 
 void DisplayManager::verticalWall(int tilePosX, int tilePosY)
 {
+  auto texture = std::make_shared<raylib::Texture2D>();
+  texture->Load("resources/verticalWallPiece.png");
+  game_world_textures.push_back(texture);
+  auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY);
+  maze_resources.push_back(tile_property);
 }
 
 void DisplayManager::horizontalWall(int tilePosX, int tilePosY)
