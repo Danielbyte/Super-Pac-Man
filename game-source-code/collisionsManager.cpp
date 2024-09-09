@@ -8,3 +8,9 @@ horizontalWallLength{32.0f},
 verticalWallWidth{32.0f},
 verticalWallLength{8.0f}
 {}
+
+void CollisionsManager::playerWallCollisions(std::vector<std::shared_ptr<GameWorldResources>>& maze,
+ std::shared_ptr<Player>& player)
+{
+    
+}
