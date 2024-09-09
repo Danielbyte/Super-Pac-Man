@@ -174,7 +174,7 @@ void DisplayManager::verticalWall(int tilePosX, int tilePosY)
   auto texture = std::make_shared<raylib::Texture2D>();
   texture->Load("resources/verticalWallPiece.png");
   game_world_textures.push_back(texture);
-  auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY);
+  auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY, ObjectType::VerticalWall);
   maze_resources.push_back(tile_property);
 }
 
@@ -183,7 +183,7 @@ void DisplayManager::horizontalWall(int tilePosX, int tilePosY)
   auto texture = std::make_shared<raylib::Texture2D>();
   texture->Load("resources/horizontalWallPiece.png");
   game_world_textures.push_back(texture);
-  auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY);
+  auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY, ObjectType::HorizontalWall);
   maze_resources.push_back(tile_property);
 }
 
@@ -195,17 +195,19 @@ void DisplayManager::setWallProperties(int tilePosX, int tilePosY)
     if ((tilePosX == 0 || tilePosX == (maxCol-1)) && (tilePosY >= 1 && tilePosY < ((game_world->getGameMap().size())-1)))
     {
         texture->Load("resources/verticalWallPiece.png"); 
+        auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY, ObjectType::VerticalWall);
+        maze_resources.push_back(tile_property);
     }
         
     else if (tilePosY == 0 || tilePosY == ((game_world->getGameMap().size())-1))
     {
         texture->Load("resources/horizontalWallPiece.png");
+        auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY, ObjectType::HorizontalWall);
+        maze_resources.push_back(tile_property);
     }
         
 
     game_world_textures.push_back(texture);
-    auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY);
-    maze_resources.push_back(tile_property);
 }
 
 void DisplayManager::rightCornerDown(int tilePosX, int tilePosY)
@@ -213,7 +215,7 @@ void DisplayManager::rightCornerDown(int tilePosX, int tilePosY)
   auto texture = std::make_shared<raylib::Texture2D>();
   texture->Load("resources/RightCornerDown.png");
   game_world_textures.push_back(texture);
-  auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY);
+  auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY, ObjectType::Other);
   maze_resources.push_back(tile_property);
 }
 
@@ -222,7 +224,7 @@ void DisplayManager::rightCornerUp(int tilePosX, int tilePosY)
   auto texture = std::make_shared<raylib::Texture2D>();
   texture->Load("resources/RightCornerUp.png");
   game_world_textures.push_back(texture);
-  auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY);
+  auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY, ObjectType::Other);
   maze_resources.push_back(tile_property);
 }
 
@@ -231,7 +233,7 @@ void DisplayManager::leftCornerDown(int tilePosX, int tilePosY)
   auto texture = std::make_shared<raylib::Texture2D>();
   texture->Load("resources/LeftCornerDown.png");
   game_world_textures.push_back(texture);
-  auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY);
+  auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY, ObjectType::Other);
   maze_resources.push_back(tile_property);
 }
 
@@ -240,7 +242,7 @@ void DisplayManager::leftCornerUp(int tilePosX, int tilePosY)
   auto texture = std::make_shared<raylib::Texture2D>();
   texture->Load("resources/LeftCornerUp.png");
   game_world_textures.push_back(texture);
-  auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY);
+  auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY, ObjectType::Other);
   maze_resources.push_back(tile_property);
 }
 

@@ -8,14 +8,14 @@
 #include "gameWorld.h"
 using namespace raylib;
 
-enum class ObjectType {VerticalWall, HorizontalWall};
+enum class ObjectType {VerticalWall, HorizontalWall, Other};
 
 //This class is for updating maze texture/s
 class GameWorldResources
 {
 public:
 GameWorldResources();
-GameWorldResources(int tilePosX, int tilePosY);//constructor overloading
+GameWorldResources(int tilePosX, int tilePosY, const ObjectType _type);//constructor overloading
 std::tuple<float, float>getTileScreenPosition() const;
 ObjectType getObjectType() const;
 

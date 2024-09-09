@@ -7,7 +7,7 @@ tileScreenPosY{0.0f}
     loadTextures();
 }
 
-GameWorldResources::GameWorldResources(int tilePosX, int tilePosY)
+GameWorldResources::GameWorldResources(int tilePosX, int tilePosY, const ObjectType _type)
 {
     tileScreenPosX = tilePosX * 32.0f;
     tileScreenPosY = tilePosY * 32.0f;
@@ -19,6 +19,8 @@ GameWorldResources::GameWorldResources(int tilePosX, int tilePosY)
     
     if((tilePosY > 0 && tilePosY != (numberOfRows - 1)) && (tilePosX == (numberOfColumns - 1) || tilePosX != 0))
       tileScreenPosX += 24.0f;
+
+    type = _type;
 }
 
 void GameWorldResources::loadTextures()
