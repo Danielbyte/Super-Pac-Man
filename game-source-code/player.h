@@ -13,6 +13,8 @@ public:
     Player();
     void movePlayer(bool rightArrowKeyPressed, bool leftArrowKeyPressed, bool downArrowKeyPressed, bool upArrowKeyPressed);
     std::tuple<float, float> getPlayerPosition() const;
+
+    void setPlayerPosition(float x, float y);
 };
 #endif //PLAYER
 

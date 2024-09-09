@@ -48,3 +48,9 @@ std::tuple<float, float> Player::getPlayerPosition() const
 {
     return {xPosition, yPosition};
 }
+
+void Player::setPlayerPosition(float x, float y)
+{
+    xPosition = x;
+    yPosition = y;
+}
