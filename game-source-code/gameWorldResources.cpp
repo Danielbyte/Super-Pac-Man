@@ -28,3 +28,8 @@ std::tuple<float, float> GameWorldResources::getTileScreenPosition() const
 {
     return {tileScreenPosX, tileScreenPosY};
 }
+
+ObjectType GameWorldResources::getObjectType() const
+{
+    return type;
+}
