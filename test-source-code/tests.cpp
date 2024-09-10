@@ -175,3 +175,29 @@ TEST_CASE("TEST IF PLAYER IS BOUNDED ON UPPER BOUND OF SCREEN")
     CHECK_EQ(expectedXpos,actualXpos);
     CHECK_EQ(expectedYpos,actualYpos);
 }
+
+TEST_CASE("TEST IF PLAYER IS BOUNDED ON LEFT BOUND OF SCREEN")
+{
+    auto player = std::make_unique<Player>();
+    auto game_world = std::make_unique<GameWorld>();
+    game_world->loadMapFromFile();
+    std::vector<std::shared_ptr<GameWorldResources>>game_resources;
+    auto [InitXpos, InitYpos] = player->getPlayerPosition();
+    auto window_height = 704;
+    auto player_dimension = 32;
+    auto wall_width = 8.0f;
+    auto left_boundary = wall_width;
+
+    bool movingLeft = true,movingRight = false,movingUp = false, movingDown = false;
+    for (int i = 0; i < 500; i++)
+    {
+        //Simulate the player attempting to move out of bounds
+        player->movePlayer(movingRight,movingLeft,movingDown,movingUp, game_resources);
+    }
+    
+    auto expectedYpos = InitYpos;
+    auto expectedXpos = left_boundary;
+    auto [actualXpos, actualYpos] = player->getPlayerPosition();
+    CHECK_EQ(expectedXpos,actualXpos);
+    CHECK_EQ(expectedYpos,actualYpos);
+}
