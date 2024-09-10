@@ -24,3 +24,19 @@ TEST_CASE("TEST IF GAME MAP IS CAN BE INITIALISED WITHIN GAME LOOP")
     maze = game_world->getGameMap();
     CHECK_FALSE(maze.empty());//maze should not be empty after initialisation
 }
+
+TEST_CASE("TEST IF GAME MAP IS ACCURATELY LOADED FROM FILE")
+{
+    //In this case, the loaded map from txt file is known
+    auto game_world = std::make_unique<GameWorld>();
+    game_world->loadMapFromFile();
+    auto maze = game_world->getGameMap();
+    char expected_char = '-'; //at point (0,0), this is the expected character
+    char actual_char = maze[0][0];
+    CHECK_EQ(expected_char,actual_char);
+
+    //Char somewhere at the center of maze
+    expected_char = '0';
+    actual_char = maze[12][10];
+    CHECK_EQ(expected_char,actual_char);
+}
