@@ -40,3 +40,14 @@ TEST_CASE("TEST IF GAME MAP IS ACCURATELY LOADED FROM FILE")
     actual_char = maze[12][10];
     CHECK_EQ(expected_char,actual_char);
 }
+
+TEST_CASE("TEST IF PLAYER IS CAN SPAWN AT THE RIGHT POSITION")
+{
+    auto player = std::make_unique<Player>();
+    auto expectedXPlayerInitPos = 376.0f;
+    auto expectedYPlayerInitPos = 326.0f;
+    auto [actualXpos, actualYpos] = player->getPlayerPosition();
+    
+    CHECK_EQ(expectedXPlayerInitPos, actualXpos);
+    CHECK_EQ(expectedYPlayerInitPos,actualYpos);
+}
