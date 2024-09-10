@@ -12,6 +12,9 @@ void Player::movePlayer(bool rightArrowKeyPressed, bool leftArrowKeyPressed,
 {
     if (rightArrowKeyPressed)
     {
+        bool _willCollide = willCollide(Direction::Right, maze);
+        if (_willCollide)
+         return;
         //move player to the right
         xPosition += playerSpeed;
         if (xPosition >= 760.0f)
@@ -20,6 +23,9 @@ void Player::movePlayer(bool rightArrowKeyPressed, bool leftArrowKeyPressed,
 
     if(leftArrowKeyPressed)
     {
+        bool _willCollide = willCollide(Direction::Left, maze);
+        if (_willCollide)
+         return;        
         //Move player to the left
         xPosition -= playerSpeed;
         if (xPosition <= 8.0f)
@@ -28,6 +34,9 @@ void Player::movePlayer(bool rightArrowKeyPressed, bool leftArrowKeyPressed,
 
     if(downArrowKeyPressed)
     {
+        bool _willCollide = willCollide(Direction::Down, maze);
+        if (_willCollide)
+         return;
         //move player downwards
         yPosition += playerSpeed;
 
@@ -63,9 +72,28 @@ void Player::setPlayerPosition(float x, float y)
 
 bool Player::willCollide(Direction direcction, std::vector<std::shared_ptr<GameWorldResources>>& maze)
 {
-    auto nextPlayerYpos = yPosition + 0.2f;
-    auto isCollided = collisions_manager.playerWallCollisions(maze,xPosition, nextPlayerYpos);
-
+    auto nextPlayerYpos = yPosition;
+    auto nextPlayerXpos = xPosition;
+    auto minCollisionOffset = playerSpeed;
+    switch (direcction)
+    {
+    case Direction::Up:
+        nextPlayerYpos -= minCollisionOffset;
+        break;
+    case Direction::Down:
+         nextPlayerYpos += minCollisionOffset;
+         break;
+    case Direction::Left:
+         nextPlayerXpos -= minCollisionOffset;
+         break;
+    case Direction::Right:
+         nextPlayerXpos += minCollisionOffset;
+         break;
+    default:
+        break;
+    }
+    
+    auto isCollided = collisions_manager.playerWallCollisions(maze,nextPlayerXpos, nextPlayerYpos);
     if (isCollided)
     return true;
 
