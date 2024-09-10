@@ -7,7 +7,8 @@ playerSpeed{2.0f}
 {}
 
 void Player::movePlayer(bool rightArrowKeyPressed, bool leftArrowKeyPressed,
-                        bool downArrowKeyPressed, bool upArrowKeyPressed)
+                        bool downArrowKeyPressed, bool upArrowKeyPressed, 
+                        std::vector<std::shared_ptr<GameWorldResources>>& maze)
 {
     if (rightArrowKeyPressed)
     {
@@ -36,6 +37,11 @@ void Player::movePlayer(bool rightArrowKeyPressed, bool leftArrowKeyPressed,
 
     if (upArrowKeyPressed)
     {
+        //first check if this movement will not result in player collision with wall
+        bool _willCollide = willCollide(Direction::Up, maze);
+
+        if (_willCollide)
+         return;
         //move player upwards
         yPosition -= playerSpeed;
         //Restrict player within bounds
@@ -53,4 +59,15 @@ void Player::setPlayerPosition(float x, float y)
 {
     xPosition = x;
     yPosition = y;
+}
+
+bool Player::willCollide(Direction direcction, std::vector<std::shared_ptr<GameWorldResources>>& maze)
+{
+    auto nextPlayerYpos = yPosition + 0.2f;
+    auto isCollided = collisions_manager.playerWallCollisions(maze,xPosition, nextPlayerYpos);
+
+    if (isCollided)
+    return true;
+
+    return false;
 }

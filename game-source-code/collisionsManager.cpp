@@ -9,7 +9,7 @@ verticalWallWidth{32.0f},
 verticalWallLength{8.0f}
 {}
 
-void CollisionsManager::playerWallCollisions(std::vector<std::shared_ptr<GameWorldResources>>& maze,
+bool CollisionsManager::playerWallCollisions(std::vector<std::shared_ptr<GameWorldResources>>& maze,
  const float xPlayerPos, const float yPlayerPos)
 {
     auto maze_tile = maze.begin();
@@ -22,7 +22,7 @@ void CollisionsManager::playerWallCollisions(std::vector<std::shared_ptr<GameWor
             auto isCollided = collision->checkCollision(xPlayerPos,yPlayerPos,playerWidth,playerLength,tileXpos,tileYpos,
              horizontalWallWidth, horizontalWallLength);
             if (isCollided)
-            std::cout << "Collided" << std::endl;
+               return true;
         }
 
         if (tile_type == ObjectType::VerticalWall)
@@ -30,8 +30,9 @@ void CollisionsManager::playerWallCollisions(std::vector<std::shared_ptr<GameWor
             auto isCollided = collision->checkCollision(xPlayerPos,yPlayerPos,playerWidth,playerLength,tileXpos,tileYpos,
              verticalWallWidth, verticalWallLength);
             if (isCollided)
-            std::cout << "Collided" << std::endl;
+            return true;
         }
         ++maze_tile;
     }
+    return false;
 }

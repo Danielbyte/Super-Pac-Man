@@ -62,13 +62,13 @@ void DisplayManager::handleUserInput()
     if(IsKeyDown(KEY_UP))
     {
         upArrowKeyPressed = true;
-         player_obj->movePlayer(rightArrowKeyPressed,leftArrowKeyPressed,downArrowKeyPressed,upArrowKeyPressed);
+         player_obj->movePlayer(rightArrowKeyPressed,leftArrowKeyPressed,downArrowKeyPressed,upArrowKeyPressed, maze_resources);
     }
 
     if(IsKeyDown(KEY_DOWN))
     {
         downArrowKeyPressed = true;
-        player_obj->movePlayer(rightArrowKeyPressed,leftArrowKeyPressed,downArrowKeyPressed,upArrowKeyPressed);
+        player_obj->movePlayer(rightArrowKeyPressed,leftArrowKeyPressed,downArrowKeyPressed,upArrowKeyPressed, maze_resources);
     }
 
     if(IsKeyDown(KEY_ENTER) || IsKeyDown(KEY_KP_ENTER) && !isPlaying && isSplashScreen)
@@ -81,13 +81,13 @@ void DisplayManager::handleUserInput()
     if(IsKeyDown(KEY_LEFT))
     {
         leftArrowKeyPressed = true;
-        player_obj->movePlayer(rightArrowKeyPressed,leftArrowKeyPressed,downArrowKeyPressed,upArrowKeyPressed);
+        player_obj->movePlayer(rightArrowKeyPressed,leftArrowKeyPressed,downArrowKeyPressed,upArrowKeyPressed, maze_resources);
     }
 
     if(IsKeyDown(KEY_RIGHT))
     {
         rightArrowKeyPressed = true;
-        player_obj->movePlayer(rightArrowKeyPressed,leftArrowKeyPressed,downArrowKeyPressed,upArrowKeyPressed);
+        player_obj->movePlayer(rightArrowKeyPressed,leftArrowKeyPressed,downArrowKeyPressed,upArrowKeyPressed, maze_resources);
     }  
 
 }
