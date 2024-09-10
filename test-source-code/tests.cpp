@@ -69,3 +69,21 @@ TEST_CASE("TEST IF PLAYER CAN MOVE LEFT")
     CHECK_EQ(expectedXpos,actualXpos);
     CHECK_EQ(expectedYpos,actualYpos);
 }
+
+TEST_CASE("TEST IF PLAYER CAN MOVE RIGHT")
+{
+    auto player = std::make_unique<Player>();
+    auto game_world = std::make_unique<GameWorld>();
+    game_world->loadMapFromFile();
+    std::vector<std::shared_ptr<GameWorldResources>>game_resources;
+    auto [InitXpos, InitYpos] = player->getPlayerPosition();
+    auto player_speed = 2.0f;
+
+    bool movingLeft = false,movingRight = true,movingUp = false, movingDown = false;
+    player->movePlayer(movingRight,movingLeft,movingDown,movingUp, game_resources);
+    auto expectedXpos = InitXpos + player_speed;
+    auto expectedYpos = InitYpos;
+    auto [actualXpos, actualYpos] = player->getPlayerPosition();
+    CHECK_EQ(expectedXpos,actualXpos);
+    CHECK_EQ(expectedYpos,actualYpos);
+}
