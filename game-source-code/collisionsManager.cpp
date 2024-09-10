@@ -10,10 +10,9 @@ verticalWallLength{8.0f}
 {}
 
 void CollisionsManager::playerWallCollisions(std::vector<std::shared_ptr<GameWorldResources>>& maze,
- std::shared_ptr<Player>& player)
+ const float xPlayerPos, const float yPlayerPos)
 {
     auto maze_tile = maze.begin();
-    auto [xPlayerPos, yPlayerPos] = player->getPlayerPosition();
     while(maze_tile != maze.end())
     {
         auto tile_type = (*maze_tile)->getObjectType();

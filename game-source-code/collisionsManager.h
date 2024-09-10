@@ -14,7 +14,7 @@ private:
     float verticalWallWidth, verticalWallLength;
 public:
     CollisionsManager();
-    void playerWallCollisions(std::vector<std::shared_ptr<GameWorldResources>>& maze, std::shared_ptr<Player>& player);
+    void playerWallCollisions(std::vector<std::shared_ptr<GameWorldResources>>& maze,const float xPlayerPos, const float yPlayerPos);
     std::unique_ptr<Collisions>collision = std::make_unique<Collisions>();
 };
 #endif

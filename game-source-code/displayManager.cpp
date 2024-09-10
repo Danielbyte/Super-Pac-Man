@@ -48,7 +48,7 @@ void DisplayManager::startGame()
 
 void DisplayManager::updateGame()
 {
-    collision_manager->playerWallCollisions(maze_resources,player_obj);
+    //collision_manager->playerWallCollisions(maze_resources,player_obj);
 }
 
 void DisplayManager::handleUserInput()

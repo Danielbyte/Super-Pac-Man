@@ -2,6 +2,8 @@
 #define PLAYER
 #include<tuple>
 
+enum class Direction{Up, Down, Left, Right, Still};
+
 class Player
 {
 private:
