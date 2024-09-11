@@ -227,3 +227,26 @@ TEST_CASE("TEST IF PLAYER IS BOUNDED ON RIGHT BOUND OF SCREEN")
     CHECK_EQ(expectedXpos,actualXpos);
     CHECK_EQ(expectedYpos,actualYpos);
 }
+
+TEST_CASE("TEST IF COLLISION IS DETECTED BETWEEN WALL AND PLAYER")
+{
+    auto player = std::make_unique<Player>();
+    auto game_world = std::make_unique<GameWorld>();
+    auto collisions_manager = CollisionsManager{};
+    game_world->loadMapFromFile();
+    std::vector<std::shared_ptr<GameWorldResources>>maze = {};
+
+    //Place wall two tiles above player 
+    auto [InitXpos, InitYpos] = player->getPlayerPosition();
+    auto tilePosX = static_cast<int>(InitXpos/32);
+    auto tilePosY = static_cast<int>((InitYpos - 64.0f)/32);
+    auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY, ObjectType::HorizontalWall);
+    maze.push_back(tile_property);
+    player->setPlayerPosition(tilePosX * 32.0f,tilePosY * 32.0f);//Place player such that it collides with the wall
+
+    auto [finalXpos, finalYpos] = player->getPlayerPosition();    
+    auto isCollided = collisions_manager.playerWallCollisions(maze,finalXpos, finalYpos);
+    
+    //A collision should have been detected
+    CHECK_EQ(isCollided,true);
+}
