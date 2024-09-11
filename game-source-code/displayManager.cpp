@@ -105,7 +105,18 @@ void DisplayManager::displayInGameScreen()
 {
     background = black;//Updating background
     auto [xPlayerPos, yPlayerPos] = player_obj->getPlayerPosition();
-    pacmanRight1_T.Draw(xPlayerPos, yPlayerPos);
+    auto playerDirection = player_obj->getPlayerDirection();
+    switch (playerDirection)
+    {
+    case Direction::Right:
+        pacmanRight1_T.Draw(xPlayerPos, yPlayerPos);
+        break;
+    case Direction::Left:
+        pacmanLeft1_T.Draw(xPlayerPos,yPlayerPos);
+        break;
+    default:
+        break;
+    }
     drawMaze();
     //EndDrawing();
 }

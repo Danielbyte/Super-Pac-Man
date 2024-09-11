@@ -14,7 +14,6 @@ private:
  float playerSpeed;
  bool willCollide(Direction direction, std::vector<std::shared_ptr<GameWorldResources>>& maze);//function to check if the next move will result in a wall collision
  CollisionsManager collisions_manager;
- Direction getPlayerDirection() const;
 
 public:
     Player();
@@ -24,6 +23,7 @@ public:
     Direction playerDirection;
 
     void setPlayerPosition(float x, float y);
+     Direction getPlayerDirection() const;
 };
 #endif //PLAYER
 
