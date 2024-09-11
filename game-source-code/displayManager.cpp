@@ -114,6 +114,12 @@ void DisplayManager::displayInGameScreen()
     case Direction::Left:
         pacmanLeft1_T.Draw(xPlayerPos,yPlayerPos);
         break;
+    case Direction::Up:
+        pacmanUp1_T.Draw(xPlayerPos,yPlayerPos);
+        break;
+    case Direction::Down:
+        pacmanDown1_T.Draw(xPlayerPos,yPlayerPos);
+        break;
     default:
         break;
     }
