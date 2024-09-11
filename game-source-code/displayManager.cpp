@@ -105,7 +105,7 @@ void DisplayManager::displayInGameScreen()
 {
     background = black;//Updating background
     auto [xPlayerPos, yPlayerPos] = player_obj->getPlayerPosition();
-    playerT.Draw(xPlayerPos, yPlayerPos);
+    pacmanRight1_T.Draw(xPlayerPos, yPlayerPos);
     drawMaze();
     //EndDrawing();
 }
@@ -253,9 +253,21 @@ void DisplayManager::leftCornerUp(int tilePosX, int tilePosY)
 
 void DisplayManager::loadTextures()
 {
-    playerI = LoadImage("resources/pacmanRight1.png");     // Loaded in CPU memory (RAM)
-    playerT = LoadTextureFromImage(playerI);          // Image converted to texture, GPU memory (VRAM)
-    UnloadImage(playerI);  
+    pacmanRight1_I = LoadImage("resources/pacmanRight1.png");     // Loaded in CPU memory (RAM)
+    pacmanRight1_T = LoadTextureFromImage(pacmanRight1_I);          // Image converted to texture, GPU memory (VRAM)
+    UnloadImage(pacmanRight1_I); 
+
+    pacmanLeft1_I = LoadImage("resources/pacmanLeft1.png");     // Loaded in CPU memory (RAM)
+    pacmanLeft1_T = LoadTextureFromImage(pacmanLeft1_I);          // Image converted to texture, GPU memory (VRAM)
+    UnloadImage(pacmanLeft1_I);
+    
+    pacmanDown1_I= LoadImage("resources/pacmanDown1.png");
+    pacmanDown1_T = LoadTextureFromImage(pacmanDown1_I);
+    UnloadImage(pacmanDown1_I);
+
+    pacmanUp1_I= LoadImage("resources/pacmanUp1.png");
+    pacmanUp1_T = LoadTextureFromImage(pacmanUp1_I);
+    UnloadImage(pacmanUp1_I);
 
     /*horizontalWallPieceI = LoadImage("resources/horizontalWallPiece.png");
     horizontalWallPieceT = LoadTextureFromImage(horizontalWallPieceI);
