@@ -13,6 +13,7 @@ void Player::movePlayer(bool rightArrowKeyPressed, bool leftArrowKeyPressed,
 {
     if (rightArrowKeyPressed)
     {
+        playerDirection = Direction::Right;
         bool _willCollide = willCollide(Direction::Right, maze);
         if (_willCollide)
          return;
@@ -24,6 +25,7 @@ void Player::movePlayer(bool rightArrowKeyPressed, bool leftArrowKeyPressed,
 
     if(leftArrowKeyPressed)
     {
+        playerDirection = Direction::Left;
         bool _willCollide = willCollide(Direction::Left, maze);
         if (_willCollide)
          return;        
@@ -35,6 +37,7 @@ void Player::movePlayer(bool rightArrowKeyPressed, bool leftArrowKeyPressed,
 
     if(downArrowKeyPressed)
     {
+        playerDirection = Direction::Down;
         bool _willCollide = willCollide(Direction::Down, maze);
         if (_willCollide)
          return;
@@ -47,6 +50,7 @@ void Player::movePlayer(bool rightArrowKeyPressed, bool leftArrowKeyPressed,
 
     if (upArrowKeyPressed)
     {
+        playerDirection = Direction::Up;
         //first check if this movement will not result in player collision with wall
         bool _willCollide = willCollide(Direction::Up, maze);
 
