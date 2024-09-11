@@ -3,7 +3,8 @@
 Player::Player():
 xPosition{376.0f},//New player center
 yPosition{326.0f},//New player center
-playerSpeed{2.0f}
+playerSpeed{2.0f},
+playerDirection{Direction::Right}//Pacman initially facing right
 {}
 
 void Player::movePlayer(bool rightArrowKeyPressed, bool leftArrowKeyPressed,
@@ -68,6 +69,11 @@ void Player::setPlayerPosition(float x, float y)
 {
     xPosition = x;
     yPosition = y;
+}
+
+Direction Player::getPlayerDirection() const
+{
+    return playerDirection;
 }
 
 bool Player::willCollide(Direction direcction, std::vector<std::shared_ptr<GameWorldResources>>& maze)
