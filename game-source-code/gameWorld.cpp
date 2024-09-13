@@ -4,7 +4,7 @@ GameWorld::GameWorld(){}
 
 void GameWorld::loadMapFromFile()
 {
-    std::ifstream gameMapFile("resources/gameMap.txt");
+    std::ifstream gameMapFile("../resources/gameMap.txt");
     int count = 0;
     std::string line;
     if(gameMapFile.is_open())
