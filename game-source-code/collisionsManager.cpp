@@ -3,10 +3,10 @@
 CollisionsManager::CollisionsManager():
 playerWidth{32.0f},
 playerLength{32.0f},
-horizontalWallWidth{8.0f},
-horizontalWallLength{32.0f},
-verticalWallWidth{32.0f},
-verticalWallLength{8.0f}
+horizontalWallWidth{7.0f},
+horizontalWallLength{31.0f},
+verticalWallWidth{31.0f},
+verticalWallLength{7.0f}
 {}
 
 bool CollisionsManager::playerWallCollisions(std::vector<std::shared_ptr<GameWorldResources>>& maze,
