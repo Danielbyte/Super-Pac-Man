@@ -47,7 +47,8 @@ class DisplayManager
     void verticalWall(int tilePosX, int tilePosY);
     void horizontalWall(int tilePosX, int tilePosY);
     void innerRightCornerDown(int tilePosX, int tilePosY);
-    void longerVerticalWall(int tilePosX, int tilePosY);
+    void longerVerticalWall(int tilePosX, int tilePosY, const int offset);
+    void longerVerticalWall_l(int tilePosX, int tilePosY, const int offset);
     void drawMaze();
     void loadTextures();
     

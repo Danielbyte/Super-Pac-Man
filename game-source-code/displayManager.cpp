@@ -172,6 +172,7 @@ void DisplayManager::InitGameWorldTextures()
 
 void DisplayManager::processTileTexture(const char element, int tilePosX, int tilePosY)
 {
+    int offset = 0;
     switch (element)
     {
     case '*':
@@ -199,7 +200,12 @@ void DisplayManager::processTileTexture(const char element, int tilePosX, int ti
     innerRightCornerDown(tilePosX, tilePosY);
     break;
     case 'L':
-    longerVerticalWall(tilePosX, tilePosY);
+    offset = 1;
+    longerVerticalWall(tilePosX, tilePosY, offset);
+    break;
+    case 'l':
+    offset = 0;
+    longerVerticalWall_l(tilePosX, tilePosY, offset);
     break;
     default:
         break;
@@ -215,12 +221,20 @@ void DisplayManager::verticalWall(int tilePosX, int tilePosY)
   maze_resources.push_back(tile_property);
 }
 
-void DisplayManager::longerVerticalWall(int tilePosX, int tilePosY)
+void DisplayManager::longerVerticalWall(int tilePosX, int tilePosY, const int offset)
 {
   auto texture = std::make_shared<raylib::Texture2D>();
   texture->Load("../resources/verticalLongerWallPiece.png");
   game_world_textures.push_back(texture);
-  auto offset = 1;
+  auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY - offset, ObjectType::VerticalWall);
+  maze_resources.push_back(tile_property);
+}
+
+void DisplayManager::longerVerticalWall_l(int tilePosX, int tilePosY, const int offset)
+{
+  auto texture = std::make_shared<raylib::Texture2D>();
+  texture->Load("../resources/verticalLongerWallPiece_l.png");
+  game_world_textures.push_back(texture);
   auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY - offset, ObjectType::VerticalWall);
   maze_resources.push_back(tile_property);
 }
