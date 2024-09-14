@@ -18,8 +18,7 @@ GameWorldResources();
 GameWorldResources(int tilePosX, int tilePosY, const ObjectType _type);//constructor overloading
 std::tuple<float, float>getTileScreenPosition() const;
 ObjectType getObjectType() const;
-void InitGameWorldTextures();
-void processTileTexture(const char element, int tilePosX, int tilePosY);
+void initialiseGameBorder(int tilePosX, int tilePosY, const ObjectType _type);
 
 private:
 void loadTextures();

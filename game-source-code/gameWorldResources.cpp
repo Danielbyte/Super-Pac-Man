@@ -23,6 +23,22 @@ GameWorldResources::GameWorldResources(int tilePosX, int tilePosY, const ObjectT
     type = _type;
 }
 
+void GameWorldResources::initialiseGameBorder(int tilePosX, int tilePosY, const ObjectType _type)
+{
+    tileScreenPosX = tilePosX * 32.0f;
+    tileScreenPosY = tilePosY * 32.0f;
+    
+    auto numberOfRows = game_world->getNumberOfRows();
+    auto numberOfColumns = game_world->getNumberOfColumns();
+    if (tilePosY == (numberOfRows - 1) && (tilePosX > 0 && tilePosX < (numberOfColumns - 1)))//minus one since tile position start from zero
+       tileScreenPosY += 24.0f;
+    
+    if((tilePosY > 0 && tilePosY != (numberOfRows - 1)) && (tilePosX == (numberOfColumns - 1) || tilePosX != 0))
+      tileScreenPosX += 24.0f;
+
+    type = _type;
+}
+
 void GameWorldResources::loadTextures()
 {
 }
