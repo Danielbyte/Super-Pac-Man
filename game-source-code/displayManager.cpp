@@ -195,6 +195,9 @@ void DisplayManager::processTileTexture(const char element, int tilePosX, int ti
     case '1':
         verticalWall(tilePosX, tilePosY);
         break;
+    case '+':
+    innerRightCornerDown(tilePosX, tilePosY);
+    break;
     default:
         break;
     }
@@ -248,6 +251,15 @@ void DisplayManager::rightCornerDown(int tilePosX, int tilePosY)
   game_world_textures.push_back(texture);
   auto tile_property = std::make_shared<GameWorldResources>();
   tile_property->initialiseGameBorder(tilePosX, tilePosY, ObjectType::Other);
+  maze_resources.push_back(tile_property);
+}
+
+void DisplayManager::innerRightCornerDown(int tilePosX, int tilePosY)
+{
+  auto texture = std::make_shared<raylib::Texture2D>();
+  texture->Load("../resources/innerRightCornerDown.png");
+  game_world_textures.push_back(texture);
+  auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY, ObjectType::Other);
   maze_resources.push_back(tile_property);
 }
 
