@@ -1,6 +1,10 @@
 #include "stopwatch.h"
 
-StopWatch::StopWatch(){}
+StopWatch::StopWatch():
+finalTime{}
+{
+    initialTime = currentTime();
+}
 
 std::chrono::time_point<std::chrono::high_resolution_clock> StopWatch::currentTime()
 {
@@ -18,10 +22,10 @@ float StopWatch::elapsedTime()
 
 void StopWatch::stopTimer()
 {
-
+    finalTime = currentTime();
 }
 
 void StopWatch::restartTimer()
 {
-
+    initialTime = currentTime();
 }
