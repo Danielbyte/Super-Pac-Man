@@ -194,7 +194,7 @@ void DisplayManager::processTileTexture(const char element, int tilePosX, int ti
 void DisplayManager::verticalWall(int tilePosX, int tilePosY)
 {
   auto texture = std::make_shared<raylib::Texture2D>();
-  texture->Load("resources/verticalWallPiece.png");
+  texture->Load("../resources/verticalWallPiece.png");
   game_world_textures.push_back(texture);
   auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY, ObjectType::VerticalWall);
   maze_resources.push_back(tile_property);
@@ -203,7 +203,7 @@ void DisplayManager::verticalWall(int tilePosX, int tilePosY)
 void DisplayManager::horizontalWall(int tilePosX, int tilePosY)
 {
   auto texture = std::make_shared<raylib::Texture2D>();
-  texture->Load("resources/horizontalWallPiece.png");
+  texture->Load("../resources/horizontalWallPiece.png");
   game_world_textures.push_back(texture);
   auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY, ObjectType::HorizontalWall);
   maze_resources.push_back(tile_property);
@@ -216,14 +216,14 @@ void DisplayManager::setWallProperties(int tilePosX, int tilePosY)
 
     if ((tilePosX == 0 || tilePosX == (maxCol-1)) && (tilePosY >= 1 && tilePosY < ((game_world->getGameMap().size())-1)))
     {
-        texture->Load("resources/verticalWallPiece.png"); 
+        texture->Load("../resources/verticalWallPiece.png"); 
         auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY, ObjectType::VerticalWall);
         maze_resources.push_back(tile_property);
     }
         
     else if (tilePosY == 0 || tilePosY == ((game_world->getGameMap().size())-1))
     {
-        texture->Load("resources/horizontalWallPiece.png");
+        texture->Load("../resources/horizontalWallPiece.png");
         auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY, ObjectType::HorizontalWall);
         maze_resources.push_back(tile_property);
     }
@@ -235,7 +235,7 @@ void DisplayManager::setWallProperties(int tilePosX, int tilePosY)
 void DisplayManager::rightCornerDown(int tilePosX, int tilePosY)
 {
   auto texture = std::make_shared<raylib::Texture2D>();
-  texture->Load("resources/RightCornerDown.png");
+  texture->Load("../resources/RightCornerDown.png");
   game_world_textures.push_back(texture);
   auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY, ObjectType::Other);
   maze_resources.push_back(tile_property);
@@ -244,7 +244,7 @@ void DisplayManager::rightCornerDown(int tilePosX, int tilePosY)
 void DisplayManager::rightCornerUp(int tilePosX, int tilePosY)
 {
   auto texture = std::make_shared<raylib::Texture2D>();
-  texture->Load("resources/RightCornerUp.png");
+  texture->Load("../resources/RightCornerUp.png");
   game_world_textures.push_back(texture);
   auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY, ObjectType::Other);
   maze_resources.push_back(tile_property);
@@ -253,7 +253,7 @@ void DisplayManager::rightCornerUp(int tilePosX, int tilePosY)
 void DisplayManager::leftCornerDown(int tilePosX, int tilePosY)
 {
   auto texture = std::make_shared<raylib::Texture2D>();
-  texture->Load("resources/LeftCornerDown.png");
+  texture->Load("../resources/LeftCornerDown.png");
   game_world_textures.push_back(texture);
   auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY, ObjectType::Other);
   maze_resources.push_back(tile_property);
@@ -262,7 +262,7 @@ void DisplayManager::leftCornerDown(int tilePosX, int tilePosY)
 void DisplayManager::leftCornerUp(int tilePosX, int tilePosY)
 {
   auto texture = std::make_shared<raylib::Texture2D>();
-  texture->Load("resources/LeftCornerUp.png");
+  texture->Load("../resources/LeftCornerUp.png");
   game_world_textures.push_back(texture);
   auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY, ObjectType::Other);
   maze_resources.push_back(tile_property);
@@ -270,19 +270,19 @@ void DisplayManager::leftCornerUp(int tilePosX, int tilePosY)
 
 void DisplayManager::loadTextures()
 {
-    pacmanRight1_I = LoadImage("resources/pacmanRight1.png");     // Loaded in CPU memory (RAM)
+    pacmanRight1_I = LoadImage("../resources/pacmanRight1.png");     // Loaded in CPU memory (RAM)
     pacmanRight1_T = LoadTextureFromImage(pacmanRight1_I);          // Image converted to texture, GPU memory (VRAM)
     UnloadImage(pacmanRight1_I); 
 
-    pacmanLeft1_I = LoadImage("resources/pacmanLeft1.png");     // Loaded in CPU memory (RAM)
+    pacmanLeft1_I = LoadImage("../resources/pacmanLeft1.png");     // Loaded in CPU memory (RAM)
     pacmanLeft1_T = LoadTextureFromImage(pacmanLeft1_I);          // Image converted to texture, GPU memory (VRAM)
     UnloadImage(pacmanLeft1_I);
     
-    pacmanDown1_I= LoadImage("resources/pacmanDown1.png");
+    pacmanDown1_I= LoadImage("../resources/pacmanDown1.png");
     pacmanDown1_T = LoadTextureFromImage(pacmanDown1_I);
     UnloadImage(pacmanDown1_I);
 
-    pacmanUp1_I= LoadImage("resources/pacmanUp1.png");
+    pacmanUp1_I= LoadImage("../resources/pacmanUp1.png");
     pacmanUp1_T = LoadTextureFromImage(pacmanUp1_I);
     UnloadImage(pacmanUp1_I);
 
