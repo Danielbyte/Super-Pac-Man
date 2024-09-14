@@ -4,6 +4,7 @@
 #include "gameWorld.h"
 #include "collisionsManager.h"
 #include "gameWorldResources.h"
+#include "stopwatch.h"
 
 //using namespace raylib;
 #include <iostream>
@@ -70,5 +71,7 @@ class DisplayManager
     std::vector<std::shared_ptr<GameWorldResources>>maze_resources = {};
     std::vector<std::shared_ptr<raylib::Texture2D>>game_world_textures = {};
     std::unique_ptr<CollisionsManager>collision_manager = std::make_unique<CollisionsManager>();
+
+    StopWatch stop_watch;
 };
 #endif //DISPLAYMANAGER

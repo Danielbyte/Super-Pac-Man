@@ -25,12 +25,21 @@ rightArrowKeyPressed{false}
 void DisplayManager::startGame()
 {
     SetTargetFPS(60);
+    float timeSinceLatUpdate = 0.0f;
+    float framesPerSecond = (1/60.0f);//60Hz
+    stop_watch.restartTimer();
     while(!WindowShouldClose() && !quitGame)
     {
-        //Handle user Input
-        handleUserInput();
-        //update game
-        updateGame();
+        timeSinceLatUpdate += stop_watch.elapsedTime();
+        while (timeSinceLatUpdate > framesPerSecond)
+        {
+            timeSinceLatUpdate -= framesPerSecond;
+            //Handle user Input
+            handleUserInput();
+            //update game
+            updateGame();
+            stop_watch.restartTimer();
+        }
         //Draw
         window->BeginDrawing();
         ClearBackground(background);
