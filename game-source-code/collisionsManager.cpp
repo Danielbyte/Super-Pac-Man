@@ -1,8 +1,8 @@
 #include "collisionsManager.h"
 
 CollisionsManager::CollisionsManager():
-playerWidth{32.0f},
-playerLength{32.0f},
+playerWidth{31.0f},
+playerLength{31.0f},
 horizontalWallWidth{7.0f},
 horizontalWallLength{31.0f},
 verticalWallWidth{31.0f},
