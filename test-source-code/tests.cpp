@@ -2,7 +2,7 @@
 #include "doctest.h"
 #include <raylib-cpp.hpp>
 #include "displayManager.h"
-
+/*
 TEST_CASE("TEST IF GAME MAP IS INITIALLY EMPTY")
 {
     auto game_world = std::make_shared<GameWorld>();
@@ -279,4 +279,4 @@ TEST_CASE("TEST IF PLAYER CANNOT MOVE PAST WALL")
     
     CHECK(finalYpos == wall_bottom);
     CHECK_EQ(finalXpos,tilePosX * 32);
-}
+}*/

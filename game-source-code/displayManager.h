@@ -16,7 +16,7 @@ class DisplayManager
     public:
     DisplayManager();
     void startGame();
-    void handleUserInput();
+    void handleUserInput(const float dt);
     
     private:
     const int window_width;

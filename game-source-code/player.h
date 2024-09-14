@@ -18,7 +18,7 @@ private:
 public:
     Player();
     void movePlayer(bool rightArrowKeyPressed, bool leftArrowKeyPressed, bool downArrowKeyPressed, bool upArrowKeyPressed
-    , std::vector<std::shared_ptr<GameWorldResources>>& maze);
+    , std::vector<std::shared_ptr<GameWorldResources>>& maze, const float dt);
     std::tuple<float, float> getPlayerPosition() const;
     Direction playerDirection;
 
