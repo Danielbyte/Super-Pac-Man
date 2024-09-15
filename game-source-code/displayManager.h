@@ -1,7 +1,6 @@
 #ifndef DISPLAYMANAGER
 #define DISPLAYMANAGER
 
-#include "gameWorld.h"
 #include "collisionsManager.h"
 #include "gameWorldResources.h"
 #include "stopwatch.h"
@@ -44,11 +43,11 @@ class DisplayManager
     void leftCornerDown(int tilePosX, int tilePosY);
     void leftCornerUp(int tilePosX, int tilePosY);
     void rightCornerUp(int tilePosX, int tilePosY);
-    void verticalWall(int tilePosX, int tilePosY);
+    void verticalWall(int tilePosX, int tilePosY,const float xOffset,const float yOffset);
     void horizontalWall(int tilePosX, int tilePosY);
     void innerRightCornerDown(int tilePosX, int tilePosY);
-    void longerVerticalWall(int tilePosX, int tilePosY, const int offset);
-    void longerVerticalWall_l(int tilePosX, int tilePosY, const int offset);
+    void longerVerticalWall(int tilePosX, int tilePosY,const float xOffset, const float yOffset);
+    void longerVerticalWall_l(int tilePosX, int tilePosY, const float xOffset, const float yOffset);
     void innerLeftCornerDown(int tilePosX, int tilePosY);
     void drawMaze();
     void loadTextures();

@@ -7,10 +7,11 @@ tileScreenPosY{0.0f}
     loadTextures();
 }
 
-GameWorldResources::GameWorldResources(int tilePosX, int tilePosY, const ObjectType _type)
+GameWorldResources::GameWorldResources(int tilePosX, int tilePosY, const ObjectType _type,
+ const float xOffset, const float yOffset)
 {
-    tileScreenPosX = tilePosX * 22.52f;
-    tileScreenPosY = tilePosY * 22.52f;
+    tileScreenPosX = (tilePosX + xOffset) * 22.52f;
+    tileScreenPosY = (tilePosY + yOffset) * 22.52f;
     
     auto numberOfRows = game_world->getNumberOfRows();
     auto numberOfColumns = game_world->getNumberOfColumns();

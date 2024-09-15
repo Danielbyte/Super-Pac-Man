@@ -172,7 +172,8 @@ void DisplayManager::InitGameWorldTextures()
 
 void DisplayManager::processTileTexture(const char element, int tilePosX, int tilePosY)
 {
-    int offset = 0;
+    float xOffset = 0;
+    float yOffset = 0;
     switch (element)
     {
     case '*':
@@ -194,52 +195,61 @@ void DisplayManager::processTileTexture(const char element, int tilePosX, int ti
     horizontalWall(tilePosX, tilePosY);
         break;
     case '1':
-        verticalWall(tilePosX, tilePosY);
+    xOffset = 0;
+    yOffset = 0;
+        verticalWall(tilePosX, tilePosY, xOffset, yOffset);
         break;
     case '+':
     innerRightCornerDown(tilePosX, tilePosY);
     break;
     case 'L':
-    offset = 1;
-    longerVerticalWall(tilePosX, tilePosY, offset);
+    xOffset = 0;
+    yOffset = 1;
+    longerVerticalWall(tilePosX, tilePosY,xOffset,yOffset);
     break;
     case 'l':
-    offset = 0;
-    longerVerticalWall_l(tilePosX, tilePosY, offset);
+    yOffset = 0;
+    xOffset = 0;
+    longerVerticalWall_l(tilePosX, tilePosY,xOffset, yOffset);
     break;
     case '[':
-    offset = 0;
+    xOffset = 0;
     innerLeftCornerDown(tilePosX, tilePosY);
     break;
+    case '2':
+    yOffset = -0.5f;
+    xOffset = 0;
+        verticalWall(tilePosX, tilePosY, xOffset,yOffset);
+        break;
     default:
         break;
     }
 }
 
-void DisplayManager::verticalWall(int tilePosX, int tilePosY)
+void DisplayManager::verticalWall(int tilePosX, int tilePosY, const float xOffset,const float yOffset)
 {
   auto texture = std::make_shared<raylib::Texture2D>();
   texture->Load("../resources/verticalWallPiece.png");
   game_world_textures.push_back(texture);
-  auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY, ObjectType::VerticalWall);
+  auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY, ObjectType::VerticalWall,xOffset,yOffset);
   maze_resources.push_back(tile_property);
 }
 
-void DisplayManager::longerVerticalWall(int tilePosX, int tilePosY, const int offset)
+void DisplayManager::longerVerticalWall(int tilePosX, int tilePosY, const float xOffset, const float yOffset)
 {
   auto texture = std::make_shared<raylib::Texture2D>();
   texture->Load("../resources/verticalLongerWallPiece.png");
   game_world_textures.push_back(texture);
-  auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY - offset, ObjectType::VerticalWall);
+  auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY, ObjectType::VerticalWall, xOffset, yOffset);
   maze_resources.push_back(tile_property);
 }
 
-void DisplayManager::longerVerticalWall_l(int tilePosX, int tilePosY, const int offset)
+void DisplayManager::longerVerticalWall_l(int tilePosX, int tilePosY, const float xOffset, const float yOffset)
 {
   auto texture = std::make_shared<raylib::Texture2D>();
   texture->Load("../resources/verticalLongerWallPiece_l.png");
   game_world_textures.push_back(texture);
-  auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY - offset, ObjectType::VerticalWall);
+  auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY, ObjectType::VerticalWall, xOffset, yOffset);
   maze_resources.push_back(tile_property);
 }
 
@@ -248,7 +258,7 @@ void DisplayManager::horizontalWall(int tilePosX, int tilePosY)
   auto texture = std::make_shared<raylib::Texture2D>();
   texture->Load("../resources/horizontalWallPiece.png");
   game_world_textures.push_back(texture);
-  auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY, ObjectType::HorizontalWall);
+  auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY, ObjectType::HorizontalWall, 0, 0);
   maze_resources.push_back(tile_property);
 }
 
@@ -290,7 +300,7 @@ void DisplayManager::innerRightCornerDown(int tilePosX, int tilePosY)
   auto texture = std::make_shared<raylib::Texture2D>();
   texture->Load("../resources/innerRightCornerDown.png");
   game_world_textures.push_back(texture);
-  auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY, ObjectType::Other);
+  auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY, ObjectType::Other, 0, 0);
   maze_resources.push_back(tile_property);
 }
 
@@ -319,7 +329,7 @@ void DisplayManager::innerLeftCornerDown(int tilePosX, int tilePosY)
   auto texture = std::make_shared<raylib::Texture2D>();
   texture->Load("../resources/innerLeftCornerDown.png");
   game_world_textures.push_back(texture);
-  auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY, ObjectType::Other);
+  auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY, ObjectType::Other, 0, 0);
   maze_resources.push_back(tile_property);
 }
 

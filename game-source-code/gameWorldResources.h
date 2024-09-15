@@ -15,7 +15,7 @@ class GameWorldResources
 {
 public:
 GameWorldResources();
-GameWorldResources(int tilePosX, int tilePosY, const ObjectType _type);//constructor overloading
+GameWorldResources(int tilePosX, int tilePosY, const ObjectType _type, const float xOffset, const float yOffset);//constructor overloading
 std::tuple<float, float>getTileScreenPosition() const;
 ObjectType getObjectType() const;
 void initialiseGameBorder(int tilePosX, int tilePosY, const ObjectType _type);
