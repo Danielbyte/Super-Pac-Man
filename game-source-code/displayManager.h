@@ -48,6 +48,7 @@ class DisplayManager
     void topRightCorner(int tilePosX, int tilePosY, const float xOffset,const float yOffset);
     void topLeftCorner(int tilePosX, int tilePosY, const float xOffset,const float yOffset);
     void bottomLeftCorner(int tilePosX, int tilePosY, const float xOffset,const float yOffset);
+    void bottomRightCorner(int tilePosX, int tilePosY, const float xOffset,const float yOffset);
     void innerRightCornerDown(int tilePosX, int tilePosY);
     void longerVerticalWall(int tilePosX, int tilePosY,const float xOffset, const float yOffset);
     void longerVerticalWall_l(int tilePosX, int tilePosY, const float xOffset, const float yOffset);

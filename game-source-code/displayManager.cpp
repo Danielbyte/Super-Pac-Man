@@ -224,6 +224,13 @@ void DisplayManager::processTileTexture(const std::string element, int tilePosX,
         yOffset = 0;
         bottomLeftCorner(tilePosX,tilePosY,xOffset,yOffset);
     }
+
+        if (element == "┘")
+    {
+        xOffset = 0;
+        yOffset = 0;
+        bottomRightCorner(tilePosX,tilePosY,xOffset,yOffset);
+    }
        
     /*switch (element)
     {
@@ -304,6 +311,14 @@ void DisplayManager::bottomLeftCorner(int tilePosX, int tilePosY, const float xO
     verticalWall(tilePosX,tilePosY,xOffset,yOffset);
     auto newYoffset = 5/6.0f;
     horizontalWall(tilePosX,tilePosY,xOffset,newYoffset);
+}
+
+void DisplayManager::bottomRightCorner(int tilePosX, int tilePosY, const float xOffset,const float yOffset)
+{
+    auto newYoffset = 5/6.0f;
+    horizontalWall(tilePosX,tilePosY,xOffset,newYoffset);
+    auto newXoffset = 5/6.0f;
+    verticalWall(tilePosX,tilePosY,newXoffset,yOffset);
 }
 
 void DisplayManager::verticalWall(int tilePosX, int tilePosY, const float xOffset,const float yOffset)
