@@ -251,6 +251,17 @@ void DisplayManager::processTileTexture(const std::string element, int tilePosX,
         xOffset = 5/6.0f;
         verticalWall(tilePosX,tilePosY,xOffset,yOffset);
     }
+
+    if (element == "Π")
+    {
+        //As the symbol suggests, you welcome
+        xOffset = 0;
+        yOffset = 0;
+        horizontalWall(tilePosX,tilePosY,xOffset,yOffset);
+        verticalWall(tilePosX,tilePosY,xOffset,yOffset);
+        xOffset = 5/6.0f;//the far right wall
+        verticalWall(tilePosX,tilePosY,xOffset,yOffset);
+    }
 }
 
 void DisplayManager::topRightCorner(int tilePosX, int tilePosY, const float xOffset,const float yOffset)
