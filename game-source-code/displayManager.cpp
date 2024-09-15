@@ -231,6 +231,14 @@ void DisplayManager::processTileTexture(const std::string element, int tilePosX,
         yOffset = 0;
         bottomRightCorner(tilePosX,tilePosY,xOffset,yOffset);
     }
+
+    if (element == "_")
+    {
+        //Bottom horizontal
+        xOffset = 0;
+        yOffset = 5/6.0f;
+        horizontalWall(tilePosX,tilePosY,xOffset,yOffset);
+    }
        
     /*switch (element)
     {
