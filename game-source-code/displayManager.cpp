@@ -197,14 +197,14 @@ void DisplayManager::processTileTexture(const char element, int tilePosX, int ti
     case '1':
     xOffset = 0;
     yOffset = 0;
-        verticalWall(tilePosX, tilePosY, xOffset, yOffset);
+    verticalWall(tilePosX, tilePosY, xOffset, yOffset);
         break;
     case '+':
     innerRightCornerDown(tilePosX, tilePosY);
     break;
     case 'L':
     xOffset = 0;
-    yOffset = 1;
+    yOffset = -1;
     longerVerticalWall(tilePosX, tilePosY,xOffset,yOffset);
     break;
     case 'l':
@@ -217,8 +217,8 @@ void DisplayManager::processTileTexture(const char element, int tilePosX, int ti
     innerLeftCornerDown(tilePosX, tilePosY);
     break;
     case '2':
-    yOffset = -0.5f;
-    xOffset = 0;
+    yOffset = 0.0f;
+    xOffset = -0.02f;
         verticalWall(tilePosX, tilePosY, xOffset,yOffset);
         break;
     default:
