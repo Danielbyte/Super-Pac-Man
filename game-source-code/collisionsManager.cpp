@@ -4,8 +4,8 @@ CollisionsManager::CollisionsManager():
 playerWidth{29.0f},
 playerLength{29.0f},
 horizontalWallWidth{7.0f},
-horizontalWallLength{31.0f},
-verticalWallWidth{31.0f},
+horizontalWallLength{48.0f},
+verticalWallWidth{48.0f},
 verticalWallLength{7.0f}
 {}
 
