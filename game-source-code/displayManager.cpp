@@ -190,11 +190,18 @@ void DisplayManager::processTileTexture(const std::string element, int tilePosX,
         }
         else
         {
-            xOffset = (-1/6.0f);//1/6 x 48 = 8
+            xOffset = (1/6.0f);//1/6 x 48 = 8
         }
         
         yOffset = 0;
         verticalWall(tilePosX, tilePosY, xOffset, yOffset);
+    }
+
+    if (element == "-")
+    {
+        xOffset = 0;
+        yOffset = 0;
+        horizontalWall(tilePosX,tilePosY,xOffset,yOffset);
     }
        
     /*switch (element)
@@ -285,12 +292,12 @@ void DisplayManager::longerVerticalWall_l(int tilePosX, int tilePosY, const floa
   maze_resources.push_back(tile_property);
 }
 
-void DisplayManager::horizontalWall(int tilePosX, int tilePosY)
+void DisplayManager::horizontalWall(int tilePosX, int tilePosY,const float xOffset,const float yOffset)
 {
   auto texture = std::make_shared<raylib::Texture2D>();
   texture->Load("../resources/horizontalWallPiece.png");
   game_world_textures.push_back(texture);
-  auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY, ObjectType::HorizontalWall, 0, 0);
+  auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY, ObjectType::HorizontalWall, xOffset, yOffset);
   maze_resources.push_back(tile_property);
 }
 
