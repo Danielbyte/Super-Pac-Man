@@ -162,8 +162,7 @@ void DisplayManager::InitGameWorldTextures()
     {
         for (const auto tile : row)
         {
-            std::cout <<tile << ' ';
-            //processTileTexture(tile, tilePosX, tilePosY);
+            processTileTexture(tile, tilePosX, tilePosY);
             tilePosX++;
         }
         std::cout << std::endl;
@@ -176,9 +175,16 @@ void DisplayManager::processTileTexture(const std::string element, int tilePosX,
 {
     float xOffset = 0;
     float yOffset = 0;
+    if (element == "10")
+    {
+        xOffset = 0;
+        yOffset = 0;
+        verticalWall(tilePosX, tilePosY, xOffset, yOffset);
+    }
+       
     /*switch (element)
     {
-    case '*':
+    case "10":
         setWallProperties(tilePosX,tilePosY);
         break;
     case '=':

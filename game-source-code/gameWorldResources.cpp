@@ -10,16 +10,16 @@ tileScreenPosY{0.0f}
 GameWorldResources::GameWorldResources(int tilePosX, int tilePosY, const ObjectType _type,
  const float xOffset, const float yOffset)
 {
-    tileScreenPosX = (tilePosX + xOffset) * 23.0f;
-    tileScreenPosY = (tilePosY + yOffset) * 23.0f;
+    tileScreenPosX = (tilePosX + xOffset) * 48.0f;
+    tileScreenPosY = (tilePosY + yOffset) * 48.0f;
     
-    auto numberOfRows = game_world->getNumberOfRows();
+    /*auto numberOfRows = game_world->getNumberOfRows();
     auto numberOfColumns = game_world->getNumberOfColumns();
     if (tilePosY == (numberOfRows - 1) && (tilePosX > 0 && tilePosX < (numberOfColumns - 1)))//minus one since tile position start from zero
        tileScreenPosY += 24.0f;
     
     if((tilePosY > 0 && tilePosY != (numberOfRows - 1)) && (tilePosX == (numberOfColumns - 1) || tilePosX != 0))
-      tileScreenPosX += 24.0f;
+      tileScreenPosX += 24.0f;*/
 
     type = _type;
 }
