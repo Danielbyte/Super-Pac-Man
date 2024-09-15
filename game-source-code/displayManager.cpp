@@ -4,7 +4,7 @@
 
 DisplayManager::DisplayManager() :
 window_width{528},
-window_height{624},
+window_height{576},
 quitGame{false},
 green{38, 185, 154},
 black{0,0,0,255},
