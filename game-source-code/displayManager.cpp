@@ -404,4 +404,10 @@ void DisplayManager::loadTextures()
     verticalWallPieceT = LoadTextureFromImage(verticalWallPieceI);
     UnloadImage(horizontalWallPieceI);
     UnloadImage(verticalWallPieceI);*/
+    /*Γ
+      Π
+      ─┘
+      ─┐
+      L
+    */
 }
