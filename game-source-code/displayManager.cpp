@@ -219,6 +219,12 @@ void DisplayManager::processTileTexture(const char element, int tilePosX, int ti
     xOffset = 0;
     innerLeftCornerDown(tilePosX, tilePosY);
     break;
+    case 'A':
+    innerHorizontalLeftEdge(tilePosX,tilePosY);
+    break;
+    case 's':
+    offsettedinnerHorizontal(tilePosX,tilePosY);
+    break;
     case '2':
     yOffset = 0.0f;
     xOffset = -0.01f;
@@ -322,7 +328,25 @@ void DisplayManager::innerHorizontalRightEdge(int tilePosX, int tilePosY)
   auto texture = std::make_shared<raylib::Texture2D>();
   texture->Load("../resources/horizontalWallPiece.png");
   game_world_textures.push_back(texture);
-  auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY, ObjectType::Other, -0.05f, 0.05f);
+  auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY, ObjectType::HorizontalWall, -0.05f, 0.05f);
+  maze_resources.push_back(tile_property);
+}
+
+void DisplayManager::innerHorizontalLeftEdge(int tilePosX, int tilePosY)
+{
+  auto texture = std::make_shared<raylib::Texture2D>();
+  texture->Load("../resources/horizontalWallPiece.png");
+  game_world_textures.push_back(texture);
+  auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY, ObjectType::HorizontalWall, 0.05f, 0.05f);
+  maze_resources.push_back(tile_property);
+}
+
+void DisplayManager::offsettedinnerHorizontal(int tilePosX, int tilePosY)
+{
+  auto texture = std::make_shared<raylib::Texture2D>();
+  texture->Load("../resources/horizontalWallPiece.png");
+  game_world_textures.push_back(texture);
+  auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY, ObjectType::HorizontalWall, -0.05f, 0.00f);
   maze_resources.push_back(tile_property);
 }
 

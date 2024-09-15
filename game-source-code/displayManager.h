@@ -50,6 +50,8 @@ class DisplayManager
     void longerVerticalWall_l(int tilePosX, int tilePosY, const float xOffset, const float yOffset);
     void innerLeftCornerDown(int tilePosX, int tilePosY);
     void innerHorizontalRightEdge(int tilePosX, int tilePosY);
+    void innerHorizontalLeftEdge(int tilePosX, int tilePosY);//'A'
+    void offsettedinnerHorizontal(int tilePosX, int tilePosY);//'s'
     void drawMaze();
     void loadTextures();
     
