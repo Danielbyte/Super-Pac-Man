@@ -12,13 +12,13 @@ void GameWorld::loadMapFromFile()
         int tileId;
         while (std::getline(gameMapFile, line))
         {
-            std::vector<char>row;
-            for (char ch : line) 
-            {
-                if (ch != ' ')   // Ignore spaces as they are just separators
-                    row.push_back(ch);       
-            }
+            std::vector<std::string>row;
+            std::istringstream iss(line);// Ignore spaces as they are just separators
+            std::string tile;
 
+            while (iss >> tile)
+                  row.push_back(tile);//read each tile  
+            
             if (!row.empty()) 
                 gameMap.push_back(row);
                 
@@ -39,13 +39,13 @@ int GameWorld::getNumberOfRows() const
     return numberOfRows;
 }
 
-std::vector<std::vector<char>> GameWorld::gameMap = {};//Static member variables are accessed at class level
+std::vector<std::vector<std::string>> GameWorld::gameMap = {};//Static member variables are accessed at class level
 
 int GameWorld::numberOfColumns = 0;
 
 int GameWorld::numberOfRows = 0;
 
-const std::vector<std::vector<char>>& GameWorld::getGameMap()
+const std::vector<std::vector<std::string>>& GameWorld::getGameMap()
 {
     return gameMap;
 }

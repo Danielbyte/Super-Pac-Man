@@ -160,21 +160,23 @@ void DisplayManager::InitGameWorldTextures()
     int tilePosX = 0;
     for (const auto& row : game_maze)
     {
-        for (char cell : row)
+        for (const auto tile : row)
         {
-            processTileTexture(cell, tilePosX, tilePosY);
+            std::cout <<tile << ' ';
+            //processTileTexture(tile, tilePosX, tilePosY);
             tilePosX++;
         }
+        std::cout << std::endl;
         tilePosY++;
         tilePosX = 0;
     }
 }
 
-void DisplayManager::processTileTexture(const char element, int tilePosX, int tilePosY)
+void DisplayManager::processTileTexture(const std::string element, int tilePosX, int tilePosY)
 {
     float xOffset = 0;
     float yOffset = 0;
-    switch (element)
+    /*switch (element)
     {
     case '*':
         setWallProperties(tilePosX,tilePosY);
@@ -232,7 +234,7 @@ void DisplayManager::processTileTexture(const char element, int tilePosX, int ti
         break;
     default:
         break;
-    }
+    }*/
 }
 
 void DisplayManager::verticalWall(int tilePosX, int tilePosY, const float xOffset,const float yOffset)
