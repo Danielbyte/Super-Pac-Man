@@ -239,6 +239,16 @@ void DisplayManager::processTileTexture(const std::string element, int tilePosX,
         yOffset = 5/6.0f;
         horizontalWall(tilePosX,tilePosY,xOffset,yOffset);
     }
+
+    if (element == "=")
+    {
+        //Parallel horizontal
+        xOffset = 0;
+        yOffset = 0;
+        horizontalWall(tilePosX,tilePosY,xOffset,yOffset);
+        yOffset = 5/6.0f;
+        horizontalWall(tilePosX,tilePosY,xOffset,yOffset);
+    }
        
     /*switch (element)
     {
