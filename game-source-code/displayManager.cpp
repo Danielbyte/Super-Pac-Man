@@ -184,15 +184,7 @@ void DisplayManager::processTileTexture(const std::string element, int tilePosX,
 
     if (element == "01")//Vertical wall on the right
     {
-        if (tilePosX == 10)
-        {
-            xOffset = (5/6.0f);//This vertical wall should be at the border of the maze
-        }
-        else
-        {
-            xOffset = (1/6.0f);//1/6 x 48 = 8
-        }
-        
+        xOffset = (5/6.0f);//This vertical wall should be at the border of the maze
         yOffset = 0;
         verticalWall(tilePosX, tilePosY, xOffset, yOffset);
     }

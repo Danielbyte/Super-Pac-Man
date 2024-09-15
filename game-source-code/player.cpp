@@ -1,7 +1,7 @@
 #include "player.h"
 
 Player::Player():
-xPosition{376.0f},//New player center
+xPosition{400.0f},//New player center
 yPosition{326.0f},//New player center
 playerSpeed{105.0f},
 playerDirection{Direction::Right}//Pacman initially facing right
