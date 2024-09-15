@@ -191,6 +191,9 @@ void DisplayManager::processTileTexture(const char element, int tilePosX, int ti
     case 'q':
         rightCornerUp(tilePosX,tilePosY);
         break;
+    case 'Q':
+        innerHorizontalRightEdge(tilePosX,tilePosY);
+        break;
     case '#':
     horizontalWall(tilePosX, tilePosY);
         break;
@@ -218,7 +221,7 @@ void DisplayManager::processTileTexture(const char element, int tilePosX, int ti
     break;
     case '2':
     yOffset = 0.0f;
-    xOffset = -0.02f;
+    xOffset = -0.01f;
         verticalWall(tilePosX, tilePosY, xOffset,yOffset);
         break;
     default:
@@ -311,6 +314,15 @@ void DisplayManager::rightCornerUp(int tilePosX, int tilePosY)
   game_world_textures.push_back(texture);
   auto tile_property = std::make_shared<GameWorldResources>();
   tile_property->initialiseGameBorder(tilePosX, tilePosY, ObjectType::Other);
+  maze_resources.push_back(tile_property);
+}
+
+void DisplayManager::innerHorizontalRightEdge(int tilePosX, int tilePosY)
+{
+  auto texture = std::make_shared<raylib::Texture2D>();
+  texture->Load("../resources/horizontalWallPiece.png");
+  game_world_textures.push_back(texture);
+  auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY, ObjectType::Other, -0.05f, 0.05f);
   maze_resources.push_back(tile_property);
 }
 
