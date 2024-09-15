@@ -3,8 +3,8 @@
 #include <string>
 
 DisplayManager::DisplayManager() :
-window_width{800},
-window_height{704},
+window_width{352},
+window_height{416},
 quitGame{false},
 green{38, 185, 154},
 black{0,0,0,255},
