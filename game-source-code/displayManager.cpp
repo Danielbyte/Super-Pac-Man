@@ -203,6 +203,13 @@ void DisplayManager::processTileTexture(const std::string element, int tilePosX,
         yOffset = 0;
         horizontalWall(tilePosX,tilePosY,xOffset,yOffset);
     }
+
+    if (element == "┐")
+    {
+        xOffset = 0;
+        yOffset = 0;
+        topRightCorner(tilePosX,tilePosY,xOffset,yOffset);
+    }
        
     /*switch (element)
     {
@@ -263,6 +270,13 @@ void DisplayManager::processTileTexture(const std::string element, int tilePosX,
     default:
         break;
     }*/
+}
+
+void DisplayManager::topRightCorner(int tilePosX, int tilePosY, const float xOffset,const float yOffset)
+{
+    horizontalWall(tilePosX,tilePosY,xOffset,yOffset);
+    auto newXoffset = 5/6.0f;//place vertical piece at the end of the horizontal piece to form ┐
+    verticalWall(tilePosX,tilePosY,newXoffset,yOffset);
 }
 
 void DisplayManager::verticalWall(int tilePosX, int tilePosY, const float xOffset,const float yOffset)
