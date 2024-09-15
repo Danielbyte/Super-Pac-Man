@@ -251,66 +251,6 @@ void DisplayManager::processTileTexture(const std::string element, int tilePosX,
         xOffset = 5/6.0f;
         verticalWall(tilePosX,tilePosY,xOffset,yOffset);
     }
-       
-    /*switch (element)
-    {
-    case "10":
-        setWallProperties(tilePosX,tilePosY);
-        break;
-    case '=':
-        rightCornerDown(tilePosX,tilePosY);
-        break;
-    case '-':
-        leftCornerDown(tilePosX,tilePosY);
-        break;
-    case 'w':
-        leftCornerUp(tilePosX,tilePosY);
-        break;
-    case 'q':
-        rightCornerUp(tilePosX,tilePosY);
-        break;
-    case 'Q':
-        innerHorizontalRightEdge(tilePosX,tilePosY);
-        break;
-    case '#':
-    horizontalWall(tilePosX, tilePosY);
-        break;
-    case '1':
-    xOffset = 0;
-    yOffset = 0;
-    verticalWall(tilePosX, tilePosY, xOffset, yOffset);
-        break;
-    case '+':
-    innerRightCornerDown(tilePosX, tilePosY);
-    break;
-    case 'L':
-    xOffset = 0;
-    yOffset = -1;
-    longerVerticalWall(tilePosX, tilePosY,xOffset,yOffset);
-    break;
-    case 'l':
-    yOffset = 0;
-    xOffset = 0;
-    longerVerticalWall_l(tilePosX, tilePosY,xOffset, yOffset);
-    break;
-    case '[':
-    xOffset = 0;
-    innerLeftCornerDown(tilePosX, tilePosY);
-    break;
-    case 'A':
-    innerHorizontalLeftEdge(tilePosX,tilePosY);
-    break;
-    case 's':
-    offsettedinnerHorizontal(tilePosX,tilePosY);
-    break;
-    case '2':
-    yOffset = 0.0f;
-    xOffset = -0.01f;
-        verticalWall(tilePosX, tilePosY, xOffset,yOffset);
-        break;
-    default:
-        break;
-    }*/
 }
 
 void DisplayManager::topRightCorner(int tilePosX, int tilePosY, const float xOffset,const float yOffset)
