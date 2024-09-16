@@ -19,8 +19,8 @@ void Player::movePlayer(bool rightArrowKeyPressed, bool leftArrowKeyPressed,
          return;
         //move player to the right
         xPosition += playerSpeed * dt;
-        if (xPosition >= 760.0f)
-           xPosition = 760.0f; //Cater for wall width of 8 pixels
+        if (xPosition >= 560.0f)
+           xPosition = -32.0f; //Cater for wall width of 8 pixels
     }
 
     if(leftArrowKeyPressed)
@@ -31,8 +31,8 @@ void Player::movePlayer(bool rightArrowKeyPressed, bool leftArrowKeyPressed,
          return;        
         //Move player to the left
         xPosition -= playerSpeed * dt;
-        //if (xPosition <= 8.0f)//Player should wrap around instead
-            //xPosition = 8.0f; //Cater for wall width of 8 pixels
+        if (xPosition <= -32.0f)//Player should wrap around instead
+            xPosition = 528.0f; //Cater for wall width of 8 pixels
     }
 
     if(downArrowKeyPressed)
