@@ -2,6 +2,7 @@
 #define COLLISIONSMANAGER_H
 #include "collisions.h"
 #include "gameWorldResources.h"
+#include "key.h"
 
 #include <memory>
 
@@ -15,5 +16,6 @@ public:
     CollisionsManager();
     bool playerWallCollisions(std::vector<std::shared_ptr<GameWorldResources>>& maze,const float xPlayerPos, const float yPlayerPos);
     std::unique_ptr<Collisions>collision = std::make_unique<Collisions>();
+    void playerKeyCollisions(std::vector<std::shared_ptr<Key>>key_objects,const float xPlayerPos, const float yPlayerPos);
 };
 #endif
