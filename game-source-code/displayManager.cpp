@@ -301,15 +301,6 @@ void DisplayManager::verticalWall(int tilePosX, int tilePosY, const float xOffse
   maze_resources.push_back(tile_property);
 }
 
-void DisplayManager::longerVerticalWall(int tilePosX, int tilePosY, const float xOffset, const float yOffset)
-{
-  auto texture = std::make_shared<raylib::Texture2D>();
-  texture->Load("../resources/verticalLongerWallPiece.png");
-  game_world_textures.push_back(texture);
-  auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY, ObjectType::VerticalWall, xOffset, yOffset);
-  maze_resources.push_back(tile_property);
-}
-
 void DisplayManager::horizontalWall(int tilePosX, int tilePosY,const float xOffset,const float yOffset)
 {
   auto texture = std::make_shared<raylib::Texture2D>();
