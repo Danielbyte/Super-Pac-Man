@@ -46,11 +46,11 @@ void CollisionsManager::playerKeyCollisions(std::vector<std::shared_ptr<Key>>key
     {
         auto[xPos, yPos] = (*key)->getPosition();
         auto isCollided = collision->checkCollision(xPlayerPos,yPlayerPos,playerWidth,playerLength,xPos,yPos,
-        keyWidth,keyHeight);
+        keyHeight, keyWidth);
 
         if (isCollided)
         {
-            std::cout << "Key collisions" << std::endl;
+            (*key)->markForDeletion();
         }
         ++key;
     }
