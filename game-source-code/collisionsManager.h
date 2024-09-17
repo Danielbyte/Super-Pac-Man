@@ -12,6 +12,7 @@ private:
     float playerWidth, playerLength;
     float horizontalWallWidth, horizontalWallLength;
     float verticalWallWidth, verticalWallLength;
+    float keyWidth, keyHeight;
 public:
     CollisionsManager();
     bool playerWallCollisions(std::vector<std::shared_ptr<GameWorldResources>>& maze,const float xPlayerPos, const float yPlayerPos);

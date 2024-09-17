@@ -57,7 +57,8 @@ void DisplayManager::startGame()
 
 void DisplayManager::updateGame()
 {
-    //collision_manager->playerWallCollisions(maze_resources,player_obj);
+    auto [xPos, yPos] = player_obj->getPlayerPosition();
+    collision_manager->playerKeyCollisions(key_objects,xPos,yPos);
 }
 
 void DisplayManager::handleUserInput(const float dt)
