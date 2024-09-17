@@ -9,7 +9,7 @@
 
  public:
     Key();
-    void setPosition(float xPos, float yPos);
+    void setPosition(const float xPos, const float yPos);
     std::tuple<float, float>getPosition() const;
  };
  #endif
