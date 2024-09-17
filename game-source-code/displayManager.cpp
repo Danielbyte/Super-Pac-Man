@@ -332,6 +332,21 @@ void DisplayManager::initialiseKeys()
     key1->setPosition(16.5f,8.5f);
     key_objects.push_back(key1);
     key_textures.push_back(keyT);
+
+    std::shared_ptr<Key>key2 = std::make_shared<Key>();
+    key2->setPosition(496.5f,8.5f);
+    key_objects.push_back(key2);
+    key_textures.push_back(keyT);
+
+    std::shared_ptr<Key>key3 = std::make_shared<Key>();
+    key3->setPosition(16.5f,536.0f);
+    key_objects.push_back(key3);
+    key_textures.push_back(keyT);
+
+    std::shared_ptr<Key>key4 = std::make_shared<Key>();
+    key4->setPosition(496.5f,536.0f);
+    key_objects.push_back(key4);
+    key_textures.push_back(keyT);
 }
 
 void DisplayManager::loadTextures()
