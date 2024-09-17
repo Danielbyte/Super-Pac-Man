@@ -4,6 +4,7 @@
 #include "collisionsManager.h"
 #include "gameWorldResources.h"
 #include "stopwatch.h"
+#include "key.h"
 
 //using namespace raylib;
 #include <iostream>
