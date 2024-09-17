@@ -3,7 +3,7 @@
 Player::Player():
 xPosition{400.0f},//New player center
 yPosition{326.0f},//New player center
-playerSpeed{105.0f},
+playerSpeed{102.0f},
 playerDirection{Direction::Right}//Pacman initially facing right
 {}
 
@@ -84,7 +84,7 @@ bool Player::willCollide(Direction direcction, std::vector<std::shared_ptr<GameW
 {
     auto nextPlayerYpos = yPosition;
     auto nextPlayerXpos = xPosition;
-    auto minCollisionOffset = 2.0f;
+    auto minCollisionOffset = 1.8f;
     switch (direcction)
     {
     case Direction::Up:
