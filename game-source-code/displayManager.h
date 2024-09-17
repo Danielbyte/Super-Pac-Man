@@ -39,24 +39,14 @@ class DisplayManager
     void drawGameWorld();
     void InitGameWorldTextures();
     void processTileTexture(const std::string element, int tilePosX, int tilePosY);
-    void setWallProperties(int tilePosX, int tilePosY);
-    void rightCornerDown(int tilePosX, int tilePosY);
-    void leftCornerDown(int tilePosX, int tilePosY);
-    void leftCornerUp(int tilePosX, int tilePosY);
-    void rightCornerUp(int tilePosX, int tilePosY);
     void verticalWall(int tilePosX, int tilePosY,const float xOffset,const float yOffset);
     void horizontalWall(int tilePosX, int tilePosY, const float xOffset,const float yOffset);
     void topRightCorner(int tilePosX, int tilePosY, const float xOffset,const float yOffset);
     void topLeftCorner(int tilePosX, int tilePosY, const float xOffset,const float yOffset);
     void bottomLeftCorner(int tilePosX, int tilePosY, const float xOffset,const float yOffset);
     void bottomRightCorner(int tilePosX, int tilePosY, const float xOffset,const float yOffset);
-    void innerRightCornerDown(int tilePosX, int tilePosY);
     void longerVerticalWall(int tilePosX, int tilePosY,const float xOffset, const float yOffset);
     void longerVerticalWall_l(int tilePosX, int tilePosY, const float xOffset, const float yOffset);
-    void innerLeftCornerDown(int tilePosX, int tilePosY);
-    void innerHorizontalRightEdge(int tilePosX, int tilePosY);
-    void innerHorizontalLeftEdge(int tilePosX, int tilePosY);//'A'
-    void offsettedinnerHorizontal(int tilePosX, int tilePosY);//'s'
     void drawMaze();
     void loadTextures();
     
