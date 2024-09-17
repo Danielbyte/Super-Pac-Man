@@ -156,6 +156,7 @@ void DisplayManager::displayInGameScreen()
     drawMaze();
     drawKeys();
     drawFruits();
+    drawLocks();
     //EndDrawing();
 }
 
@@ -199,6 +200,19 @@ void DisplayManager::drawFruits()
     }
 }
 
+void DisplayManager::drawLocks()
+{
+    auto lock = lock_objects.begin();
+    auto lock_texture = lock_textures.begin();
+    while(lock != lock_objects.end())
+    {
+        auto [xPos, yPos] = (*lock)->getPosition();
+        (*lock_texture)->Draw(xPos, yPos);
+        ++lock;
+        ++lock_texture;
+    }
+}
+
 void DisplayManager::drawGameWorld()
 {
 }
@@ -221,6 +235,7 @@ void DisplayManager::InitGameWorldTextures()
 
     initialiseKeys();
     initialiseFruits();
+    initialiseLocks();
 }
 
 void DisplayManager::processTileTexture(const std::string element, int tilePosX, int tilePosY)
@@ -464,6 +479,14 @@ void DisplayManager::initialiseFruits()
     fruit_textures.push_back(fruitT);
 }
 
+void DisplayManager::initialiseLocks()
+{
+    std::shared_ptr<Lock>lock1 = std::make_shared<Lock>();
+    lock1->setPosition(56.5f,146.0f);
+    lock_objects.push_back(lock1);
+    lock_textures.push_back(HlockT);
+}
+
 void DisplayManager::loadTextures()
 {
     auto texture = std::make_shared<raylib::Texture2D>();
@@ -488,6 +511,9 @@ void DisplayManager::loadTextures()
     UnloadImage(keyI);
 
     fruitT->Load("../resources/fruit.png");
+
+    VlockT->Load("../resources/lockV.png");
+    HlockT->Load("../resources/lockH.png");
 
     /*horizontalWallPieceI = LoadImage("resources/horizontalWallPiece.png");
     horizontalWallPieceT = LoadTextureFromImage(horizontalWallPieceI);

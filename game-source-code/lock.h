@@ -13,5 +13,6 @@ public:
     std::tuple<float, float>getPosition() const;
     bool getIsOpen() const;
     void OpenLock();
+    void setPosition(const float xPos, const float yPos);
 };
 #endif

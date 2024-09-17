@@ -20,3 +20,9 @@ bool Lock::getIsOpen() const
 {
     return isOpen;
 }
+
+void Lock::setPosition(const float xPos, const float yPos)
+{
+    xPosition = xPos;
+    yPosition = yPos;
+}

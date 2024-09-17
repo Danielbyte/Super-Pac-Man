@@ -6,6 +6,7 @@
 #include "stopwatch.h"
 #include "key.h"
 #include "fruit.h"
+#include "lock.h"
 
 //using namespace raylib;
 #include <iostream>
@@ -53,6 +54,8 @@ class DisplayManager
     void updateKeys();
     void initialiseFruits();
     void drawFruits();
+    void initialiseLocks();
+    void drawLocks();
     
     //Create Player objects
     std::shared_ptr<Player> player_obj = std::make_shared<Player>(); 
@@ -74,6 +77,8 @@ class DisplayManager
     raylib::Image keyI;
 
     std::shared_ptr<raylib::Texture2D> fruitT = std::make_shared<raylib::Texture2D>();
+    std::shared_ptr<raylib::Texture2D> VlockT = std::make_shared<raylib::Texture2D>();//Vertical lock
+    std::shared_ptr<raylib::Texture2D> HlockT = std::make_shared<raylib::Texture2D>();//Horizontal lock
 
     //Game objects
     std::shared_ptr<raylib::Window>window = std::make_shared<raylib::Window>();
@@ -85,6 +90,9 @@ class DisplayManager
     std::vector<std::shared_ptr<raylib::Texture2D>>key_textures = {};
     std::vector<std::shared_ptr<Fruit>>fruit_objects = {};
     std::vector<std::shared_ptr<raylib::Texture2D>>fruit_textures = {};
+
+    std::vector<std::shared_ptr<Lock>>lock_objects = {};
+    std::vector<std::shared_ptr<raylib::Texture2D>>lock_textures = {};
 
     StopWatch stop_watch;
 };
