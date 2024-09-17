@@ -47,6 +47,8 @@ class DisplayManager
     void bottomRightCorner(int tilePosX, int tilePosY, const float xOffset,const float yOffset);
     void drawMaze();
     void loadTextures();
+    void initialiseKeys();
+    void drawKeys();
     
     //Create Player objects
     std::shared_ptr<Player> player_obj = std::make_shared<Player>(); 
@@ -64,12 +66,17 @@ class DisplayManager
     raylib::Texture2D verticalWallPieceT;
     raylib::Image verticalWallPieceI;
 
+    std::shared_ptr<raylib::Texture2D> keyT = std::make_shared<raylib::Texture2D>();
+    raylib::Image keyI;
+
     //Game objects
     std::shared_ptr<raylib::Window>window = std::make_shared<raylib::Window>();
     std::shared_ptr<GameWorld>game_world = std::make_shared<GameWorld>();
     std::vector<std::shared_ptr<GameWorldResources>>maze_resources = {};
     std::vector<std::shared_ptr<raylib::Texture2D>>game_world_textures = {};
     std::unique_ptr<CollisionsManager>collision_manager = std::make_unique<CollisionsManager>();
+    std::vector<std::shared_ptr<Key>>key_objects = {};
+    std::vector<std::shared_ptr<raylib::Texture2D>>key_textures = {};
 
     StopWatch stop_watch;
 };

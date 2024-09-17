@@ -133,6 +133,7 @@ void DisplayManager::displayInGameScreen()
         break;
     }
     drawMaze();
+    drawKeys();
     //EndDrawing();
 }
 
@@ -146,6 +147,20 @@ void DisplayManager::drawMaze()
         (*tile_texture)->Draw(tileScreenPosX,tileScreenPosY);
         ++tile_property;
         ++tile_texture;
+    }
+}
+
+void DisplayManager::drawKeys()
+{
+    auto key = key_objects.begin();
+    auto key_texture = key_textures.begin();
+
+    while(key != key_objects.end())
+    {
+        auto [xPos, yPos] = (*key)->getPosition();
+        (*key_texture)->Draw(xPos, yPos);
+        ++key_texture;
+        ++key;
     }
 }
 
@@ -165,10 +180,11 @@ void DisplayManager::InitGameWorldTextures()
             processTileTexture(tile, tilePosX, tilePosY);
             tilePosX++;
         }
-        std::cout << std::endl;
         tilePosY++;
         tilePosX = 0;
     }
+
+    initialiseKeys();
 }
 
 void DisplayManager::processTileTexture(const std::string element, int tilePosX, int tilePosY)
@@ -310,6 +326,14 @@ void DisplayManager::horizontalWall(int tilePosX, int tilePosY,const float xOffs
   maze_resources.push_back(tile_property);
 }
 
+void DisplayManager::initialiseKeys()
+{
+    std::shared_ptr<Key>key1 = std::make_shared<Key>();
+    key1->setPosition(16.5f,8.5f);
+    key_objects.push_back(key1);
+    key_textures.push_back(keyT);
+}
+
 void DisplayManager::loadTextures()
 {
     auto texture = std::make_shared<raylib::Texture2D>();
@@ -328,7 +352,10 @@ void DisplayManager::loadTextures()
     pacmanUp1_I= LoadImage("../resources/pacmanUp1.png");
     pacmanUp1_T = LoadTextureFromImage(pacmanUp1_I);
     UnloadImage(pacmanUp1_I);
-
+    
+    keyI= LoadImage("../resources/key.png");
+    keyT ->Load(keyI);
+    UnloadImage(keyI);
     /*horizontalWallPieceI = LoadImage("resources/horizontalWallPiece.png");
     horizontalWallPieceT = LoadTextureFromImage(horizontalWallPieceI);
     verticalWallPieceI = LoadImage("resources/verticalWallPiece.png");
