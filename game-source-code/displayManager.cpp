@@ -155,6 +155,7 @@ void DisplayManager::displayInGameScreen()
     }
     drawMaze();
     drawKeys();
+    drawFruits();
     //EndDrawing();
 }
 
@@ -185,6 +186,19 @@ void DisplayManager::drawKeys()
     }
 }
 
+void DisplayManager::drawFruits()
+{
+    auto fruit = fruit_objects.begin();
+    auto fruit_texture = fruit_textures.begin();
+    while(fruit != fruit_objects.end())
+    {
+        auto [xPos, yPos] = (*fruit)->getPosition();
+        (*fruit_texture)->Draw(xPos, yPos);
+        ++fruit;
+        ++fruit_texture;
+    }
+}
+
 void DisplayManager::drawGameWorld()
 {
 }
@@ -206,6 +220,7 @@ void DisplayManager::InitGameWorldTextures()
     }
 
     initialiseKeys();
+    initialiseFruits();
 }
 
 void DisplayManager::processTileTexture(const std::string element, int tilePosX, int tilePosY)
@@ -426,6 +441,14 @@ void DisplayManager::initialiseKeys()
     
 }
 
+void DisplayManager::initialiseFruits()
+{
+    std::shared_ptr<Fruit>fruit1 = std::make_shared<Fruit>();
+    fruit1->setPosition(56.5f,152.5f);
+    fruit_objects.push_back(fruit1);
+    fruit_textures.push_back(fruitT);
+}
+
 void DisplayManager::loadTextures()
 {
     auto texture = std::make_shared<raylib::Texture2D>();
@@ -448,6 +471,9 @@ void DisplayManager::loadTextures()
     keyI= LoadImage("../resources/key.png");
     keyT ->Load(keyI);
     UnloadImage(keyI);
+
+    fruitT->Load("../resources/fruit.png");
+
     /*horizontalWallPieceI = LoadImage("resources/horizontalWallPiece.png");
     horizontalWallPieceT = LoadTextureFromImage(horizontalWallPieceI);
     verticalWallPieceI = LoadImage("resources/verticalWallPiece.png");

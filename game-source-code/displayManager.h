@@ -5,6 +5,7 @@
 #include "gameWorldResources.h"
 #include "stopwatch.h"
 #include "key.h"
+#include "fruit.h"
 
 //using namespace raylib;
 #include <iostream>
@@ -50,6 +51,8 @@ class DisplayManager
     void initialiseKeys();
     void drawKeys();
     void updateKeys();
+    void initialiseFruits();
+    void drawFruits();
     
     //Create Player objects
     std::shared_ptr<Player> player_obj = std::make_shared<Player>(); 
@@ -70,6 +73,8 @@ class DisplayManager
     std::shared_ptr<raylib::Texture2D> keyT = std::make_shared<raylib::Texture2D>();
     raylib::Image keyI;
 
+    std::shared_ptr<raylib::Texture2D> fruitT = std::make_shared<raylib::Texture2D>();
+
     //Game objects
     std::shared_ptr<raylib::Window>window = std::make_shared<raylib::Window>();
     std::shared_ptr<GameWorld>game_world = std::make_shared<GameWorld>();
@@ -78,6 +83,8 @@ class DisplayManager
     std::unique_ptr<CollisionsManager>collision_manager = std::make_unique<CollisionsManager>();
     std::vector<std::shared_ptr<Key>>key_objects = {};
     std::vector<std::shared_ptr<raylib::Texture2D>>key_textures = {};
+    std::vector<std::shared_ptr<Fruit>>fruit_objects = {};
+    std::vector<std::shared_ptr<raylib::Texture2D>>fruit_textures = {};
 
     StopWatch stop_watch;
 };
