@@ -49,6 +49,7 @@ class DisplayManager
     void loadTextures();
     void initialiseKeys();
     void drawKeys();
+    void updateKeys();
     
     //Create Player objects
     std::shared_ptr<Player> player_obj = std::make_shared<Player>(); 

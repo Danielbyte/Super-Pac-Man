@@ -59,6 +59,7 @@ void DisplayManager::updateGame()
 {
     auto [xPos, yPos] = player_obj->getPlayerPosition();
     collision_manager->playerKeyCollisions(key_objects,xPos,yPos);
+    updateKeys();
 }
 
 void DisplayManager::handleUserInput(const float dt)
@@ -100,6 +101,25 @@ void DisplayManager::handleUserInput(const float dt)
         player_obj->movePlayer(rightArrowKeyPressed,leftArrowKeyPressed,downArrowKeyPressed,upArrowKeyPressed, maze_resources, dt);
     }  
 
+}
+
+void DisplayManager::updateKeys()
+{
+    auto key_object = key_objects.begin();
+    auto key_texture = key_textures.begin();
+    while(key_object != key_objects.end())
+    {
+        if((*key_object)->getIfCanDelete())
+        {
+            key_objects.erase(key_object);
+            key_textures.erase(key_texture);
+        }
+        else
+        {
+          ++key_object;
+          ++key_texture;
+        }
+    }
 }
 
 void DisplayManager::displaySplashScreen()
