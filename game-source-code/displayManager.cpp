@@ -507,6 +507,16 @@ void DisplayManager::initialiseFruits()
     fruit10->setPosition(391.0f,248.5f);
     fruit_objects.push_back(fruit10);
     fruit_textures.push_back(fruitT);
+
+    std::shared_ptr<Fruit>fruit11 = std::make_shared<Fruit>();
+    fruit11->setPosition(485.0f,248.5f);
+    fruit_objects.push_back(fruit11);
+    fruit_textures.push_back(fruitT);
+
+    std::shared_ptr<Fruit>fruit12 = std::make_shared<Fruit>();
+    fruit12->setPosition(6.5f,249.5f);
+    fruit_objects.push_back(fruit12);
+    fruit_textures.push_back(fruitT);
 }
 
 void DisplayManager::initialiseLocks()
