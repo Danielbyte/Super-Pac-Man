@@ -804,29 +804,13 @@ void DisplayManager::initialiseLocks()
 
 void DisplayManager::loadTextures()
 {
-    //auto texture = std::make_shared<raylib::Texture2D>();
-    //pacmanRight1_I = LoadImage("../resources/pacmanRight1.png");     // Loaded in CPU memory (RAM)
-    pacmanRight1_T = LoadTexture("../resources/pacmanRight1.png");          // Image converted to texture, GPU memory (VRAM)
-    //UnloadImage(pacmanRight1_I); 
-
-    //pacmanLeft1_I = LoadImage("../resources/pacmanLeft1.png");     // Loaded in CPU memory (RAM)
-    pacmanLeft1_T = LoadTexture("../resources/pacmanLeft1.png");          // Image converted to texture, GPU memory (VRAM)
-    //UnloadImage(pacmanLeft1_I);
-    
-    //pacmanDown1_I= LoadImage("../resources/pacmanDown1.png");
+    pacmanRight1_T = LoadTexture("../resources/pacmanRight1.png");
+    pacmanLeft1_T = LoadTexture("../resources/pacmanLeft1.png");
     pacmanDown1_T = LoadTexture("../resources/pacmanDown1.png");
-    //UnloadImage(pacmanDown1_I);
-
-    //pacmanUp1_I= LoadImage("../resources/pacmanUp1.png");
     pacmanUp1_T = LoadTexture("../resources/pacmanUp1.png");
-    //UnloadImage(pacmanUp1_I);
     
-    keyI= LoadImage("../resources/key.png");
-    keyT ->Load(keyI);
-    UnloadImage(keyI);
-
+    keyT ->Load("../resources/key.png");
     fruitT->Load("../resources/fruit.png");
-
     VlockT->Load("../resources/lockV.png");
     HlockT->Load("../resources/lockH.png");
 

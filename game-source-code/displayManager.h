@@ -64,10 +64,6 @@ class DisplayManager
     raylib::Texture2D pacmanLeft1_T;
     raylib::Texture2D pacmanDown1_T;
     raylib::Texture2D pacmanUp1_T;
-    raylib::Image pacmanRight1_I;
-    raylib::Image pacmanLeft1_I;
-    raylib::Image pacmanUp1_I;
-    raylib::Image pacmanDown1_I;
 
     raylib::Texture2D horizontalWallPieceT;
     raylib::Image horizontalWallPieceI;
