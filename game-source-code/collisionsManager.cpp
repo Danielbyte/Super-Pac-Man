@@ -10,7 +10,11 @@ verticalWallLength{7.0f},
 keyWidth{15.0f},
 keyHeight{32.0f},
 fruitWidth{10.0f},
-fruitHeight{10.0f}
+fruitHeight{10.0f},
+horizontalLockWidth{3.0f},
+horizontalLockLength{40.0f},
+verticalLockWidth{32.0f},
+verticalLockLength{3.0f}
 {}
 
 bool CollisionsManager::playerWallCollisions(std::vector<std::shared_ptr<GameWorldResources>>& maze,
@@ -69,5 +73,16 @@ void CollisionsManager::playerFruitCollisions(std::vector<std::shared_ptr<Fruit>
            (*fruit)->markForDeletion();
 
         ++fruit;
+    }
+}
+
+void CollisionsManager::playerLockCollisions(std::vector<std::shared_ptr<Lock>>& lock_objects, const float xPos, const float yPos)
+{
+    auto lock = lock_objects.begin();
+    while(lock != lock_objects.end())
+    {
+        auto Wallwidth = 0.0f;
+        auto wallLength = 0.0f;
+        ++lock;
     }
 }

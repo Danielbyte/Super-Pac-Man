@@ -862,14 +862,6 @@ void DisplayManager::initialiseLocks()
     lock37->setLockType(LockType::Vertical);
     lock_objects.push_back(lock37);
     lock_textures.push_back(VlockT);
-
-
-
-
-
-
-
-
 }
 
 void DisplayManager::loadTextures()
