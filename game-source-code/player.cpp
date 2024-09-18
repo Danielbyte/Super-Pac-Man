@@ -16,8 +16,8 @@ void Player::movePlayer(bool rightArrowKeyPressed, bool leftArrowKeyPressed,
     {
         playerDirection = Direction::Right;
         bool _willCollide = willCollideWithWall(Direction::Right, maze);
-        willCoolideWithLock(playerDirection,locks);
-        if (_willCollide)
+        auto _willCollide1 = willCoolideWithLock(playerDirection,locks);
+        if (_willCollide || _willCollide1)
          return;
         //move player to the right
         xPosition += playerSpeed * dt;
@@ -29,8 +29,8 @@ void Player::movePlayer(bool rightArrowKeyPressed, bool leftArrowKeyPressed,
     {
         playerDirection = Direction::Left;
         bool _willCollide = willCollideWithWall(Direction::Left, maze);
-        willCoolideWithLock(playerDirection,locks);
-        if (_willCollide)
+        auto _willCollide1 = willCoolideWithLock(playerDirection,locks);
+        if (_willCollide || _willCollide1)
          return;        
         //Move player to the left
         xPosition -= playerSpeed * dt;
@@ -42,8 +42,8 @@ void Player::movePlayer(bool rightArrowKeyPressed, bool leftArrowKeyPressed,
     {
         playerDirection = Direction::Down;
         bool _willCollide = willCollideWithWall(Direction::Down, maze);
-        willCoolideWithLock(playerDirection,locks);
-        if (_willCollide)
+        auto _willCollide1 = willCoolideWithLock(playerDirection,locks);
+        if (_willCollide || _willCollide1)
          return;
         //move player downwards
         yPosition += playerSpeed * dt;
@@ -57,8 +57,8 @@ void Player::movePlayer(bool rightArrowKeyPressed, bool leftArrowKeyPressed,
         playerDirection = Direction::Up;
         //first check if this movement will not result in player collision with wall
         bool _willCollide = willCollideWithWall(Direction::Up, maze);
-        willCoolideWithLock(playerDirection,locks);
-        if (_willCollide)
+        auto _willCollide1 = willCoolideWithLock(playerDirection,locks);
+        if (_willCollide || _willCollide1)
          return;
         //move player upwards
         yPosition -= playerSpeed * dt;
@@ -137,5 +137,5 @@ bool Player::willCoolideWithLock(Direction direction, std::vector<std::shared_pt
         break;
     }
 
-    collisions_manager.playerLockCollisions(locks,nextPlayerXpos,nextPlayerYpos);
+   return collisions_manager.playerLockCollisions(locks,nextPlayerXpos,nextPlayerYpos);
 }
