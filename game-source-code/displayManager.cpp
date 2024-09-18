@@ -59,7 +59,9 @@ void DisplayManager::updateGame()
 {
     auto [xPos, yPos] = player_obj->getPlayerPosition();
     collision_manager->playerKeyCollisions(key_objects,xPos,yPos);
+    collision_manager->playerFruitCollisions(fruit_objects, xPos, yPos);
     updateKeys();
+    updateFruits();
 }
 
 void DisplayManager::handleUserInput(const float dt)
@@ -73,32 +75,35 @@ void DisplayManager::handleUserInput(const float dt)
     if(IsKeyDown(KEY_UP))
     {
         upArrowKeyPressed = true;
-         player_obj->movePlayer(rightArrowKeyPressed,leftArrowKeyPressed,downArrowKeyPressed,upArrowKeyPressed, maze_resources, dt);
+         player_obj->movePlayer(rightArrowKeyPressed,leftArrowKeyPressed,downArrowKeyPressed,upArrowKeyPressed, maze_resources,
+         lock_objects, dt);
     }
 
     if(IsKeyDown(KEY_DOWN))
     {
         downArrowKeyPressed = true;
-        player_obj->movePlayer(rightArrowKeyPressed,leftArrowKeyPressed,downArrowKeyPressed,upArrowKeyPressed, maze_resources, dt);
+        player_obj->movePlayer(rightArrowKeyPressed,leftArrowKeyPressed,downArrowKeyPressed,upArrowKeyPressed, maze_resources,
+        lock_objects, dt);
     }
 
     if(IsKeyDown(KEY_ENTER) || IsKeyDown(KEY_KP_ENTER) && !isPlaying && isSplashScreen)
     {
         isSplashScreen = false;
         isPlaying = true;
-        std::cout << "Game world Init!" << std::endl;
     }
 
     if(IsKeyDown(KEY_LEFT))
     {
         leftArrowKeyPressed = true;
-        player_obj->movePlayer(rightArrowKeyPressed,leftArrowKeyPressed,downArrowKeyPressed,upArrowKeyPressed, maze_resources, dt);
+        player_obj->movePlayer(rightArrowKeyPressed,leftArrowKeyPressed,downArrowKeyPressed,upArrowKeyPressed, maze_resources,
+        lock_objects, dt);
     }
 
     if(IsKeyDown(KEY_RIGHT))
     {
         rightArrowKeyPressed = true;
-        player_obj->movePlayer(rightArrowKeyPressed,leftArrowKeyPressed,downArrowKeyPressed,upArrowKeyPressed, maze_resources, dt);
+        player_obj->movePlayer(rightArrowKeyPressed,leftArrowKeyPressed,downArrowKeyPressed,upArrowKeyPressed, maze_resources,
+        lock_objects, dt);
     }  
 
 }
@@ -118,6 +123,26 @@ void DisplayManager::updateKeys()
         {
           ++key_object;
           ++key_texture;
+        }
+    }
+}
+
+void DisplayManager::updateFruits()
+{
+    auto fruit_object = fruit_objects.begin();
+    auto fruit_texture = fruit_textures.begin();
+    while(fruit_object != fruit_objects.end())
+    {
+        if ((*fruit_object)->getIfCanDelete())
+        {
+            fruit_objects.erase(fruit_object);
+            fruit_textures.erase(fruit_texture);
+        }
+
+        else
+        {
+            ++fruit_object;
+            ++fruit_texture;
         }
     }
 }

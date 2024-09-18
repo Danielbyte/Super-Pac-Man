@@ -3,6 +3,7 @@
 #include<tuple>
 #include "collisionsManager.h"
 #include "gameWorldResources.h"
+#include "lock.h"
 
 enum class Direction{Up, Down, Left, Right, Still};
 
@@ -12,13 +13,14 @@ private:
  float xPosition;
  float yPosition;
  float playerSpeed;
- bool willCollide(Direction direction, std::vector<std::shared_ptr<GameWorldResources>>& maze);//function to check if the next move will result in a wall collision
+ bool willCollideWithWall(Direction direction, std::vector<std::shared_ptr<GameWorldResources>>& maze);//function to check if the next move will result in a wall collision
+ bool willCoolideWithLock(Direction direction, std::vector<std::shared_ptr<Lock>>& locks);
  CollisionsManager collisions_manager;
 
 public:
     Player();
     void movePlayer(bool rightArrowKeyPressed, bool leftArrowKeyPressed, bool downArrowKeyPressed, bool upArrowKeyPressed
-    , std::vector<std::shared_ptr<GameWorldResources>>& maze, const float dt);
+    , std::vector<std::shared_ptr<GameWorldResources>>& maze, std::vector<std::shared_ptr<Lock>>& locks, const float dt);
     std::tuple<float, float> getPlayerPosition() const;
     Direction playerDirection;
 

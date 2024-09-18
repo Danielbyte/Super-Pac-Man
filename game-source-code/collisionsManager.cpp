@@ -8,7 +8,9 @@ horizontalWallLength{48.0f},
 verticalWallWidth{48.0f},
 verticalWallLength{7.0f},
 keyWidth{15.0f},
-keyHeight{32.0f}
+keyHeight{32.0f},
+fruitWidth{10.0f},
+fruitHeight{10.0f}
 {}
 
 bool CollisionsManager::playerWallCollisions(std::vector<std::shared_ptr<GameWorldResources>>& maze,
@@ -53,5 +55,19 @@ void CollisionsManager::playerKeyCollisions(std::vector<std::shared_ptr<Key>>key
             (*key)->markForDeletion();
         }
         ++key;
+    }
+}
+
+void CollisionsManager::playerFruitCollisions(std::vector<std::shared_ptr<Fruit>>fruit_objects, const float xPlayerPos, const float yPlayerPos)
+{
+    auto fruit = fruit_objects.begin();
+    while(fruit != fruit_objects.end())
+    {
+        auto [xPos, yPos] = (*fruit)->getPosition();
+        auto isCollided = collision->checkCollision(xPlayerPos,yPlayerPos,playerWidth,playerLength,xPos,yPos,fruitWidth,fruitHeight);
+        if(isCollided)
+           (*fruit)->markForDeletion();
+
+        ++fruit;
     }
 }
