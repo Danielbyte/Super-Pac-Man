@@ -9,12 +9,13 @@ playerDirection{Direction::Right}//Pacman initially facing right
 
 void Player::movePlayer(bool rightArrowKeyPressed, bool leftArrowKeyPressed,
                         bool downArrowKeyPressed, bool upArrowKeyPressed, 
-                        std::vector<std::shared_ptr<GameWorldResources>>& maze,const float dt)
+                        std::vector<std::shared_ptr<GameWorldResources>>& maze, 
+                        std::vector<std::shared_ptr<Lock>>& lock, const float dt)
 {
     if (rightArrowKeyPressed)
     {
         playerDirection = Direction::Right;
-        bool _willCollide = willCollide(Direction::Right, maze);
+        bool _willCollide = willCollideWithWall(Direction::Right, maze);
         if (_willCollide)
          return;
         //move player to the right
@@ -26,7 +27,7 @@ void Player::movePlayer(bool rightArrowKeyPressed, bool leftArrowKeyPressed,
     if(leftArrowKeyPressed)
     {
         playerDirection = Direction::Left;
-        bool _willCollide = willCollide(Direction::Left, maze);
+        bool _willCollide = willCollideWithWall(Direction::Left, maze);
         if (_willCollide)
          return;        
         //Move player to the left
@@ -38,7 +39,7 @@ void Player::movePlayer(bool rightArrowKeyPressed, bool leftArrowKeyPressed,
     if(downArrowKeyPressed)
     {
         playerDirection = Direction::Down;
-        bool _willCollide = willCollide(Direction::Down, maze);
+        bool _willCollide = willCollideWithWall(Direction::Down, maze);
         if (_willCollide)
          return;
         //move player downwards
@@ -52,7 +53,7 @@ void Player::movePlayer(bool rightArrowKeyPressed, bool leftArrowKeyPressed,
     {
         playerDirection = Direction::Up;
         //first check if this movement will not result in player collision with wall
-        bool _willCollide = willCollide(Direction::Up, maze);
+        bool _willCollide = willCollideWithWall(Direction::Up, maze);
 
         if (_willCollide)
          return;
@@ -80,7 +81,7 @@ Direction Player::getPlayerDirection() const
     return playerDirection;
 }
 
-bool Player::willCollide(Direction direcction, std::vector<std::shared_ptr<GameWorldResources>>& maze)
+bool Player::willCollideWithWall(Direction direcction, std::vector<std::shared_ptr<GameWorldResources>>& maze)
 {
     auto nextPlayerYpos = yPosition;
     auto nextPlayerXpos = xPosition;
@@ -108,4 +109,28 @@ bool Player::willCollide(Direction direcction, std::vector<std::shared_ptr<GameW
     return true;
 
     return false;
+}
+
+bool Player::willCoolideWithLock(Direction direction, std::vector<std::shared_ptr<Lock>>& locks)
+{
+    auto nextPlayerYpos = yPosition;
+    auto nextPlayerXpos = xPosition;
+    auto minCollisionOffset = 1.8f;
+    switch (direction)
+    {
+    case Direction::Up:
+        nextPlayerYpos -= minCollisionOffset;
+        break;
+    case Direction::Down:
+         nextPlayerYpos += minCollisionOffset;
+         break;
+    case Direction::Left:
+         nextPlayerXpos -= minCollisionOffset;
+         break;
+    case Direction::Right:
+         nextPlayerXpos += minCollisionOffset;
+         break;
+    default:
+        break;
+    }
 }
