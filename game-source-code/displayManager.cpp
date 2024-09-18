@@ -59,7 +59,9 @@ void DisplayManager::updateGame()
 {
     auto [xPos, yPos] = player_obj->getPlayerPosition();
     collision_manager->playerKeyCollisions(key_objects,xPos,yPos);
+    collision_manager->playerFruitCollisions(fruit_objects, xPos, yPos);
     updateKeys();
+    updateFruits();
 }
 
 void DisplayManager::handleUserInput(const float dt)
@@ -118,6 +120,26 @@ void DisplayManager::updateKeys()
         {
           ++key_object;
           ++key_texture;
+        }
+    }
+}
+
+void DisplayManager::updateFruits()
+{
+    auto fruit_object = fruit_objects.begin();
+    auto fruit_texture = fruit_textures.begin();
+    while(fruit_object != fruit_objects.end())
+    {
+        if ((*fruit_object)->getIfCanDelete())
+        {
+            fruit_objects.erase(fruit_object);
+            fruit_textures.erase(fruit_texture);
+        }
+
+        else
+        {
+            ++fruit_object;
+            ++fruit_texture;
         }
     }
 }
