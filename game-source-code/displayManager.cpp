@@ -643,51 +643,61 @@ void DisplayManager::initialiseLocks()
 {
     std::shared_ptr<Lock>lock1 = std::make_shared<Lock>();
     lock1->setPosition(56.5f,146.0f);
+    lock1->setLockType(LockType::Horizontal);
     lock_objects.push_back(lock1);
     lock_textures.push_back(HlockT);
 
     std::shared_ptr<Lock>lock2 = std::make_shared<Lock>();
     lock2->setPosition(56.5f,93.0f);
+    lock2->setLockType(LockType::Horizontal);
     lock_objects.push_back(lock2);
     lock_textures.push_back(HlockT);
 
     std::shared_ptr<Lock>lock3 = std::make_shared<Lock>();
     lock3->setPosition(56.5f,48.0f);
+    lock3->setLockType(LockType::Horizontal);
     lock_objects.push_back(lock3);
     lock_textures.push_back(HlockT);
 
     std::shared_ptr<Lock>lock4 = std::make_shared<Lock>();
     lock4->setPosition(56.5f,190.0f);
+    lock4->setLockType(LockType::Horizontal);
     lock_objects.push_back(lock4);
     lock_textures.push_back(HlockT);
 
     std::shared_ptr<Lock>lock5 = std::make_shared<Lock>();
     lock5->setPosition(140.0f,240.0f);
+    lock5->setLockType(LockType::Vertical);
     lock_objects.push_back(lock5);
     lock_textures.push_back(VlockT);
 
     std::shared_ptr<Lock>lock6 = std::make_shared<Lock>();
     lock6->setPosition(98.5f,240.0f);
+    lock6->setLockType(LockType::Vertical);
     lock_objects.push_back(lock6);
     lock_textures.push_back(VlockT);
 
     std::shared_ptr<Lock>lock7 = std::make_shared<Lock>();
     lock7->setPosition(56.5f,336.5f);
+    lock7->setLockType(LockType::Horizontal);
     lock_objects.push_back(lock7);
     lock_textures.push_back(HlockT);
 
     std::shared_ptr<Lock>lock8 = std::make_shared<Lock>();
     lock8->setPosition(56.5f,429.0f);
+    lock8->setLockType(LockType::Horizontal);
     lock_objects.push_back(lock8);
     lock_textures.push_back(HlockT);
 
     std::shared_ptr<Lock>lock9 = std::make_shared<Lock>();
     lock9->setPosition(56.5f,480.0f);
+    lock9->setLockType(LockType::Horizontal);
     lock_objects.push_back(lock9);
     lock_textures.push_back(HlockT);
     
     std::shared_ptr<Lock>lock10 = std::make_shared<Lock>();
     lock10->setPosition(56.5f,525.0f);
+    lock10->setLockType(LockType::Horizontal);
     lock_objects.push_back(lock10);
     lock_textures.push_back(HlockT);
 
