@@ -800,31 +800,26 @@ void DisplayManager::initialiseLocks()
     lock32->setPosition(152.5f,477.0f);
     lock_objects.push_back(lock32);
     lock_textures.push_back(HlockT);
-
-
-
-
-
 }
 
 void DisplayManager::loadTextures()
 {
-    auto texture = std::make_shared<raylib::Texture2D>();
-    pacmanRight1_I = LoadImage("../resources/pacmanRight1.png");     // Loaded in CPU memory (RAM)
-    pacmanRight1_T = LoadTextureFromImage(pacmanRight1_I);          // Image converted to texture, GPU memory (VRAM)
-    UnloadImage(pacmanRight1_I); 
+    //auto texture = std::make_shared<raylib::Texture2D>();
+    //pacmanRight1_I = LoadImage("../resources/pacmanRight1.png");     // Loaded in CPU memory (RAM)
+    pacmanRight1_T = LoadTexture("../resources/pacmanRight1.png");          // Image converted to texture, GPU memory (VRAM)
+    //UnloadImage(pacmanRight1_I); 
 
-    pacmanLeft1_I = LoadImage("../resources/pacmanLeft1.png");     // Loaded in CPU memory (RAM)
-    pacmanLeft1_T = LoadTextureFromImage(pacmanLeft1_I);          // Image converted to texture, GPU memory (VRAM)
-    UnloadImage(pacmanLeft1_I);
+    //pacmanLeft1_I = LoadImage("../resources/pacmanLeft1.png");     // Loaded in CPU memory (RAM)
+    pacmanLeft1_T = LoadTexture("../resources/pacmanLeft1.png");          // Image converted to texture, GPU memory (VRAM)
+    //UnloadImage(pacmanLeft1_I);
     
-    pacmanDown1_I= LoadImage("../resources/pacmanDown1.png");
-    pacmanDown1_T = LoadTextureFromImage(pacmanDown1_I);
-    UnloadImage(pacmanDown1_I);
+    //pacmanDown1_I= LoadImage("../resources/pacmanDown1.png");
+    pacmanDown1_T = LoadTexture("../resources/pacmanDown1.png");
+    //UnloadImage(pacmanDown1_I);
 
-    pacmanUp1_I= LoadImage("../resources/pacmanUp1.png");
-    pacmanUp1_T = LoadTextureFromImage(pacmanUp1_I);
-    UnloadImage(pacmanUp1_I);
+    //pacmanUp1_I= LoadImage("../resources/pacmanUp1.png");
+    pacmanUp1_T = LoadTexture("../resources/pacmanUp1.png");
+    //UnloadImage(pacmanUp1_I);
     
     keyI= LoadImage("../resources/key.png");
     keyT ->Load(keyI);
