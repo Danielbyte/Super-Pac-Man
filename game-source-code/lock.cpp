@@ -3,7 +3,8 @@
 Lock::Lock():
 xPosition{-100.0f},
 yPosition{-100.0f},
-isOpen{false}
+isOpen{false},
+lock_type{LockType::Unknown}//lock type unknown initially
 {}
 
 std::tuple<float, float> Lock::getPosition() const
@@ -25,4 +26,14 @@ void Lock::setPosition(const float xPos, const float yPos)
 {
     xPosition = xPos;
     yPosition = yPos;
+}
+
+LockType Lock::getLockType() const
+{
+    return lock_type;
+}
+
+void Lock::setLockType(LockType type)
+{
+    lock_type = type;
 }
