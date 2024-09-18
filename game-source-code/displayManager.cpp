@@ -541,6 +541,16 @@ void DisplayManager::initialiseLocks()
     lock_objects.push_back(lock12);
     lock_textures.push_back(VlockT);
 
+    std::shared_ptr<Lock>lock13 = std::make_shared<Lock>();
+    lock13->setPosition(433.5f,525.0f);
+    lock_objects.push_back(lock13);
+    lock_textures.push_back(HlockT);
+
+    std::shared_ptr<Lock>lock14 = std::make_shared<Lock>();
+    lock14->setPosition(433.5f,480.0f);
+    lock_objects.push_back(lock14);
+    lock_textures.push_back(HlockT);
+
 
 
 }
