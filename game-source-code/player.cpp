@@ -10,12 +10,13 @@ playerDirection{Direction::Right}//Pacman initially facing right
 void Player::movePlayer(bool rightArrowKeyPressed, bool leftArrowKeyPressed,
                         bool downArrowKeyPressed, bool upArrowKeyPressed, 
                         std::vector<std::shared_ptr<GameWorldResources>>& maze, 
-                        std::vector<std::shared_ptr<Lock>>& lock, const float dt)
+                        std::vector<std::shared_ptr<Lock>>& locks, const float dt)
 {
     if (rightArrowKeyPressed)
     {
         playerDirection = Direction::Right;
         bool _willCollide = willCollideWithWall(Direction::Right, maze);
+        willCoolideWithLock(playerDirection,locks);
         if (_willCollide)
          return;
         //move player to the right
@@ -28,6 +29,7 @@ void Player::movePlayer(bool rightArrowKeyPressed, bool leftArrowKeyPressed,
     {
         playerDirection = Direction::Left;
         bool _willCollide = willCollideWithWall(Direction::Left, maze);
+        willCoolideWithLock(playerDirection,locks);
         if (_willCollide)
          return;        
         //Move player to the left
@@ -40,6 +42,7 @@ void Player::movePlayer(bool rightArrowKeyPressed, bool leftArrowKeyPressed,
     {
         playerDirection = Direction::Down;
         bool _willCollide = willCollideWithWall(Direction::Down, maze);
+        willCoolideWithLock(playerDirection,locks);
         if (_willCollide)
          return;
         //move player downwards
@@ -54,7 +57,7 @@ void Player::movePlayer(bool rightArrowKeyPressed, bool leftArrowKeyPressed,
         playerDirection = Direction::Up;
         //first check if this movement will not result in player collision with wall
         bool _willCollide = willCollideWithWall(Direction::Up, maze);
-
+        willCoolideWithLock(playerDirection,locks);
         if (_willCollide)
          return;
         //move player upwards
@@ -133,4 +136,6 @@ bool Player::willCoolideWithLock(Direction direction, std::vector<std::shared_pt
     default:
         break;
     }
+
+    collisions_manager.playerLockCollisions(locks,nextPlayerXpos,nextPlayerYpos);
 }

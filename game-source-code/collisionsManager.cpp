@@ -76,13 +76,34 @@ void CollisionsManager::playerFruitCollisions(std::vector<std::shared_ptr<Fruit>
     }
 }
 
-void CollisionsManager::playerLockCollisions(std::vector<std::shared_ptr<Lock>>& lock_objects, const float xPos, const float yPos)
+void CollisionsManager::playerLockCollisions(std::vector<std::shared_ptr<Lock>>& lock_objects, const float xPlayerPos, const float yPlayerPos)
 {
     auto lock = lock_objects.begin();
     while(lock != lock_objects.end())
     {
-        auto Wallwidth = 0.0f;
-        auto wallLength = 0.0f;
+        auto lockWidth = 0.0f;
+        auto lockLength = 0.0f;
+        auto lockType = (*lock)->getLockType();
+        switch (lockType)
+        {
+        case LockType::Vertical:
+            lockWidth = verticalLockWidth;
+            lockLength = verticalLockLength;
+            break;
+        case LockType::Horizontal:
+             lockWidth = horizontalLockWidth;
+             lockLength = horizontalLockLength;
+             break;
+        default:
+        std::cout << "Other" << std::endl;
+            break;
+        }
+        auto [xPos, yPos] = (*lock)->getPosition();
+        auto isCollided = collision->checkCollision(xPlayerPos, yPlayerPos, playerWidth, playerLength,
+        xPos, yPos, lockWidth, lockLength);
+
+        if (isCollided)
+           std::cout << "Collided" <<std::endl;
         ++lock;
     }
 }
