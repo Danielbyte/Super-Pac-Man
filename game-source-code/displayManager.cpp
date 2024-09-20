@@ -182,6 +182,7 @@ void DisplayManager::displayInGameScreen()
     drawKeys();
     drawFruits();
     drawLocks();
+    drawGhosts();
     //EndDrawing();
 }
 
@@ -238,6 +239,19 @@ void DisplayManager::drawLocks()
     }
 }
 
+void DisplayManager::drawGhosts()
+{
+    auto ghost = ghost_objects.begin();
+    auto ghost_texture = ghost_textures.begin();
+    while(ghost != ghost_objects.end())
+    {
+        auto[xPos, yPos] = (*ghost)->getPosition();
+        (*ghost_texture)->Draw(xPos, yPos);
+        ++ghost;
+        ++ghost_texture;
+    }
+}
+
 void DisplayManager::drawGameWorld()
 {
 }
@@ -261,6 +275,7 @@ void DisplayManager::InitGameWorldTextures()
     initialiseKeys();
     initialiseFruits();
     initialiseLocks();
+    initialiseGhosts();
 }
 
 void DisplayManager::processTileTexture(const std::string element, int tilePosX, int tilePosY)
