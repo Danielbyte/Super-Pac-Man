@@ -13,5 +13,18 @@ initialPinkYpos{153.0f}
 
 void GhostManager::InitialiseGhostPositions(std::vector<std::shared_ptr<Ghost>>& ghosts)
 {
-    
+    for(auto& ghost : ghosts)
+    {
+        auto type = ghost->getType();
+
+        switch (type)
+        {
+        case Type::Pink:
+            //ghost->setPo
+            break;
+        
+        default:
+            break;
+        }
+    }
 }

@@ -28,5 +28,6 @@ public:
     float getTargetDistance();
     void updateTarget();
     void update(std::shared_ptr<Player>& player, std::vector<std::vector<std::string>>& gameMap);
+    void setPosition(const float xPos, const float yPos);
 };
 #endif

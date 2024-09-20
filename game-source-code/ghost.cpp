@@ -9,3 +9,9 @@ std::tuple<float, float>Ghost::getPosition() const
 {
     return {xPosition, yPosition};
 }
+
+void Ghost::setPosition(const float xPos, const float yPos)
+{
+    xPosition = xPos;
+    yPosition = yPos;
+}
