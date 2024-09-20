@@ -15,3 +15,13 @@ void Ghost::setPosition(const float xPos, const float yPos)
     xPosition = xPos;
     yPosition = yPos;
 }
+
+Type Ghost::getType() const
+{
+    return type;
+}
+
+void Ghost::setType(Type _type)
+{
+    type = _type;
+}

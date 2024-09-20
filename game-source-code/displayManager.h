@@ -66,12 +66,9 @@ class DisplayManager
     raylib::Texture2D pacmanUp1_T;
 
     raylib::Texture2D horizontalWallPieceT;
-    raylib::Image horizontalWallPieceI;
     raylib::Texture2D verticalWallPieceT;
-    raylib::Image verticalWallPieceI;
 
     std::shared_ptr<raylib::Texture2D> keyT = std::make_shared<raylib::Texture2D>();
-    raylib::Image keyI;
 
     std::shared_ptr<raylib::Texture2D> fruitT = std::make_shared<raylib::Texture2D>();
     std::shared_ptr<raylib::Texture2D> VlockT = std::make_shared<raylib::Texture2D>();//Vertical lock
