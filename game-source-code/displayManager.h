@@ -7,7 +7,7 @@
 #include "key.h"
 #include "fruit.h"
 #include "lock.h"
-
+#include "ghostManager.h"
 //using namespace raylib;
 #include <iostream>
 #include <memory>
@@ -73,6 +73,10 @@ class DisplayManager
     std::shared_ptr<raylib::Texture2D> fruitT = std::make_shared<raylib::Texture2D>();
     std::shared_ptr<raylib::Texture2D> VlockT = std::make_shared<raylib::Texture2D>();//Vertical lock
     std::shared_ptr<raylib::Texture2D> HlockT = std::make_shared<raylib::Texture2D>();//Horizontal lock
+    std::shared_ptr<raylib::Texture2D> blueT = std::make_shared<raylib::Texture2D>();
+    std::shared_ptr<raylib::Texture2D> redT = std::make_shared<raylib::Texture2D>();
+    std::shared_ptr<raylib::Texture2D> pinkT = std::make_shared<raylib::Texture2D>();
+    std::shared_ptr<raylib::Texture2D> orangeT = std::make_shared<raylib::Texture2D>();
 
     //Game objects
     std::shared_ptr<raylib::Window>window = std::make_shared<raylib::Window>();
@@ -88,6 +92,10 @@ class DisplayManager
     std::vector<std::shared_ptr<Lock>>lock_objects = {};
     std::vector<std::shared_ptr<raylib::Texture2D>>lock_textures = {};
 
+    std::vector<std::shared_ptr<Ghost>>ghost_objects = {};
+    std::vector<std::shared_ptr<raylib::Texture2D>>ghost_textures = {};
+
     StopWatch stop_watch;
+    GhostManager ghost_manager;
 };
 #endif //DISPLAYMANAGER
