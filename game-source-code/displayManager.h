@@ -57,6 +57,7 @@ class DisplayManager
     void initialiseLocks();
     void drawLocks();
     void updateFruits();
+    void initialiseGhosts();
     
     //Create Player objects
     std::shared_ptr<Player> player_obj = std::make_shared<Player>(); 

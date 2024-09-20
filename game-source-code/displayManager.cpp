@@ -864,6 +864,31 @@ void DisplayManager::initialiseLocks()
     lock_textures.push_back(VlockT);
 }
 
+void DisplayManager::initialiseGhosts()
+{
+    auto blue = std::make_shared<Ghost>();
+    blue->setType(Type::Blue);
+    ghost_objects.push_back(blue);
+    ghost_textures.push_back(blueT);
+
+    auto orange = std::make_shared<Ghost>();
+    orange->setType(Type::Orange);
+    ghost_objects.push_back(orange);
+    ghost_textures.push_back(orangeT);
+
+    auto pink = std::make_shared<Ghost>();
+    pink->setType(Type::Pink);
+    ghost_objects.push_back(pink);
+    ghost_textures.push_back(pinkT);
+
+    auto red = std::make_shared<Ghost>();
+    red->setType(Type::Red);
+    ghost_objects.push_back(red);
+    ghost_textures.push_back(redT);
+
+    ghost_manager.InitialiseGhostPositions(ghost_objects);
+}
+
 void DisplayManager::loadTextures()
 {
     pacmanRight1_T = LoadTexture("../resources/pacmanRight1.png");
@@ -875,6 +900,11 @@ void DisplayManager::loadTextures()
     fruitT->Load("../resources/fruit.png");
     VlockT->Load("../resources/lockV.png");
     HlockT->Load("../resources/lockH.png");
+
+    blueT->Load("../resources/blue1.png");
+    redT->Load("../resources/red1.png");
+    pinkT->Load("../resources/pink1.png");
+    orangeT->Load("../resources/orange1.png");
 
     /*horizontalWallPieceI = LoadImage("resources/horizontalWallPiece.png");
     horizontalWallPieceT = LoadTextureFromImage(horizontalWallPieceI);
