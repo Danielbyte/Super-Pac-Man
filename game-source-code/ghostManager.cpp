@@ -20,9 +20,16 @@ void GhostManager::InitialiseGhostPositions(std::vector<std::shared_ptr<Ghost>>&
         switch (type)
         {
         case Type::Pink:
-            //ghost->setPo
+            ghost->setPosition(initialPinkXpos, initialPinkYpos);
             break;
-        
+        case Type::Blue:
+            ghost->setPosition(initialBlueXpos, initialBlueYpos);
+            break;
+        case Type::Orange:
+            ghost->setPosition(initialOrangeXpos, initialOrangeYpos);
+            break;
+        case Type::Red:
+             ghost->setPosition(initialRedXpos, initialRedYpos);
         default:
             break;
         }
