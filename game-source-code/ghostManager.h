@@ -9,8 +9,10 @@ private:
     float initialRedXpos, initialRedYpos;
     float initialOrangeXpos, initialOrangeYpos;
     float initialPinkXpos, initialPinkYpos;
+    float targetXpos, targetYpos;
 public:
     GhostManager();
     void InitialiseGhostPositions(std::vector<std::shared_ptr<Ghost>>& ghosts);
+    void updateTarget(std::vector<std::shared_ptr<Ghost>>& ghosts, const float xPlayerPos, const float yPlayerPos);
 };
 #endif

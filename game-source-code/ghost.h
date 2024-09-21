@@ -26,7 +26,7 @@ public:
     void setMode(Mode _mode);
     void switchMode();
     float getTargetDistance();
-    void updateTarget();
+    //void updateTarget();
     void update(std::shared_ptr<Player>& player, std::vector<std::vector<std::string>>& gameMap);
     void setPosition(const float xPos, const float yPos);
 };

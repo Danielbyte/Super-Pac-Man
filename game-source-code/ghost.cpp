@@ -25,3 +25,8 @@ void Ghost::setType(Type _type)
 {
     type = _type;
 }
+
+/*void Ghost::updateTarget()
+{
+
+}*/
