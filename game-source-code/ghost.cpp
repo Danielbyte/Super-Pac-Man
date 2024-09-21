@@ -71,7 +71,7 @@ float Ghost::calculateLinearDistance()
     return sqrt(pow(xPosition-xTargetPos,2)+(pow(yPosition-yTargetPos,2)));
 }
 
-GDirection Ghost::getOptimalDirection()
+GDirection Ghost::getOptimalDirection(const float dt)
 {
     GDirection bestDir = GDirection::Still;
     auto minDistance = calculateLinearDistance();//The straight line distance will give min distance between ghost and target
@@ -80,12 +80,35 @@ GDirection Ghost::getOptimalDirection()
     for(auto dir : directions)
     {
         if (isOppositeDirection(dir, prevDirection))
-            continue;
+            continue;//Skip this direction if it will result to ghost reversing
+
     }
+
+    return bestDir;
 }
 
 bool Ghost::isOppositeDirection(GDirection nextDir, GDirection previousDir)
 {
     return ((nextDir == GDirection::Up && previousDir == GDirection::Down) ||(nextDir == GDirection::Down && previousDir == GDirection::Up)
     ||(nextDir == GDirection::Left && previousDir == GDirection::Right) || (nextDir == GDirection::Right && previousDir == GDirection::Left));
+}
+
+std::tuple<float,float> Ghost::getNextPosition(GDirection dir, const float dt)
+{
+    auto[newXpos, newYpos] = getPosition();//Get currentt position
+    switch (dir)
+    {
+    case GDirection::Up:
+        /* code */
+        break;
+    case GDirection::Down:
+    break;
+    case GDirection::Left:
+    break;
+    case GDirection::Right:
+    break;
+    default:
+        break;
+    }
+
 }

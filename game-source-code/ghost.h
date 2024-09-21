@@ -18,8 +18,9 @@ private:
     Mode mode;
     Type type;
 
-    GDirection getOptimalDirection();
+    GDirection getOptimalDirection(const float dt);
     bool isOppositeDirection(GDirection nextDir, GDirection previousDir);
+    std::tuple<float,float> getNextPosition(GDirection dir, const float dt);
 public:
     Ghost();
     std::tuple<float, float>getPosition() const;
