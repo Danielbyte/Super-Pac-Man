@@ -2,7 +2,8 @@
 
 Ghost::Ghost():
 xPosition{-100.0f},
-yPosition{-100.0f}
+yPosition{-100.0f},
+prevDirection{GDirection::Still}
 {}
 
 std::tuple<float, float>Ghost::getPosition() const
@@ -68,4 +69,22 @@ float Ghost::calculateLinearDistance()
     //calculates distance between ghost and target
     //Dear old friend, Pythagoras
     return sqrt(pow(xPosition-xTargetPos,2)+(pow(yPosition-yTargetPos,2)));
+}
+
+GDirection Ghost::getOptimalDirection()
+{
+    GDirection bestDir = GDirection::Still;
+    auto minDistance = calculateLinearDistance();//The straight line distance will give min distance between ghost and target
+    std::vector<GDirection>directions = {GDirection::Left,GDirection::Right,GDirection::Up, GDirection::Down};
+
+    for(auto dir : directions)
+    {
+        if (isOppositeDirection(dir, prevDirection))
+            continue;
+    }
+}
+
+bool Ghost::isOppositeDirection(GDirection nextDir, GDirection previousDir)
+{
+    return false;
 }

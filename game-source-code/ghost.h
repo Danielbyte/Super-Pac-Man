@@ -14,8 +14,12 @@ private:
     float xTargetPos, yTargetPos;
     float targetCornePosX, targetCornerPosY;
     GDirection direction;
+    GDirection prevDirection;//Track previous direction to avoid reversing
     Mode mode;
     Type type;
+
+    GDirection getOptimalDirection();
+    bool isOppositeDirection(GDirection nextDir, GDirection previousDir);
 public:
     Ghost();
     std::tuple<float, float>getPosition() const;
