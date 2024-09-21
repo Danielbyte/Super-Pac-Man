@@ -62,6 +62,7 @@ void GhostManager::setTarget(std::shared_ptr<Ghost>& ghost, const float xPlayerP
     {
     case Mode::Scatter:
         //Ghost should move to respective corner
+        ghost->moveToCorner();
         break;
     
     case Mode::Chase:

@@ -42,3 +42,10 @@ Mode Ghost::getMode() const
 {
     return mode;
 }
+
+void Ghost::moveToCorner()
+{
+    //set target to target corner
+    xTargetPos = targetCornePosX;
+    yTargetPos = targetCornerPosY;
+}
