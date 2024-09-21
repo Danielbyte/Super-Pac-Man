@@ -96,8 +96,20 @@ GDirection Ghost::getOptimalDirection(std::vector<std::shared_ptr<GameWorldResou
             }
         }
     }
-    //
-
+    //if no valid direction is found, allow reversing (Condition when ghost is stuck)
+    if(bestDir == GDirection::Still)
+    {
+        for (auto dir : directions)
+        {
+            auto[newXpos, newYpos] = getNextPosition(dir, dt);
+            auto isCollided = collision_manager.ghostWallCollisions(maze,newXpos,newYpos);
+            if(!isCollided)
+            {
+                bestDir = dir;
+                break;
+            }
+        }
+    }
     return bestDir;
 }
 
