@@ -36,7 +36,7 @@ public:
     void switchMode();
     float getTargetDistance();
     void updateTarget(const float x, const float y);
-    void update(std::vector<std::vector<std::string>>& gameMap, const float dt);
+    void update(std::vector<std::shared_ptr<GameWorldResources>>& maze, const float dt);
     void setPosition(const float xPos, const float yPos);
     void assignCorner(const float x, const float y);
     float calculateLinearDistance();

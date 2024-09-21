@@ -57,11 +57,12 @@ void Ghost::setMode(Mode _mode)
     mode = _mode;
 }
 
-void Ghost::update(std::vector<std::vector<std::string>>& gameMap, const float dt)
+void Ghost::update(std::vector<std::shared_ptr<GameWorldResources>>& maze, const float dt)
 {
     if (mode != Mode::Frightened)
     {
-
+        auto dir = getOptimalDirection(maze, dt);
+        updatePosition(dir, dt);
     }
 }
 

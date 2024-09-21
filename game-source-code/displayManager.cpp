@@ -62,6 +62,18 @@ void DisplayManager::updateGame()
     collision_manager->playerFruitCollisions(fruit_objects, xPos, yPos);
     updateKeys();
     updateFruits();
+    updateGhosts();
+}
+
+void DisplayManager::updateGhosts()
+{
+    auto [xPlayerPos, yPlayerPos] = player_obj->getPlayerPosition();
+    ghost_manager.updateTarget(ghost_objects, xPlayerPos, yPlayerPos);
+
+    for (auto& ghost : ghost_objects)
+    {
+        ghost->update(maze_resources, 1/60.0f);
+    }
 }
 
 void DisplayManager::handleUserInput(const float dt)
