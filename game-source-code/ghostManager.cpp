@@ -46,10 +46,9 @@ void GhostManager::updateTarget(std::vector<std::shared_ptr<Ghost>>& ghosts, con
         {
         case Type::Red:
             //get ghost mode
-             auto mode = ghost->getMode();
+             //auto mode = ghost->getMode();
              
             break;
-        
         default:
             break;
         }

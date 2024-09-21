@@ -37,3 +37,8 @@ void Ghost::assignCorner(const float x, const float y)
     targetCornePosX = x;
     targetCornerPosY = y;
 }
+
+Mode Ghost::getMode() const
+{
+    return mode;
+}
