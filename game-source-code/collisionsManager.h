@@ -18,6 +18,7 @@ private:
     float fruitWidth, fruitHeight;
     float horizontalLockWidth, horizontalLockLength;
     float verticalLockWidth, verticalLockLength;
+    float ghostWidth, ghostLength;
 public:
     CollisionsManager();
     bool playerWallCollisions(std::vector<std::shared_ptr<GameWorldResources>>& maze,const float xPlayerPos, const float yPlayerPos);
@@ -25,5 +26,6 @@ public:
     void playerKeyCollisions(std::vector<std::shared_ptr<Key>>key_objects,const float xPlayerPos, const float yPlayerPos);
     void playerFruitCollisions(std::vector<std::shared_ptr<Fruit>>fruit_objects, const float xPlayerPos, const float yPlayerPos);
     bool playerLockCollisions(std::vector<std::shared_ptr<Lock>>& lock_objects, const float xPlayerPos, const float yPlayerPos);
+    bool ghostWallCollisions(std::vector<std::shared_ptr<GameWorldResources>>& maze, const float ghostXpos, const float ghostYpos);
 };
 #endif

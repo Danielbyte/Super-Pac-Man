@@ -82,7 +82,9 @@ GDirection Ghost::getOptimalDirection(const float dt)
     {
         if (isOppositeDirection(dir, prevDirection))
             continue;//Skip this direction if it will result to ghost reversing
-
+        
+        auto[newXpos, newYpos] = getNextPosition(dir, dt);
+        
     }
 
     return bestDir;

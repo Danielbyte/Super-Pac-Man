@@ -14,7 +14,9 @@ fruitHeight{10.0f},
 horizontalLockWidth{3.0f},
 horizontalLockLength{40.0f},
 verticalLockWidth{32.0f},
-verticalLockLength{3.0f}
+verticalLockLength{3.0f},
+ghostWidth{30.0f},
+ghostLength{30.0f}
 {}
 
 bool CollisionsManager::playerWallCollisions(std::vector<std::shared_ptr<GameWorldResources>>& maze,
@@ -107,5 +109,33 @@ bool CollisionsManager::playerLockCollisions(std::vector<std::shared_ptr<Lock>>&
         ++lock;
     }
 
+    return false;
+}
+
+bool CollisionsManager::ghostWallCollisions(std::vector<std::shared_ptr<GameWorldResources>>& maze, const float ghostXpos, const float ghostYpos)
+{
+    auto maze_tile = maze.begin();
+    while(maze_tile != maze.end())
+    {
+        auto tile_type = (*maze_tile)->getObjectType();
+        auto [tileXpos, tileYpos] = (*maze_tile)->getTileScreenPosition();
+        if (tile_type == ObjectType::HorizontalWall)
+        {
+            auto isCollided = collision->checkCollision(ghostXpos,ghostYpos,ghostWidth,ghostLength,tileXpos,tileYpos,
+             horizontalWallWidth, horizontalWallLength);
+            if (isCollided)
+               return true;
+        }
+
+        if (tile_type == ObjectType::VerticalWall)
+        {
+            auto isCollided = collision->checkCollision(ghostXpos,ghostYpos,ghostWidth,ghostLength,tileXpos,tileYpos,
+             horizontalWallWidth, horizontalWallLength);
+             
+            if (isCollided)
+            return true;
+        }
+        ++maze_tile;
+    }
     return false;
 }
