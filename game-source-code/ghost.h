@@ -17,6 +17,7 @@ private:
     GDirection prevDirection;//Track previous direction to avoid reversing
     Mode mode;
     Type type;
+    float ghostSpeed;
 
     GDirection getOptimalDirection(const float dt);
     bool isOppositeDirection(GDirection nextDir, GDirection previousDir);

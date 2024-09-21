@@ -3,6 +3,7 @@
 Ghost::Ghost():
 xPosition{-100.0f},
 yPosition{-100.0f},
+ghostSpeed{95.0f},
 prevDirection{GDirection::Still}
 {}
 
@@ -99,16 +100,20 @@ std::tuple<float,float> Ghost::getNextPosition(GDirection dir, const float dt)
     switch (dir)
     {
     case GDirection::Up:
-        /* code */
+        newYpos -= ghostSpeed*dt;
         break;
     case GDirection::Down:
+        newYpos += ghostSpeed*dt;
     break;
     case GDirection::Left:
+        newXpos -= ghostSpeed*dt;
     break;
     case GDirection::Right:
+        newXpos += ghostSpeed*dt; 
     break;
     default:
         break;
     }
 
+    return {newXpos, newYpos};
 }
