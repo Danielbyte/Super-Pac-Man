@@ -142,3 +142,10 @@ std::tuple<float,float> Ghost::getNextPosition(GDirection dir, const float dt)
 
     return {newXpos, newYpos};
 }
+
+void Ghost::updatePosition(GDirection dir, const float dt)
+{
+    prevDirection = dir;
+    auto[nextX, nextY] = getNextPosition(dir, dt);
+    setPosition(nextX, nextY);
+}

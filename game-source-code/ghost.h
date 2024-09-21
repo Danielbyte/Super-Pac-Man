@@ -23,6 +23,7 @@ private:
     bool isOppositeDirection(GDirection nextDir, GDirection previousDir);
     std::tuple<float,float> getNextPosition(GDirection dir, const float dt);
     CollisionsManager collision_manager;
+    void updatePosition(GDirection dir, const float dt);
 public:
     Ghost();
     std::tuple<float, float>getPosition() const;
