@@ -54,3 +54,18 @@ void Ghost::setMode(Mode _mode)
 {
     mode = _mode;
 }
+
+void Ghost::update(std::vector<std::vector<std::string>>& gameMap, const float dt)
+{
+    if (mode != Mode::Frightened)
+    {
+
+    }
+}
+
+float Ghost::calculateLinearDistance()
+{
+    //calculates distance between ghost and target
+    //Dear old friend, Pythagoras
+    return sqrt(pow(xPosition-xTargetPos,2)+(pow(yPosition-yTargetPos,2)));
+}

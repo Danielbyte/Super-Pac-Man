@@ -28,9 +28,10 @@ public:
     void switchMode();
     float getTargetDistance();
     void updateTarget(const float x, const float y);
-    void update(std::shared_ptr<Player>& player, std::vector<std::vector<std::string>>& gameMap);
+    void update(std::vector<std::vector<std::string>>& gameMap, const float dt);
     void setPosition(const float xPos, const float yPos);
     void assignCorner(const float x, const float y);
+    float calculateLinearDistance();
     void moveToCorner();
 };
 #endif
