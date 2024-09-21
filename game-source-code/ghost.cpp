@@ -49,3 +49,8 @@ void Ghost::moveToCorner()
     xTargetPos = targetCornePosX;
     yTargetPos = targetCornerPosY;
 }
+
+void Ghost::setMode(Mode _mode)
+{
+    mode = _mode;
+}
