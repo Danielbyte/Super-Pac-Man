@@ -10,6 +10,8 @@ private:
     float initialOrangeXpos, initialOrangeYpos;
     float initialPinkXpos, initialPinkYpos;
     float targetXpos, targetYpos;
+    int MAZE_WIDTH, MAZE_HEIGHT;
+    float TILE_SIZE;
     void setTarget(std::shared_ptr<Ghost>& ghost, const float xPlayerPos, const float yPlayerPos);
 public:
     GhostManager();
