@@ -26,7 +26,14 @@ void Ghost::setType(Type _type)
     type = _type;
 }
 
-/*void Ghost::updateTarget()
+void Ghost::updateTarget(const float x, const float y)
 {
+    xTargetPos = x;
+    yTargetPos = y;
+}
 
-}*/
+void Ghost::assignCorner(const float x, const float y)
+{
+    targetCornePosX = x;
+    targetCornerPosY = y;
+}

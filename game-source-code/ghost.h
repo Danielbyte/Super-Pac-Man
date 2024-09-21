@@ -12,6 +12,7 @@ private:
     float xPosition;
     float yPosition;
     float xTargetPos, yTargetPos;
+    float targetCornePosX, targetCornerPosY;
     GDirection direction;
     Mode mode;
     Type type;
@@ -26,8 +27,10 @@ public:
     void setMode(Mode _mode);
     void switchMode();
     float getTargetDistance();
-    //void updateTarget();
+    void updateTarget(const float x, const float y);
     void update(std::shared_ptr<Player>& player, std::vector<std::vector<std::string>>& gameMap);
     void setPosition(const float xPos, const float yPos);
+    void assignCorner(const float x, const float y);
+    void moveToCorner();
 };
 #endif

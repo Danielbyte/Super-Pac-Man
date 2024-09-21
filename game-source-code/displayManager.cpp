@@ -893,6 +893,7 @@ void DisplayManager::initialiseGhosts()
 
     auto pink = std::make_shared<Ghost>();
     pink->setType(Type::Pink);
+    pink->assignCorner(0.0f, 0.0f);//Pink's corner @ top-left corner
     ghost_objects.push_back(pink);
     ghost_textures.push_back(pinkT);
 

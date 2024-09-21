@@ -35,3 +35,44 @@ void GhostManager::InitialiseGhostPositions(std::vector<std::shared_ptr<Ghost>>&
         }
     }
 }
+
+void GhostManager::updateTarget(std::vector<std::shared_ptr<Ghost>>& ghosts, const float xPlayerPos, const float yPlayerPos)
+{
+    for (auto& ghost : ghosts)
+    {
+        //Get type of ghost
+        auto type = ghost->getType();
+        switch (type)
+        {
+        case Type::Red:
+            //get ghost mode
+             auto mode = ghost->getMode();
+             
+            break;
+        
+        default:
+            break;
+        }
+    }
+}
+
+void GhostManager::setTarget(std::shared_ptr<Ghost>& ghost, const float xPlayerPos, const float yPlayerPos)
+{
+    auto ghostMode = ghost->getMode();
+    switch (ghostMode)
+    {
+    case Mode::Scatter:
+        //Ghost should move to respective corner
+        break;
+    
+    case Mode::Chase:
+        //ghost->
+        break;
+
+    case Mode::Frightened:
+        break;
+    
+    default:
+        break;
+    }
+}
