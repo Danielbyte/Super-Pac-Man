@@ -72,7 +72,7 @@ float Ghost::calculateLinearDistance()
     return sqrt(pow(xPosition-xTargetPos,2)+(pow(yPosition-yTargetPos,2)));
 }
 
-GDirection Ghost::getOptimalDirection(const float dt)
+GDirection Ghost::getOptimalDirection(std::vector<std::shared_ptr<GameWorldResources>>& maze,const float dt)
 {
     GDirection bestDir = GDirection::Still;
     auto minDistance = calculateLinearDistance();//The straight line distance will give min distance between ghost and target
@@ -84,8 +84,19 @@ GDirection Ghost::getOptimalDirection(const float dt)
             continue;//Skip this direction if it will result to ghost reversing
         
         auto[newXpos, newYpos] = getNextPosition(dir, dt);
-        
+
+        auto isCollided = collision_manager.ghostWallCollisions(maze,newXpos,newYpos);
+        if(!isCollided)//A valid move if ghost does not collide with wall (should probably use tile-based collisions)
+        {
+            auto newDist = sqrt(pow(newXpos-xTargetPos,2)+(pow(newYpos-yTargetPos,2)));
+            if (newDist < minDistance)
+            {
+                minDistance = newDist;
+                bestDir = dir;
+            }
+        }
     }
+    //
 
     return bestDir;
 }

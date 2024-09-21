@@ -19,9 +19,10 @@ private:
     Type type;
     float ghostSpeed;
 
-    GDirection getOptimalDirection(const float dt);
+    GDirection getOptimalDirection(std::vector<std::shared_ptr<GameWorldResources>>& maze, const float dt);
     bool isOppositeDirection(GDirection nextDir, GDirection previousDir);
     std::tuple<float,float> getNextPosition(GDirection dir, const float dt);
+    CollisionsManager collision_manager;
 public:
     Ghost();
     std::tuple<float, float>getPosition() const;
