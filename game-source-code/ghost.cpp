@@ -86,5 +86,6 @@ GDirection Ghost::getOptimalDirection()
 
 bool Ghost::isOppositeDirection(GDirection nextDir, GDirection previousDir)
 {
-    return false;
+    return ((nextDir == GDirection::Up && previousDir == GDirection::Down) ||(nextDir == GDirection::Down && previousDir == GDirection::Up)
+    ||(nextDir == GDirection::Left && previousDir == GDirection::Right) || (nextDir == GDirection::Right && previousDir == GDirection::Left));
 }
