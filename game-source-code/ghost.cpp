@@ -3,8 +3,9 @@
 Ghost::Ghost():
 xPosition{-100.0f},
 yPosition{-100.0f},
-ghostSpeed{90.0f},
-prevDirection{GDirection::Still}
+ghostSpeed{10.0f},
+prevDirection{GDirection::Still},
+integralDistance{0.0f}
 {}
 
 std::tuple<float, float>Ghost::getPosition() const
@@ -62,8 +63,8 @@ void Ghost::update(std::vector<std::shared_ptr<GameWorldResources>>& maze, const
 {
     if (mode != Mode::Frightened)
     {
-        auto dir = getOptimalDirection(maze, dt);
-        updatePosition(dir, dt);
+       // auto dir = getOptimalDirection(maze, dt);
+        updatePosition(GDirection::Right, dt);
     }
 }
 
@@ -89,7 +90,7 @@ GDirection Ghost::getOptimalDirection(std::vector<std::shared_ptr<GameWorldResou
         
         auto[newXpos, newYpos] = getNextPosition(dir, dt);
         auto isCollided = collision_manager.ghostWallCollisions(maze,newXpos,newYpos);
-        if(!isCollided)//A valid move if ghost does not collide with wall (should probably use tile-based collisions)
+       // if(!isCollided)//A valid move if ghost does not collide with wall (should probably use tile-based collisions)
         {
             auto newDist = sqrt(pow(newXpos-xTargetPos,2)+(pow(newYpos-yTargetPos,2)));
             if (newDist < minDistance)
@@ -100,7 +101,7 @@ GDirection Ghost::getOptimalDirection(std::vector<std::shared_ptr<GameWorldResou
         }
     }
     //if no valid direction is found, allow reversing (Condition when ghost is stuck)
-    if(bestDir == GDirection::Still)
+    /*if(bestDir == GDirection::Still)
     {
         for (auto dir : directions)
         {
@@ -112,7 +113,7 @@ GDirection Ghost::getOptimalDirection(std::vector<std::shared_ptr<GameWorldResou
                 break;
             }
         }
-    }
+    }*/
     return bestDir;
 }
 
@@ -130,9 +131,7 @@ std::tuple<float,float> Ghost::getNextPosition(GDirection dir, const float dt)
     switch (dir)
     {
     case GDirection::Up:
-        if (gameMap[TileRow-1][TileCol] == "0")
            newYpos -= ghostSpeed*dt;
-
         break;
     case GDirection::Down:
         newYpos += ghostSpeed*dt;
@@ -146,7 +145,6 @@ std::tuple<float,float> Ghost::getNextPosition(GDirection dir, const float dt)
     default:
         break;
     }
-
     return {newXpos, newYpos};
 }
 
@@ -154,5 +152,12 @@ void Ghost::updatePosition(GDirection dir, const float dt)
 {
     prevDirection = dir;
     auto[nextX, nextY] = getNextPosition(dir, dt);
+    integralDistance += ghostSpeed * dt;
+    if (integralDistance >= 48.0f)
+    {
+        std::cout << "Pick direction" << std::endl;
+        integralDistance = 0.0f;
+    }
+    //std::cout<< "X: "<< nextX << std::endl;
     setPosition(nextX, nextY);
 }

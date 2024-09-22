@@ -26,6 +26,7 @@ private:
     void updatePosition(GDirection dir, const float dt);
     std::vector<std::vector<std::string>>gameMap = {};
     GameWorld game_world;
+    float integralDistance;//summation of distance travelled by ghost (will be used to monitor if ghost has travelled a tile's distance) 
 public:
     Ghost();
     std::tuple<float, float>getPosition() const;
