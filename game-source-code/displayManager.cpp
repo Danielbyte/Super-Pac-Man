@@ -57,6 +57,9 @@ void DisplayManager::startGame()
 
 void DisplayManager::updateGame()
 {
+    if(!isPlaying)
+    return;
+    
     auto [xPos, yPos] = player_obj->getPlayerPosition();
     collision_manager->playerKeyCollisions(key_objects,xPos,yPos);
     collision_manager->playerFruitCollisions(fruit_objects, xPos, yPos);
