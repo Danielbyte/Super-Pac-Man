@@ -155,7 +155,10 @@ void Ghost::updatePosition(GDirection dir, const float dt)
     integralDistance += ghostSpeed * dt;
     if (integralDistance >= 48.0f)
     {
-        std::cout << "Pick direction" << std::endl;
+        int x = static_cast<int>(xPosition/48);
+        int y = static_cast<int>(yPosition/48);
+        nextX = x * 48.0f + 9.0f;
+        nextY = y * 48.0f + 9.0f;
         integralDistance = 0.0f;
     }
     //std::cout<< "X: "<< nextX << std::endl;
