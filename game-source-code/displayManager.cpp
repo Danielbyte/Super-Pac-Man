@@ -59,7 +59,7 @@ void DisplayManager::updateGame()
 {
     if(!isPlaying)
     return;
-    
+
     auto [xPos, yPos] = player_obj->getPlayerPosition();
     collision_manager->playerKeyCollisions(key_objects,xPos,yPos);
     collision_manager->playerFruitCollisions(fruit_objects, xPos, yPos);
@@ -896,7 +896,7 @@ void DisplayManager::initialiseLocks()
 
 void DisplayManager::initialiseGhosts()
 {
-    auto blue = std::make_shared<Ghost>();
+    /*auto blue = std::make_shared<Ghost>();
     blue->setType(Type::Blue);
     ghost_objects.push_back(blue);
     ghost_textures.push_back(blueT);
@@ -904,12 +904,12 @@ void DisplayManager::initialiseGhosts()
     auto orange = std::make_shared<Ghost>();
     orange->setType(Type::Orange);
     ghost_objects.push_back(orange);
-    ghost_textures.push_back(orangeT);
+    ghost_textures.push_back(orangeT);*/
 
-    auto pink = std::make_shared<Ghost>();
+    /*auto pink = std::make_shared<Ghost>();
     pink->setType(Type::Pink);
     ghost_objects.push_back(pink);
-    ghost_textures.push_back(pinkT);
+    ghost_textures.push_back(pinkT);*/
 
     auto red = std::make_shared<Ghost>();
     red->setType(Type::Red);

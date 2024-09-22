@@ -3,7 +3,7 @@
 Ghost::Ghost():
 xPosition{-100.0f},
 yPosition{-100.0f},
-ghostSpeed{95.0f},
+ghostSpeed{90.0f},
 prevDirection{GDirection::Still}
 {}
 
@@ -25,6 +25,7 @@ Type Ghost::getType() const
 
 void Ghost::setType(Type _type)
 {
+    gameMap = game_world.getGameMap();
     type = _type;
 }
 
@@ -70,6 +71,8 @@ float Ghost::calculateLinearDistance()
 {
     //calculates distance between ghost and target
     //Dear old friend, Pythagoras
+    /*auto TileCol = static_cast<int>(xPosition/48);
+    std::cout << "Tile col: " << TileCol << std::endl;*/
     return sqrt(pow(xPosition-xTargetPos,2)+(pow(yPosition-yTargetPos,2)));
 }
 
@@ -85,7 +88,6 @@ GDirection Ghost::getOptimalDirection(std::vector<std::shared_ptr<GameWorldResou
             continue;//Skip this direction if it will result to ghost reversing
         
         auto[newXpos, newYpos] = getNextPosition(dir, dt);
-
         auto isCollided = collision_manager.ghostWallCollisions(maze,newXpos,newYpos);
         if(!isCollided)//A valid move if ghost does not collide with wall (should probably use tile-based collisions)
         {
@@ -123,10 +125,14 @@ bool Ghost::isOppositeDirection(GDirection nextDir, GDirection previousDir)
 std::tuple<float,float> Ghost::getNextPosition(GDirection dir, const float dt)
 {
     auto[newXpos, newYpos] = getPosition();//Get currentt position
+    auto TileCol = static_cast<int>(newXpos/48);
+    auto TileRow = static_cast<int>(newYpos/48);
     switch (dir)
     {
     case GDirection::Up:
-        newYpos -= ghostSpeed*dt;
+        if (gameMap[TileRow-1][TileCol] == "0")
+           newYpos -= ghostSpeed*dt;
+
         break;
     case GDirection::Down:
         newYpos += ghostSpeed*dt;
