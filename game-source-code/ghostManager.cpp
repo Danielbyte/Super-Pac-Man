@@ -35,7 +35,7 @@ void GhostManager::InitialiseGhostPositions(std::vector<std::shared_ptr<Ghost>>&
             break;
         case Type::Red:
              ghost->setPosition(initialRedXpos, initialRedYpos);
-             ghost->assignCorner((MAZE_WIDTH-1)*TILE_SIZE, 0.0f);//Red's corner @ top-right
+             ghost->assignCorner((MAZE_WIDTH-1)*TILE_SIZE, -1.0f);//Red's corner @ top-right
              ghost->setMode(Mode::Scatter);//ghost initially in scatter mode
              break;
         default:

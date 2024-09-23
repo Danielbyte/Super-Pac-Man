@@ -108,7 +108,9 @@ GDirection Ghost::getOptimalDirection(const float dt)
              if ((TileCol+1) < 11)
              {
                 if(gameMap[TileRow][TileCol+1] == "0" || gameMap[TileRow][TileCol+1] == "01"
-                || gameMap[TileRow][TileCol+1] == "-" || (gameMap[TileRow][TileCol+1] == "┐" && gameMap[TileRow][TileCol] != "┐"))
+                || gameMap[TileRow][TileCol+1] == "-"  
+                || (gameMap[TileRow][TileCol+1] == "┐" && gameMap[TileRow][TileCol] != "┐")
+                || (gameMap[TileRow][TileCol+1] == "┘" && gameMap[TileRow][TileCol] != "┘"))
                 {
                    isValid = true;
                 }
@@ -118,7 +120,24 @@ GDirection Ghost::getOptimalDirection(const float dt)
                 isValid = false;
              }
              break;
-        
+
+        case GDirection::Down:
+             if ((TileRow + 1) < 13)
+             {
+                if(gameMap[TileRow + 1][TileCol] == "0" || (gameMap[TileRow + 1][TileCol] == "_" && gameMap[TileRow][TileCol] != "_")
+                ||(gameMap[TileRow + 1][TileCol] == "┘" && gameMap[TileRow][TileCol] != "┘")
+                ||(gameMap[TileRow + 1][TileCol] == "└" && gameMap[TileRow][TileCol] != "└")
+                ||gameMap[TileRow + 1][TileCol] == "01" || gameMap[TileRow + 1][TileCol] == "10"
+                ||gameMap[TileRow + 1][TileCol] == "┐")
+                {
+                    isValid = true;
+                }
+             }
+             else
+             {
+                isValid = false;
+             }
+             break;
         default:
             break;
         }
