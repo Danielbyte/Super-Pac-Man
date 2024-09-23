@@ -105,9 +105,16 @@ GDirection Ghost::getOptimalDirection(const float dt)
             break;
 
         case GDirection::Right:
-             if(gameMap[TileRow][TileCol+1] == "0" || gameMap[TileRow][TileCol+1] == "01")
+             if ((TileCol+1) < 11)
              {
-                isValid = true;
+                if(gameMap[TileRow][TileCol+1] == "0" || gameMap[TileRow][TileCol+1] == "01")
+                {
+                   isValid = true;
+                }
+             }
+             else
+             {
+                isValid = false;
              }
              break;
         
@@ -205,6 +212,5 @@ void Ghost::updatePosition(const float dt)
     auto [_nextX, _nextY] = getNextPosition(currentDirection, dt);
     nextX = _nextX;
     nextY = _nextY;
-    //std::cout<< "X: "<< nextX << std::endl;
     setPosition(nextX, nextY);
 }
