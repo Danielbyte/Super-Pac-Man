@@ -3,7 +3,7 @@
 Ghost::Ghost():
 xPosition{-100.0f},
 yPosition{-100.0f},
-ghostSpeed{10.0f},
+ghostSpeed{50.0f},
 currentDirection{GDirection::Still},
 integralDistance{0.0f}
 {}
@@ -81,7 +81,7 @@ GDirection Ghost::getOptimalDirection(const float dt)
 {
     GDirection bestDir = GDirection::Still;
     auto minDistance = calculateLinearDistance();//The straight line distance will give min distance between ghost and target
-    std::vector<GDirection>directions = {GDirection::Left,GDirection::Right,GDirection::Up, GDirection::Down};
+    std::vector<GDirection>directions = {GDirection::Left,GDirection::Up,GDirection::Right, GDirection::Down};
     auto isValid = false;
     int TileCol = static_cast<int>(xPosition/48);
     int TileRow = static_cast<int>(yPosition/48);
@@ -107,7 +107,8 @@ GDirection Ghost::getOptimalDirection(const float dt)
         case GDirection::Right:
              if ((TileCol+1) < 11)
              {
-                if(gameMap[TileRow][TileCol+1] == "0" || gameMap[TileRow][TileCol+1] == "01")
+                if(gameMap[TileRow][TileCol+1] == "0" || gameMap[TileRow][TileCol+1] == "01"
+                || gameMap[TileRow][TileCol+1] == "-" || (gameMap[TileRow][TileCol+1] == "┐" && gameMap[TileRow][TileCol] != "┐"))
                 {
                    isValid = true;
                 }
@@ -185,6 +186,7 @@ void Ghost::updatePosition(const float dt)
     //auto[nextX, nextY] = getNextPosition(dir, dt);
     integralDistance += ghostSpeed * dt;
     float nextX, nextY;
+    auto isUpdated = false;
     if (currentDirection == GDirection::Still)
     {
         auto bestDirection = getOptimalDirection(dt);
@@ -192,6 +194,7 @@ void Ghost::updatePosition(const float dt)
         nextX = _nextX;
         nextY = _nextY;
         currentDirection = bestDirection;
+        isUpdated = true;
     }
 
     if (integralDistance >= 48.0f)
@@ -207,10 +210,14 @@ void Ghost::updatePosition(const float dt)
         auto [_nextX, _nextY] = getNextPosition(bestDirection, dt);
         nextX = _nextX;
         nextY = _nextY;
+        isUpdated = true;
+    }
+    if(!isUpdated)
+    {
+       auto [_nextX, _nextY] = getNextPosition(currentDirection, dt);
+       nextX = _nextX;
+       nextY = _nextY;
     }
 
-    auto [_nextX, _nextY] = getNextPosition(currentDirection, dt);
-    nextX = _nextX;
-    nextY = _nextY;
     setPosition(nextX, nextY);
 }
