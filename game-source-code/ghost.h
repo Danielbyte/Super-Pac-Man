@@ -27,6 +27,7 @@ private:
     std::vector<std::vector<std::string>>gameMap = {};
     GameWorld game_world;
     float integralDistance;//summation of distance travelled by ghost (will be used to monitor if ghost has travelled a tile's distance) 
+    bool getIsValidMove(GDirection _direction, int tileRow, const int tileColumn);
 public:
     Ghost();
     std::tuple<float, float>getPosition() const;

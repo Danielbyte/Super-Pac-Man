@@ -90,20 +90,11 @@ GDirection Ghost::getOptimalDirection(const float dt)
         if (isOppositeDirection(nextDir, currentDirection))
             continue;//Skip this direction if it will result to ghost reversing
         
+        isValid = getIsValidMove(nextDir, TileCol, TileRow);
+        
         switch (nextDir)
         {
-        case GDirection::Up:
-            if (TileRow > 0)
-            {
-               if(gameMap[TileRow-1][TileCol] == "0" || gameMap[TileRow-1][TileCol] == "-")
-               isValid = true;
-            }
-            else
-            {
-                isValid = false;
-            }
-            break;
-
+    
         case GDirection::Right:
              if ((TileCol+1) < 11)
              {
@@ -169,6 +160,26 @@ GDirection Ghost::getOptimalDirection(const float dt)
         }
     }*/
     return bestDir;
+}
+
+bool Ghost::getIsValidMove(GDirection _direction, int tileRow, const int tileColumn)
+{
+    switch (_direction)
+    {
+        case GDirection::Up:
+        if (tileRow > 0)
+        {
+          return (gameMap[tileRow-1][tileColumn] == "0" || gameMap[tileRow-1][tileColumn] == "-");
+        }
+        else
+        {
+            return false;
+        }
+        break;
+    
+    default:
+        break;
+    }
 }
 
 bool Ghost::isOppositeDirection(GDirection nextDir, GDirection previousDir)
