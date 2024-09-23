@@ -4,7 +4,7 @@ Ghost::Ghost():
 xPosition{-100.0f},
 yPosition{-100.0f},
 ghostSpeed{10.0f},
-prevDirection{GDirection::Still},
+currentDirection{GDirection::Still},
 integralDistance{0.0f}
 {}
 
@@ -64,7 +64,7 @@ void Ghost::update(std::vector<std::shared_ptr<GameWorldResources>>& maze, const
     if (mode != Mode::Frightened)
     {
        // auto dir = getOptimalDirection(maze, dt);
-        updatePosition(GDirection::Right, dt);
+        updatePosition(dt);
     }
 }
 
@@ -77,27 +77,54 @@ float Ghost::calculateLinearDistance()
     return sqrt(pow(xPosition-xTargetPos,2)+(pow(yPosition-yTargetPos,2)));
 }
 
-GDirection Ghost::getOptimalDirection(std::vector<std::shared_ptr<GameWorldResources>>& maze,const float dt)
+GDirection Ghost::getOptimalDirection(const float dt)
 {
     GDirection bestDir = GDirection::Still;
     auto minDistance = calculateLinearDistance();//The straight line distance will give min distance between ghost and target
     std::vector<GDirection>directions = {GDirection::Left,GDirection::Right,GDirection::Up, GDirection::Down};
-
-    for(auto dir : directions)
+    auto isValid = false;
+    int TileCol = static_cast<int>(xPosition/48);
+    int TileRow = static_cast<int>(yPosition/48);
+    for(auto nextDir : directions)
     {
-        if (isOppositeDirection(dir, prevDirection))
+        if (isOppositeDirection(nextDir, currentDirection))
             continue;//Skip this direction if it will result to ghost reversing
         
-        auto[newXpos, newYpos] = getNextPosition(dir, dt);
-        auto isCollided = collision_manager.ghostWallCollisions(maze,newXpos,newYpos);
-       // if(!isCollided)//A valid move if ghost does not collide with wall (should probably use tile-based collisions)
+        switch (nextDir)
         {
+        case GDirection::Up:
+            if (TileRow > 0)
+            {
+               if(gameMap[TileRow-1][TileCol] == "0" || gameMap[TileRow-1][TileCol] == "-")
+               isValid = true;
+            }
+            else
+            {
+                isValid = false;
+            }
+            break;
+
+        case GDirection::Right:
+             if(gameMap[TileRow][TileCol+1] == "0" || gameMap[TileRow][TileCol+1] == "01")
+             {
+                isValid = true;
+             }
+             break;
+        
+        default:
+            break;
+        }
+        
+        if(isValid)//A valid move if ghost does not collide with wall (should probably use tile-based collisions)
+        {
+            auto[newXpos, newYpos] = getNextPosition(nextDir, dt);
             auto newDist = sqrt(pow(newXpos-xTargetPos,2)+(pow(newYpos-yTargetPos,2)));
             if (newDist < minDistance)
             {
                 minDistance = newDist;
-                bestDir = dir;
+                bestDir = nextDir;
             }
+            isValid = false;
         }
     }
     //if no valid direction is found, allow reversing (Condition when ghost is stuck)
@@ -126,8 +153,6 @@ bool Ghost::isOppositeDirection(GDirection nextDir, GDirection previousDir)
 std::tuple<float,float> Ghost::getNextPosition(GDirection dir, const float dt)
 {
     auto[newXpos, newYpos] = getPosition();//Get currentt position
-    auto TileCol = static_cast<int>(newXpos/48);
-    auto TileRow = static_cast<int>(newYpos/48);
     switch (dir)
     {
     case GDirection::Up:
@@ -148,11 +173,20 @@ std::tuple<float,float> Ghost::getNextPosition(GDirection dir, const float dt)
     return {newXpos, newYpos};
 }
 
-void Ghost::updatePosition(GDirection dir, const float dt)
+void Ghost::updatePosition(const float dt)
 {
-    prevDirection = dir;
-    auto[nextX, nextY] = getNextPosition(dir, dt);
+    //auto[nextX, nextY] = getNextPosition(dir, dt);
     integralDistance += ghostSpeed * dt;
+    float nextX, nextY;
+    if (currentDirection == GDirection::Still)
+    {
+        auto bestDirection = getOptimalDirection(dt);
+        auto [_nextX, _nextY] = getNextPosition(bestDirection, dt);
+        nextX = _nextX;
+        nextY = _nextY;
+        currentDirection = bestDirection;
+    }
+
     if (integralDistance >= 48.0f)
     {
         int x = static_cast<int>(xPosition/48);
@@ -160,7 +194,17 @@ void Ghost::updatePosition(GDirection dir, const float dt)
         nextX = x * 48.0f + 9.0f;
         nextY = y * 48.0f + 9.0f;
         integralDistance = 0.0f;
+
+        auto bestDirection = getOptimalDirection(dt);
+        currentDirection = bestDirection;
+        auto [_nextX, _nextY] = getNextPosition(bestDirection, dt);
+        nextX = _nextX;
+        nextY = _nextY;
     }
+
+    auto [_nextX, _nextY] = getNextPosition(currentDirection, dt);
+    nextX = _nextX;
+    nextY = _nextY;
     //std::cout<< "X: "<< nextX << std::endl;
     setPosition(nextX, nextY);
 }
