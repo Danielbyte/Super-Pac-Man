@@ -13,9 +13,14 @@ private:
     int MAZE_WIDTH, MAZE_HEIGHT;
     float TILE_SIZE;
     void setTarget(std::shared_ptr<Ghost>& ghost, const float xPlayerPos, const float yPlayerPos);
+    std::unique_ptr<StopWatch>red_watch = std::make_unique<StopWatch>();
+    std::unique_ptr<StopWatch>blue_watch = std::make_unique<StopWatch>();
+    std::unique_ptr<StopWatch>pink_watch = std::make_unique<StopWatch>();
+    std::unique_ptr<StopWatch>orange_watch = std::make_unique<StopWatch>();
 public:
     GhostManager();
     void InitialiseGhostPositions(std::vector<std::shared_ptr<Ghost>>& ghosts);
     void updateTarget(std::vector<std::shared_ptr<Ghost>>& ghosts, const float xPlayerPos, const float yPlayerPos);
+    void restartGhostTimers();//Timers that will manage ghost switching modes
 };
 #endif

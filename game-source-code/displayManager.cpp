@@ -121,8 +121,9 @@ void DisplayManager::handleUserInput(const float dt)
         lock_objects, dt);
     }
 
-    if(IsKeyDown(KEY_ENTER) || IsKeyDown(KEY_KP_ENTER) && !isPlaying && isSplashScreen)
+    if((IsKeyDown(KEY_ENTER) || IsKeyDown(KEY_KP_ENTER)) && !isPlaying && isSplashScreen)
     {
+        ghost_manager.restartGhostTimers();
         isSplashScreen = false;
         isPlaying = true;
     }

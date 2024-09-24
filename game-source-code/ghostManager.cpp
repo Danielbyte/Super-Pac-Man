@@ -80,3 +80,11 @@ void GhostManager::setTarget(std::shared_ptr<Ghost>& ghost, const float xPlayerP
         break;
     }
 }
+
+void GhostManager::restartGhostTimers()
+{
+    red_watch->restartTimer();
+    blue_watch->restartTimer();
+    orange_watch->restartTimer();
+    pink_watch->restartTimer();
+}
