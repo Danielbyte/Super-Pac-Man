@@ -75,7 +75,7 @@ void DisplayManager::updateGhosts()
 
     for (auto& ghost : ghost_objects)
     {
-        ghost->update(maze_resources, 1/60.0f);
+        ghost->update(maze_resources,lock_objects ,1/60.0f);
     }
 }
 

@@ -97,7 +97,6 @@ bool CollisionsManager::lockCollisions(std::vector<std::shared_ptr<Lock>>& lock_
              lockLength = horizontalLockLength;
              break;
         default:
-        std::cout << "Other" << std::endl;
             break;
         }
         auto [xPos, yPos] = (*lock)->getPosition();

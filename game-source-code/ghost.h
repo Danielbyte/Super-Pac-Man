@@ -20,16 +20,17 @@ private:
     Type type;
     float ghostSpeed;
 
-    GDirection getOptimalDirection(const float dt);
+    GDirection getOptimalDirection(std::vector<std::shared_ptr<Lock>>& locks, const float dt);
     bool isOppositeDirection(GDirection nextDir, GDirection previousDir);
     std::tuple<float,float> getNextPosition(GDirection dir, const float dt);
     CollisionsManager collision_manager;
-    void updatePosition(const float dt);
+    void updatePosition(std::vector<std::shared_ptr<Lock>>& locks, const float dt);
     std::vector<std::vector<std::string>>gameMap = {};
     GameWorld game_world;
     float integralDistance;//summation of distance travelled by ghost (will be used to monitor if ghost has travelled a tile's distance) 
-    void getIsValidMove(GDirection _direction, int tileRow, const int tileColumn, bool& isValid);
-    GDirection priorityDirection();
+    void getIsValidMove(GDirection _direction, int tileRow, const int tileColumn, bool& isValid,
+    std::vector<std::shared_ptr<Lock>>& locks);
+    GDirection priorityDirection(std::vector<std::shared_ptr<Lock>>& locks);
     bool isInitial;
     std::tuple<int,int> getNextTile(GDirection dir);
 public:
@@ -44,7 +45,8 @@ public:
     void switchMode();
     float getTargetDistance();
     void updateTarget(const float x, const float y);
-    void update(std::vector<std::shared_ptr<GameWorldResources>>& maze, const float dt);
+    void update(std::vector<std::shared_ptr<GameWorldResources>>& maze,std::vector<std::shared_ptr<Lock>>& locks,
+     const float dt);
     void setPosition(const float xPos, const float yPos);
     void assignCorner(const float x, const float y);
     float calculateLinearDistance();

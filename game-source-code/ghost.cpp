@@ -62,12 +62,13 @@ void Ghost::setMode(Mode _mode)
     mode = _mode;
 }
 
-void Ghost::update(std::vector<std::shared_ptr<GameWorldResources>>& maze, const float dt)
+void Ghost::update(std::vector<std::shared_ptr<GameWorldResources>>& maze,std::vector<std::shared_ptr<Lock>>& locks,
+ const float dt)
 {
     if (mode != Mode::Frightened)
     {
        // auto dir = getOptimalDirection(maze, dt);
-        updatePosition(dt);
+        updatePosition(locks, dt);
     }
 }
 
@@ -76,7 +77,7 @@ float Ghost::calculateLinearDistance()
     return sqrt(pow(xPosition-xTargetPos,2)+(pow(yPosition-yTargetPos,2)));
 }
 
-GDirection Ghost::getOptimalDirection(const float dt)
+GDirection Ghost::getOptimalDirection(std::vector<std::shared_ptr<Lock>>& locks, const float dt)
 {
     GDirection bestDir = GDirection::Still;
     auto minDistance = calculateLinearDistance();//The straight line distance will give min distance between ghost and target
@@ -89,7 +90,7 @@ GDirection Ghost::getOptimalDirection(const float dt)
         if (isOppositeDirection(nextDir, currentDirection))
             continue;//Skip this direction if it will result to ghost reversing
         
-        getIsValidMove(nextDir, TileRow, TileCol, isValid);
+        getIsValidMove(nextDir, TileRow, TileCol, isValid, locks);
         
         if(isValid)//A valid move if ghost does not collide with wall (should probably use tile-based collisions)
         {
@@ -106,13 +107,14 @@ GDirection Ghost::getOptimalDirection(const float dt)
 
     if (bestDir == GDirection::Still)
     {
-        bestDir = priorityDirection();
+        bestDir = priorityDirection(locks);
     }
     currentDirection = bestDir;
     return bestDir;
 }
 
-void Ghost::getIsValidMove(GDirection _direction, int tileRow, const int tileColumn, bool& isValid)
+void Ghost::getIsValidMove(GDirection _direction, int tileRow, const int tileColumn, bool& isValid,
+std::vector<std::shared_ptr<Lock>>& locks)
 {       
     switch (_direction)
     {
@@ -181,7 +183,7 @@ void Ghost::getIsValidMove(GDirection _direction, int tileRow, const int tileCol
     }
 }
 
-GDirection Ghost::priorityDirection()
+GDirection Ghost::priorityDirection(std::vector<std::shared_ptr<Lock>>& locks)
 {
     GDirection priorityDir = GDirection::Still;
     auto isValid = false;
@@ -193,7 +195,7 @@ GDirection Ghost::priorityDirection()
         if (isOppositeDirection(dir, currentDirection))
             continue;//Skip this direction if it will result to ghost reversing 
 
-        getIsValidMove(dir, TileRow, TileCol, isValid);
+        getIsValidMove(dir, TileRow, TileCol, isValid, locks);
         if (isValid)
         {
             priorityDir = dir;
@@ -258,7 +260,7 @@ std::tuple<int,int> Ghost::getNextTile(GDirection dir)
     return {tileX, tileY};
 }
 
-void Ghost::updatePosition(const float dt)
+void Ghost::updatePosition(std::vector<std::shared_ptr<Lock>>& locks, const float dt)
 {
     //auto[nextX, nextY] = getNextPosition(dir, dt);
     integralDistance += ghostSpeed * dt;
@@ -266,7 +268,7 @@ void Ghost::updatePosition(const float dt)
     auto isUpdated = false;
     if (currentDirection == GDirection::Still)
     {
-        auto bestDirection = getOptimalDirection(dt);
+        auto bestDirection = getOptimalDirection(locks,dt);
         auto [_nextX, _nextY] = getNextPosition(bestDirection, dt);
         nextX = _nextX;
         nextY = _nextY;
@@ -282,7 +284,7 @@ void Ghost::updatePosition(const float dt)
         nextY = y * 48.0f + 9.0f;
         integralDistance = 0.0f;
 
-        auto bestDirection = getOptimalDirection(dt);
+        auto bestDirection = getOptimalDirection(locks, dt);
         currentDirection = bestDirection;
         auto [_nextX, _nextY] = getNextPosition(bestDirection, dt);
         nextX = _nextX;
