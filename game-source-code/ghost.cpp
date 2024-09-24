@@ -90,48 +90,7 @@ GDirection Ghost::getOptimalDirection(const float dt)
         if (isOppositeDirection(nextDir, currentDirection))
             continue;//Skip this direction if it will result to ghost reversing
         
-        isValid = getIsValidMove(nextDir, TileCol, TileRow);
-        
-        switch (nextDir)
-        {
-    
-        case GDirection::Right:
-             if ((TileCol+1) < 11)
-             {
-                if(gameMap[TileRow][TileCol+1] == "0" || gameMap[TileRow][TileCol+1] == "01"
-                || gameMap[TileRow][TileCol+1] == "-"  
-                || (gameMap[TileRow][TileCol+1] == "┐" && gameMap[TileRow][TileCol] != "┐")
-                || (gameMap[TileRow][TileCol+1] == "┘" && gameMap[TileRow][TileCol] != "┘"))
-                {
-                   isValid = true;
-                }
-             }
-             else
-             {
-                isValid = false;
-             }
-             break;
-
-        case GDirection::Down:
-             if ((TileRow + 1) < 13)
-             {
-                if(gameMap[TileRow + 1][TileCol] == "0" || (gameMap[TileRow + 1][TileCol] == "_" && gameMap[TileRow][TileCol] != "_")
-                ||(gameMap[TileRow + 1][TileCol] == "┘" && gameMap[TileRow][TileCol] != "┘")
-                ||(gameMap[TileRow + 1][TileCol] == "└" && gameMap[TileRow][TileCol] != "└")
-                ||gameMap[TileRow + 1][TileCol] == "01" || gameMap[TileRow + 1][TileCol] == "10"
-                ||gameMap[TileRow + 1][TileCol] == "┐")
-                {
-                    isValid = true;
-                }
-             }
-             else
-             {
-                isValid = false;
-             }
-             break;
-        default:
-            break;
-        }
+        getIsValidMove(nextDir, TileRow, TileCol, isValid);
         
         if(isValid)//A valid move if ghost does not collide with wall (should probably use tile-based collisions)
         {
@@ -162,21 +121,49 @@ GDirection Ghost::getOptimalDirection(const float dt)
     return bestDir;
 }
 
-bool Ghost::getIsValidMove(GDirection _direction, int tileRow, const int tileColumn)
+void Ghost::getIsValidMove(GDirection _direction, int tileRow, const int tileColumn, bool& isValid)
 {
     switch (_direction)
     {
         case GDirection::Up:
         if (tileRow > 0)
         {
-          return (gameMap[tileRow-1][tileColumn] == "0" || gameMap[tileRow-1][tileColumn] == "-");
+          if (gameMap[tileRow-1][tileColumn] == "0" || gameMap[tileRow-1][tileColumn] == "-"){isValid = true;}
         }
         else
         {
-            return false;
+            isValid = false;
         }
         break;
-    
+
+        case GDirection::Down:
+            if ((tileRow + 1) < 13)
+            {
+                if (gameMap[tileRow + 1][tileColumn] == "0" || (gameMap[tileRow + 1][tileColumn] == "_" && gameMap[tileRow][tileColumn] != "_")
+                ||(gameMap[tileRow + 1][tileColumn] == "┘" && gameMap[tileRow][tileColumn] != "┘")
+                ||(gameMap[tileRow + 1][tileColumn] == "└" && gameMap[tileRow][tileColumn] != "└")
+                ||gameMap[tileRow + 1][tileColumn] == "01" || gameMap[tileRow + 1][tileColumn] == "10"){isValid = true;}
+            
+            }
+            else
+            {
+               isValid = false;
+            }
+             break;
+        
+            case GDirection::Right:
+            if ((tileColumn+1) < 11)
+            {
+                if (gameMap[tileRow][tileColumn+1] == "0" || gameMap[tileRow][tileColumn+1] == "01"
+                || gameMap[tileRow][tileColumn+1] == "-"  
+                || (gameMap[tileRow][tileColumn+1] == "┐" && gameMap[tileRow][tileColumn] != "┐")
+                || (gameMap[tileRow][tileColumn+1] == "┘" && gameMap[tileRow][tileColumn] != "┘")){isValid = true;}
+            }
+            else
+            {
+                isValid = false;
+            }
+             break;
     default:
         break;
     }
