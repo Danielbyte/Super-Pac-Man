@@ -164,8 +164,23 @@ void Ghost::getIsValidMove(GDirection _direction, int tileRow, const int tileCol
                 isValid = false;
             }
              break;
-    default:
-        break;
+
+            case GDirection::Left:
+            if ((tileColumn+1) < 11)
+            {
+                if (gameMap[tileRow][tileColumn+1] == "0" || gameMap[tileRow][tileColumn+1] == "10"
+                || gameMap[tileRow][tileColumn+1] == "-"  
+                || (gameMap[tileRow][tileColumn+1] == "┌" && gameMap[tileRow][tileColumn] != "┌")
+                || (gameMap[tileRow][tileColumn+1] == "└" && gameMap[tileRow][tileColumn] != "└")){isValid = true;}
+            }
+            else
+            {
+                isValid = false;
+            }
+             break;
+
+            default:
+            break;
     }
 }
 
