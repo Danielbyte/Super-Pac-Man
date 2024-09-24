@@ -28,6 +28,7 @@ private:
     GameWorld game_world;
     float integralDistance;//summation of distance travelled by ghost (will be used to monitor if ghost has travelled a tile's distance) 
     void getIsValidMove(GDirection _direction, int tileRow, const int tileColumn, bool& isValid);
+    GDirection priorityDirection();
 public:
     Ghost();
     std::tuple<float, float>getPosition() const;

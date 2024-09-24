@@ -104,20 +104,12 @@ GDirection Ghost::getOptimalDirection(const float dt)
             isValid = false;
         }
     }
-    //if no valid direction is found, allow reversing (Condition when ghost is stuck)
-    /*if(bestDir == GDirection::Still)
+
+    if (bestDir == GDirection::Still)
     {
-        for (auto dir : directions)
-        {
-            auto[newXpos, newYpos] = getNextPosition(dir, dt);
-            auto isCollided = collision_manager.ghostWallCollisions(maze,newXpos,newYpos);
-            if(!isCollided)
-            {
-                bestDir = dir;
-                break;
-            }
-        }
-    }*/
+        bestDir = priorityDirection();
+    }
+
     return bestDir;
 }
 
@@ -166,12 +158,12 @@ void Ghost::getIsValidMove(GDirection _direction, int tileRow, const int tileCol
              break;
 
             case GDirection::Left:
-            if ((tileColumn+1) < 11)
+            if ((tileColumn-1) > 0)
             {
-                if (gameMap[tileRow][tileColumn+1] == "0" || gameMap[tileRow][tileColumn+1] == "10"
-                || gameMap[tileRow][tileColumn+1] == "-"  
-                || (gameMap[tileRow][tileColumn+1] == "┌" && gameMap[tileRow][tileColumn] != "┌")
-                || (gameMap[tileRow][tileColumn+1] == "└" && gameMap[tileRow][tileColumn] != "└")){isValid = true;}
+                if (gameMap[tileRow][tileColumn-1] == "0" || gameMap[tileRow][tileColumn-1] == "10"
+                || gameMap[tileRow][tileColumn-1] == "-"  
+                || (gameMap[tileRow][tileColumn-1] == "┌" && gameMap[tileRow][tileColumn] != "┌")
+                || (gameMap[tileRow][tileColumn-1] == "└" && gameMap[tileRow][tileColumn] != "└")){isValid = true;}
             }
             else
             {
@@ -182,6 +174,28 @@ void Ghost::getIsValidMove(GDirection _direction, int tileRow, const int tileCol
             default:
             break;
     }
+}
+
+GDirection Ghost::priorityDirection()
+{
+    GDirection priorityDir = GDirection::Still;
+    auto isValid = false;
+    int TileCol = static_cast<int>(xPosition/48);
+    int TileRow = static_cast<int>(yPosition/48);
+    std::vector<GDirection>directions = {GDirection::Up,GDirection::Left,GDirection::Down, GDirection::Right};//Store according to their priority
+    for(auto dir : directions)
+    {
+        if (isOppositeDirection(dir, currentDirection))
+            continue;//Skip this direction if it will result to ghost reversing 
+
+        getIsValidMove(dir, TileRow, TileCol, isValid);
+        if (isValid)
+        {
+            priorityDir = dir;
+            break; 
+        }      
+    }
+    return priorityDir;
 }
 
 bool Ghost::isOppositeDirection(GDirection nextDir, GDirection previousDir)
