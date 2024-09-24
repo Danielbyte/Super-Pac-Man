@@ -911,10 +911,10 @@ void DisplayManager::initialiseGhosts()
     ghost_objects.push_back(pink);
     ghost_textures.push_back(pinkT);
 
-    /*auto red = std::make_shared<Ghost>();
+    auto red = std::make_shared<Ghost>();
     red->setType(Type::Red);
     ghost_objects.push_back(red);
-    ghost_textures.push_back(redT);*/
+    ghost_textures.push_back(redT);
 
     ghost_manager.InitialiseGhostPositions(ghost_objects);
 }
