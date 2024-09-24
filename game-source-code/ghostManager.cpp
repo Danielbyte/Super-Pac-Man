@@ -10,7 +10,7 @@ initialOrangeYpos{201.0f},
 initialPinkXpos{201.0f},
 initialPinkYpos{153.0f},
 MAZE_WIDTH{11},//consist of 11 tiles
-MAZE_HEIGHT{13},//consists of 13 tiles
+MAZE_HEIGHT{12},//consists of 13 tiles
 TILE_SIZE{48.0f}//each tile is a 48 x 48
 {}
 
@@ -29,6 +29,8 @@ void GhostManager::InitialiseGhostPositions(std::vector<std::shared_ptr<Ghost>>&
             break;
         case Type::Blue:
             ghost->setPosition(initialBlueXpos, initialBlueYpos);
+            ghost->assignCorner((MAZE_WIDTH-1)*TILE_SIZE, MAZE_HEIGHT*TILE_SIZE);
+            ghost->setMode(Mode::Scatter);
             break;
         case Type::Orange:
             ghost->setPosition(initialOrangeXpos, initialOrangeYpos);

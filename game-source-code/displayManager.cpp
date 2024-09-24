@@ -896,11 +896,11 @@ void DisplayManager::initialiseLocks()
 
 void DisplayManager::initialiseGhosts()
 {
-    /*auto blue = std::make_shared<Ghost>();
+    auto blue = std::make_shared<Ghost>();
     blue->setType(Type::Blue);
     ghost_objects.push_back(blue);
     ghost_textures.push_back(blueT);
-
+/*
     auto orange = std::make_shared<Ghost>();
     orange->setType(Type::Orange);
     ghost_objects.push_back(orange);
