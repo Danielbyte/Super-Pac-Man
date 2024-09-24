@@ -115,7 +115,10 @@ GDirection Ghost::getOptimalDirection(std::vector<std::shared_ptr<Lock>>& locks,
 
 void Ghost::getIsValidMove(GDirection _direction, int tileRow, const int tileColumn, bool& isValid,
 std::vector<std::shared_ptr<Lock>>& locks)
-{       
+{    
+    //Check for locked sections
+    auto [xPos, yPos] = getPosition();
+    auto Offset = 12.0f;   
     switch (_direction)
     {
         case GDirection::Up:
@@ -124,6 +127,11 @@ std::vector<std::shared_ptr<Lock>>& locks)
           if (gameMap[tileRow-1][tileColumn] == "0" || (gameMap[tileRow-1][tileColumn] == "-" || gameMap[tileRow][tileColumn] == "-")
           || gameMap[tileRow-1][tileColumn] == "01" || gameMap[tileRow-1][tileColumn] == "10"
           || gameMap[tileRow-1][tileColumn] == "||"){isValid = true;}
+
+          yPos -= Offset;
+          auto isCollided = collision_manager.lockCollisions(locks,xPos,yPos);
+          if (isCollided)
+              isValid = false;
         }
         else
         {
@@ -139,7 +147,11 @@ std::vector<std::shared_ptr<Lock>>& locks)
                 || gameMap[tileRow + 1][tileColumn] == "└"
                 || gameMap[tileRow + 1][tileColumn] == "01" || gameMap[tileRow + 1][tileColumn] == "10"
                 || gameMap[tileRow+1][tileColumn] == "||"){isValid = true;}
-            
+
+                yPos += Offset;
+                auto isCollided = collision_manager.lockCollisions(locks,xPos,yPos);
+                if(isCollided)
+                   isValid = false;
             }
             else
             {
