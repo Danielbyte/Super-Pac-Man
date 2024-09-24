@@ -2,7 +2,9 @@
 Fruit::Fruit():
 xPosition{-100.0f},
 yPosition{-100.0f},//Initially, at position that is off the screen
-canDelete{false}
+canDelete{false},
+isSuperPellet{false},
+isPowerPellet{false}
 {}
 
 void Fruit::setPosition(const float xPos,const float yPos)
@@ -24,4 +26,24 @@ bool Fruit::getIfCanDelete() const
 std::tuple<float, float> Fruit::getPosition() const
 {
     return {xPosition, yPosition};
+}
+
+bool Fruit::getIsSuperPellet() const
+{
+    return isSuperPellet;
+}
+
+bool Fruit::getIsPowerPellet() const
+{
+    return isPowerPellet;
+}
+
+void Fruit::markAsPowerPellet()
+{
+    isPowerPellet = true;
+}
+
+void Fruit::markAsSuperPellet()
+{
+    isSuperPellet = true;
 }

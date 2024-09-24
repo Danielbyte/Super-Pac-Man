@@ -75,6 +75,7 @@ class DisplayManager
     std::shared_ptr<raylib::Texture2D> keyT = std::make_shared<raylib::Texture2D>();
 
     std::shared_ptr<raylib::Texture2D> fruitT = std::make_shared<raylib::Texture2D>();
+    std::shared_ptr<raylib::Texture2D> superPelletT = std::make_shared<raylib::Texture2D>();
     std::shared_ptr<raylib::Texture2D> VlockT = std::make_shared<raylib::Texture2D>();//Vertical lock
     std::shared_ptr<raylib::Texture2D> HlockT = std::make_shared<raylib::Texture2D>();//Horizontal lock
     std::shared_ptr<raylib::Texture2D> blueT = std::make_shared<raylib::Texture2D>();
