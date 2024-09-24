@@ -498,6 +498,7 @@ void DisplayManager::initialiseKeys()
 
     std::shared_ptr<Key>key9 = std::make_shared<Key>();
     key9->setPosition(16.5f,206.5f);
+    key9->setLockIds(5, 6);
     key_objects.push_back(key9);
     key_textures.push_back(keyT);
 
@@ -724,12 +725,14 @@ void DisplayManager::initialiseLocks()
     std::shared_ptr<Lock>lock5 = std::make_shared<Lock>();
     lock5->setPosition(140.0f,240.0f);
     lock5->setLockType(LockType::Vertical);
+    lock5->setLockId(5);
     lock_objects.push_back(lock5);
     lock_textures.push_back(VlockT);
 
     std::shared_ptr<Lock>lock6 = std::make_shared<Lock>();
     lock6->setPosition(98.5f,240.0f);
     lock6->setLockType(LockType::Vertical);
+    lock6->setLockId(6);
     lock_objects.push_back(lock6);
     lock_textures.push_back(VlockT);
 
