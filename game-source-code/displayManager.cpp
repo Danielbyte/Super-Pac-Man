@@ -697,6 +697,12 @@ void DisplayManager::initialiseFruits()
     superPellet1->markAsSuperPellet();
     fruit_objects.push_back(superPellet1);
     fruit_textures.push_back(superPelletT);
+
+    std::shared_ptr<Fruit>powerPellet1 = std::make_shared<Fruit>();
+    powerPellet1->setPosition(57.0f,57.5f);
+    powerPellet1->markAsPowerPellet();
+    fruit_objects.push_back(powerPellet1);
+    fruit_textures.push_back(powerPelletT);
 }
 
 void DisplayManager::initialiseLocks()
@@ -967,6 +973,7 @@ void DisplayManager::loadTextures()
     keyT ->Load("../resources/key.png");
     fruitT->Load("../resources/fruit.png");
     superPelletT->Load("../resources/superPellet1.png");
+    powerPelletT->Load("../resources/powerPellet.png");
     VlockT->Load("../resources/lockV.png");
     HlockT->Load("../resources/lockH.png");
 
