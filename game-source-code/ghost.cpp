@@ -3,7 +3,7 @@
 Ghost::Ghost():
 xPosition{-100.0f},
 yPosition{-100.0f},
-ghostSpeed{50.0f},
+ghostSpeed{60.0f},
 currentDirection{GDirection::Still},
 integralDistance{0.0f},
 isInitial{true}
@@ -73,10 +73,6 @@ void Ghost::update(std::vector<std::shared_ptr<GameWorldResources>>& maze, const
 
 float Ghost::calculateLinearDistance()
 {
-    //calculates distance between ghost and target
-    //Dear old friend, Pythagoras
-    /*auto TileCol = static_cast<int>(xPosition/48);
-    std::cout << "Tile col: " << TileCol << std::endl;*/
     return sqrt(pow(xPosition-xTargetPos,2)+(pow(yPosition-yTargetPos,2)));
 }
 
@@ -123,7 +119,9 @@ void Ghost::getIsValidMove(GDirection _direction, int tileRow, const int tileCol
         case GDirection::Up:
         if (tileRow > 0)
         {
-          if (gameMap[tileRow-1][tileColumn] == "0" || gameMap[tileRow-1][tileColumn] == "-"){isValid = true;}
+          if (gameMap[tileRow-1][tileColumn] == "0" || (gameMap[tileRow-1][tileColumn] == "-" || gameMap[tileRow][tileColumn] == "-")
+          || gameMap[tileRow-1][tileColumn] == "01" || gameMap[tileRow-1][tileColumn] == "10"
+          || gameMap[tileRow-1][tileColumn] == "||"){isValid = true;}
         }
         else
         {
@@ -132,12 +130,13 @@ void Ghost::getIsValidMove(GDirection _direction, int tileRow, const int tileCol
         break;
 
         case GDirection::Down:
-            if ((tileRow + 1) < 13)
+            if ((tileRow + 1) < 12)
             {
                 if (gameMap[tileRow + 1][tileColumn] == "0" || (gameMap[tileRow + 1][tileColumn] == "_" && gameMap[tileRow][tileColumn] != "_")
                 ||(gameMap[tileRow + 1][tileColumn] == "┘" && gameMap[tileRow][tileColumn] != "┘")
                 ||(gameMap[tileRow + 1][tileColumn] == "└" && gameMap[tileRow][tileColumn] != "└")
-                ||gameMap[tileRow + 1][tileColumn] == "01" || gameMap[tileRow + 1][tileColumn] == "10"){isValid = true;}
+                ||gameMap[tileRow + 1][tileColumn] == "01" || gameMap[tileRow + 1][tileColumn] == "10"
+                || gameMap[tileRow+1][tileColumn] == "||"){isValid = true;}
             
             }
             else
@@ -149,10 +148,11 @@ void Ghost::getIsValidMove(GDirection _direction, int tileRow, const int tileCol
             case GDirection::Right:
             if ((tileColumn+1) < 11)
             {
-                if (gameMap[tileRow][tileColumn+1] == "0" || gameMap[tileRow][tileColumn+1] == "01"
+                if (gameMap[tileRow][tileColumn+1] == "0" || (gameMap[tileRow][tileColumn+1] == "01" && gameMap[tileRow][tileColumn] != "01")
                 || gameMap[tileRow][tileColumn+1] == "-"  
                 || (gameMap[tileRow][tileColumn+1] == "┐" && gameMap[tileRow][tileColumn] != "┐")
-                || (gameMap[tileRow][tileColumn+1] == "┘" && gameMap[tileRow][tileColumn] != "┘")){isValid = true;}
+                || (gameMap[tileRow][tileColumn+1] == "┘" && gameMap[tileRow][tileColumn] != "┘")
+                || gameMap[tileRow][tileColumn+1] == "_" || gameMap[tileRow][tileColumn+1] == "="){isValid = true;}
             }
             else
             {
@@ -163,8 +163,8 @@ void Ghost::getIsValidMove(GDirection _direction, int tileRow, const int tileCol
             case GDirection::Left:
             if ((tileColumn-1) >= 0)
             {
-                if (gameMap[tileRow][tileColumn-1] == "0" || gameMap[tileRow][tileColumn-1] == "10"
-                || gameMap[tileRow][tileColumn-1] == "-"  
+                if (gameMap[tileRow][tileColumn-1] == "0" || (gameMap[tileRow][tileColumn-1] == "10" && gameMap[tileRow][tileColumn] != "10")
+                || gameMap[tileRow][tileColumn-1] == "-" || gameMap[tileRow][tileColumn] == "="
                 || (gameMap[tileRow][tileColumn-1] == "┌" && gameMap[tileRow][tileColumn] != "┌")
                 || (gameMap[tileRow][tileColumn-1] == "└" && gameMap[tileRow][tileColumn] != "└")){isValid = true;}
             }
