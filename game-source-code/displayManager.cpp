@@ -462,6 +462,7 @@ void DisplayManager::initialiseKeys()
 
     std::shared_ptr<Key>key2 = std::make_shared<Key>();
     key2->setPosition(496.5f,8.5f);
+    key2->setLockIds(19, 20);
     key_objects.push_back(key2);
     key_textures.push_back(keyT);
 
@@ -695,6 +696,7 @@ void DisplayManager::initialiseLocks()
     std::shared_ptr<Lock>lock1 = std::make_shared<Lock>();
     lock1->setPosition(56.5f,146.0f);
     lock1->setLockType(LockType::Horizontal);
+    //lock1->setLockId(1);
     lock_objects.push_back(lock1);
     lock_textures.push_back(HlockT);
 
@@ -715,6 +717,7 @@ void DisplayManager::initialiseLocks()
     std::shared_ptr<Lock>lock4 = std::make_shared<Lock>();
     lock4->setPosition(56.5f,190.0f);
     lock4->setLockType(LockType::Horizontal);
+    //lock4->setLockId(4);
     lock_objects.push_back(lock4);
     lock_textures.push_back(HlockT);
 
@@ -805,12 +808,14 @@ void DisplayManager::initialiseLocks()
     std::shared_ptr<Lock>lock19 = std::make_shared<Lock>();
     lock19->setPosition(433.5f,93.0f);
     lock19->setLockType(LockType::Horizontal);
+    lock19->setLockId(19);
     lock_objects.push_back(lock19);
     lock_textures.push_back(HlockT);
 
     std::shared_ptr<Lock>lock20 = std::make_shared<Lock>();
     lock20->setPosition(433.5f,48.0f);
     lock20->setLockType(LockType::Horizontal);
+    lock20->setLockId(20);
     lock_objects.push_back(lock20);
     lock_textures.push_back(HlockT);
 
