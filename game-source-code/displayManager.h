@@ -56,6 +56,7 @@ class DisplayManager
     void drawFruits();
     void initialiseLocks();
     void drawLocks();
+    void updateLocks();
     void updateFruits();
     void initialiseGhosts();
     void drawGhosts();

@@ -4,7 +4,7 @@ Lock::Lock():
 xPosition{-100.0f},
 yPosition{-100.0f},
 isOpen{false},
-lockId{0},
+lockId{-10},
 lock_type{LockType::Unknown}//lock type unknown initially
 {}
 

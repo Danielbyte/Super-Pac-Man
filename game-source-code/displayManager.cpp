@@ -61,11 +61,12 @@ void DisplayManager::updateGame()
     return;
 
     auto [xPos, yPos] = player_obj->getPlayerPosition();
-    collision_manager->playerKeyCollisions(key_objects,xPos,yPos);
+    collision_manager->playerKeyCollisions(key_objects,xPos,yPos,lock_objects);
     collision_manager->playerFruitCollisions(fruit_objects, xPos, yPos);
     updateKeys();
     updateFruits();
     updateGhosts();
+    updateLocks();
 }
 
 void DisplayManager::updateGhosts()
@@ -76,6 +77,25 @@ void DisplayManager::updateGhosts()
     for (auto& ghost : ghost_objects)
     {
         ghost->update(maze_resources,lock_objects ,1/60.0f);
+    }
+}
+
+void DisplayManager::updateLocks()
+{
+    auto lock = lock_objects.begin();
+    auto lock_texture = lock_textures.begin();
+    while (lock != lock_objects.end())
+    {
+        if ((*lock)->getIsOpen())
+        {
+            lock_objects.erase(lock);
+            lock_textures.erase(lock_texture);
+        }
+        else
+        {
+            ++lock;
+            ++lock_texture;
+        }
     }
 }
 
@@ -436,6 +456,7 @@ void DisplayManager::initialiseKeys()
 {
     std::shared_ptr<Key>key1 = std::make_shared<Key>();
     key1->setPosition(16.5f,8.5f);
+    key1->setLockIds(2, 3);
     key_objects.push_back(key1);
     key_textures.push_back(keyT);
 
@@ -680,12 +701,14 @@ void DisplayManager::initialiseLocks()
     std::shared_ptr<Lock>lock2 = std::make_shared<Lock>();
     lock2->setPosition(56.5f,93.0f);
     lock2->setLockType(LockType::Horizontal);
+    lock2->setLockId(2);
     lock_objects.push_back(lock2);
     lock_textures.push_back(HlockT);
 
     std::shared_ptr<Lock>lock3 = std::make_shared<Lock>();
     lock3->setPosition(56.5f,48.0f);
     lock3->setLockType(LockType::Horizontal);
+    lock3->setLockId(3);
     lock_objects.push_back(lock3);
     lock_textures.push_back(HlockT);
 

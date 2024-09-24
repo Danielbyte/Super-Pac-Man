@@ -47,7 +47,8 @@ bool CollisionsManager::playerWallCollisions(std::vector<std::shared_ptr<GameWor
     return false;
 }
 
-void CollisionsManager::playerKeyCollisions(std::vector<std::shared_ptr<Key>>keys, const float xPlayerPos, const float yPlayerPos)
+void CollisionsManager::playerKeyCollisions(std::vector<std::shared_ptr<Key>>keys, const float xPlayerPos, const float yPlayerPos,
+std::vector<std::shared_ptr<Lock>>& locks)
 {
     auto key = keys.begin();
     while(key != keys.end())
@@ -59,6 +60,13 @@ void CollisionsManager::playerKeyCollisions(std::vector<std::shared_ptr<Key>>key
         if (isCollided)
         {
             (*key)->markForDeletion();
+            auto [lock1Id, lock2Id] = (*key)->getLockIdsToUnlock();
+            for(auto& lock : locks)
+            {
+                auto lockId = lock->getLockId();
+                if (lockId == lock1Id || lockId == lock2Id)
+                    lock->OpenLock();
+            }
         }
         ++key;
     }
