@@ -7,6 +7,7 @@
     float xPosition;
     float yPosition;
     bool canDelete;
+    int lockId1, lockId2;
 
  public:
     Key();
@@ -14,5 +15,7 @@
     std::tuple<float, float>getPosition() const;
     bool getIfCanDelete() const;
     void markForDeletion();
+    std::tuple<int, int>getLockIdsToUnlock() const;
+    void setLockIds(const int id1, const int id2);
  };
  #endif

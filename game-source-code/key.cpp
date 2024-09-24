@@ -3,7 +3,9 @@
 Key::Key():
 xPosition{-50.0f},//Position outside screen
 yPosition{-50.0f},//Position outside of screen
-canDelete{false}
+canDelete{false},
+lockId1{-100},
+lockId2{-100}
 {}
 
 std::tuple<float, float> Key::getPosition() const
@@ -25,4 +27,15 @@ void Key::markForDeletion()
 bool Key::getIfCanDelete() const
 {
     return canDelete;
+}
+
+void Key::setLockIds(int id1, int id2)
+{
+    lockId1 = id1;
+    lockId2 = id2;
+}
+
+std::tuple<int, int> Key::getLockIdsToUnlock() const
+{
+    return {lockId1, lockId2};
 }
