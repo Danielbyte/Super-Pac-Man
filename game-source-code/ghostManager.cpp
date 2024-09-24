@@ -23,9 +23,9 @@ void GhostManager::InitialiseGhostPositions(std::vector<std::shared_ptr<Ghost>>&
         switch (type)
         {
         case Type::Pink:
-            ghost->setPosition(initialPinkXpos, initialPinkYpos);
-            //ghost->assignCorner(0.0f, 0.0f);//Pink's corner @ top-left corner
-            ghost->setMode(Mode::Chase);//ghost initially in scatter mode
+            ghost->setPosition(initialRedXpos, initialRedYpos);
+            ghost->assignCorner(0.0f, -48.0f);//Pink's corner @ top-left corner
+            ghost->setMode(Mode::Scatter);//ghost initially in scatter mode
             break;
         case Type::Blue:
             ghost->setPosition(initialBlueXpos, initialBlueYpos);
@@ -35,7 +35,7 @@ void GhostManager::InitialiseGhostPositions(std::vector<std::shared_ptr<Ghost>>&
             break;
         case Type::Red:
              ghost->setPosition(initialRedXpos, initialRedYpos);
-             ghost->assignCorner((MAZE_WIDTH-1)*TILE_SIZE, -1.0f);//Red's corner @ top-right
+             ghost->assignCorner((MAZE_WIDTH-1)*TILE_SIZE, -48.0f);//Red's corner @ top-right
              ghost->setMode(Mode::Scatter);//ghost initially in scatter mode
              break;
         default:
@@ -51,26 +51,7 @@ void GhostManager::updateTarget(std::vector<std::shared_ptr<Ghost>>& ghosts, con
         //Get type of ghost
         auto type = ghost->getType();
         auto mode = ghost->getMode();
-        switch (type)
-        {
-        case Type::Red:
-            //get ghost mode
-            if (mode == Mode::Chase)
-            {
-
-            }
-            if (mode == Mode::Frightened)
-            {
-
-            } 
-            if (mode == Mode::Scatter)
-            {
-                setTarget(ghost, xPlayerPos, yPlayerPos);
-            }       
-        break;
-        default:
-            break;
-        }
+        setTarget(ghost, xPlayerPos, yPlayerPos);
     }
 }
 

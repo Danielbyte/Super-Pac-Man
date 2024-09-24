@@ -5,7 +5,8 @@ xPosition{-100.0f},
 yPosition{-100.0f},
 ghostSpeed{50.0f},
 currentDirection{GDirection::Still},
-integralDistance{0.0f}
+integralDistance{0.0f},
+isInitial{true}
 {}
 
 std::tuple<float, float>Ghost::getPosition() const
@@ -52,6 +53,8 @@ void Ghost::moveToCorner()
     //set target to target corner
     xTargetPos = targetCornePosX;
     yTargetPos = targetCornerPosY;
+    targetTileX = static_cast<int>(xTargetPos/48);
+    targetTileY = static_cast<int>(yTargetPos/48);
 }
 
 void Ghost::setMode(Mode _mode)
@@ -94,8 +97,8 @@ GDirection Ghost::getOptimalDirection(const float dt)
         
         if(isValid)//A valid move if ghost does not collide with wall (should probably use tile-based collisions)
         {
-            auto[newXpos, newYpos] = getNextPosition(nextDir, dt);
-            auto newDist = sqrt(pow(newXpos-xTargetPos,2)+(pow(newYpos-yTargetPos,2)));
+            auto[nextTileX, nextTileY] = getNextTile(nextDir);
+            auto newDist = sqrt(pow(nextTileX-targetTileX,2)+(pow(nextTileY-targetTileY,2)));
             if (newDist < minDistance)
             {
                 minDistance = newDist;
@@ -114,7 +117,7 @@ GDirection Ghost::getOptimalDirection(const float dt)
 }
 
 void Ghost::getIsValidMove(GDirection _direction, int tileRow, const int tileColumn, bool& isValid)
-{
+{       
     switch (_direction)
     {
         case GDirection::Up:
@@ -158,7 +161,7 @@ void Ghost::getIsValidMove(GDirection _direction, int tileRow, const int tileCol
              break;
 
             case GDirection::Left:
-            if ((tileColumn-1) > 0)
+            if ((tileColumn-1) >= 0)
             {
                 if (gameMap[tileRow][tileColumn-1] == "0" || gameMap[tileRow][tileColumn-1] == "10"
                 || gameMap[tileRow][tileColumn-1] == "-"  
@@ -207,6 +210,7 @@ bool Ghost::isOppositeDirection(GDirection nextDir, GDirection previousDir)
 std::tuple<float,float> Ghost::getNextPosition(GDirection dir, const float dt)
 {
     auto[newXpos, newYpos] = getPosition();//Get currentt position
+
     switch (dir)
     {
     case GDirection::Up:
@@ -226,6 +230,31 @@ std::tuple<float,float> Ghost::getNextPosition(GDirection dir, const float dt)
     }
     return {newXpos, newYpos};
 }
+std::tuple<int,int> Ghost::getNextTile(GDirection dir)
+{
+    auto[newXpos, newYpos] = getPosition();//Get currentt position
+    int tileX = static_cast<int>(newXpos/48);
+    int tileY = static_cast<int>(newYpos/48);
+
+    switch (dir)
+    {
+    case GDirection::Up:
+           tileY -= 1;
+        break;
+    case GDirection::Down:
+        tileY += 1;
+    break;
+    case GDirection::Left:
+        tileX -= 1;
+    break;
+    case GDirection::Right:
+        tileX += 1; 
+    break;
+    default:
+        break;
+    }
+    return {tileX, tileY};
+}
 
 void Ghost::updatePosition(const float dt)
 {
@@ -243,7 +272,7 @@ void Ghost::updatePosition(const float dt)
         isUpdated = true;
     }
 
-    if (integralDistance >= 48.0f)
+    if (integralDistance >= 48.0f || isInitial)
     {
         int x = static_cast<int>(xPosition/48);
         int y = static_cast<int>(yPosition/48);
@@ -257,6 +286,7 @@ void Ghost::updatePosition(const float dt)
         nextX = _nextX;
         nextY = _nextY;
         isUpdated = true;
+        isInitial = false;
     }
     if(!isUpdated)
     {

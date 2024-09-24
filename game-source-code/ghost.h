@@ -12,6 +12,7 @@ private:
     float xPosition;
     float yPosition;
     float xTargetPos, yTargetPos;
+    int targetTileX, targetTileY;
     float targetCornePosX, targetCornerPosY;
     GDirection direction;
     GDirection currentDirection;//Track previous direction to avoid reversing
@@ -29,6 +30,8 @@ private:
     float integralDistance;//summation of distance travelled by ghost (will be used to monitor if ghost has travelled a tile's distance) 
     void getIsValidMove(GDirection _direction, int tileRow, const int tileColumn, bool& isValid);
     GDirection priorityDirection();
+    bool isInitial;
+    std::tuple<int,int> getNextTile(GDirection dir);
 public:
     Ghost();
     std::tuple<float, float>getPosition() const;
