@@ -117,7 +117,7 @@ void Ghost::getIsValidMove(GDirection _direction, int tileRow, const int tileCol
     switch (_direction)
     {
         case GDirection::Up:
-        if (tileRow > 0)
+        if (tileRow > 0 && (gameMap[tileRow][tileColumn] != "-" && gameMap[tileRow][tileColumn] != "="))
         {
           if (gameMap[tileRow-1][tileColumn] == "0" || (gameMap[tileRow-1][tileColumn] == "-" || gameMap[tileRow][tileColumn] == "-")
           || gameMap[tileRow-1][tileColumn] == "01" || gameMap[tileRow-1][tileColumn] == "10"
@@ -132,7 +132,7 @@ void Ghost::getIsValidMove(GDirection _direction, int tileRow, const int tileCol
         case GDirection::Down:
             if ((tileRow + 1) < 12)
             {
-                if (gameMap[tileRow + 1][tileColumn] == "0" || (gameMap[tileRow + 1][tileColumn] == "_" && gameMap[tileRow][tileColumn] != "_")
+                if ((gameMap[tileRow + 1][tileColumn] == "0" && gameMap[tileRow][tileColumn] != "_") || (gameMap[tileRow + 1][tileColumn] == "_" && gameMap[tileRow][tileColumn] != "_")
                 ||(gameMap[tileRow + 1][tileColumn] == "┘" && gameMap[tileRow][tileColumn] != "┘")
                 ||(gameMap[tileRow + 1][tileColumn] == "└" && gameMap[tileRow][tileColumn] != "└")
                 ||gameMap[tileRow + 1][tileColumn] == "01" || gameMap[tileRow + 1][tileColumn] == "10"
@@ -161,9 +161,10 @@ void Ghost::getIsValidMove(GDirection _direction, int tileRow, const int tileCol
              break;
 
             case GDirection::Left:
-            if ((tileColumn-1) >= 0)
+            if ((tileColumn-1) >= 0 && (gameMap[tileRow][tileColumn] != "||" && gameMap[tileRow][tileColumn] != "10"))
             {
-                if (gameMap[tileRow][tileColumn-1] == "0" || (gameMap[tileRow][tileColumn-1] == "10" && gameMap[tileRow][tileColumn] != "10")
+                if (gameMap[tileRow][tileColumn-1] == "0"
+                || gameMap[tileRow][tileColumn-1] == "10"
                 || gameMap[tileRow][tileColumn-1] == "-" || gameMap[tileRow][tileColumn] == "="
                 || (gameMap[tileRow][tileColumn-1] == "┌" && gameMap[tileRow][tileColumn] != "┌")
                 || (gameMap[tileRow][tileColumn-1] == "└" && gameMap[tileRow][tileColumn] != "└")){isValid = true;}

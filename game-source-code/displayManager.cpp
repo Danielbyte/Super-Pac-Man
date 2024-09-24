@@ -900,11 +900,11 @@ void DisplayManager::initialiseGhosts()
     blue->setType(Type::Blue);
     ghost_objects.push_back(blue);
     ghost_textures.push_back(blueT);
-/*
+
     auto orange = std::make_shared<Ghost>();
     orange->setType(Type::Orange);
     ghost_objects.push_back(orange);
-    ghost_textures.push_back(orangeT);*/
+    ghost_textures.push_back(orangeT);
 
     auto pink = std::make_shared<Ghost>();
     pink->setType(Type::Pink);

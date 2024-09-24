@@ -28,12 +28,14 @@ void GhostManager::InitialiseGhostPositions(std::vector<std::shared_ptr<Ghost>>&
             ghost->setMode(Mode::Scatter);//ghost initially in scatter mode
             break;
         case Type::Blue:
-            ghost->setPosition(initialBlueXpos, initialBlueYpos);
+            ghost->setPosition(initialRedXpos, initialRedYpos);
             ghost->assignCorner((MAZE_WIDTH-1)*TILE_SIZE, MAZE_HEIGHT*TILE_SIZE);
             ghost->setMode(Mode::Scatter);
             break;
         case Type::Orange:
-            ghost->setPosition(initialOrangeXpos, initialOrangeYpos);
+            ghost->setPosition(initialRedXpos, initialRedYpos);
+            ghost->assignCorner(0.0f, MAZE_HEIGHT*TILE_SIZE);
+            ghost->setMode(Mode::Scatter);
             break;
         case Type::Red:
              ghost->setPosition(initialRedXpos, initialRedYpos);
