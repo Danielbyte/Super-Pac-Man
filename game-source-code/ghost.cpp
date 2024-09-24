@@ -167,6 +167,12 @@ std::vector<std::shared_ptr<Lock>>& locks)
                 || gameMap[tileRow][tileColumn+1] == "-" || gameMap[tileRow][tileColumn+1] == "┐"
                 || gameMap[tileRow][tileColumn+1] == "┘" || gameMap[tileRow][tileColumn+1] == "_" 
                 || gameMap[tileRow][tileColumn+1] == "="){isValid = true;}
+
+                xPos += Offset;
+                auto isCollided = collision_manager.lockCollisions(locks,xPos,yPos);
+
+                if (isCollided)
+                   isValid = false;
             }
             else
             {
@@ -183,6 +189,12 @@ std::vector<std::shared_ptr<Lock>>& locks)
                 || gameMap[tileRow][tileColumn-1] == "-" || gameMap[tileRow][tileColumn] == "="
                 || gameMap[tileRow][tileColumn-1] == "┌"
                 || gameMap[tileRow][tileColumn-1] == "└"){isValid = true;}
+
+                xPos -= Offset;
+                auto isCollided = collision_manager.lockCollisions(locks,xPos,yPos);
+                if (isCollided)
+                    isValid = false;
+
             }
             else
             {
