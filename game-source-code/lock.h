@@ -10,6 +10,7 @@ private:
     float yPosition;
     bool isOpen;
     LockType lock_type;
+    int lockId;
 public:
     Lock();
     std::tuple<float, float>getPosition() const;
@@ -18,5 +19,7 @@ public:
     void setPosition(const float xPos, const float yPos);
     void setLockType(LockType lock_type);
     LockType getLockType() const;
+    int getLockId() const;
+    void setLockId(int id);
 };
 #endif

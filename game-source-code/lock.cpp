@@ -4,6 +4,7 @@ Lock::Lock():
 xPosition{-100.0f},
 yPosition{-100.0f},
 isOpen{false},
+lockId{0},
 lock_type{LockType::Unknown}//lock type unknown initially
 {}
 
@@ -36,4 +37,14 @@ LockType Lock::getLockType() const
 void Lock::setLockType(LockType type)
 {
     lock_type = type;
+}
+
+int Lock::getLockId() const
+{
+    return lockId;
+}
+    
+void Lock::setLockId(int id)
+{
+    lockId = id;
 }
