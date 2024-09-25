@@ -35,6 +35,8 @@ void Ghost::updateTarget(const float x, const float y)
 {
     xTargetPos = x;
     yTargetPos = y;
+    targetTileX = static_cast<int>(xTargetPos/48);
+    targetTileY = static_cast<int>(yTargetPos/48);
 }
 
 void Ghost::assignCorner(const float x, const float y)

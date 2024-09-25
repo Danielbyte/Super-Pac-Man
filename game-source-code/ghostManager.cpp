@@ -11,7 +11,8 @@ initialPinkXpos{201.0f},
 initialPinkYpos{153.0f},
 MAZE_WIDTH{11},//consist of 11 tiles
 MAZE_HEIGHT{12},//consists of 13 tiles
-TILE_SIZE{48.0f}//each tile is a 48 x 48
+TILE_SIZE{48.0f},//each tile is a 48 x 48
+red_mode_switch{1}//2 = chase mode, 1 = scatter mode
 {}
 
 void GhostManager::InitialiseGhostPositions(std::vector<std::shared_ptr<Ghost>>& ghosts)
@@ -42,6 +43,7 @@ void GhostManager::InitialiseGhostPositions(std::vector<std::shared_ptr<Ghost>>&
              ghost->setPosition(initialRedXpos, initialRedYpos);
              ghost->assignCorner((MAZE_WIDTH-1)*TILE_SIZE, -48.0f);//Red's corner @ top-right
              ghost->setMode(Mode::Scatter);//ghost initially in scatter mode
+             ghost->moveToCorner();
              break;
         default:
             break;
@@ -55,8 +57,32 @@ void GhostManager::updateTarget(std::vector<std::shared_ptr<Ghost>>& ghosts, con
     {
         //Get type of ghost
         auto type = ghost->getType();
-        auto mode = ghost->getMode();
-        setTarget(ghost, xPlayerPos, yPlayerPos);
+        auto time_elapsed = red_watch->elapsedTime();
+        switch (type)
+        {
+        case Type::Red:
+            if (time_elapsed >= 10.0f && red_mode_switch == 1)
+            {
+                ghost->setMode(Mode::Chase);
+                setTarget(ghost, xPlayerPos, yPlayerPos);
+                red_watch->restartTimer();
+                red_mode_switch = 2;
+                break;  
+            }
+            if (time_elapsed >= 10.0f && red_mode_switch == 2)
+            {
+                ghost->setMode(Mode::Scatter);
+                ghost->moveToCorner();
+                red_watch->restartTimer();
+                red_mode_switch = 1;
+            }
+            break;
+        
+        default:
+            break;
+        }
+        if (ghost->getType() != Type::Red)
+            setTarget(ghost, xPlayerPos, yPlayerPos);
     }
 }
 
@@ -71,7 +97,7 @@ void GhostManager::setTarget(std::shared_ptr<Ghost>& ghost, const float xPlayerP
         break;
     
     case Mode::Chase:
-        //ghost->
+        ghost->updateTarget(xPlayerPos,yPlayerPos);
         break;
 
     case Mode::Frightened:
@@ -80,6 +106,13 @@ void GhostManager::setTarget(std::shared_ptr<Ghost>& ghost, const float xPlayerP
     default:
         break;
     }
+}
+
+std::tuple<int, int> GhostManager::convertToTilePosition(float xPos, float yPos)
+{
+    int x = static_cast<int>(xPos/TILE_SIZE);
+    int y = static_cast<int>(yPos/TILE_SIZE);
+    return{x , y};
 }
 
 void GhostManager::restartGhostTimers()
