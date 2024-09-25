@@ -4,7 +4,8 @@ Player::Player():
 xPosition{400.0f},//New player center
 yPosition{326.0f},//New player center
 playerSpeed{102.0f},
-playerDirection{Direction::Right}//Pacman initially facing right
+playerDirection{Direction::Right},//Pacman initially facing right
+superPacman{false}
 {}
 
 void Player::movePlayer(bool rightArrowKeyPressed, bool leftArrowKeyPressed,
@@ -138,4 +139,20 @@ bool Player::willCoolideWithLock(Direction direction, std::vector<std::shared_pt
     }
 
    return collisions_manager.lockCollisions(locks,nextPlayerXpos,nextPlayerYpos);
+}
+
+void Player::setToSuperPacmanMode()
+{
+    super_pacman_timer.restartTimer();
+    superPacman = true;
+}
+
+void Player::toggleOffSuperPacmanMode()
+{
+    superPacman = false;
+}
+
+bool Player::isSuperPacman() const
+{
+    return superPacman;
 }

@@ -4,6 +4,7 @@
 #include "collisionsManager.h"
 #include "gameWorldResources.h"
 #include "lock.h"
+#include "stopwatch.h"
 
 enum class Direction{Up, Down, Left, Right, Still};
 
@@ -16,6 +17,8 @@ private:
  bool willCollideWithWall(Direction direction, std::vector<std::shared_ptr<GameWorldResources>>& maze);//function to check if the next move will result in a wall collision
  bool willCoolideWithLock(Direction direction, std::vector<std::shared_ptr<Lock>>& locks);
  CollisionsManager collisions_manager;
+ bool superPacman;
+ StopWatch super_pacman_timer;
 
 public:
     Player();
@@ -23,9 +26,12 @@ public:
     , std::vector<std::shared_ptr<GameWorldResources>>& maze, std::vector<std::shared_ptr<Lock>>& locks, const float dt);
     std::tuple<float, float> getPlayerPosition() const;
     Direction playerDirection;
+    bool isSuperPacman() const;
 
     void setPlayerPosition(float x, float y);
-     Direction getPlayerDirection() const;
+    Direction getPlayerDirection() const;
+    void setToSuperPacmanMode();
+    void toggleOffSuperPacmanMode();
 };
 #endif //PLAYER
 
