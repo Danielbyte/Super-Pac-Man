@@ -121,8 +121,9 @@ void DisplayManager::handleUserInput(const float dt)
         lock_objects, dt);
     }
 
-    if(IsKeyDown(KEY_ENTER) || IsKeyDown(KEY_KP_ENTER) && !isPlaying && isSplashScreen)
+    if((IsKeyDown(KEY_ENTER) || IsKeyDown(KEY_KP_ENTER)) && !isPlaying && isSplashScreen)
     {
+        ghost_manager.restartGhostTimers();
         isSplashScreen = false;
         isPlaying = true;
     }
@@ -534,7 +535,6 @@ void DisplayManager::initialiseKeys()
 
     std::shared_ptr<Key>key14 = std::make_shared<Key>();
     key14->setPosition(163.0f,290.0f);
-    key14->setLockIds(27, 28);
     key_objects.push_back(key14);
     key_textures.push_back(keyT);
     
@@ -702,6 +702,18 @@ void DisplayManager::initialiseFruits()
     fruit31->setPosition(247.5f,440.5f);
     fruit_objects.push_back(fruit31);
     fruit_textures.push_back(fruitT);
+
+    std::shared_ptr<Fruit>superPellet1 = std::make_shared<Fruit>();
+    superPellet1->setPosition(154.5f,345.5f);
+    superPellet1->markAsSuperPellet();
+    fruit_objects.push_back(superPellet1);
+    fruit_textures.push_back(superPelletT);
+
+    std::shared_ptr<Fruit>powerPellet1 = std::make_shared<Fruit>();
+    powerPellet1->setPosition(57.0f,57.5f);
+    powerPellet1->markAsPowerPellet();
+    fruit_objects.push_back(powerPellet1);
+    fruit_textures.push_back(powerPelletT);
 }
 
 void DisplayManager::initialiseLocks()
@@ -884,6 +896,7 @@ void DisplayManager::initialiseLocks()
 
     std::shared_ptr<Lock>lock29 = std::make_shared<Lock>();
     lock29->setPosition(152.0f,338.0f);
+    lock29->setLockId(29);
     lock29->setLockType(LockType::Horizontal);
     lock_objects.push_back(lock29);
     lock_textures.push_back(HlockT);
@@ -902,6 +915,7 @@ void DisplayManager::initialiseLocks()
 
     std::shared_ptr<Lock>lock32 = std::make_shared<Lock>();
     lock32->setPosition(152.5f,477.0f);
+    lock32->setLockId(32);
     lock32->setLockType(LockType::Horizontal);
     lock_objects.push_back(lock32);
     lock_textures.push_back(HlockT);
@@ -971,6 +985,8 @@ void DisplayManager::loadTextures()
     
     keyT ->Load("../resources/key.png");
     fruitT->Load("../resources/fruit.png");
+    superPelletT->Load("../resources/superPellet1.png");
+    powerPelletT->Load("../resources/powerPellet.png");
     VlockT->Load("../resources/lockV.png");
     HlockT->Load("../resources/lockH.png");
 
