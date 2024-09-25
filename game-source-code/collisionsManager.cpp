@@ -81,7 +81,8 @@ std::vector<std::shared_ptr<Lock>>& locks)
     }
 }
 
-void CollisionsManager::playerFruitCollisions(std::vector<std::shared_ptr<Fruit>>fruit_objects, const float xPlayerPos, const float yPlayerPos)
+void CollisionsManager::playerFruitCollisions(std::vector<std::shared_ptr<Fruit>>fruit_objects, const float xPlayerPos, const float yPlayerPos,
+bool& isSuperPacman)
 {
     auto fruit = fruit_objects.begin();
     while(fruit != fruit_objects.end())
@@ -89,7 +90,13 @@ void CollisionsManager::playerFruitCollisions(std::vector<std::shared_ptr<Fruit>
         auto [xPos, yPos] = (*fruit)->getPosition();
         auto isCollided = collision->checkCollision(xPlayerPos,yPlayerPos,playerWidth,playerLength,xPos,yPos,fruitWidth,fruitHeight);
         if(isCollided)
-           (*fruit)->markForDeletion();
+        {
+            auto isSuperPellet = (*fruit)->getIsSuperPellet();
+            if (isSuperPellet && !isSuperPacman)
+                isSuperPacman = true;
+
+            (*fruit)->markForDeletion();
+        }
 
         ++fruit;
     }

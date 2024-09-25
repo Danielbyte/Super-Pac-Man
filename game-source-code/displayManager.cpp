@@ -62,7 +62,13 @@ void DisplayManager::updateGame()
 
     auto [xPos, yPos] = player_obj->getPlayerPosition();
     collision_manager->playerKeyCollisions(key_objects,xPos,yPos,lock_objects);
-    collision_manager->playerFruitCollisions(fruit_objects, xPos, yPos);
+
+    auto isSuPerPacman = player_obj->isSuperPacman();
+    auto prevPlayerState = isSuPerPacman;
+    collision_manager->playerFruitCollisions(fruit_objects, xPos, yPos, isSuPerPacman);
+    if (isSuPerPacman && (isSuPerPacman != prevPlayerState))//detect a difference in state
+        player_obj->setToSuperPacmanMode();
+
     updateKeys();
     updateFruits();
     updateGhosts();

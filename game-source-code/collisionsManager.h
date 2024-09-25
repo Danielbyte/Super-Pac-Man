@@ -25,7 +25,8 @@ public:
     std::unique_ptr<Collisions>collision = std::make_unique<Collisions>();
     void playerKeyCollisions(std::vector<std::shared_ptr<Key>>key_objects,const float xPlayerPos, const float yPlayerPos,
     std::vector<std::shared_ptr<Lock>>& locks);
-    void playerFruitCollisions(std::vector<std::shared_ptr<Fruit>>fruit_objects, const float xPlayerPos, const float yPlayerPos);
+    void playerFruitCollisions(std::vector<std::shared_ptr<Fruit>>fruit_objects, const float xPlayerPos, const float yPlayerPos,
+    bool& isSupePacman);
     bool lockCollisions(std::vector<std::shared_ptr<Lock>>& lock_objects, const float xPlayerPos, const float yPlayerPos);
     bool ghostWallCollisions(std::vector<std::shared_ptr<GameWorldResources>>& maze, const float ghostXpos, const float ghostYpos);
 };

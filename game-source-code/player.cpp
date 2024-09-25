@@ -13,6 +13,10 @@ void Player::movePlayer(bool rightArrowKeyPressed, bool leftArrowKeyPressed,
                         std::vector<std::shared_ptr<GameWorldResources>>& maze, 
                         std::vector<std::shared_ptr<Lock>>& locks, const float dt)
 {
+    auto elapsed_time = super_pacman_timer.elapsedTime();
+    if (elapsed_time >= 7.0f && superPacman)
+        toggleOffSuperPacmanMode();
+
     if (rightArrowKeyPressed)
     {
         playerDirection = Direction::Right;
@@ -145,11 +149,13 @@ void Player::setToSuperPacmanMode()
 {
     super_pacman_timer.restartTimer();
     superPacman = true;
+    std::cout << "Start" << std::endl;
 }
 
 void Player::toggleOffSuperPacmanMode()
 {
     superPacman = false;
+     std::cout << "End" << std::endl;
 }
 
 bool Player::isSuperPacman() const
