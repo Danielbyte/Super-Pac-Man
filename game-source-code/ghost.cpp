@@ -125,11 +125,11 @@ std::vector<std::shared_ptr<Lock>>& locks)
     {
         case GDirection::Up:
         if (tileRow > 0 && (gameMap[tileRow][tileColumn] != "-" && gameMap[tileRow][tileColumn] != "="
-        && gameMap[tileRow][tileColumn] != "┌"))
+        && gameMap[tileRow][tileColumn] != "┌" && gameMap[tileRow][tileColumn] != "Π"))
         {
           if (gameMap[tileRow-1][tileColumn] == "0" || (gameMap[tileRow-1][tileColumn] == "-" || gameMap[tileRow][tileColumn] == "-")
           || gameMap[tileRow-1][tileColumn] == "01" || gameMap[tileRow-1][tileColumn] == "10"
-          || gameMap[tileRow-1][tileColumn] == "||"){isValid = true;}
+          || gameMap[tileRow-1][tileColumn] == "||"|| gameMap[tileRow-1][tileColumn] == "Π"){isValid = true;}
 
           yPos -= Offset;
           auto isCollided = collision_manager.lockCollisions(locks,xPos,yPos);

@@ -51,7 +51,7 @@ void GhostManager::InitialiseGhostPositions(std::vector<std::shared_ptr<Ghost>>&
     }
 }
 
-void GhostManager::updateTarget(std::vector<std::shared_ptr<Ghost>>& ghosts, const float xPlayerPos, const float yPlayerPos)
+void GhostManager::updateTarget(std::vector<std::shared_ptr<Ghost>> ghosts, const float xPlayerPos, const float yPlayerPos)
 {
     for (auto& ghost : ghosts)
     {
@@ -83,7 +83,7 @@ void GhostManager::updateTarget(std::vector<std::shared_ptr<Ghost>>& ghosts, con
     }
 }
 
-void GhostManager::setTarget(std::shared_ptr<Ghost>& ghost, const float xPlayerPos, const float yPlayerPos)
+void GhostManager::setTarget(std::shared_ptr<Ghost> ghost, const float xPlayerPos, const float yPlayerPos)
 {
     auto ghostMode = ghost->getMode();
     switch (ghostMode)
