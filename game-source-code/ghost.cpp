@@ -164,7 +164,7 @@ std::vector<std::shared_ptr<Lock>>& locks)
         
         case GDirection::Right:
             if ((tileColumn+1) < 11 && (gameMap[tileRow][tileColumn] != "┘" && gameMap[tileRow][tileColumn] != "┐"
-            && gameMap[tileRow][tileColumn] != "01" && gameMap[tileRow][tileColumn] != "||"))
+            && gameMap[tileRow][tileColumn] != "01" && gameMap[tileRow][tileColumn] != "||" && gameMap[tileRow][tileColumn] != "Π"))
             {
                 if (gameMap[tileRow][tileColumn+1] == "0" || gameMap[tileRow][tileColumn+1] == "01"
                 || gameMap[tileRow][tileColumn+1] == "-" || gameMap[tileRow][tileColumn+1] == "┐"
@@ -185,11 +185,11 @@ std::vector<std::shared_ptr<Lock>>& locks)
 
         case GDirection::Left:
             if ((tileColumn-1) >= 0 && (gameMap[tileRow][tileColumn] != "||" && gameMap[tileRow][tileColumn] != "10"
-            && gameMap[tileRow][tileColumn] != "└" && gameMap[tileRow][tileColumn] != "┌"))
+            && gameMap[tileRow][tileColumn] != "└" && gameMap[tileRow][tileColumn] != "┌" && gameMap[tileRow][tileColumn] != "Π"))
             {
                 if (gameMap[tileRow][tileColumn-1] == "0"
                 || gameMap[tileRow][tileColumn-1] == "10" || gameMap[tileRow][tileColumn-1] == "_"
-                || gameMap[tileRow][tileColumn-1] == "-" || gameMap[tileRow][tileColumn] == "="
+                || gameMap[tileRow][tileColumn-1] == "-" || gameMap[tileRow][tileColumn-1] == "="
                 || gameMap[tileRow][tileColumn-1] == "┌"
                 || gameMap[tileRow][tileColumn-1] == "└"){isValid = true;}
 
