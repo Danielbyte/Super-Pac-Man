@@ -468,31 +468,37 @@ void DisplayManager::initialiseKeys()
 
     std::shared_ptr<Key>key3 = std::make_shared<Key>();
     key3->setPosition(16.5f,536.0f);
+    key3->setLockIds(7, 8);
     key_objects.push_back(key3);
     key_textures.push_back(keyT);
 
     std::shared_ptr<Key>key4 = std::make_shared<Key>();
     key4->setPosition(496.5f,536.0f);
+    key4->setLockIds(9, 10);
     key_objects.push_back(key4);
     key_textures.push_back(keyT);
 
     std::shared_ptr<Key>key5 = std::make_shared<Key>();
     key5->setPosition(111.0f,488.0f);
+    key5->setLockIds(11, 12);
     key_objects.push_back(key5);
     key_textures.push_back(keyT);
 
     std::shared_ptr<Key>key6 = std::make_shared<Key>();
     key6->setPosition(402.0f,488.0f);
+    key6->setLockIds(13, 14);
     key_objects.push_back(key6);
     key_textures.push_back(keyT);
 
     std::shared_ptr<Key>key7 = std::make_shared<Key>();
     key7->setPosition(496.5f,290.0f);
+    key7->setLockIds(15, 16);
     key_objects.push_back(key7);
     key_textures.push_back(keyT);
 
     std::shared_ptr<Key>key8 = std::make_shared<Key>();
     key8->setPosition(496.5f,206.5f);
+    key8->setLockIds(17, 18);
     key_objects.push_back(key8);
     key_textures.push_back(keyT);
 
@@ -504,6 +510,7 @@ void DisplayManager::initialiseKeys()
 
     std::shared_ptr<Key>key10 = std::make_shared<Key>();
     key10->setPosition(402.0f,110.0f);
+    key10->setLockIds(21, 22);
     key_objects.push_back(key10);
     key_textures.push_back(keyT);
 
@@ -515,21 +522,25 @@ void DisplayManager::initialiseKeys()
 
     std::shared_ptr<Key>key12 = std::make_shared<Key>();
     key12->setPosition(255.0f,390.0f);
+    key12->setLockIds(23, 24);
     key_objects.push_back(key12);
     key_textures.push_back(keyT);
 
     std::shared_ptr<Key>key13 = std::make_shared<Key>();
     key13->setPosition(16.5f,290.0f);
+    key13->setLockIds(25, 26);
     key_objects.push_back(key13);
     key_textures.push_back(keyT);
 
     std::shared_ptr<Key>key14 = std::make_shared<Key>();
     key14->setPosition(163.0f,290.0f);
+    key14->setLockIds(27, 28);
     key_objects.push_back(key14);
     key_textures.push_back(keyT);
     
     std::shared_ptr<Key>key15 = std::make_shared<Key>();
     key15->setPosition(353.0f,290.0f);
+    key15->setLockIds(29, 30);
     key_objects.push_back(key15);
     key_textures.push_back(keyT);
     
