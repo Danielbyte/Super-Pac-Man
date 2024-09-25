@@ -728,6 +728,18 @@ void DisplayManager::initialiseFruits()
     fruit_objects.push_back(powerPellet2);
     fruit_textures.push_back(powerPelletT);
 
+    std::shared_ptr<Fruit>powerPellet3 = std::make_shared<Fruit>();
+    powerPellet3->setPosition(56.0f,490.0f);
+    powerPellet3->markAsPowerPellet();
+    fruit_objects.push_back(powerPellet3);
+    fruit_textures.push_back(powerPelletT);
+
+    std::shared_ptr<Fruit>powerPellet4 = std::make_shared<Fruit>();
+    powerPellet4->setPosition(440.0f,490.0f);
+    powerPellet4->markAsPowerPellet();
+    fruit_objects.push_back(powerPellet4);
+    fruit_textures.push_back(powerPelletT);
+
 
 }
 
