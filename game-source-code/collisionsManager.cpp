@@ -51,6 +51,7 @@ void CollisionsManager::playerKeyCollisions(std::vector<std::shared_ptr<Key>>key
 std::vector<std::shared_ptr<Lock>>& locks)
 {
     auto key = keys.begin();
+    int lockId1 = -100, lockId2 = -100, lockId3 = -100;
     while(key != keys.end())
     {
         auto[xPos, yPos] = (*key)->getPosition();
@@ -61,10 +62,18 @@ std::vector<std::shared_ptr<Lock>>& locks)
         {
             (*key)->markForDeletion();
             auto [lock1Id, lock2Id] = (*key)->getLockIdsToUnlock();
+
+            if((*key)->isTripleOpener())
+            {
+                auto [lck1, lck2, lck3] = (*key)->getTripleLockIdsToUnlock();
+                lockId1 = lck1;
+                lockId2 = lck2;
+                lockId3 = lck3;
+            }
             for(auto& lock : locks)
             {
                 auto lockId = lock->getLockId();
-                if (lockId == lock1Id || lockId == lock2Id)
+                if (lockId == lock1Id || lockId == lock2Id || lockId == lockId1 || lockId == lockId2 || lockId == lockId3)
                     lock->OpenLock();
             }
         }

@@ -7,7 +7,8 @@
     float xPosition;
     float yPosition;
     bool canDelete;
-    int lockId1, lockId2;
+    int lockId1, lockId2, lockId3;
+    bool tripleOpen;
 
  public:
     Key();
@@ -16,6 +17,9 @@
     bool getIfCanDelete() const;
     void markForDeletion();
     std::tuple<int, int>getLockIdsToUnlock() const;
+    std::tuple<int, int, int>getTripleLockIdsToUnlock() const;
     void setLockIds(const int id1, const int id2);
+    void setLockIds(const int id1, const int id2, const int id3);
+    bool isTripleOpener() const;
  };
  #endif
