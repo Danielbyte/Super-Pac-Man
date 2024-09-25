@@ -120,7 +120,7 @@ std::vector<std::shared_ptr<Lock>>& locks)
 {    
     //Check for locked sections
     auto [xPos, yPos] = getPosition();
-    auto Offset = 15.0f;   
+    auto Offset = 17.0f;   
     switch (_direction)
     {
         case GDirection::Up:
@@ -143,7 +143,7 @@ std::vector<std::shared_ptr<Lock>>& locks)
         break;
         case GDirection::Down:
             if ((tileRow + 1) < 12 && (gameMap[tileRow][tileColumn] != "_" && gameMap[tileRow][tileColumn] != "└"
-            && gameMap[tileRow][tileColumn] != "┘"))
+            && gameMap[tileRow][tileColumn] != "┘" && gameMap[tileRow][tileColumn] != "="))
             {
                 if (gameMap[tileRow + 1][tileColumn] == "0" || gameMap[tileRow + 1][tileColumn] == "_"
                 || gameMap[tileRow + 1][tileColumn] == "┘"
