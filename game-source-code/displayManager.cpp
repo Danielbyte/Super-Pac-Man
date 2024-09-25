@@ -541,7 +541,7 @@ void DisplayManager::initialiseKeys()
     
     std::shared_ptr<Key>key15 = std::make_shared<Key>();
     key15->setPosition(353.0f,290.0f);
-    key15->setLockIds(30, 31);
+    key15->setLockIds(30, 31, 35);
     key_objects.push_back(key15);
     key_textures.push_back(keyT);
     
