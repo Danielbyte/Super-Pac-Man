@@ -122,7 +122,8 @@ std::vector<std::shared_ptr<Lock>>& locks)
     switch (_direction)
     {
         case GDirection::Up:
-        if (tileRow > 0 && (gameMap[tileRow][tileColumn] != "-" && gameMap[tileRow][tileColumn] != "="))
+        if (tileRow > 0 && (gameMap[tileRow][tileColumn] != "-" && gameMap[tileRow][tileColumn] != "="
+        && gameMap[tileRow][tileColumn] != "┌"))
         {
           if (gameMap[tileRow-1][tileColumn] == "0" || (gameMap[tileRow-1][tileColumn] == "-" || gameMap[tileRow][tileColumn] == "-")
           || gameMap[tileRow-1][tileColumn] == "01" || gameMap[tileRow-1][tileColumn] == "10"
