@@ -64,15 +64,13 @@ void GhostManager::updateTarget(std::vector<std::shared_ptr<Ghost>>& ghosts, con
             if (time_elapsed >= 10.0f && red_mode_switch == 1)
             {
                 ghost->setMode(Mode::Chase);
-                setTarget(ghost, xPlayerPos, yPlayerPos);
                 red_watch->restartTimer();
                 red_mode_switch = 2;
                 break;  
             }
-            if (time_elapsed >= 10.0f && red_mode_switch == 2)
+            if (time_elapsed >= 30.0f && red_mode_switch == 2)
             {
                 ghost->setMode(Mode::Scatter);
-                ghost->moveToCorner();
                 red_watch->restartTimer();
                 red_mode_switch = 1;
             }
@@ -81,8 +79,7 @@ void GhostManager::updateTarget(std::vector<std::shared_ptr<Ghost>>& ghosts, con
         default:
             break;
         }
-        if (ghost->getType() != Type::Red)
-            setTarget(ghost, xPlayerPos, yPlayerPos);
+        setTarget(ghost, xPlayerPos, yPlayerPos);
     }
 }
 
