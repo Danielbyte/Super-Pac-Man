@@ -119,6 +119,27 @@ void DisplayManager::updateGhosts()
                 break;
             }
         }
+
+        if (justReSpawned)
+        {
+            auto ghostType = ghost->getType();
+            switch (ghostType)
+            {
+            case Type::Blue:
+                (*ghost_texture) = blueT;
+                break;
+            case Type::Pink:
+                 (*ghost_texture) = pinkT;
+                 break;
+            case Type::Red:
+                 (*ghost_texture) = redT;
+                 break;
+            case Type::Orange:
+                 (*ghost_texture) = orangeT;  
+            default:
+                break;
+            }   
+        }
           
         ghost->update(maze_resources,lock_objects ,1/60.0f);
         ++ghost_texture;
@@ -134,7 +155,13 @@ void DisplayManager::playerGhostCollisions()
         auto[xGhostPos, yGhostPos] = ghost->getPosition();
         auto isCollided = collision_manager->playerGhostCollisions(xGhostPos,yGhostPos,xPlayerPos,yPlayerPos);
         if (isCollided)
-           std::cout << "Collision" << std::endl;
+        {
+            auto ghostFrightened = ghost->getMode();
+            if (ghostFrightened == Mode::Frightened)
+            {
+                ghost->respawn();
+            }
+        }
     }
 }
 
