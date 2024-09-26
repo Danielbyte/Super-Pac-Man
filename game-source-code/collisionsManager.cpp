@@ -176,3 +176,8 @@ bool CollisionsManager::ghostWallCollisions(std::vector<std::shared_ptr<GameWorl
     }
     return false;
 }
+
+bool CollisionsManager::playerGhostCollisions(const float xGhostPos, const float yGhostPos, const float xPlayerPos, const float yPlayerPos)
+{
+    return(collision->checkCollision(xGhostPos,yGhostPos,ghostWidth,ghostLength,xPlayerPos,yPlayerPos,playerWidth,playerLength));
+}

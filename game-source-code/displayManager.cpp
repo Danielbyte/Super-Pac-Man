@@ -79,6 +79,7 @@ void DisplayManager::updateGame()
     updateKeys();
     updateFruits();
     updateGhosts();
+    playerGhostCollisions();
     updateLocks();
 }
 
@@ -90,7 +91,8 @@ void DisplayManager::updateGhosts()
     auto ghost_texture = ghost_textures.begin();
     for (auto& ghost : ghost_objects)
     {
-        if (playerAtePowerPellet)
+        auto justReSpawned = ghost->isJustRespawned();
+        if (playerAtePowerPellet && !justReSpawned)
         {
             ghost->setMode(Mode::Frightened);
             (*ghost_texture) = frightenedGhostT;
@@ -120,6 +122,19 @@ void DisplayManager::updateGhosts()
           
         ghost->update(maze_resources,lock_objects ,1/60.0f);
         ++ghost_texture;
+    }
+}
+
+void DisplayManager::playerGhostCollisions()
+{
+    auto [xPlayerPos, yPlayerPos] = player_obj->getPlayerPosition();
+
+    for(auto& ghost : ghost_objects)
+    {
+        auto[xGhostPos, yGhostPos] = ghost->getPosition();
+        auto isCollided = collision_manager->playerGhostCollisions(xGhostPos,yGhostPos,xPlayerPos,yPlayerPos);
+        if (isCollided)
+           std::cout << "Collision" << std::endl;
     }
 }
 

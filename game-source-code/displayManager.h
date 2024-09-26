@@ -61,6 +61,7 @@ class DisplayManager
     void initialiseGhosts();
     void drawGhosts();
     void updateGhosts();
+    void playerGhostCollisions();
     
     //Create Player objects
     std::shared_ptr<Player> player_obj = std::make_shared<Player>(); 

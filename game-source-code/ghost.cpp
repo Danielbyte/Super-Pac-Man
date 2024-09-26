@@ -338,10 +338,13 @@ bool Ghost::isJustRespawned()
     
     else
         justSpawned = false;
+
+    return justSpawned;
 }
 
 void Ghost::respawn()
 {
     time_since_respawn.restartTimer();
     mode = Mode::Scatter;
+    setPosition(249.0f, 105.0f);
 }
