@@ -149,13 +149,11 @@ void Player::setToSuperPacmanMode()
 {
     super_pacman_timer.restartTimer();
     superPacman = true;
-    std::cout << "Start" << std::endl;
 }
 
 void Player::toggleOffSuperPacmanMode()
 {
     superPacman = false;
-     std::cout << "End" << std::endl;
 }
 
 bool Player::isSuperPacman() const
