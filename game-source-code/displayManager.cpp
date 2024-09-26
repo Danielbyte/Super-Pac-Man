@@ -9,12 +9,15 @@ quitGame{false},
 green{38, 185, 154},
 black{0,0,0,255},
 white{255, 255, 255, 255},
+red{230, 41, 55, 255},
 isSplashScreen{true},
 isPlaying{false},// Player initially not playing
 downArrowKeyPressed{false},
 upArrowKeyPressed{false}, 
 leftArrowKeyPressed{false}, 
-rightArrowKeyPressed{false}
+rightArrowKeyPressed{false},
+isGameOver{false},
+playerWon{false}
 {
     window->Init(window_width, window_height, "SUPER PAC-MAN");
     loadTextures();
@@ -46,6 +49,9 @@ void DisplayManager::startGame()
 
         if(isSplashScreen)
            displaySplashScreen();
+
+        if(isGameOver)
+           displayGameOverScreen();
 
         if(isPlaying)
            displayInGameScreen();
@@ -159,7 +165,12 @@ void DisplayManager::playerGhostCollisions()
             auto ghostFrightened = ghost->getMode();
             if (ghostFrightened == Mode::Frightened)
             {
-                ghost->respawn();
+                //ghost->respawn();Will toggle off for now (Buggy)
+            }
+            else
+            {
+                isGameOver = true;
+                isPlaying = false;
             }
         }
     }
@@ -277,6 +288,12 @@ void DisplayManager::displaySplashScreen()
     raylib::DrawText("PRESS ENTER TO START GAME",50,250,20,black);
     raylib::DrawText("PRESS ARROW KEYS TO MOVE PLAYER",50,300,20,black);
     raylib::DrawText("PRESS ESCAPE(Esc) TO QUIT GAME",50,350,20,black);
+}
+
+void DisplayManager::displayGameOverScreen()
+{
+    background = black;
+    raylib::DrawText("GAME OVER! PRESS Esc TO QUIT",50,300,20,red);
 }
 
 void DisplayManager::displayInGameScreen()

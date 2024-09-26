@@ -28,6 +28,7 @@ class DisplayManager
     raylib::Color black;
     raylib::Color background;
     raylib::Color white;
+    raylib::Color red;
     bool isSplashScreen; //flag to monitor if player is withing splash screen
     bool isPlaying;
 
@@ -37,6 +38,7 @@ class DisplayManager
     //Utility Functions
     void updateGame();
     void displaySplashScreen();
+    void displayGameOverScreen();
     void displayInGameScreen();
     void drawGameWorld();
     void InitGameWorldTextures();
@@ -105,5 +107,7 @@ class DisplayManager
 
     StopWatch stop_watch;
     GhostManager ghost_manager;
+    bool isGameOver;
+    bool playerWon;
 };
 #endif //DISPLAYMANAGER
