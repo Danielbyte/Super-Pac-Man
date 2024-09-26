@@ -333,7 +333,7 @@ void Ghost::updatePosition(std::vector<std::shared_ptr<Lock>>& locks, const floa
 bool Ghost::isJustRespawned()
 {
     auto time_elapsed = time_since_respawn.elapsedTime();
-    if (time_elapsed < 4.0f)
+    if (time_elapsed < 5.0f)
         justSpawned = true;
     
     else
@@ -347,4 +347,7 @@ void Ghost::respawn()
     time_since_respawn.restartTimer();
     mode = Mode::Scatter;
     setPosition(249.0f, 105.0f);
+    currentDirection = GDirection::Still;
+    integralDistance = 0.0f;
+    isInitial = true;
 }
