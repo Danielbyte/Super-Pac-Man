@@ -5,7 +5,8 @@ xPosition{400.0f},//New player center
 yPosition{326.0f},//New player center
 playerSpeed{102.0f},
 playerDirection{Direction::Right},//Pacman initially facing right
-superPacman{false}
+superPacman{false},
+atePowerPellet{false}
 {}
 
 void Player::movePlayer(bool rightArrowKeyPressed, bool leftArrowKeyPressed,
@@ -16,6 +17,10 @@ void Player::movePlayer(bool rightArrowKeyPressed, bool leftArrowKeyPressed,
     auto elapsed_time = super_pacman_timer.elapsedTime();
     if (elapsed_time >= 7.0f && superPacman)
         toggleOffSuperPacmanMode();
+
+    elapsed_time = power_pellet_timer.elapsedTime();
+    if (elapsed_time >= 5.0f && atePowerPellet)
+       toggleOffPowerPellet();
 
     if (rightArrowKeyPressed)
     {
@@ -151,9 +156,27 @@ void Player::setToSuperPacmanMode()
     superPacman = true;
 }
 
+void Player::inPowerPelletMode()
+{
+    power_pellet_timer.restartTimer();
+    atePowerPellet = true;
+    std::cout << "Ghost, be frightened"<< std::endl;
+}
+
+bool Player::consumedPowerPellet() const
+{
+    return atePowerPellet;
+}
+
 void Player::toggleOffSuperPacmanMode()
 {
     superPacman = false;
+}
+
+void Player::toggleOffPowerPellet()
+{
+    atePowerPellet = false;
+    std::cout << "Ghost, enough!"<< std::endl;
 }
 
 bool Player::isSuperPacman() const

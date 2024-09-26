@@ -18,7 +18,9 @@ private:
  bool willCoolideWithLock(Direction direction, std::vector<std::shared_ptr<Lock>>& locks);
  CollisionsManager collisions_manager;
  bool superPacman;
+ bool atePowerPellet;
  StopWatch super_pacman_timer;
+ StopWatch power_pellet_timer;
 
 public:
     Player();
@@ -27,11 +29,14 @@ public:
     std::tuple<float, float> getPlayerPosition() const;
     Direction playerDirection;
     bool isSuperPacman() const;
+    bool consumedPowerPellet() const;
 
     void setPlayerPosition(float x, float y);
     Direction getPlayerDirection() const;
     void setToSuperPacmanMode();
+    void inPowerPelletMode();
     void toggleOffSuperPacmanMode();
+    void toggleOffPowerPellet();
 };
 #endif //PLAYER
 

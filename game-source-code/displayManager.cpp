@@ -64,10 +64,17 @@ void DisplayManager::updateGame()
     collision_manager->playerKeyCollisions(key_objects,xPos,yPos,lock_objects);
 
     auto isSuPerPacman = player_obj->isSuperPacman();
+    auto atePowerPellet = player_obj->consumedPowerPellet();
+
     auto prevPlayerState = isSuPerPacman;
-    collision_manager->playerFruitCollisions(fruit_objects, xPos, yPos, isSuPerPacman);
+    auto powerPelletPrevState = atePowerPellet;
+    collision_manager->playerFruitCollisions(fruit_objects, xPos, yPos, isSuPerPacman, atePowerPellet);
+
     if (isSuPerPacman && (isSuPerPacman != prevPlayerState))//detect a difference in state
         player_obj->setToSuperPacmanMode();
+
+    if(atePowerPellet && (atePowerPellet != powerPelletPrevState))
+       player_obj->inPowerPelletMode();
 
     updateKeys();
     updateFruits();

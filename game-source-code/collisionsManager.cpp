@@ -82,7 +82,7 @@ std::vector<std::shared_ptr<Lock>>& locks)
 }
 
 void CollisionsManager::playerFruitCollisions(std::vector<std::shared_ptr<Fruit>>fruit_objects, const float xPlayerPos, const float yPlayerPos,
-bool& isSuperPacman)
+bool& isSuperPacman, bool& atePowerPellet)
 {
     auto fruit = fruit_objects.begin();
     while(fruit != fruit_objects.end())
@@ -94,6 +94,10 @@ bool& isSuperPacman)
             auto isSuperPellet = (*fruit)->getIsSuperPellet();
             if (isSuperPellet && !isSuperPacman)
                 isSuperPacman = true;
+
+            auto isPowerPellet = (*fruit)->getIsPowerPellet();
+            if(isPowerPellet)
+               atePowerPellet = true;
 
             (*fruit)->markForDeletion();
         }
