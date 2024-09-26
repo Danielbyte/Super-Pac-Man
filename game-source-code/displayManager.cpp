@@ -53,6 +53,9 @@ void DisplayManager::startGame()
         if(isGameOver)
            displayGameOverScreen();
 
+        if(playerWon)
+          displayPlayerWonScreen();
+
         if(isPlaying)
            displayInGameScreen();
 
@@ -279,6 +282,12 @@ void DisplayManager::updateFruits()
             ++fruit_texture;
         }
     }
+
+    if (fruit_objects.empty())
+    {
+        playerWon = true;
+        isPlaying = false;
+    }
 }
 
 void DisplayManager::displaySplashScreen()
@@ -294,6 +303,12 @@ void DisplayManager::displayGameOverScreen()
 {
     background = black;
     raylib::DrawText("GAME OVER! PRESS Esc TO QUIT",50,300,20,red);
+}
+
+void DisplayManager::displayPlayerWonScreen()
+{
+    background = black;
+    raylib::DrawText("YOU WON! PRESS Esc TO QUIT",50,300,20,green);
 }
 
 void DisplayManager::displayInGameScreen()

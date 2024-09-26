@@ -39,6 +39,7 @@ class DisplayManager
     void updateGame();
     void displaySplashScreen();
     void displayGameOverScreen();
+    void displayPlayerWonScreen();
     void displayInGameScreen();
     void drawGameWorld();
     void InitGameWorldTextures();
