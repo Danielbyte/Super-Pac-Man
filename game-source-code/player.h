@@ -37,6 +37,7 @@ public:
     void inPowerPelletMode();
     void toggleOffSuperPacmanMode();
     void toggleOffPowerPellet();
+    void updatePlayerStates();
 };
 #endif //PLAYER
 

@@ -87,16 +87,39 @@ void DisplayManager::updateGhosts()
     auto [xPlayerPos, yPlayerPos] = player_obj->getPlayerPosition();
     auto playerAtePowerPellet = player_obj->consumedPowerPellet();
     ghost_manager.updateTarget(ghost_objects, xPlayerPos, yPlayerPos);
-
+    auto ghost_texture = ghost_textures.begin();
     for (auto& ghost : ghost_objects)
     {
         if (playerAtePowerPellet)
+        {
             ghost->setMode(Mode::Frightened);
-        
+            (*ghost_texture) = frightenedGhostT;
+        }
+
         if(!playerAtePowerPellet && (ghost->getMode() == Mode::Frightened))
-          ghost->setMode(Mode::Scatter);
+        {
+            ghost->setMode(Mode::Scatter);
+            auto ghostType = ghost->getType();
+            switch (ghostType)
+            {
+            case Type::Blue:
+                (*ghost_texture) = blueT;
+                break;
+            case Type::Pink:
+                 (*ghost_texture) = pinkT;
+                 break;
+            case Type::Red:
+                 (*ghost_texture) = redT;
+                 break;
+            case Type::Orange:
+                 (*ghost_texture) = orangeT;  
+            default:
+                break;
+            }
+        }
           
         ghost->update(maze_resources,lock_objects ,1/60.0f);
+        ++ghost_texture;
     }
 }
 
@@ -126,6 +149,8 @@ void DisplayManager::handleUserInput(const float dt)
     upArrowKeyPressed = false;
     leftArrowKeyPressed = false;
     rightArrowKeyPressed = false;
+
+    player_obj->updatePlayerStates();
 
     if(IsKeyDown(KEY_UP))
     {
@@ -1075,6 +1100,7 @@ void DisplayManager::loadTextures()
     redT->Load("../resources/red1.png");
     pinkT->Load("../resources/pink1.png");
     orangeT->Load("../resources/orange1.png");
+    frightenedGhostT->Load("../resources/frightened.png");
 
     /*horizontalWallPieceI = LoadImage("resources/horizontalWallPiece.png");
     horizontalWallPieceT = LoadTextureFromImage(horizontalWallPieceI);

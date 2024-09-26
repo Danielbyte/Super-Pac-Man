@@ -70,7 +70,7 @@ void GhostManager::updateTarget(std::vector<std::shared_ptr<Ghost>> ghosts, cons
         switch (type)
         {
         case Type::Red:
-            if (time_elapsed >= 10.0f && red_mode_switch == 1)
+            if (time_elapsed >= 5.0f && red_mode_switch == 1)
             {
                 ghost->setMode(Mode::Chase);
                 red_watch->restartTimer();

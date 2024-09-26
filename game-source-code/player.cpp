@@ -14,14 +14,6 @@ void Player::movePlayer(bool rightArrowKeyPressed, bool leftArrowKeyPressed,
                         std::vector<std::shared_ptr<GameWorldResources>>& maze, 
                         std::vector<std::shared_ptr<Lock>>& locks, const float dt)
 {
-    auto elapsed_time = super_pacman_timer.elapsedTime();
-    if (elapsed_time >= 7.0f && superPacman)
-        toggleOffSuperPacmanMode();
-
-    elapsed_time = power_pellet_timer.elapsedTime();
-    if (elapsed_time >= 5.0f && atePowerPellet)
-       toggleOffPowerPellet();
-
     if (rightArrowKeyPressed)
     {
         playerDirection = Direction::Right;
@@ -77,7 +69,16 @@ void Player::movePlayer(bool rightArrowKeyPressed, bool leftArrowKeyPressed,
             yPosition = 8.0f; //Cater for wall width of 8 pixels
     }
 }
+void Player::updatePlayerStates()
+{
+    auto elapsed_time = super_pacman_timer.elapsedTime();
+    if (elapsed_time >= 7.0f && superPacman)
+        toggleOffSuperPacmanMode();
 
+    elapsed_time = power_pellet_timer.elapsedTime();
+    if (elapsed_time >= 5.0f && atePowerPellet)
+       toggleOffPowerPellet();
+}
 std::tuple<float, float> Player::getPlayerPosition() const
 {
     return {xPosition, yPosition};

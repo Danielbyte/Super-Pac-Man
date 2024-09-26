@@ -82,6 +82,7 @@ class DisplayManager
     std::shared_ptr<raylib::Texture2D> blueT = std::make_shared<raylib::Texture2D>();
     std::shared_ptr<raylib::Texture2D> redT = std::make_shared<raylib::Texture2D>();
     std::shared_ptr<raylib::Texture2D> pinkT = std::make_shared<raylib::Texture2D>();
+    std::shared_ptr<raylib::Texture2D> frightenedGhostT = std::make_shared<raylib::Texture2D>();
     std::shared_ptr<raylib::Texture2D> orangeT = std::make_shared<raylib::Texture2D>();
 
     //Game objects
