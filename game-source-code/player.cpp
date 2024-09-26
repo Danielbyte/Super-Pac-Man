@@ -160,7 +160,6 @@ void Player::inPowerPelletMode()
 {
     power_pellet_timer.restartTimer();
     atePowerPellet = true;
-    std::cout << "Ghost, be frightened"<< std::endl;
 }
 
 bool Player::consumedPowerPellet() const
@@ -176,7 +175,6 @@ void Player::toggleOffSuperPacmanMode()
 void Player::toggleOffPowerPellet()
 {
     atePowerPellet = false;
-    std::cout << "Ghost, enough!"<< std::endl;
 }
 
 bool Player::isSuperPacman() const

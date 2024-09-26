@@ -85,10 +85,17 @@ void DisplayManager::updateGame()
 void DisplayManager::updateGhosts()
 {
     auto [xPlayerPos, yPlayerPos] = player_obj->getPlayerPosition();
+    auto playerAtePowerPellet = player_obj->consumedPowerPellet();
     ghost_manager.updateTarget(ghost_objects, xPlayerPos, yPlayerPos);
 
     for (auto& ghost : ghost_objects)
     {
+        if (playerAtePowerPellet)
+            ghost->setMode(Mode::Frightened);
+        
+        if(!playerAtePowerPellet && (ghost->getMode() == Mode::Frightened))
+          ghost->setMode(Mode::Scatter);
+          
         ghost->update(maze_resources,lock_objects ,1/60.0f);
     }
 }

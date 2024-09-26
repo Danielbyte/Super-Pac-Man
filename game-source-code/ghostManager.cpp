@@ -57,6 +57,15 @@ void GhostManager::updateTarget(std::vector<std::shared_ptr<Ghost>> ghosts, cons
     {
         //Get type of ghost
         auto type = ghost->getType();
+        auto mode = ghost->getMode();
+        if (mode == Mode::Frightened)
+        {
+            red_watch->restartTimer();
+            red_mode_switch = 1;
+            setTarget(ghost, xPlayerPos, yPlayerPos);
+            continue;
+        }
+
         auto time_elapsed = red_watch->elapsedTime();
         switch (type)
         {
@@ -98,6 +107,7 @@ void GhostManager::setTarget(std::shared_ptr<Ghost> ghost, const float xPlayerPo
         break;
 
     case Mode::Frightened:
+        ghost->moveToCorner();
         break;
     
     default:
