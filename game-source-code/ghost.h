@@ -33,6 +33,8 @@ private:
     GDirection priorityDirection(std::vector<std::shared_ptr<Lock>>& locks);
     bool isInitial;
     std::tuple<int,int> getNextTile(GDirection dir);
+    StopWatch time_since_respawn;
+    bool justSpawned;
 public:
     Ghost();
     std::tuple<float, float>getPosition() const;
@@ -51,5 +53,7 @@ public:
     void assignCorner(const float x, const float y);
     float calculateLinearDistance();
     void moveToCorner();
+    bool isJustRespawned();
+    void respawn();
 };
 #endif

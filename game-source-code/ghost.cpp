@@ -6,7 +6,8 @@ yPosition{-100.0f},
 ghostSpeed{60.0f},
 currentDirection{GDirection::Still},
 integralDistance{0.0f},
-isInitial{true}
+isInitial{true},
+justSpawned{false}
 {}
 
 std::tuple<float, float>Ghost::getPosition() const
@@ -327,4 +328,20 @@ void Ghost::updatePosition(std::vector<std::shared_ptr<Lock>>& locks, const floa
     }
 
     setPosition(nextX, nextY);
+}
+
+bool Ghost::isJustRespawned()
+{
+    auto time_elapsed = time_since_respawn.elapsedTime();
+    if (time_elapsed < 4.0f)
+        justSpawned = true;
+    
+    else
+        justSpawned = false;
+}
+
+void Ghost::respawn()
+{
+    time_since_respawn.restartTimer();
+    mode = Mode::Scatter;
 }
