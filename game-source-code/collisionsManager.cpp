@@ -102,7 +102,8 @@ bool& isSuperPacman)
     }
 }
 
-bool CollisionsManager::lockCollisions(std::vector<std::shared_ptr<Lock>>& lock_objects, const float xPlayerPos, const float yPlayerPos)
+bool CollisionsManager::lockCollisions(std::vector<std::shared_ptr<Lock>>& lock_objects, const float xPlayerPos, const float yPlayerPos,
+bool inSupePacmanMode)
 {
     auto lock = lock_objects.begin();
     while(lock != lock_objects.end())
@@ -127,7 +128,10 @@ bool CollisionsManager::lockCollisions(std::vector<std::shared_ptr<Lock>>& lock_
         auto isCollided = collision->checkCollision(xPlayerPos, yPlayerPos, playerWidth, playerLength,
         xPos, yPos, lockWidth, lockLength);
 
-        if (isCollided)
+        if (isCollided && inSupePacmanMode)
+            (*lock)->OpenLock();
+
+        if (isCollided && !inSupePacmanMode)
            return true;
         ++lock;
     }

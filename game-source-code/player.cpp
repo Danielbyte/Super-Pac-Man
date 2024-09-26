@@ -142,7 +142,7 @@ bool Player::willCoolideWithLock(Direction direction, std::vector<std::shared_pt
         break;
     }
 
-   return collisions_manager.lockCollisions(locks,nextPlayerXpos,nextPlayerYpos);
+   return collisions_manager.lockCollisions(locks,nextPlayerXpos,nextPlayerYpos, superPacman);
 }
 
 void Player::setToSuperPacmanMode()

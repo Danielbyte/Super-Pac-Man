@@ -132,7 +132,7 @@ std::vector<std::shared_ptr<Lock>>& locks)
           || gameMap[tileRow-1][tileColumn] == "||"|| gameMap[tileRow-1][tileColumn] == "Π"){isValid = true;}
 
           yPos -= Offset;
-          auto isCollided = collision_manager.lockCollisions(locks,xPos,yPos);
+          auto isCollided = collision_manager.lockCollisions(locks,xPos,yPos,false);
           if (isCollided)
               isValid = false;
         }
@@ -152,7 +152,7 @@ std::vector<std::shared_ptr<Lock>>& locks)
                 || gameMap[tileRow+1][tileColumn] == "||"){isValid = true;}
 
                 yPos += Offset;
-                auto isCollided = collision_manager.lockCollisions(locks,xPos,yPos);
+                auto isCollided = collision_manager.lockCollisions(locks,xPos,yPos, false);
                 if(isCollided)
                    isValid = false;
             }
@@ -172,7 +172,7 @@ std::vector<std::shared_ptr<Lock>>& locks)
                 || gameMap[tileRow][tileColumn+1] == "="){isValid = true;}
 
                 xPos += Offset;
-                auto isCollided = collision_manager.lockCollisions(locks,xPos,yPos);
+                auto isCollided = collision_manager.lockCollisions(locks,xPos,yPos, false);
 
                 if (isCollided)
                    isValid = false;
@@ -194,7 +194,7 @@ std::vector<std::shared_ptr<Lock>>& locks)
                 || gameMap[tileRow][tileColumn-1] == "└"){isValid = true;}
 
                 xPos -= Offset;
-                auto isCollided = collision_manager.lockCollisions(locks,xPos,yPos);
+                auto isCollided = collision_manager.lockCollisions(locks,xPos,yPos, false);
                 if (isCollided)
                     isValid = false;
 
