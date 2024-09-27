@@ -443,6 +443,14 @@ TEST_CASE("GHOST MODE CAN BE SET AND RETRIEVED")
     CHECK_EQ(mode, Mode::Scatter);
 }
 
+TEST_CASE("GHOST TYPE CAN BE SET")
+{
+    auto ghost = std::make_unique<Ghost>();
+    ghost->setType(Type::Blue);
+    auto ghostType = ghost->getType();
+    CHECK_EQ(ghostType, Type::Blue);
+}
+
 /*TEST_CASE("GHOST MOVEMENT IS UPDATED")
 {
     auto ghost = std::make_unique<Ghost>();
