@@ -348,6 +348,16 @@ TEST_CASE("TEST IF PLAYER DIRECTION CAN BE UPDATED UPWARDS")
     CHECK_EQ(actualDirection,expectedDirection);
 }
 
+TEST_CASE("TEST IF PLAYER STATE UPDATE WHEN PLAYER CONSUMES POWER PELLET")
+{
+    auto player = std::make_unique<Player>();
+    auto PowerPelletMode = player->consumedPowerPellet();
+    CHECK_FALSE(PowerPelletMode);
+    player->inPowerPelletMode();//set player to consume power pellet
+    PowerPelletMode = player->consumedPowerPellet();
+    CHECK_EQ(PowerPelletMode, true);
+}
+
 /*
 TEST_CASE("TEST IF COLLISION IS DETECTED BETWEEN WALL AND PLAYER")
 {
