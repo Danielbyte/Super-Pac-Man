@@ -394,7 +394,6 @@ TEST_CASE("TEST IF POWER PELLET MODE CAN BE TOGGLED OFF")
     CHECK_FALSE(powerPelletMode);
 }
 
-/*
 TEST_CASE("TEST IF COLLISION IS DETECTED BETWEEN WALL AND PLAYER")
 {
     auto player = std::make_unique<Player>();
@@ -407,9 +406,13 @@ TEST_CASE("TEST IF COLLISION IS DETECTED BETWEEN WALL AND PLAYER")
     auto [InitXpos, InitYpos] = player->getPlayerPosition();
     auto tilePosX = static_cast<int>(InitXpos/32);
     auto tilePosY = static_cast<int>((InitYpos - 64.0f)/32);
-    auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY, ObjectType::HorizontalWall);
+    float xOffset = 0.0f;
+    float yOffset = 0.0f;
+    auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY, ObjectType::VerticalWall,xOffset,yOffset);
     maze.push_back(tile_property);
-    player->setPlayerPosition(tilePosX * 32.0f,tilePosY * 32.0f);//Place player such that it collides with the wall
+
+    maze.push_back(tile_property);
+    player->setPlayerPosition(tilePosX * 48.0f,tilePosY * 48.0f);//Place player such that it collides with the wall
 
     auto [finalXpos, finalYpos] = player->getPlayerPosition();    
     auto isCollided = collisions_manager.playerWallCollisions(maze,finalXpos, finalYpos);
@@ -417,7 +420,7 @@ TEST_CASE("TEST IF COLLISION IS DETECTED BETWEEN WALL AND PLAYER")
     //A collision should have been detected
     CHECK_EQ(isCollided,true);
 }
-
+/*
 TEST_CASE("TEST IF PLAYER CANNOT MOVE PAST WALL")
 {
     auto player = std::make_unique<Player>();
