@@ -368,6 +368,19 @@ TEST_CASE("TEST IF PLAYER STATE UPDATE WHEN PLAYER CONSUMES SUPER PELLET")
     CHECK_EQ(superPacManMode, true);
 }
 
+TEST_CASE("TEST IF SUPER-PACMAN MODE CAN BE TOGGLED OFF")
+{
+    auto player = std::make_unique<Player>();
+    auto superPacManMode = player->isSuperPacman();
+    CHECK_FALSE(superPacManMode);
+    player->setToSuperPacmanMode();
+    superPacManMode = player->isSuperPacman();
+    CHECK_EQ(superPacManMode, true);
+    player->toggleOffSuperPacmanMode();
+    superPacManMode = player->isSuperPacman();
+    CHECK_FALSE(superPacManMode);
+}
+
 /*
 TEST_CASE("TEST IF COLLISION IS DETECTED BETWEEN WALL AND PLAYER")
 {
