@@ -40,6 +40,36 @@ TEST_CASE("TEST IF GAME MAP IS ACCURATELY LOADED FROM FILE")
     actual_char = maze[1][1];
     CHECK_EQ(expected_char,actual_char);
 }
+
+//STOP WATCH TEST CASES
+TEST_CASE("TEST IF TIMER INCREMENTS WHEN TIMING A GAME EVENT")
+{
+    StopWatch watch;
+    auto time1 = watch.elapsedTime();
+
+    for (int i = 0; i < 100; ++i)
+    {
+        //Pass some time
+    }
+    auto time2 = watch.elapsedTime();
+    CHECK_GT(time2,time1);//time 2 should be greater than time1
+}
+
+TEST_CASE("TEST IF TIMER IS SUCCESSFULLY RESTARTED")
+{
+    StopWatch watch;
+    auto time1 = watch.elapsedTime();
+
+    for (int i = 0; i < 100; ++i)
+    {
+        //Pass some time
+    }
+    auto time2 = watch.elapsedTime();
+    watch.restartTimer();
+    auto time3 = watch.elapsedTime();
+    CHECK_LE(time3,time1);//time 3 should be lesser than time2
+}
+
 /*
 TEST_CASE("TEST IF PLAYER IS CAN SPAWN AT THE RIGHT POSITION")
 {
