@@ -2,7 +2,7 @@
 #include "doctest.h"
 #include <raylib-cpp.hpp>
 #include "displayManager.h"
-/*
+
 TEST_CASE("TEST IF GAME MAP IS INITIALLY EMPTY")
 {
     auto game_world = std::make_shared<GameWorld>();
@@ -31,16 +31,16 @@ TEST_CASE("TEST IF GAME MAP IS ACCURATELY LOADED FROM FILE")
     auto game_world = std::make_unique<GameWorld>();
     game_world->loadMapFromFile();
     auto maze = game_world->getGameMap();
-    char expected_char = '-'; //at point (0,0), this is the expected character
-    char actual_char = maze[0][0];
+    std::string expected_char = "┌"; //at point (0,0), this is the expected character
+    std::string actual_char = maze[0][0];
     CHECK_EQ(expected_char,actual_char);
 
     //Char somewhere at the center of maze
-    expected_char = '0';
-    actual_char = maze[12][10];
+    expected_char = "||";
+    actual_char = maze[1][1];
     CHECK_EQ(expected_char,actual_char);
 }
-
+/*
 TEST_CASE("TEST IF PLAYER IS CAN SPAWN AT THE RIGHT POSITION")
 {
     auto player = std::make_unique<Player>();
