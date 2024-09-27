@@ -318,23 +318,49 @@ void DisplayManager::displayInGameScreen()
     background = black;//Updating background
     auto [xPlayerPos, yPlayerPos] = player_obj->getPlayerPosition();
     auto playerDirection = player_obj->getPlayerDirection();
-    switch (playerDirection)
+    auto isSuperPacman = player_obj->isSuperPacman();
+    if (!isSuperPacman)
     {
-    case Direction::Right:
-        pacmanRight1_T.Draw(xPlayerPos, yPlayerPos);
-        break;
-    case Direction::Left:
-        pacmanLeft1_T.Draw(xPlayerPos,yPlayerPos);
-        break;
-    case Direction::Up:
+      switch (playerDirection)
+      {
+      case Direction::Right:
+          pacmanRight1_T.Draw(xPlayerPos, yPlayerPos);
+          break;
+      case Direction::Left:
+          pacmanLeft1_T.Draw(xPlayerPos,yPlayerPos);
+          break;
+      case Direction::Up:
         pacmanUp1_T.Draw(xPlayerPos,yPlayerPos);
         break;
-    case Direction::Down:
+      case Direction::Down:
         pacmanDown1_T.Draw(xPlayerPos,yPlayerPos);
         break;
-    default:
+      default:
         break;
+      }
     }
+
+    if (isSuperPacman)
+    {
+      switch (playerDirection)
+      {
+      case Direction::Right:
+          SuperpacmanRight1_T.Draw(xPlayerPos, yPlayerPos);
+          break;
+      case Direction::Left:
+          SuperpacmanLeft1_T.Draw(xPlayerPos,yPlayerPos);
+          break;
+      case Direction::Up:
+        SuperpacmanUp1_T.Draw(xPlayerPos,yPlayerPos);
+        break;
+      case Direction::Down:
+        SuperpacmanDown1_T.Draw(xPlayerPos,yPlayerPos);
+        break;
+      default:
+        break;
+      }
+    }
+
     drawMaze();
     drawKeys();
     drawFruits();
@@ -1164,6 +1190,10 @@ void DisplayManager::loadTextures()
     pacmanLeft1_T = LoadTexture("../resources/pacmanLeft1.png");
     pacmanDown1_T = LoadTexture("../resources/pacmanDown1.png");
     pacmanUp1_T = LoadTexture("../resources/pacmanUp1.png");
+    SuperpacmanRight1_T = LoadTexture("../resources/SuperpacmanRight1.png");
+    SuperpacmanLeft1_T = LoadTexture("../resources/SuperpacmanLeft1.png");
+    SuperpacmanDown1_T = LoadTexture("../resources/SuperpacmanDown1.png");
+    SuperpacmanUp1_T = LoadTexture("../resources/SuperpacmanUp1.png");
     
     keyT ->Load("../resources/key.png");
     fruitT->Load("../resources/fruit.png");
