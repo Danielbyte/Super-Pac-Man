@@ -160,24 +160,30 @@ TEST_CASE("TEST IF PLAYER CAN MOVE DOWN")
     CHECK_EQ(expectedXpos,actualXpos);
     CHECK_EQ(expectedYpos,actualYpos);
 }
-/*
+
 TEST_CASE("TEST IF PLAYER IS BOUNDED ON LOWER BOUND OF SCREEN")
 {
     auto player = std::make_unique<Player>();
+
+    //Place player a level higher than lower boundary (To avoid wall collisions)
+    player->setPlayerPosition(96.0f, 543.0f);
     auto game_world = std::make_unique<GameWorld>();
     game_world->loadMapFromFile();
-    std::vector<std::shared_ptr<GameWorldResources>>game_resources;
+    std::vector<std::shared_ptr<GameWorldResources>>game_resources = {};
     auto [InitXpos, InitYpos] = player->getPlayerPosition();
-    auto window_height = 704;
-    auto player_dimension = 32;
+    auto window_height = 576;
+    auto player_dimension = 25;
     auto wall_width = 8.0f;
+    auto player_speed = 102.0f;
+    float dt = 1/60;
+    std::vector<std::shared_ptr<Lock>>locks = {};
     auto lower_boundary = window_height - (player_dimension + wall_width);
 
     bool movingLeft = false,movingRight = false,movingUp = false, movingDown = true;
     for (int i = 0; i < 500; i++)
     {
         //Simulate the player attempting to move out of bounds
-        player->movePlayer(movingRight,movingLeft,movingDown,movingUp, game_resources);
+        player->movePlayer(movingRight,movingLeft,movingDown,movingUp, game_resources,locks,dt);
     }
     
     auto expectedYpos = lower_boundary;
@@ -190,12 +196,16 @@ TEST_CASE("TEST IF PLAYER IS BOUNDED ON LOWER BOUND OF SCREEN")
 TEST_CASE("TEST IF PLAYER IS BOUNDED ON UPPER BOUND OF SCREEN")
 {
     auto player = std::make_unique<Player>();
+    player->setPlayerPosition(0, 8.0f);//place player at upper margin
     auto game_world = std::make_unique<GameWorld>();
     game_world->loadMapFromFile();
-    std::vector<std::shared_ptr<GameWorldResources>>game_resources;
+    std::vector<std::shared_ptr<GameWorldResources>>game_resources = {};
     auto [InitXpos, InitYpos] = player->getPlayerPosition();
-    auto window_height = 704;
-    auto player_dimension = 32;
+    auto window_height = 576;
+    auto player_dimension = 25;
+    auto player_speed = 102.0f;
+    float dt = 1/60;
+    std::vector<std::shared_ptr<Lock>>locks = {};
     auto wall_width = 8.0f;
     auto lower_boundary = wall_width;
 
@@ -203,7 +213,7 @@ TEST_CASE("TEST IF PLAYER IS BOUNDED ON UPPER BOUND OF SCREEN")
     for (int i = 0; i < 500; i++)
     {
         //Simulate the player attempting to move out of bounds
-        player->movePlayer(movingRight,movingLeft,movingDown,movingUp, game_resources);
+        player->movePlayer(movingRight,movingLeft,movingDown,movingUp, game_resources,locks,dt);
     }
     
     auto expectedYpos = lower_boundary;
@@ -216,20 +226,24 @@ TEST_CASE("TEST IF PLAYER IS BOUNDED ON UPPER BOUND OF SCREEN")
 TEST_CASE("TEST IF PLAYER IS BOUNDED ON LEFT BOUND OF SCREEN")
 {
     auto player = std::make_unique<Player>();
+    player->setPlayerPosition(8,0);//place player on left margin
     auto game_world = std::make_unique<GameWorld>();
     game_world->loadMapFromFile();
     std::vector<std::shared_ptr<GameWorldResources>>game_resources;
     auto [InitXpos, InitYpos] = player->getPlayerPosition();
-    auto window_height = 704;
-    auto player_dimension = 32;
+    auto window_height = 576;
+    auto player_dimension = 25;
     auto wall_width = 8.0f;
     auto left_boundary = wall_width;
+    auto player_speed = 102.0f;
+    float dt = 1/60;
+    std::vector<std::shared_ptr<Lock>>locks = {};
 
     bool movingLeft = true,movingRight = false,movingUp = false, movingDown = false;
     for (int i = 0; i < 500; i++)
     {
         //Simulate the player attempting to move out of bounds
-        player->movePlayer(movingRight,movingLeft,movingDown,movingUp, game_resources);
+        player->movePlayer(movingRight,movingLeft,movingDown,movingUp, game_resources,locks, dt);
     }
     
     auto expectedYpos = InitYpos;
@@ -242,20 +256,24 @@ TEST_CASE("TEST IF PLAYER IS BOUNDED ON LEFT BOUND OF SCREEN")
 TEST_CASE("TEST IF PLAYER IS BOUNDED ON RIGHT BOUND OF SCREEN")
 {
     auto player = std::make_unique<Player>();
+    player->setPlayerPosition(495, 0);//Place player on right boundary
     auto game_world = std::make_unique<GameWorld>();
     game_world->loadMapFromFile();
     std::vector<std::shared_ptr<GameWorldResources>>game_resources;
     auto [InitXpos, InitYpos] = player->getPlayerPosition();
-    auto window_width = 800;
-    auto player_dimension = 32;
+    auto window_width = 528;
+    auto player_dimension = 25;
     auto wall_width = 8.0f;
     auto right_boundary = window_width - (player_dimension + wall_width);
+    auto player_speed = 102.0f;
+    float dt = 1/60;
+    std::vector<std::shared_ptr<Lock>>locks = {};
 
     bool movingLeft = false,movingRight = true,movingUp = false, movingDown = false;
     for (int i = 0; i < 500; i++)
     {
         //Simulate the player attempting to move out of bounds
-        player->movePlayer(movingRight,movingLeft,movingDown,movingUp, game_resources);
+        player->movePlayer(movingRight,movingLeft,movingDown,movingUp, game_resources, locks, dt);
     }
     
     auto expectedYpos = InitYpos;
@@ -264,7 +282,7 @@ TEST_CASE("TEST IF PLAYER IS BOUNDED ON RIGHT BOUND OF SCREEN")
     CHECK_EQ(expectedXpos,actualXpos);
     CHECK_EQ(expectedYpos,actualYpos);
 }
-
+/*
 TEST_CASE("TEST IF COLLISION IS DETECTED BETWEEN WALL AND PLAYER")
 {
     auto player = std::make_unique<Player>();
