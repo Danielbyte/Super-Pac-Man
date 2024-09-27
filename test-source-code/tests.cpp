@@ -318,6 +318,36 @@ TEST_CASE("TEST IF PLAYER DIRECTION CAN BE UPDATED TO THE LEFT")
     CHECK_EQ(actualDirection,expectedDirection);
 }
 
+TEST_CASE("TEST IF PLAYER DIRECTION CAN BE UPDATED DOWNWARDS")
+{
+    auto player = std::make_unique<Player>();
+    std::vector<std::shared_ptr<GameWorldResources>>game_resources;
+    std::vector<std::shared_ptr<Lock>>locks = {};
+    auto dt = 1/60.0f;
+
+    bool movingLeft = false,movingRight = false,movingUp = false, movingDown = true;
+    player->movePlayer(movingRight,movingLeft,movingDown,movingUp, game_resources,locks, dt);
+    
+    auto actualDirection = player->getPlayerDirection();
+    auto expectedDirection = Direction::Down;//player initially facing right
+    CHECK_EQ(actualDirection,expectedDirection);
+}
+
+TEST_CASE("TEST IF PLAYER DIRECTION CAN BE UPDATED UPWARDS")
+{
+    auto player = std::make_unique<Player>();
+    std::vector<std::shared_ptr<GameWorldResources>>game_resources;
+    std::vector<std::shared_ptr<Lock>>locks = {};
+    auto dt = 1/60.0f;
+
+    bool movingLeft = false,movingRight = false,movingUp = true, movingDown = false;
+    player->movePlayer(movingRight,movingLeft,movingDown,movingUp, game_resources,locks, dt);
+    
+    auto actualDirection = player->getPlayerDirection();
+    auto expectedDirection = Direction::Up;//player initially facing right
+    CHECK_EQ(actualDirection,expectedDirection);
+}
+
 /*
 TEST_CASE("TEST IF COLLISION IS DETECTED BETWEEN WALL AND PLAYER")
 {
