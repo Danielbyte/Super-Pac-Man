@@ -282,6 +282,17 @@ TEST_CASE("TEST IF PLAYER IS BOUNDED ON RIGHT BOUND OF SCREEN")
     CHECK_EQ(expectedXpos,actualXpos);
     CHECK_EQ(expectedYpos,actualYpos);
 }
+
+TEST_CASE("TEST IF PLAYER POSITION CAN BE SET AND RETRIEVED")
+{
+    auto player = std::make_unique<Player>();
+    float xTestPos = 200.0f;
+    float yTestPos = 48.0f;
+    player->setPlayerPosition(xTestPos, yTestPos);
+    auto[xPos, yPos] = player->getPlayerPosition();//Retrieve position
+    CHECK_EQ(xTestPos,xPos);
+    CHECK_EQ(yTestPos,yPos);
+}
 /*
 TEST_CASE("TEST IF COLLISION IS DETECTED BETWEEN WALL AND PLAYER")
 {
