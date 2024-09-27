@@ -315,6 +315,12 @@ void DisplayManager::displayPlayerWonScreen()
 
 void DisplayManager::displayInGameScreen()
 {
+    drawMaze();
+    drawKeys();
+    drawFruits();
+    drawLocks();
+    drawGhosts();
+
     background = black;//Updating background
     auto [xPlayerPos, yPlayerPos] = player_obj->getPlayerPosition();
     auto playerDirection = player_obj->getPlayerDirection();
@@ -345,27 +351,21 @@ void DisplayManager::displayInGameScreen()
       switch (playerDirection)
       {
       case Direction::Right:
-          SuperpacmanRight1_T.Draw(xPlayerPos, yPlayerPos);
+          SuperpacmanRight1_T.Draw(xPlayerPos - 12.5f, yPlayerPos-12.5f);
           break;
       case Direction::Left:
-          SuperpacmanLeft1_T.Draw(xPlayerPos,yPlayerPos);
+          SuperpacmanLeft1_T.Draw(xPlayerPos - 12.5f,yPlayerPos - 12.5f);
           break;
       case Direction::Up:
-        SuperpacmanUp1_T.Draw(xPlayerPos,yPlayerPos);
+        SuperpacmanUp1_T.Draw(xPlayerPos - 12.5f,yPlayerPos-12.5f);
         break;
       case Direction::Down:
-        SuperpacmanDown1_T.Draw(xPlayerPos,yPlayerPos);
+        SuperpacmanDown1_T.Draw(xPlayerPos - 12.5f,yPlayerPos-12.5f);
         break;
       default:
         break;
       }
     }
-
-    drawMaze();
-    drawKeys();
-    drawFruits();
-    drawLocks();
-    drawGhosts();
     //EndDrawing();
 }
 
@@ -676,7 +676,7 @@ void DisplayManager::initialiseKeys()
 
     std::shared_ptr<Key>key13 = std::make_shared<Key>();
     key13->setPosition(16.5f,290.0f);
-    key13->setLockIds(25, 26, 28);
+    key13->setLockIds(25, 26);//wil leave out lock 28 for now, there is some logic that still needs to be implemented
     key_objects.push_back(key13);
     key_textures.push_back(keyT);
 
