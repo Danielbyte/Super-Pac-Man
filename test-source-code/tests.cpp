@@ -434,3 +434,21 @@ TEST_CASE("COLLISION BETWEEN GHOST AND PLAYER")
 
     CHECK_EQ(isCollided, true);
 }
+
+TEST_CASE("GHOST MODE CAN BE SET AND RETRIEVED")
+{
+    auto ghost = std::make_unique<Ghost>();
+    ghost->setMode(Mode::Scatter);
+    auto mode = ghost->getMode();
+    CHECK_EQ(mode, Mode::Scatter);
+}
+
+/*TEST_CASE("GHOST MOVEMENT IS UPDATED")
+{
+    auto ghost = std::make_unique<Ghost>();
+    auto player = std::make_unique<Player>();
+    std::vector<std::shared_ptr<GameWorldResources>>game_resources;
+    std::vector<std::shared_ptr<Lock>>locks = {};
+    auto dt = 1/60.0f;
+    ghost->update(game_resources,locks,dt);
+}*/
