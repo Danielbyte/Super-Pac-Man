@@ -381,6 +381,19 @@ TEST_CASE("TEST IF SUPER-PACMAN MODE CAN BE TOGGLED OFF")
     CHECK_FALSE(superPacManMode);
 }
 
+TEST_CASE("TEST IF POWER PELLET MODE CAN BE TOGGLED OFF")
+{
+    auto player = std::make_unique<Player>();
+    auto powerPelletMode = player->consumedPowerPellet();
+    CHECK_FALSE(powerPelletMode);
+    player->inPowerPelletMode();
+    powerPelletMode = player->consumedPowerPellet();
+    CHECK_EQ(powerPelletMode, true);
+    player->toggleOffPowerPellet();
+    powerPelletMode = player->consumedPowerPellet();
+    CHECK_FALSE(powerPelletMode);
+}
+
 /*
 TEST_CASE("TEST IF COLLISION IS DETECTED BETWEEN WALL AND PLAYER")
 {
