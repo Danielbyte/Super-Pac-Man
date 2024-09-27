@@ -100,7 +100,7 @@ TEST_CASE("TEST IF PLAYER CAN MOVE LEFT")
     CHECK_EQ(expectedXpos,actualXpos);
     CHECK_EQ(expectedYpos,actualYpos);
 }
-/*
+
 TEST_CASE("TEST IF PLAYER CAN MOVE RIGHT")
 {
     auto player = std::make_unique<Player>();
@@ -108,17 +108,19 @@ TEST_CASE("TEST IF PLAYER CAN MOVE RIGHT")
     game_world->loadMapFromFile();
     std::vector<std::shared_ptr<GameWorldResources>>game_resources;
     auto [InitXpos, InitYpos] = player->getPlayerPosition();
-    auto player_speed = 2.0f;
+    auto player_speed = 102.0f;
+    float dt = 1/60;
+    std::vector<std::shared_ptr<Lock>>locks = {};
 
     bool movingLeft = false,movingRight = true,movingUp = false, movingDown = false;
-    player->movePlayer(movingRight,movingLeft,movingDown,movingUp, game_resources);
-    auto expectedXpos = InitXpos + player_speed;
+    player->movePlayer(movingRight,movingLeft,movingDown,movingUp, game_resources,locks,dt);
+    auto expectedXpos = InitXpos + player_speed * dt;
     auto expectedYpos = InitYpos;
     auto [actualXpos, actualYpos] = player->getPlayerPosition();
     CHECK_EQ(expectedXpos,actualXpos);
     CHECK_EQ(expectedYpos,actualYpos);
 }
-
+/*
 TEST_CASE("TEST IF PLAYER CAN MOVE UP")
 {
     auto player = std::make_unique<Player>();
