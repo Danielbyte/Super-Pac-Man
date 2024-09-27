@@ -140,7 +140,7 @@ TEST_CASE("TEST IF PLAYER CAN MOVE UP")
     CHECK_EQ(expectedXpos,actualXpos);
     CHECK_EQ(expectedYpos,actualYpos);
 }
-/*
+
 TEST_CASE("TEST IF PLAYER CAN MOVE DOWN")
 {
     auto player = std::make_unique<Player>();
@@ -148,17 +148,19 @@ TEST_CASE("TEST IF PLAYER CAN MOVE DOWN")
     game_world->loadMapFromFile();
     std::vector<std::shared_ptr<GameWorldResources>>game_resources;
     auto [InitXpos, InitYpos] = player->getPlayerPosition();
-    auto player_speed = 2.0f;
+    auto player_speed = 102.0f;
+    float dt = 1/60;
+    std::vector<std::shared_ptr<Lock>>locks = {};
 
     bool movingLeft = false,movingRight = false,movingUp = false, movingDown = true;
-    player->movePlayer(movingRight,movingLeft,movingDown,movingUp, game_resources);
-    auto expectedYpos = InitYpos + player_speed;
+    player->movePlayer(movingRight,movingLeft,movingDown,movingUp, game_resources, locks, dt);
+    auto expectedYpos = InitYpos + player_speed * dt;
     auto expectedXpos = InitXpos;
     auto [actualXpos, actualYpos] = player->getPlayerPosition();
     CHECK_EQ(expectedXpos,actualXpos);
     CHECK_EQ(expectedYpos,actualYpos);
 }
-
+/*
 TEST_CASE("TEST IF PLAYER IS BOUNDED ON LOWER BOUND OF SCREEN")
 {
     auto player = std::make_unique<Player>();
