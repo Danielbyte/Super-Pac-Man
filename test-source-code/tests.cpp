@@ -70,18 +70,17 @@ TEST_CASE("TEST IF TIMER IS SUCCESSFULLY RESTARTED")
     CHECK_LE(time3,time1);//time 3 should be lesser than time2
 }
 
-/*
 TEST_CASE("TEST IF PLAYER IS CAN SPAWN AT THE RIGHT POSITION")
 {
     auto player = std::make_unique<Player>();
-    auto expectedXPlayerInitPos = 376.0f;
+    auto expectedXPlayerInitPos = 400.0f;
     auto expectedYPlayerInitPos = 326.0f;
     auto [actualXpos, actualYpos] = player->getPlayerPosition();
     
     CHECK_EQ(expectedXPlayerInitPos, actualXpos);
     CHECK_EQ(expectedYPlayerInitPos,actualYpos);
 }
-
+/*
 TEST_CASE("TEST IF PLAYER CAN MOVE LEFT")
 {
     auto player = std::make_unique<Player>();
