@@ -420,33 +420,17 @@ TEST_CASE("TEST IF COLLISION IS DETECTED BETWEEN WALL AND PLAYER")
     //A collision should have been detected
     CHECK_EQ(isCollided,true);
 }
-/*
-TEST_CASE("TEST IF PLAYER CANNOT MOVE PAST WALL")
+
+TEST_CASE("COLLISION BETWEEN GHOST AND PLAYER")
 {
+    auto ghost = std::make_unique<Ghost>();
+    CollisionsManager manage_collisions;
+    ghost->setPosition(0.0f, 0.0f);
+    auto [ghostX, ghostY] = ghost->getPosition();
     auto player = std::make_unique<Player>();
-    auto game_world = std::make_unique<GameWorld>();
-    auto collisions_manager = CollisionsManager{};
-    game_world->loadMapFromFile();
-    std::vector<std::shared_ptr<GameWorldResources>>maze = {};
+    player->setPlayerPosition(0.0f, 0.0f);//Move player to collide with ghost
+    auto[playerX, playerY] = player->getPlayerPosition();
+    auto isCollided = manage_collisions.playerGhostCollisions(ghostX, ghostY,playerX, playerY);
 
-    //Place wall two tiles above player 
-    auto [InitXpos, InitYpos] = player->getPlayerPosition();
-    auto tilePosX = static_cast<int>(InitXpos/32);
-    auto tilePosY = static_cast<int>((InitYpos - 64.0f)/32);
-    auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY, ObjectType::HorizontalWall);
-
-    maze.push_back(tile_property);
-    auto wall_bottom = tilePosY * 32.0f - 8.0f;
-    player->setPlayerPosition(tilePosX * 32.0f,wall_bottom);//Place player such that it collides with the wall
-    bool movingLeft = false,movingRight = false,movingUp = true, movingDown = false;
-    for (int i = 0; i < 500; i++)
-    {
-        //Simulate the player attempting to move past a wall
-        player->movePlayer(movingRight,movingLeft,movingDown,movingUp, maze);
-    }
-
-    auto [finalXpos, finalYpos] = player->getPlayerPosition();
-    
-    CHECK(finalYpos == wall_bottom);
-    CHECK_EQ(finalXpos,tilePosX * 32);
-}*/
+    CHECK_EQ(isCollided, true);
+}
