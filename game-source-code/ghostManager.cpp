@@ -13,7 +13,8 @@ MAZE_WIDTH{11},//consist of 11 tiles
 MAZE_HEIGHT{12},//consists of 13 tiles
 TILE_SIZE{48.0f},//each tile is a 48 x 48
 red_mode_switch{1},//2 = chase mode, 1 = scatter mode
-pink_mode_switch{1}
+pink_mode_switch{1},
+orange_mode_switch{1}
 {}
 
 void GhostManager::InitialiseGhostPositions(std::vector<std::shared_ptr<Ghost>>& ghosts)
@@ -62,13 +63,18 @@ void GhostManager::updateTarget(std::vector<std::shared_ptr<Ghost>> ghosts, cons
         if (mode == Mode::Frightened)
         {
             red_watch->restartTimer();
+            pink_watch->restartTimer();
+            orange_watch->restartTimer();
             red_mode_switch = 1;
+            orange_mode_switch = 1;
+            pink_mode_switch = 1;
             setTarget(ghost, xPlayerPos, yPlayerPos);
             continue;
         }
 
         auto time_elapsed = red_watch->elapsedTime();
         auto pink_time_elapsed = pink_watch->elapsedTime();
+        auto orange_time_elapsed = orange_watch->elapsedTime();
         switch (type)
         {
         case Type::Red:
@@ -99,6 +105,21 @@ void GhostManager::updateTarget(std::vector<std::shared_ptr<Ghost>> ghosts, cons
                 ghost->setMode(Mode::Scatter);
                 pink_watch->restartTimer();
                 pink_mode_switch = 1;
+            }
+            break;
+        case Type::Orange:
+            if (orange_time_elapsed >= 5.0f && orange_mode_switch == 1)
+            {
+                ghost->setMode(Mode::Chase);
+                orange_watch->restartTimer();
+                orange_mode_switch = 2;
+                break;  
+            }
+            if (orange_time_elapsed >= 30.0f && orange_mode_switch == 2)
+            {
+                ghost->setMode(Mode::Scatter);
+                orange_watch->restartTimer();
+                orange_mode_switch = 1;
             }
             break;
         
