@@ -43,11 +43,6 @@ class DisplayManager
     void displayInGameScreen();
     void drawGameWorld();
     void InitGameWorldTextures();
-    void processTileTexture(const std::string element, int tilePosX, int tilePosY);
-    void topRightCorner(int tilePosX, int tilePosY, const float xOffset,const float yOffset);
-    void topLeftCorner(int tilePosX, int tilePosY, const float xOffset,const float yOffset);
-    void bottomLeftCorner(int tilePosX, int tilePosY, const float xOffset,const float yOffset);
-    void bottomRightCorner(int tilePosX, int tilePosY, const float xOffset,const float yOffset);
     void drawMaze();
     void loadTextures();
     void initialiseKeys();

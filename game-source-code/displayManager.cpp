@@ -22,6 +22,7 @@ playerWon{false}
     window->Init(window_width, window_height, "SUPER PAC-MAN");
     loadTextures();
     game_world->loadMapFromFile();
+    game_maze_resources.setMazeWalls(game_world_textures, maze_resources);
     InitGameWorldTextures();
 }
 
@@ -441,145 +442,10 @@ void DisplayManager::drawGameWorld()
 
 void DisplayManager::InitGameWorldTextures()
 {
-    auto game_maze = game_world->getGameMap();
-    int tilePosY = 0;
-    int tilePosX = 0;
-    for (const auto& row : game_maze)
-    {
-        for (const auto tile : row)
-        {
-            processTileTexture(tile, tilePosX, tilePosY);
-            tilePosX++;
-        }
-        tilePosY++;
-        tilePosX = 0;
-    }
-
     initialiseKeys();
     initialiseFruits();
     initialiseLocks();
     initialiseGhosts();
-}
-
-void DisplayManager::processTileTexture(const std::string element, int tilePosX, int tilePosY)
-{
-    float xOffset = 0;
-    float yOffset = 0;
-    if (element == "10") //Vertical wall on the left
-    {
-        xOffset = 0;
-        yOffset = 0;
-        game_maze_resources.verticalWall(tilePosX, tilePosY, xOffset, yOffset,game_world_textures,maze_resources);
-    }
-
-    if (element == "01")//Vertical wall on the right
-    {
-        xOffset = (5/6.0f);//This vertical wall should be at the border of the maze
-        yOffset = 0;
-        game_maze_resources.verticalWall(tilePosX, tilePosY, xOffset, yOffset, game_world_textures,maze_resources);
-    }
-
-    if (element == "-")
-    {
-        xOffset = 0;
-        yOffset = 0;
-        game_maze_resources.horizontalWall(tilePosX,tilePosY,xOffset,yOffset,game_world_textures,maze_resources);
-    }
-
-    if (element == "┐")
-    {
-        xOffset = 0;
-        yOffset = 0;
-        topRightCorner(tilePosX,tilePosY,xOffset,yOffset);
-    }
-
-    if (element == "┌")
-    {
-        xOffset = 0;
-        yOffset = 0;
-        topLeftCorner(tilePosX,tilePosY,xOffset,yOffset);
-    }
-
-    if (element == "└")
-    {
-        xOffset = 0;
-        yOffset = 0;
-        bottomLeftCorner(tilePosX,tilePosY,xOffset,yOffset);
-    }
-
-        if (element == "┘")
-    {
-        xOffset = 0;
-        yOffset = 0;
-        bottomRightCorner(tilePosX,tilePosY,xOffset,yOffset);
-    }
-
-    if (element == "_")
-    {
-        //Bottom horizontal
-        xOffset = 0;
-        yOffset = 5/6.0f;
-        game_maze_resources.horizontalWall(tilePosX,tilePosY,xOffset,yOffset,game_world_textures,maze_resources);
-    }
-
-    if (element == "=")
-    {
-        //Parallel horizontal
-        xOffset = 0;
-        yOffset = 0;
-        game_maze_resources.horizontalWall(tilePosX,tilePosY,xOffset,yOffset,game_world_textures,maze_resources);
-        yOffset = 5/6.0f;
-        game_maze_resources.horizontalWall(tilePosX,tilePosY,xOffset,yOffset,game_world_textures,maze_resources);
-    }
-
-    if (element == "||")
-    {
-        //Parallel vertical
-        xOffset = 0;
-        yOffset = 0;
-        game_maze_resources.verticalWall(tilePosX,tilePosY,xOffset,yOffset,game_world_textures,maze_resources);
-        xOffset = 5/6.0f;
-        game_maze_resources.verticalWall(tilePosX,tilePosY,xOffset,yOffset,game_world_textures,maze_resources);
-    }
-
-    if (element == "Π")
-    {
-        //As the symbol suggests, you welcome
-        xOffset = 0;
-        yOffset = 0;
-        game_maze_resources.horizontalWall(tilePosX,tilePosY,xOffset,yOffset,game_world_textures, maze_resources);
-        game_maze_resources.verticalWall(tilePosX,tilePosY,xOffset,yOffset,game_world_textures,maze_resources);
-        xOffset = 5/6.0f;//the far right wall
-        game_maze_resources.verticalWall(tilePosX,tilePosY,xOffset,yOffset,game_world_textures,maze_resources);
-    }
-}
-
-void DisplayManager::topRightCorner(int tilePosX, int tilePosY, const float xOffset,const float yOffset)
-{
-    game_maze_resources.horizontalWall(tilePosX,tilePosY,xOffset,yOffset,game_world_textures,maze_resources);
-    auto newXoffset = 5/6.0f;//place vertical piece at the end of the horizontal piece to form ┐
-    game_maze_resources.verticalWall(tilePosX,tilePosY,newXoffset,yOffset,game_world_textures,maze_resources);
-}
-
-void DisplayManager::topLeftCorner(int tilePosX, int tilePosY, const float xOffset,const float yOffset)
-{
-    game_maze_resources.horizontalWall(tilePosX,tilePosY,xOffset,yOffset,game_world_textures,maze_resources);
-    game_maze_resources.verticalWall(tilePosX,tilePosY,xOffset,yOffset,game_world_textures,maze_resources);
-}
-
-void DisplayManager::bottomLeftCorner(int tilePosX, int tilePosY, const float xOffset,const float yOffset)
-{
-    game_maze_resources.verticalWall(tilePosX,tilePosY,xOffset,yOffset,game_world_textures,maze_resources);
-    auto newYoffset = 5/6.0f;
-    game_maze_resources.horizontalWall(tilePosX,tilePosY,xOffset,newYoffset, game_world_textures,maze_resources);
-}
-
-void DisplayManager::bottomRightCorner(int tilePosX, int tilePosY, const float xOffset,const float yOffset)
-{
-    auto newYoffset = 5/6.0f;
-    game_maze_resources.horizontalWall(tilePosX,tilePosY,xOffset,newYoffset,game_world_textures,maze_resources);
-    auto newXoffset = 5/6.0f;
-    game_maze_resources.verticalWall(tilePosX,tilePosY,newXoffset,yOffset, game_world_textures,maze_resources);
 }
 
 void DisplayManager::initialiseKeys()
