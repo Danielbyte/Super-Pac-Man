@@ -28,6 +28,7 @@ void GameWorld::loadMapFromFile()
     }
     gameMapFile.close();
     placeFruits();
+    placeKeys();
 }
 
 void GameWorld::placeFruits()
@@ -296,4 +297,9 @@ const std::vector<std::vector<std::string>>& GameWorld::getGameMap()
 std::vector<std::shared_ptr<Fruit>>& GameWorld::getMazeFruits()
 {
     return fruits;
+}
+
+std::vector<std::shared_ptr<Key>>& GameWorld::getMazeKeys()
+{
+    return keys;
 }
