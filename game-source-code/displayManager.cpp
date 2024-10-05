@@ -1056,3 +1056,19 @@ void DisplayManager::loadTextures()
     orangeT->Load("../resources/orange1.png");
     frightenedGhostT->Load("../resources/frightened.png");
 }
+
+DisplayManager::~DisplayManager()
+{
+    //Some hoise keeping
+    ghost_textures.clear();
+    ghost_objects.clear();
+    lock_textures.clear();
+    lock_objects.clear();
+    fruit_textures.clear();
+    fruit_objects.clear();
+    key_textures.clear();
+    key_objects.clear();
+    game_world_textures.clear();
+    maze_resources.clear();
+    
+}

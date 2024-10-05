@@ -17,6 +17,7 @@ class DisplayManager
 {
     public:
     DisplayManager();
+    ~DisplayManager();
     void startGame();
     void handleUserInput(const float dt);
     
