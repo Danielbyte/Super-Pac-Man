@@ -448,12 +448,7 @@ void DisplayManager::drawGameWorld()
 
 void DisplayManager::InitGameWorldTextures()
 {
-    //initialiseLocks();
     initialiseGhosts();
-}
-
-void DisplayManager::initialiseLocks()
-{
 }
 
 void DisplayManager::initialiseGhosts()
@@ -492,9 +487,6 @@ void DisplayManager::loadTextures()
     SuperpacmanDown1_T = LoadTexture("../resources/SuperpacmanDown1.png");
     SuperpacmanUp1_T = LoadTexture("../resources/SuperpacmanUp1.png");
     
-    VlockT->Load("../resources/lockV.png");
-    HlockT->Load("../resources/lockH.png");
-
     blueT->Load("../resources/blue1.png");
     redT->Load("../resources/red1.png");
     pinkT->Load("../resources/pink1.png");

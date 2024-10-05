@@ -49,7 +49,6 @@ class DisplayManager
     void drawKeys();
     void updateKeys();
     void drawFruits();
-    void initialiseLocks();
     void drawLocks();
     void updateLocks();
     void updateFruits();
@@ -69,8 +68,6 @@ class DisplayManager
     raylib::Texture2D SuperpacmanDown1_T;
     raylib::Texture2D SuperpacmanUp1_T;
 
-    std::shared_ptr<raylib::Texture2D> VlockT = std::make_shared<raylib::Texture2D>();//Vertical lock
-    std::shared_ptr<raylib::Texture2D> HlockT = std::make_shared<raylib::Texture2D>();//Horizontal lock
     std::shared_ptr<raylib::Texture2D> blueT = std::make_shared<raylib::Texture2D>();
     std::shared_ptr<raylib::Texture2D> redT = std::make_shared<raylib::Texture2D>();
     std::shared_ptr<raylib::Texture2D> pinkT = std::make_shared<raylib::Texture2D>();
