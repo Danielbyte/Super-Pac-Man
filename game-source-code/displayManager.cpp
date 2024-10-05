@@ -548,42 +548,6 @@ void DisplayManager::initialiseFruits()
 {
     fruit_textures.push_back(fruitT);
 
-
-    fruit_textures.push_back(fruitT);
-
-
-    fruit_textures.push_back(fruitT);
-
-
-    fruit_textures.push_back(fruitT);
-
-
-    fruit_textures.push_back(fruitT);
-
-
-    fruit_textures.push_back(fruitT);
-
-
-    fruit_textures.push_back(fruitT);
-
-
-    fruit_textures.push_back(fruitT);
-
-
-    fruit_textures.push_back(fruitT);
-
-
-    fruit_textures.push_back(fruitT);
-
-
-    fruit_textures.push_back(fruitT);
-
-
-    fruit_textures.push_back(fruitT);
-
-
-    fruit_textures.push_back(fruitT);
-
     fruit_textures.push_back(fruitT);
 
 
