@@ -40,7 +40,8 @@ void GameWorldResources::initialiseGameBorder(int tilePosX, int tilePosY, const 
     type = _type;
 }
 
-void GameWorldResources::setMazeWalls(std::vector<std::shared_ptr<raylib::Texture2D>>& maze_textures)
+void GameWorldResources::setMazeWalls(std::vector<std::shared_ptr<raylib::Texture2D>>& maze_textures,
+std::vector<std::shared_ptr<GameWorldResources>>& maze_resources)
 {
     auto maze = game_world.getGameMap();
     int tilePosY = 0;
@@ -49,7 +50,7 @@ void GameWorldResources::setMazeWalls(std::vector<std::shared_ptr<raylib::Textur
     {
         for (const auto tile : row)
         {
-            processTileTexture(tile, tilePosX, tilePosY);
+            processTileTexture(maze_textures,maze_resources,tile, tilePosX, tilePosY);
             tilePosX++;
         }
         tilePosY++;
@@ -57,9 +58,45 @@ void GameWorldResources::setMazeWalls(std::vector<std::shared_ptr<raylib::Textur
     }
 }
 
-void GameWorldResources::processTileTexture(const std::string element,const int tilePosX,const int tilePosY)
+void GameWorldResources::processTileTexture(std::vector<std::shared_ptr<raylib::Texture2D>>& maze_textures,
+std::vector<std::shared_ptr<GameWorldResources>>& maze_resources,const std::string element,const int tilePosX,const int tilePosY)
 {
-    
+    float xOffset = 0;
+    float yOffset = 0;
+    if (element == "10") //Vertical wall on the left
+    {
+        xOffset = 0;
+        yOffset = 0;
+        verticalWall(tilePosX, tilePosY, xOffset, yOffset,maze_textures,maze_resources);
+    }
+
+    if (element == "01")//Vertical wall on the right
+    {
+        xOffset = (5/6.0f);//This vertical wall should be at the border of the maze
+        yOffset = 0;
+        verticalWall(tilePosX, tilePosY, xOffset, yOffset, maze_textures,maze_resources);
+    }
+
+    if (element == "-")
+    {
+        xOffset = 0;
+        yOffset = 0;
+        horizontalWall(tilePosX,tilePosY,xOffset,yOffset,maze_textures,maze_resources);
+    }
+
+    if (element == "┐")
+    {
+        xOffset = 0;
+        yOffset = 0;
+        //topRightCorner(tilePosX,tilePosY,xOffset,yOffset);
+    }
+
+    if (element == "┌")
+    {
+        xOffset = 0;
+        yOffset = 0;
+       // topLeftCorner(tilePosX,tilePosY,xOffset,yOffset);
+    }
 }
 
 void GameWorldResources::loadTextures()
