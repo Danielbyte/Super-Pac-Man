@@ -167,6 +167,14 @@ std::vector<std::shared_ptr<raylib::Texture2D>>& maze_textures, std::vector<std:
     verticalWall(tilePosX,tilePosY,xOffset,yOffset,maze_textures,maze_resources);
 }
 
+void GameWorldResources::bottomLeftCorner(int tilePosX, int tilePosY, const float xOffset,const float yOffset,
+std::vector<std::shared_ptr<raylib::Texture2D>>& maze_textures, std::vector<std::shared_ptr<GameWorldResources>>& maze_resources)
+{
+    verticalWall(tilePosX,tilePosY,xOffset,yOffset,maze_textures,maze_resources);
+    auto newYoffset = 5/6.0f;
+    horizontalWall(tilePosX,tilePosY,xOffset,newYoffset, maze_textures,maze_resources);
+}
+
 void GameWorldResources::loadTextures()
 {
 }
