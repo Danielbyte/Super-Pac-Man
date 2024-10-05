@@ -29,8 +29,8 @@ void GameWorldResources::initialiseGameBorder(int tilePosX, int tilePosY, const 
     tileScreenPosX = tilePosX * 32.0f;
     tileScreenPosY = tilePosY * 32.0f;
     
-    auto numberOfRows = game_world->getNumberOfRows();
-    auto numberOfColumns = game_world->getNumberOfColumns();
+    auto numberOfRows = game_world.getNumberOfRows();
+    auto numberOfColumns = game_world.getNumberOfColumns();
     if (tilePosY == (numberOfRows - 1) && (tilePosX > 0 && tilePosX < (numberOfColumns - 1)))//minus one since tile position start from zero
        tileScreenPosY += 24.0f;
     
@@ -42,7 +42,20 @@ void GameWorldResources::initialiseGameBorder(int tilePosX, int tilePosY, const 
 
 void GameWorldResources::loadTextures()
 {
+    horizontalWallPiece->Load("../resources/horizontalWallPiece.png");
+    verticalWallPiece->Load("../resources/verticalWallPiece.png");
 }
+
+void GameWorldResources::verticalWall(int tilePosX, int tilePosY, const float xOffset,const float yOffset,
+std::vector<std::shared_ptr<raylib::Texture2D>>& maze_textures, std::vector<std::shared_ptr<GameWorldResources>>& maze_resources)
+{
+  auto texture = std::make_shared<raylib::Texture2D>();
+  texture->Load("../resources/verticalWallPiece.png");
+  maze_textures.push_back(texture);
+  auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY, ObjectType::VerticalWall,xOffset,yOffset);
+  maze_resources.push_back(tile_property);
+}
+
 std::tuple<float, float> GameWorldResources::getTileScreenPosition() const
 {
     return {tileScreenPosX, tileScreenPosY};
