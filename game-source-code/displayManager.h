@@ -112,6 +112,7 @@ class DisplayManager
 
     StopWatch stop_watch;
     GhostManager ghost_manager;
+    GameWorldResources game_maze_resources;
     bool isGameOver;
     bool playerWon;
 };

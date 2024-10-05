@@ -558,7 +558,7 @@ void DisplayManager::topRightCorner(int tilePosX, int tilePosY, const float xOff
 {
     horizontalWall(tilePosX,tilePosY,xOffset,yOffset);
     auto newXoffset = 5/6.0f;//place vertical piece at the end of the horizontal piece to form ┐
-    verticalWall(tilePosX,tilePosY,newXoffset,yOffset);
+    game_maze_resources.verticalWall(tilePosX,tilePosY,newXoffset,yOffset,game_world_textures,maze_resources);
 }
 
 void DisplayManager::topLeftCorner(int tilePosX, int tilePosY, const float xOffset,const float yOffset)
