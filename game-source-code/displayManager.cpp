@@ -444,7 +444,7 @@ void DisplayManager::drawGameWorld()
 void DisplayManager::InitGameWorldTextures()
 {
     initialiseKeys();
-    //initialiseFruits();
+    initialiseFruits();
     initialiseLocks();
     initialiseGhosts();
 }
