@@ -97,6 +97,59 @@ std::vector<std::shared_ptr<GameWorldResources>>& maze_resources,const std::stri
         yOffset = 0;
        // topLeftCorner(tilePosX,tilePosY,xOffset,yOffset);
     }
+
+    if (element == "└")
+    {
+        xOffset = 0;
+        yOffset = 0;
+        //bottomLeftCorner(tilePosX,tilePosY,xOffset,yOffset);
+    }
+
+        if (element == "┘")
+    {
+        xOffset = 0;
+        yOffset = 0;
+        //bottomRightCorner(tilePosX,tilePosY,xOffset,yOffset);
+    }
+
+    if (element == "_")
+    {
+        //Bottom horizontal
+        xOffset = 0;
+        yOffset = 5/6.0f;
+        horizontalWall(tilePosX,tilePosY,xOffset,yOffset,maze_textures,maze_resources);
+    }
+
+    if (element == "=")
+    {
+        //Parallel horizontal
+        xOffset = 0;
+        yOffset = 0;
+        horizontalWall(tilePosX,tilePosY,xOffset,yOffset,maze_textures,maze_resources);
+        yOffset = 5/6.0f;
+        horizontalWall(tilePosX,tilePosY,xOffset,yOffset,maze_textures,maze_resources);
+    }
+
+    if (element == "||")
+    {
+        //Parallel vertical
+        xOffset = 0;
+        yOffset = 0;
+        verticalWall(tilePosX,tilePosY,xOffset,yOffset,maze_textures,maze_resources);
+        xOffset = 5/6.0f;
+        verticalWall(tilePosX,tilePosY,xOffset,yOffset,maze_textures,maze_resources);
+    }
+
+    if (element == "Π")
+    {
+        //As the symbol suggests, you welcome
+        xOffset = 0;
+        yOffset = 0;
+        horizontalWall(tilePosX,tilePosY,xOffset,yOffset,maze_textures, maze_resources);
+        verticalWall(tilePosX,tilePosY,xOffset,yOffset,maze_textures,maze_resources);
+        xOffset = 5/6.0f;//the far right wall
+        verticalWall(tilePosX,tilePosY,xOffset,yOffset,maze_textures,maze_resources);
+    }
 }
 
 void GameWorldResources::loadTextures()
