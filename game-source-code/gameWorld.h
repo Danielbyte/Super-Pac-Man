@@ -27,6 +27,6 @@ private:
  static int numberOfRows;
 
  //Utility function/s
- void placeFruits();
+ static void placeFruits();
 };
 #endif

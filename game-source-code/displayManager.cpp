@@ -22,6 +22,7 @@ playerWon{false}
     window->Init(window_width, window_height, "SUPER PAC-MAN");
     loadTextures();
     game_world->loadMapFromFile();
+    fruit_objects = game_world->getMazeFruits();
     game_maze_resources.setMazeWalls(game_world_textures, maze_resources);
     InitGameWorldTextures();
 }
@@ -443,7 +444,7 @@ void DisplayManager::drawGameWorld()
 void DisplayManager::InitGameWorldTextures()
 {
     initialiseKeys();
-    initialiseFruits();
+    //initialiseFruits();
     initialiseLocks();
     initialiseGhosts();
 }
@@ -649,7 +650,7 @@ void DisplayManager::initialiseFruits()
     fruit_objects.push_back(fruit21);
     fruit_textures.push_back(fruitT);
 
-    std::shared_ptr<Fruit>fruit22 = std::make_shared<Fruit>();
+   /* std::shared_ptr<Fruit>fruit22 = std::make_shared<Fruit>();
     fruit22->setPosition(247.5f,55.5f);
     fruit_objects.push_back(fruit22);
     fruit_textures.push_back(fruitT);
@@ -740,9 +741,7 @@ void DisplayManager::initialiseFruits()
     powerPellet4->setPosition(440.0f,490.0f);
     powerPellet4->markAsPowerPellet();
     fruit_objects.push_back(powerPellet4);
-    fruit_textures.push_back(powerPelletT);
-
-
+    fruit_textures.push_back(powerPelletT);*/
 }
 
 void DisplayManager::initialiseLocks()
@@ -1070,5 +1069,5 @@ DisplayManager::~DisplayManager()
     key_objects.clear();
     game_world_textures.clear();
     maze_resources.clear();
-    
+
 }

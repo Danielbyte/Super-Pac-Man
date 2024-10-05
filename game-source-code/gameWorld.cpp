@@ -27,6 +27,7 @@ void GameWorld::loadMapFromFile()
         }
     }
     gameMapFile.close();
+    placeFruits();
 }
 
 void GameWorld::placeFruits()
