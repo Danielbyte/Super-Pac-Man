@@ -469,14 +469,14 @@ void DisplayManager::processTileTexture(const std::string element, int tilePosX,
     {
         xOffset = 0;
         yOffset = 0;
-        verticalWall(tilePosX, tilePosY, xOffset, yOffset);
+        game_maze_resources.verticalWall(tilePosX, tilePosY, xOffset, yOffset,game_world_textures,maze_resources);
     }
 
     if (element == "01")//Vertical wall on the right
     {
         xOffset = (5/6.0f);//This vertical wall should be at the border of the maze
         yOffset = 0;
-        verticalWall(tilePosX, tilePosY, xOffset, yOffset);
+        game_maze_resources.verticalWall(tilePosX, tilePosY, xOffset, yOffset, game_world_textures,maze_resources);
     }
 
     if (element == "-")
@@ -537,9 +537,9 @@ void DisplayManager::processTileTexture(const std::string element, int tilePosX,
         //Parallel vertical
         xOffset = 0;
         yOffset = 0;
-        verticalWall(tilePosX,tilePosY,xOffset,yOffset);
+        game_maze_resources.verticalWall(tilePosX,tilePosY,xOffset,yOffset,game_world_textures,maze_resources);
         xOffset = 5/6.0f;
-        verticalWall(tilePosX,tilePosY,xOffset,yOffset);
+        game_maze_resources.verticalWall(tilePosX,tilePosY,xOffset,yOffset,game_world_textures,maze_resources);
     }
 
     if (element == "Π")
@@ -548,9 +548,9 @@ void DisplayManager::processTileTexture(const std::string element, int tilePosX,
         xOffset = 0;
         yOffset = 0;
         horizontalWall(tilePosX,tilePosY,xOffset,yOffset);
-        verticalWall(tilePosX,tilePosY,xOffset,yOffset);
+        game_maze_resources.verticalWall(tilePosX,tilePosY,xOffset,yOffset,game_world_textures,maze_resources);
         xOffset = 5/6.0f;//the far right wall
-        verticalWall(tilePosX,tilePosY,xOffset,yOffset);
+        game_maze_resources.verticalWall(tilePosX,tilePosY,xOffset,yOffset,game_world_textures,maze_resources);
     }
 }
 
@@ -564,12 +564,12 @@ void DisplayManager::topRightCorner(int tilePosX, int tilePosY, const float xOff
 void DisplayManager::topLeftCorner(int tilePosX, int tilePosY, const float xOffset,const float yOffset)
 {
     horizontalWall(tilePosX,tilePosY,xOffset,yOffset);
-    verticalWall(tilePosX,tilePosY,xOffset,yOffset);
+    game_maze_resources.verticalWall(tilePosX,tilePosY,xOffset,yOffset,game_world_textures,maze_resources);
 }
 
 void DisplayManager::bottomLeftCorner(int tilePosX, int tilePosY, const float xOffset,const float yOffset)
 {
-    verticalWall(tilePosX,tilePosY,xOffset,yOffset);
+    game_maze_resources.verticalWall(tilePosX,tilePosY,xOffset,yOffset,game_world_textures,maze_resources);
     auto newYoffset = 5/6.0f;
     horizontalWall(tilePosX,tilePosY,xOffset,newYoffset);
 }
@@ -579,16 +579,7 @@ void DisplayManager::bottomRightCorner(int tilePosX, int tilePosY, const float x
     auto newYoffset = 5/6.0f;
     horizontalWall(tilePosX,tilePosY,xOffset,newYoffset);
     auto newXoffset = 5/6.0f;
-    verticalWall(tilePosX,tilePosY,newXoffset,yOffset);
-}
-
-void DisplayManager::verticalWall(int tilePosX, int tilePosY, const float xOffset,const float yOffset)
-{
-  auto texture = std::make_shared<raylib::Texture2D>();
-  texture->Load("../resources/verticalWallPiece.png");
-  game_world_textures.push_back(texture);
-  auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY, ObjectType::VerticalWall,xOffset,yOffset);
-  maze_resources.push_back(tile_property);
+    game_maze_resources.verticalWall(tilePosX,tilePosY,newXoffset,yOffset, game_world_textures,maze_resources);
 }
 
 void DisplayManager::horizontalWall(int tilePosX, int tilePosY,const float xOffset,const float yOffset)

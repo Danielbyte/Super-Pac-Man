@@ -44,7 +44,6 @@ class DisplayManager
     void drawGameWorld();
     void InitGameWorldTextures();
     void processTileTexture(const std::string element, int tilePosX, int tilePosY);
-    void verticalWall(int tilePosX, int tilePosY,const float xOffset,const float yOffset);
     void horizontalWall(int tilePosX, int tilePosY, const float xOffset,const float yOffset);
     void topRightCorner(int tilePosX, int tilePosY, const float xOffset,const float yOffset);
     void topLeftCorner(int tilePosX, int tilePosY, const float xOffset,const float yOffset);
