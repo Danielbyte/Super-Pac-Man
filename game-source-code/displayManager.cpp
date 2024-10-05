@@ -483,7 +483,7 @@ void DisplayManager::processTileTexture(const std::string element, int tilePosX,
     {
         xOffset = 0;
         yOffset = 0;
-        horizontalWall(tilePosX,tilePosY,xOffset,yOffset);
+        game_maze_resources.horizontalWall(tilePosX,tilePosY,xOffset,yOffset,game_world_textures,maze_resources);
     }
 
     if (element == "┐")
@@ -519,7 +519,7 @@ void DisplayManager::processTileTexture(const std::string element, int tilePosX,
         //Bottom horizontal
         xOffset = 0;
         yOffset = 5/6.0f;
-        horizontalWall(tilePosX,tilePosY,xOffset,yOffset);
+        game_maze_resources.horizontalWall(tilePosX,tilePosY,xOffset,yOffset,game_world_textures,maze_resources);
     }
 
     if (element == "=")
@@ -527,9 +527,9 @@ void DisplayManager::processTileTexture(const std::string element, int tilePosX,
         //Parallel horizontal
         xOffset = 0;
         yOffset = 0;
-        horizontalWall(tilePosX,tilePosY,xOffset,yOffset);
+        game_maze_resources.horizontalWall(tilePosX,tilePosY,xOffset,yOffset,game_world_textures,maze_resources);
         yOffset = 5/6.0f;
-        horizontalWall(tilePosX,tilePosY,xOffset,yOffset);
+        game_maze_resources.horizontalWall(tilePosX,tilePosY,xOffset,yOffset,game_world_textures,maze_resources);
     }
 
     if (element == "||")
@@ -547,7 +547,7 @@ void DisplayManager::processTileTexture(const std::string element, int tilePosX,
         //As the symbol suggests, you welcome
         xOffset = 0;
         yOffset = 0;
-        horizontalWall(tilePosX,tilePosY,xOffset,yOffset);
+        game_maze_resources.horizontalWall(tilePosX,tilePosY,xOffset,yOffset,game_world_textures, maze_resources);
         game_maze_resources.verticalWall(tilePosX,tilePosY,xOffset,yOffset,game_world_textures,maze_resources);
         xOffset = 5/6.0f;//the far right wall
         game_maze_resources.verticalWall(tilePosX,tilePosY,xOffset,yOffset,game_world_textures,maze_resources);
@@ -556,14 +556,14 @@ void DisplayManager::processTileTexture(const std::string element, int tilePosX,
 
 void DisplayManager::topRightCorner(int tilePosX, int tilePosY, const float xOffset,const float yOffset)
 {
-    horizontalWall(tilePosX,tilePosY,xOffset,yOffset);
+    game_maze_resources.horizontalWall(tilePosX,tilePosY,xOffset,yOffset,game_world_textures,maze_resources);
     auto newXoffset = 5/6.0f;//place vertical piece at the end of the horizontal piece to form ┐
     game_maze_resources.verticalWall(tilePosX,tilePosY,newXoffset,yOffset,game_world_textures,maze_resources);
 }
 
 void DisplayManager::topLeftCorner(int tilePosX, int tilePosY, const float xOffset,const float yOffset)
 {
-    horizontalWall(tilePosX,tilePosY,xOffset,yOffset);
+    game_maze_resources.horizontalWall(tilePosX,tilePosY,xOffset,yOffset,game_world_textures,maze_resources);
     game_maze_resources.verticalWall(tilePosX,tilePosY,xOffset,yOffset,game_world_textures,maze_resources);
 }
 
@@ -571,24 +571,15 @@ void DisplayManager::bottomLeftCorner(int tilePosX, int tilePosY, const float xO
 {
     game_maze_resources.verticalWall(tilePosX,tilePosY,xOffset,yOffset,game_world_textures,maze_resources);
     auto newYoffset = 5/6.0f;
-    horizontalWall(tilePosX,tilePosY,xOffset,newYoffset);
+    game_maze_resources.horizontalWall(tilePosX,tilePosY,xOffset,newYoffset, game_world_textures,maze_resources);
 }
 
 void DisplayManager::bottomRightCorner(int tilePosX, int tilePosY, const float xOffset,const float yOffset)
 {
     auto newYoffset = 5/6.0f;
-    horizontalWall(tilePosX,tilePosY,xOffset,newYoffset);
+    game_maze_resources.horizontalWall(tilePosX,tilePosY,xOffset,newYoffset,game_world_textures,maze_resources);
     auto newXoffset = 5/6.0f;
     game_maze_resources.verticalWall(tilePosX,tilePosY,newXoffset,yOffset, game_world_textures,maze_resources);
-}
-
-void DisplayManager::horizontalWall(int tilePosX, int tilePosY,const float xOffset,const float yOffset)
-{
-  auto texture = std::make_shared<raylib::Texture2D>();
-  texture->Load("../resources/horizontalWallPiece.png");
-  game_world_textures.push_back(texture);
-  auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY, ObjectType::HorizontalWall, xOffset, yOffset);
-  maze_resources.push_back(tile_property);
 }
 
 void DisplayManager::initialiseKeys()
@@ -1198,17 +1189,4 @@ void DisplayManager::loadTextures()
     pinkT->Load("../resources/pink1.png");
     orangeT->Load("../resources/orange1.png");
     frightenedGhostT->Load("../resources/frightened.png");
-
-    /*horizontalWallPieceI = LoadImage("resources/horizontalWallPiece.png");
-    horizontalWallPieceT = LoadTextureFromImage(horizontalWallPieceI);
-    verticalWallPieceI = LoadImage("resources/verticalWallPiece.png");
-    verticalWallPieceT = LoadTextureFromImage(verticalWallPieceI);
-    UnloadImage(horizontalWallPieceI);
-    UnloadImage(verticalWallPieceI);*/
-    /*┌
-      Π
-      ┘
-      ┐
-      └
-    */
 }

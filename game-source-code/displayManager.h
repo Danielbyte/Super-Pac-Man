@@ -44,7 +44,6 @@ class DisplayManager
     void drawGameWorld();
     void InitGameWorldTextures();
     void processTileTexture(const std::string element, int tilePosX, int tilePosY);
-    void horizontalWall(int tilePosX, int tilePosY, const float xOffset,const float yOffset);
     void topRightCorner(int tilePosX, int tilePosY, const float xOffset,const float yOffset);
     void topLeftCorner(int tilePosX, int tilePosY, const float xOffset,const float yOffset);
     void bottomLeftCorner(int tilePosX, int tilePosY, const float xOffset,const float yOffset);
@@ -76,11 +75,7 @@ class DisplayManager
     raylib::Texture2D SuperpacmanDown1_T;
     raylib::Texture2D SuperpacmanUp1_T;
 
-    raylib::Texture2D horizontalWallPieceT;
-    raylib::Texture2D verticalWallPieceT;
-
     std::shared_ptr<raylib::Texture2D> keyT = std::make_shared<raylib::Texture2D>();
-
     std::shared_ptr<raylib::Texture2D> fruitT = std::make_shared<raylib::Texture2D>();
     std::shared_ptr<raylib::Texture2D> superPelletT = std::make_shared<raylib::Texture2D>();
     std::shared_ptr<raylib::Texture2D> powerPelletT = std::make_shared<raylib::Texture2D>();
