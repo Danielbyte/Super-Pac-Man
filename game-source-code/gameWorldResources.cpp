@@ -195,6 +195,40 @@ std::vector<std::shared_ptr<raylib::Texture2D>>& maze_textures, std::vector<std:
   maze_resources.push_back(tile_property);
 }
 
+void GameWorldResources::loadFruitTextures(std::vector<std::shared_ptr<Fruit>>& fruits, std::vector<std::shared_ptr<raylib::Texture2D>>& fruit_textures)
+{
+    auto fruit = fruits.begin();
+    auto fruitT = std::make_shared<raylib::Texture2D>();
+    fruitT->Load("../resources/fruit.png");
+    auto superPelletT = std::make_shared<raylib::Texture2D>();
+    superPelletT->Load("../resources/superPellet1.png");
+    auto powerPellet = std::make_shared<raylib::Texture2D>();
+    powerPellet->Load("../resources/powerPellet.png");
+
+    while (fruit != fruits.end())
+    {
+        auto isSuperPellet = (*fruit)->getIsSuperPellet();
+        auto isPowerPellet = (*fruit)->getIsPowerPellet();
+        
+        if(isSuperPellet)
+        {
+            fruit_textures.push_back(superPelletT);
+        }
+
+        else if(isPowerPellet)
+        {
+            fruit_textures.push_back(powerPellet);
+        }
+
+        else
+        {
+            fruit_textures.push_back(fruitT);
+        }
+        ++fruit;
+    }
+     
+}
+
 std::tuple<float, float> GameWorldResources::getTileScreenPosition() const
 {
     return {tileScreenPosX, tileScreenPosY};
