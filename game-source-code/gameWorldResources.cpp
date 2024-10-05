@@ -232,9 +232,33 @@ void GameWorldResources::loadKeyTextures(std::vector<std::shared_ptr<Key>>& keys
 {
     auto keyT = std::make_shared<raylib::Texture2D>();
     keyT->Load("../resources/key.png");
-    
+
     for(auto& key : keys)
        key_textures.push_back(keyT);
+}
+
+void GameWorldResources::loadLockTextures(std::vector<std::shared_ptr<Lock>>& locks, std::vector<std::shared_ptr<raylib::Texture2D>>& lock_textures)
+{
+    auto VlockT = std::make_shared<raylib::Texture2D>();
+    VlockT->Load("../resources/lockV.png");
+    auto HlockT = std::make_shared<raylib::Texture2D>();
+    HlockT->Load("../resources/lockH.png");
+
+    for(auto& lock : locks)
+    {
+        auto lockType = lock->getLockType();
+        switch (lockType)
+        {
+        case LockType::Vertical:
+            lock_textures.push_back(VlockT);
+            break;
+        case LockType::Horizontal:
+             lock_textures.push_back(HlockT);
+             break;
+        default:
+            break;
+        }
+    }
 }
 
 std::tuple<float, float> GameWorldResources::getTileScreenPosition() const

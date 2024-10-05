@@ -28,7 +28,7 @@ void horizontalWall(int tilePosX, int tilePosY, const float xOffset,const float 
 std::vector<std::shared_ptr<raylib::Texture2D>>& maze_textures, std::vector<std::shared_ptr<GameWorldResources>>& maze_resources);
 void loadFruitTextures(std::vector<std::shared_ptr<Fruit>>& fruits, std::vector<std::shared_ptr<raylib::Texture2D>>& fruit_textures);
 void loadKeyTextures(std::vector<std::shared_ptr<Key>>& keys, std::vector<std::shared_ptr<raylib::Texture2D>>& key_textures);
-
+void loadLockTextures(std::vector<std::shared_ptr<Lock>>& locks, std::vector<std::shared_ptr<raylib::Texture2D>>& lock_textures);
 private:
 std::shared_ptr<raylib::Texture2D>horizontalWallPiece = std::make_shared<raylib::Texture2D>();
 std::shared_ptr<raylib::Texture2D>verticalWallPiece = std::make_shared<raylib::Texture2D>();

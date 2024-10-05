@@ -28,6 +28,7 @@ playerWon{false}
     game_maze_resources.loadFruitTextures(fruit_objects, fruit_textures);
     game_maze_resources.setMazeWalls(game_world_textures, maze_resources);
     game_maze_resources.loadKeyTextures(key_objects, key_textures);
+    game_maze_resources.loadLockTextures(lock_objects, lock_textures);
     InitGameWorldTextures();
 }
 
@@ -447,7 +448,7 @@ void DisplayManager::drawGameWorld()
 
 void DisplayManager::InitGameWorldTextures()
 {
-    initialiseLocks();
+    //initialiseLocks();
     initialiseGhosts();
 }
 
