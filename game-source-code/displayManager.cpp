@@ -23,6 +23,7 @@ playerWon{false}
     loadTextures();
     game_world->loadMapFromFile();
     fruit_objects = game_world->getMazeFruits();
+    key_objects = game_world->getMazeKeys();
     game_maze_resources.loadFruitTextures(fruit_objects, fruit_textures);
     game_maze_resources.setMazeWalls(game_world_textures, maze_resources);
     InitGameWorldTextures();
