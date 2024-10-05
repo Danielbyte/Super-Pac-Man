@@ -445,7 +445,6 @@ void DisplayManager::drawGameWorld()
 void DisplayManager::InitGameWorldTextures()
 {
     initialiseKeys();
-    //initialiseFruits();
     initialiseLocks();
     initialiseGhosts();
 }
@@ -542,10 +541,6 @@ void DisplayManager::initialiseKeys()
     key_objects.push_back(key15);
     key_textures.push_back(keyT);
     
-}
-
-void DisplayManager::initialiseFruits()
-{
 }
 
 void DisplayManager::initialiseLocks()
@@ -847,9 +842,6 @@ void DisplayManager::loadTextures()
     SuperpacmanUp1_T = LoadTexture("../resources/SuperpacmanUp1.png");
     
     keyT ->Load("../resources/key.png");
-    fruitT->Load("../resources/fruit.png");
-    superPelletT->Load("../resources/superPellet1.png");
-    powerPelletT->Load("../resources/powerPellet.png");
     VlockT->Load("../resources/lockV.png");
     HlockT->Load("../resources/lockH.png");
 
