@@ -225,8 +225,16 @@ void GameWorldResources::loadFruitTextures(std::vector<std::shared_ptr<Fruit>>& 
             fruit_textures.push_back(fruitT);
         }
         ++fruit;
-    }
-     
+    }  
+}
+
+void GameWorldResources::loadKeyTextures(std::vector<std::shared_ptr<Key>>& keys, std::vector<std::shared_ptr<raylib::Texture2D>>& key_textures)
+{
+    auto keyT = std::make_shared<raylib::Texture2D>();
+    keyT->Load("../resources/key.png");
+    
+    for(auto& key : keys)
+       key_textures.push_back(keyT);
 }
 
 std::tuple<float, float> GameWorldResources::getTileScreenPosition() const

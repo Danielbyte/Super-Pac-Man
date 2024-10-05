@@ -26,6 +26,7 @@ playerWon{false}
     key_objects = game_world->getMazeKeys();
     game_maze_resources.loadFruitTextures(fruit_objects, fruit_textures);
     game_maze_resources.setMazeWalls(game_world_textures, maze_resources);
+    game_maze_resources.loadKeyTextures(key_objects, key_textures);
     InitGameWorldTextures();
 }
 
@@ -445,56 +446,8 @@ void DisplayManager::drawGameWorld()
 
 void DisplayManager::InitGameWorldTextures()
 {
-    initialiseKeys();
     initialiseLocks();
     initialiseGhosts();
-}
-
-void DisplayManager::initialiseKeys()
-{
-
-    key_textures.push_back(keyT);
-
-
-    key_textures.push_back(keyT);
-
- 
-    key_textures.push_back(keyT);
-
-
-    key_textures.push_back(keyT);
-
-
-    key_textures.push_back(keyT);
-
-
-    key_textures.push_back(keyT);
-
-
-    key_textures.push_back(keyT);
-
-    key_textures.push_back(keyT);
-
-
-    key_textures.push_back(keyT);
-
-    key_textures.push_back(keyT);
-
-
-    key_textures.push_back(keyT);
-
-
-    key_textures.push_back(keyT);
-
-
-    key_textures.push_back(keyT);
-
-
-    key_textures.push_back(keyT);
-    
-
-    key_textures.push_back(keyT);
-    
 }
 
 void DisplayManager::initialiseLocks()
@@ -795,7 +748,6 @@ void DisplayManager::loadTextures()
     SuperpacmanDown1_T = LoadTexture("../resources/SuperpacmanDown1.png");
     SuperpacmanUp1_T = LoadTexture("../resources/SuperpacmanUp1.png");
     
-    keyT ->Load("../resources/key.png");
     VlockT->Load("../resources/lockV.png");
     HlockT->Load("../resources/lockH.png");
 
