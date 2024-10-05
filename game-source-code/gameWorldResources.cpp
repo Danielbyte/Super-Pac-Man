@@ -88,7 +88,7 @@ std::vector<std::shared_ptr<GameWorldResources>>& maze_resources,const std::stri
     {
         xOffset = 0;
         yOffset = 0;
-        //topRightCorner(tilePosX,tilePosY,xOffset,yOffset);
+        topRightCorner(tilePosX,tilePosY,xOffset,yOffset,maze_textures,maze_resources);
     }
 
     if (element == "┌")
@@ -150,6 +150,14 @@ std::vector<std::shared_ptr<GameWorldResources>>& maze_resources,const std::stri
         xOffset = 5/6.0f;//the far right wall
         verticalWall(tilePosX,tilePosY,xOffset,yOffset,maze_textures,maze_resources);
     }
+}
+
+void GameWorldResources::topRightCorner(int tilePosX, int tilePosY, const float xOffset,const float yOffset,
+std::vector<std::shared_ptr<raylib::Texture2D>>& maze_textures, std::vector<std::shared_ptr<GameWorldResources>>& maze_resources)
+{
+    horizontalWall(tilePosX,tilePosY,xOffset,yOffset,maze_textures,maze_resources);
+    auto newXoffset = 5/6.0f;//place vertical piece at the end of the horizontal piece to form ┐
+    verticalWall(tilePosX,tilePosY,newXoffset,yOffset,maze_textures,maze_resources);
 }
 
 void GameWorldResources::loadTextures()

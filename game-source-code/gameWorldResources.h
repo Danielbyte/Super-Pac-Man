@@ -33,6 +33,8 @@ void loadTextures();
 void setWallProperties(int tilePosX, int tilePosY);
 void processTileTexture(std::vector<std::shared_ptr<raylib::Texture2D>>& maze_textures,
 std::vector<std::shared_ptr<GameWorldResources>>& maze_resources,const std::string element,const int tilePosX,const int tilePosY);
+void topRightCorner(int tilePosX, int tilePosY, const float xOffset,const float yOffset,
+std::vector<std::shared_ptr<raylib::Texture2D>>& maze_textures, std::vector<std::shared_ptr<GameWorldResources>>& maze_resources);
 
 float tileScreenPosX;
 float tileScreenPosY;
