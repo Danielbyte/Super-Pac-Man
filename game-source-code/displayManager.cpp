@@ -546,28 +546,6 @@ void DisplayManager::initialiseKeys()
 
 void DisplayManager::initialiseFruits()
 {
-    fruit_textures.push_back(fruitT);
-
-
-    fruit_textures.push_back(superPelletT);
-    
-
-    fruit_textures.push_back(superPelletT);
-
-
-    fruit_textures.push_back(superPelletT);
-
-
-
-    fruit_textures.push_back(powerPelletT);
-
-
-    fruit_textures.push_back(powerPelletT);
-
-
-    fruit_textures.push_back(powerPelletT);
-
-    fruit_textures.push_back(powerPelletT);
 }
 
 void DisplayManager::initialiseLocks()
