@@ -460,40 +460,6 @@ void DisplayManager::initialiseLocks()
 
     lock_textures.push_back(HlockT);
 
-    lock_textures.push_back(HlockT);
-
-    lock_textures.push_back(VlockT);
-
-    lock_textures.push_back(VlockT);
-
-    lock_textures.push_back(HlockT);
-
-    lock_textures.push_back(HlockT);
-
-    lock_textures.push_back(HlockT);
-    
-    lock_textures.push_back(HlockT);
-
-    lock_textures.push_back(VlockT);
-
-    lock_textures.push_back(VlockT);
-
-    lock_textures.push_back(HlockT);
-
-    lock_textures.push_back(HlockT);
-
-    lock_textures.push_back(HlockT);
-
-    lock_textures.push_back(HlockT);
-
-    lock_textures.push_back(HlockT);
-
-    lock_textures.push_back(HlockT);
-
-    lock_textures.push_back(HlockT);
-
-    lock_textures.push_back(HlockT);
-
     lock_textures.push_back(VlockT);
 
     lock_textures.push_back(VlockT);
