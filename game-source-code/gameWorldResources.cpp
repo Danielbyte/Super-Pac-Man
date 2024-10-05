@@ -102,14 +102,14 @@ std::vector<std::shared_ptr<GameWorldResources>>& maze_resources,const std::stri
     {
         xOffset = 0;
         yOffset = 0;
-        //bottomLeftCorner(tilePosX,tilePosY,xOffset,yOffset);
+        bottomLeftCorner(tilePosX,tilePosY,xOffset,yOffset,maze_textures,maze_resources);
     }
 
         if (element == "┘")
     {
         xOffset = 0;
         yOffset = 0;
-        //bottomRightCorner(tilePosX,tilePosY,xOffset,yOffset);
+        bottomRightCorner(tilePosX,tilePosY,xOffset,yOffset,maze_textures,maze_resources);
     }
 
     if (element == "_")
@@ -173,6 +173,15 @@ std::vector<std::shared_ptr<raylib::Texture2D>>& maze_textures, std::vector<std:
     verticalWall(tilePosX,tilePosY,xOffset,yOffset,maze_textures,maze_resources);
     auto newYoffset = 5/6.0f;
     horizontalWall(tilePosX,tilePosY,xOffset,newYoffset, maze_textures,maze_resources);
+}
+
+void GameWorldResources::bottomRightCorner(int tilePosX, int tilePosY, const float xOffset,const float yOffset,
+std::vector<std::shared_ptr<raylib::Texture2D>>& maze_textures, std::vector<std::shared_ptr<GameWorldResources>>& maze_resources)
+{
+    auto newYoffset = 5/6.0f;
+    horizontalWall(tilePosX,tilePosY,xOffset,newYoffset,maze_textures,maze_resources);
+    auto newXoffset = 5/6.0f;
+    verticalWall(tilePosX,tilePosY,newXoffset,yOffset, maze_textures,maze_resources);
 }
 
 void GameWorldResources::loadTextures()
