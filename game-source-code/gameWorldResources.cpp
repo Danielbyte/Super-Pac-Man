@@ -56,6 +56,17 @@ std::vector<std::shared_ptr<raylib::Texture2D>>& maze_textures, std::vector<std:
   maze_resources.push_back(tile_property);
 }
 
+
+void GameWorldResources::horizontalWall(int tilePosX, int tilePosY, const float xOffset,const float yOffset,
+std::vector<std::shared_ptr<raylib::Texture2D>>& maze_textures, std::vector<std::shared_ptr<GameWorldResources>>& maze_resources)
+{
+  auto texture = std::make_shared<raylib::Texture2D>();
+  texture->Load("../resources/horizontalWallPiece.png");
+  maze_textures.push_back(texture);
+  auto tile_property = std::make_shared<GameWorldResources>(tilePosX, tilePosY, ObjectType::HorizontalWall, xOffset, yOffset);
+  maze_resources.push_back(tile_property);
+}
+
 std::tuple<float, float> GameWorldResources::getTileScreenPosition() const
 {
     return {tileScreenPosX, tileScreenPosY};
