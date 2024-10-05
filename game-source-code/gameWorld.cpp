@@ -192,6 +192,49 @@ void GameWorld::placeFruits()
     fruits.push_back(powerPellet4);
 }
 
+void GameWorld::placeKeys()
+{
+    std::shared_ptr<Key>key1 = std::make_shared<Key>();
+    key1->setPosition(16.5f,8.5f);
+    key1->setLockIds(2, 3, 27);
+    keys.push_back(key1);
+
+    std::shared_ptr<Key>key2 = std::make_shared<Key>();
+    key2->setPosition(496.5f,8.5f);
+    key2->setLockIds(19, 20, 36);
+    keys.push_back(key2);
+
+    std::shared_ptr<Key>key3 = std::make_shared<Key>();
+    key3->setPosition(16.5f,536.0f);
+    key3->setLockIds(7, 8);
+    keys.push_back(key3);
+
+    std::shared_ptr<Key>key4 = std::make_shared<Key>();
+    key4->setPosition(496.5f,536.0f);
+    key4->setLockIds(9, 10);
+    keys.push_back(key4);
+
+    std::shared_ptr<Key>key5 = std::make_shared<Key>();
+    key5->setPosition(111.0f,488.0f);
+    key5->setLockIds(11, 12);
+    keys.push_back(key5);
+
+    std::shared_ptr<Key>key6 = std::make_shared<Key>();
+    key6->setPosition(402.0f,488.0f);
+    key6->setLockIds(13, 14);
+    keys.push_back(key6);
+
+    std::shared_ptr<Key>key7 = std::make_shared<Key>();
+    key7->setPosition(496.5f,290.0f);
+    key7->setLockIds(15, 16);
+    keys.push_back(key7);
+
+    std::shared_ptr<Key>key8 = std::make_shared<Key>();
+    key8->setPosition(496.5f,206.5f);
+    key8->setLockIds(17, 18, 37);
+    keys.push_back(key8);
+}
+
 int GameWorld::getNumberOfColumns() const
 {
     return numberOfColumns;
