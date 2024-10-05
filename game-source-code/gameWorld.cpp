@@ -204,6 +204,7 @@ int GameWorld::getNumberOfRows() const
 
 std::vector<std::vector<std::string>> GameWorld::gameMap = {};//Static member variables are accessed at class level
 std::vector<std::shared_ptr<Fruit>> GameWorld::fruits = {};
+std::vector<std::shared_ptr<Key>> GameWorld::keys = {};
 
 int GameWorld::numberOfColumns = 0;
 
