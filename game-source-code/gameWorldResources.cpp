@@ -4,7 +4,6 @@ GameWorldResources::GameWorldResources():
 tileScreenPosX{0.0f},
 tileScreenPosY{0.0f}
 {
-    loadTextures();
 }
 
 GameWorldResources::GameWorldResources(int tilePosX, int tilePosY, const ObjectType _type,
@@ -12,15 +11,6 @@ GameWorldResources::GameWorldResources(int tilePosX, int tilePosY, const ObjectT
 {
     tileScreenPosX = (tilePosX + xOffset) * 48.0f;
     tileScreenPosY = (tilePosY + yOffset) * 48.0f;
-    
-    /*auto numberOfRows = game_world->getNumberOfRows();
-    auto numberOfColumns = game_world->getNumberOfColumns();
-    if (tilePosY == (numberOfRows - 1) && (tilePosX > 0 && tilePosX < (numberOfColumns - 1)))//minus one since tile position start from zero
-       tileScreenPosY += 24.0f;
-    
-    if((tilePosY > 0 && tilePosY != (numberOfRows - 1)) && (tilePosX == (numberOfColumns - 1) || tilePosX != 0))
-      tileScreenPosX += 24.0f;*/
-
     type = _type;
 }
 
@@ -182,10 +172,6 @@ std::vector<std::shared_ptr<raylib::Texture2D>>& maze_textures, std::vector<std:
     horizontalWall(tilePosX,tilePosY,xOffset,newYoffset,maze_textures,maze_resources);
     auto newXoffset = 5/6.0f;
     verticalWall(tilePosX,tilePosY,newXoffset,yOffset, maze_textures,maze_resources);
-}
-
-void GameWorldResources::loadTextures()
-{
 }
 
 void GameWorldResources::verticalWall(int tilePosX, int tilePosY, const float xOffset,const float yOffset,
