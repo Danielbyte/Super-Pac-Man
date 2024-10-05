@@ -233,6 +233,41 @@ void GameWorld::placeKeys()
     key8->setPosition(496.5f,206.5f);
     key8->setLockIds(17, 18, 37);
     keys.push_back(key8);
+
+    std::shared_ptr<Key>key9 = std::make_shared<Key>();
+    key9->setPosition(16.5f,206.5f);
+    key9->setLockIds(5, 6);
+    keys.push_back(key9);
+
+    std::shared_ptr<Key>key10 = std::make_shared<Key>();
+    key10->setPosition(402.0f,110.0f);
+    key10->setLockIds(21, 22);
+    keys.push_back(key10);
+
+    std::shared_ptr<Key>key11 = std::make_shared<Key>();
+    key11->setPosition(111.0f,110.0f);
+    key11->setLockIds(1, 4);
+    keys.push_back(key11);
+
+    std::shared_ptr<Key>key12 = std::make_shared<Key>();
+    key12->setPosition(255.0f,390.0f);
+    key12->setLockIds(23, 24, 33);
+    keys.push_back(key12);
+
+    std::shared_ptr<Key>key13 = std::make_shared<Key>();
+    key13->setPosition(16.5f,290.0f);
+    key13->setLockIds(25, 26);
+    keys.push_back(key13);
+
+    std::shared_ptr<Key>key14 = std::make_shared<Key>();
+    key14->setPosition(163.0f,290.0f);
+    key14->setLockIds(29, 32, 34);
+    keys.push_back(key14);
+    
+    std::shared_ptr<Key>key15 = std::make_shared<Key>();
+    key15->setPosition(353.0f,290.0f);
+    key15->setLockIds(30, 31, 35);
+    keys.push_back(key15);
 }
 
 int GameWorld::getNumberOfColumns() const
