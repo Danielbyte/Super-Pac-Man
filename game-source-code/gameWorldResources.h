@@ -28,13 +28,5 @@ float tileScreenPosY;
 std::shared_ptr<GameWorld>game_world = std::make_shared<GameWorld>();
 ObjectType type;
 
-raylib::Texture2D horizontalWallPieceT;
-raylib::Image horizontalWallPieceI;
-raylib::Texture2D verticalWallPieceT;
-raylib::Image verticalWallPieceI;
-
-std::vector<std::shared_ptr<GameWorldResources>>maze_resources = {};
-std::vector<std::shared_ptr<raylib::Texture2D>>game_world_textures = {};
-
 };
 #endif
