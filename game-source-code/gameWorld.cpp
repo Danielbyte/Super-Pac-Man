@@ -29,6 +29,7 @@ void GameWorld::loadMapFromFile()
     gameMapFile.close();
     placeFruits();
     placeKeys();
+    placeLocks();
 }
 
 void GameWorld::placeFruits()
@@ -279,7 +280,6 @@ void GameWorld::placeLocks()
     lock1->setLockId(1);
     locks.push_back(lock1);
 
-
     std::shared_ptr<Lock>lock2 = std::make_shared<Lock>();
     lock2->setPosition(56.5f,93.0f);
     lock2->setLockType(LockType::Horizontal);
@@ -291,7 +291,6 @@ void GameWorld::placeLocks()
     lock3->setLockType(LockType::Horizontal);
     lock3->setLockId(3);
     locks.push_back(lock3);
-
 
     std::shared_ptr<Lock>lock4 = std::make_shared<Lock>();
     lock4->setPosition(56.5f,190.0f);
@@ -530,4 +529,9 @@ std::vector<std::shared_ptr<Fruit>>& GameWorld::getMazeFruits()
 std::vector<std::shared_ptr<Key>>& GameWorld::getMazeKeys()
 {
     return keys;
+}
+
+std::vector<std::shared_ptr<Lock>>& GameWorld::getMazeLocks()
+{
+    return locks;
 }
