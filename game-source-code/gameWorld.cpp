@@ -333,7 +333,67 @@ void GameWorld::placeLocks()
     lock10->setPosition(56.5f,525.0f);
     lock10->setLockType(LockType::Horizontal);
     lock10->setLockId(10);
-    locks.push_back(lock10); 
+    locks.push_back(lock10);
+
+    std::shared_ptr<Lock>lock11 = std::make_shared<Lock>();
+    lock11->setPosition(145.0f,536.0f);
+    lock11->setLockType(LockType::Vertical);
+    lock11->setLockId(11);
+    locks.push_back(lock11);
+
+    std::shared_ptr<Lock>lock12 = std::make_shared<Lock>();
+    lock12->setPosition(380.5f,536.0f);
+    lock12->setLockType(LockType::Vertical);
+    lock12->setLockId(12);
+    locks.push_back(lock12);
+
+    std::shared_ptr<Lock>lock13 = std::make_shared<Lock>();
+    lock13->setPosition(433.5f,525.0f);
+    lock13->setLockType(LockType::Horizontal);
+    lock13->setLockId(13);
+    locks.push_back(lock13);
+
+    std::shared_ptr<Lock>lock14 = std::make_shared<Lock>();
+    lock14->setPosition(433.5f,480.0f);
+    lock14->setLockType(LockType::Horizontal);
+    lock14->setLockId(14);
+    locks.push_back(lock14);
+
+    std::shared_ptr<Lock>lock15 = std::make_shared<Lock>();
+    lock15->setPosition(433.5f,429.0f);
+    lock15->setLockType(LockType::Horizontal);
+    lock15->setLockId(15);
+    locks.push_back(lock15);
+
+    std::shared_ptr<Lock>lock16 = std::make_shared<Lock>();
+    lock16->setPosition(433.5f,336.5f);
+    lock16->setLockType(LockType::Horizontal);
+    lock16->setLockId(16);
+    locks.push_back(lock16);
+
+    std::shared_ptr<Lock>lock17 = std::make_shared<Lock>();
+    lock17->setPosition(433.5f,189.0f);
+    lock17->setLockType(LockType::Horizontal);
+    lock17->setLockId(17);
+    locks.push_back(lock17);
+
+    std::shared_ptr<Lock>lock18 = std::make_shared<Lock>();
+    lock18->setPosition(433.5f,146.0f);
+    lock18->setLockType(LockType::Horizontal);
+    lock18->setLockId(18);
+    locks.push_back(lock18);
+
+    std::shared_ptr<Lock>lock19 = std::make_shared<Lock>();
+    lock19->setPosition(433.5f,93.0f);
+    lock19->setLockType(LockType::Horizontal);
+    lock19->setLockId(19);
+    locks.push_back(lock19);
+
+    std::shared_ptr<Lock>lock20 = std::make_shared<Lock>();
+    lock20->setPosition(433.5f,48.0f);
+    lock20->setLockType(LockType::Horizontal);
+    lock20->setLockId(20);
+    locks.push_back(lock20);
 }
 
 int GameWorld::getNumberOfColumns() const
