@@ -19,6 +19,7 @@ GameWorldResources(int tilePosX, int tilePosY, const ObjectType _type, const flo
 std::tuple<float, float>getTileScreenPosition() const;
 ObjectType getObjectType() const;
 void initialiseGameBorder(int tilePosX, int tilePosY, const ObjectType _type);
+void setMazeWalls(std::vector<std::shared_ptr<raylib::Texture2D>>& maze_textures);
 
 void verticalWall(int tilePosX, int tilePosY, const float xOffset,const float yOffset,
 std::vector<std::shared_ptr<raylib::Texture2D>>& maze_textures, std::vector<std::shared_ptr<GameWorldResources>>& maze_resources);
@@ -29,6 +30,8 @@ std::shared_ptr<raylib::Texture2D>verticalWallPiece = std::make_shared<raylib::T
 private:
 void loadTextures();
 void setWallProperties(int tilePosX, int tilePosY);
+void processTileTexture(const std::string element, const int tilePosX, const int tilePosY);
+
 float tileScreenPosX;
 float tileScreenPosY;
 GameWorld game_world;

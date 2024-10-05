@@ -40,6 +40,28 @@ void GameWorldResources::initialiseGameBorder(int tilePosX, int tilePosY, const 
     type = _type;
 }
 
+void GameWorldResources::setMazeWalls(std::vector<std::shared_ptr<raylib::Texture2D>>& maze_textures)
+{
+    auto maze = game_world.getGameMap();
+    int tilePosY = 0;
+    int tilePosX = 0;
+    for (const auto& row : maze)
+    {
+        for (const auto tile : row)
+        {
+            processTileTexture(tile, tilePosX, tilePosY);
+            tilePosX++;
+        }
+        tilePosY++;
+        tilePosX = 0;
+    }
+}
+
+void GameWorldResources::processTileTexture(const std::string element,const int tilePosX,const int tilePosY)
+{
+    
+}
+
 void GameWorldResources::loadTextures()
 {
 }
