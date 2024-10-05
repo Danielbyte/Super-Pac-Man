@@ -271,6 +271,71 @@ void GameWorld::placeKeys()
     keys.push_back(key15);
 }
 
+void GameWorld::placeLocks()
+{
+    std::shared_ptr<Lock>lock1 = std::make_shared<Lock>();
+    lock1->setPosition(56.5f,146.0f);
+    lock1->setLockType(LockType::Horizontal);
+    lock1->setLockId(1);
+    locks.push_back(lock1);
+
+
+    std::shared_ptr<Lock>lock2 = std::make_shared<Lock>();
+    lock2->setPosition(56.5f,93.0f);
+    lock2->setLockType(LockType::Horizontal);
+    lock2->setLockId(2);
+    locks.push_back(lock2);
+
+    std::shared_ptr<Lock>lock3 = std::make_shared<Lock>();
+    lock3->setPosition(56.5f,48.0f);
+    lock3->setLockType(LockType::Horizontal);
+    lock3->setLockId(3);
+    locks.push_back(lock3);
+
+
+    std::shared_ptr<Lock>lock4 = std::make_shared<Lock>();
+    lock4->setPosition(56.5f,190.0f);
+    lock4->setLockType(LockType::Horizontal);
+    lock4->setLockId(4);
+    locks.push_back(lock4);
+
+    std::shared_ptr<Lock>lock5 = std::make_shared<Lock>();
+    lock5->setPosition(140.0f,240.0f);
+    lock5->setLockType(LockType::Vertical);
+    lock5->setLockId(5);
+    locks.push_back(lock5);
+
+    std::shared_ptr<Lock>lock6 = std::make_shared<Lock>();
+    lock6->setPosition(98.5f,240.0f);
+    lock6->setLockType(LockType::Vertical);
+    lock6->setLockId(6);
+    locks.push_back(lock6);
+
+    std::shared_ptr<Lock>lock7 = std::make_shared<Lock>();
+    lock7->setPosition(56.5f,336.5f);
+    lock7->setLockType(LockType::Horizontal);
+    lock7->setLockId(7);
+    locks.push_back(lock7);
+
+    std::shared_ptr<Lock>lock8 = std::make_shared<Lock>();
+    lock8->setPosition(56.5f,429.0f);
+    lock8->setLockType(LockType::Horizontal);
+    lock8->setLockId(8);
+    locks.push_back(lock8);
+
+    std::shared_ptr<Lock>lock9 = std::make_shared<Lock>();
+    lock9->setPosition(56.5f,480.0f);
+    lock9->setLockType(LockType::Horizontal);
+    lock9->setLockId(9);
+    locks.push_back(lock9);
+    
+    std::shared_ptr<Lock>lock10 = std::make_shared<Lock>();
+    lock10->setPosition(56.5f,525.0f);
+    lock10->setLockType(LockType::Horizontal);
+    lock10->setLockId(10);
+    locks.push_back(lock10); 
+}
+
 int GameWorld::getNumberOfColumns() const
 {
     return numberOfColumns;
@@ -284,6 +349,7 @@ int GameWorld::getNumberOfRows() const
 std::vector<std::vector<std::string>> GameWorld::gameMap = {};//Static member variables are accessed at class level
 std::vector<std::shared_ptr<Fruit>> GameWorld::fruits = {};
 std::vector<std::shared_ptr<Key>> GameWorld::keys = {};
+std::vector<std::shared_ptr<Lock>> GameWorld::locks = {};
 
 int GameWorld::numberOfColumns = 0;
 
