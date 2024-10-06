@@ -222,15 +222,15 @@ TEST_CASE("TEST IF PLAYER IS BOUNDED ON UPPER BOUND OF SCREEN")
     CHECK_EQ(expectedXpos,actualXpos);
     CHECK_EQ(expectedYpos,actualYpos);
 }
-/*
+
 TEST_CASE("TEST IF PLAYER IS BOUNDED ON LEFT BOUND OF SCREEN")
 {
     auto player = std::make_unique<Player>();
-    player->setPlayerPosition(8,0);//place player on left margin
+    player->setPosition(8,0);//place player on left margin
     auto game_world = std::make_unique<GameWorld>();
     game_world->loadMapFromFile();
     std::vector<std::shared_ptr<GameWorldResources>>game_resources;
-    auto [InitXpos, InitYpos] = player->getPlayerPosition();
+    auto [InitXpos, InitYpos] = player->getPosition();
     auto window_height = 576;
     auto player_dimension = 25;
     auto wall_width = 8.0f;
@@ -248,7 +248,7 @@ TEST_CASE("TEST IF PLAYER IS BOUNDED ON LEFT BOUND OF SCREEN")
     
     auto expectedYpos = InitYpos;
     auto expectedXpos = left_boundary;
-    auto [actualXpos, actualYpos] = player->getPlayerPosition();
+    auto [actualXpos, actualYpos] = player->getPosition();
     CHECK_EQ(expectedXpos,actualXpos);
     CHECK_EQ(expectedYpos,actualYpos);
 }
@@ -256,11 +256,11 @@ TEST_CASE("TEST IF PLAYER IS BOUNDED ON LEFT BOUND OF SCREEN")
 TEST_CASE("TEST IF PLAYER IS BOUNDED ON RIGHT BOUND OF SCREEN")
 {
     auto player = std::make_unique<Player>();
-    player->setPlayerPosition(495, 0);//Place player on right boundary
+    player->setPosition(495, 0);//Place player on right boundary
     auto game_world = std::make_unique<GameWorld>();
     game_world->loadMapFromFile();
     std::vector<std::shared_ptr<GameWorldResources>>game_resources;
-    auto [InitXpos, InitYpos] = player->getPlayerPosition();
+    auto [InitXpos, InitYpos] = player->getPosition();
     auto window_width = 528;
     auto player_dimension = 25;
     auto wall_width = 8.0f;
@@ -278,7 +278,7 @@ TEST_CASE("TEST IF PLAYER IS BOUNDED ON RIGHT BOUND OF SCREEN")
     
     auto expectedYpos = InitYpos;
     auto expectedXpos = right_boundary;
-    auto [actualXpos, actualYpos] = player->getPlayerPosition();
+    auto [actualXpos, actualYpos] = player->getPosition();
     CHECK_EQ(expectedXpos,actualXpos);
     CHECK_EQ(expectedYpos,actualYpos);
 }
@@ -288,8 +288,8 @@ TEST_CASE("TEST IF PLAYER POSITION CAN BE SET AND RETRIEVED")
     auto player = std::make_unique<Player>();
     float xTestPos = 200.0f;
     float yTestPos = 48.0f;
-    player->setPlayerPosition(xTestPos, yTestPos);
-    auto[xPos, yPos] = player->getPlayerPosition();//Retrieve position
+    player->setPosition(xTestPos, yTestPos);
+    auto[xPos, yPos] = player->getPosition();//Retrieve position
     CHECK_EQ(xTestPos,xPos);
     CHECK_EQ(yTestPos,yPos);
 }
@@ -298,7 +298,7 @@ TEST_CASE("TEST IF PLAYER DIRECTION CAN BE RETRIEVED")
 {
     auto player = std::make_unique<Player>();
     
-    auto actualDirection = player->getPlayerDirection();
+    auto actualDirection = player->getDirection();
     auto expectedDirection = Direction::Right;//player initially facing right
     CHECK_EQ(actualDirection,expectedDirection);
 }
@@ -313,7 +313,7 @@ TEST_CASE("TEST IF PLAYER DIRECTION CAN BE UPDATED TO THE LEFT")
     bool movingLeft = true,movingRight = false,movingUp = false, movingDown = false;
     player->movePlayer(movingRight,movingLeft,movingDown,movingUp, game_resources,locks, dt);
     
-    auto actualDirection = player->getPlayerDirection();
+    auto actualDirection = player->getDirection();
     auto expectedDirection = Direction::Left;//player initially facing right
     CHECK_EQ(actualDirection,expectedDirection);
 }
@@ -328,7 +328,7 @@ TEST_CASE("TEST IF PLAYER DIRECTION CAN BE UPDATED DOWNWARDS")
     bool movingLeft = false,movingRight = false,movingUp = false, movingDown = true;
     player->movePlayer(movingRight,movingLeft,movingDown,movingUp, game_resources,locks, dt);
     
-    auto actualDirection = player->getPlayerDirection();
+    auto actualDirection = player->getDirection();
     auto expectedDirection = Direction::Down;//player initially facing right
     CHECK_EQ(actualDirection,expectedDirection);
 }
@@ -343,7 +343,7 @@ TEST_CASE("TEST IF PLAYER DIRECTION CAN BE UPDATED UPWARDS")
     bool movingLeft = false,movingRight = false,movingUp = true, movingDown = false;
     player->movePlayer(movingRight,movingLeft,movingDown,movingUp, game_resources,locks, dt);
     
-    auto actualDirection = player->getPlayerDirection();
+    auto actualDirection = player->getDirection();
     auto expectedDirection = Direction::Up;//player initially facing right
     CHECK_EQ(actualDirection,expectedDirection);
 }
@@ -403,7 +403,7 @@ TEST_CASE("TEST IF COLLISION IS DETECTED BETWEEN WALL AND PLAYER")
     std::vector<std::shared_ptr<GameWorldResources>>maze = {};
 
     //Place wall two tiles above player 
-    auto [InitXpos, InitYpos] = player->getPlayerPosition();
+    auto [InitXpos, InitYpos] = player->getPosition();
     auto tilePosX = static_cast<int>(InitXpos/32);
     auto tilePosY = static_cast<int>((InitYpos - 64.0f)/32);
     float xOffset = 0.0f;
@@ -412,9 +412,9 @@ TEST_CASE("TEST IF COLLISION IS DETECTED BETWEEN WALL AND PLAYER")
     maze.push_back(tile_property);
 
     maze.push_back(tile_property);
-    player->setPlayerPosition(tilePosX * 48.0f,tilePosY * 48.0f);//Place player such that it collides with the wall
+    player->setPosition(tilePosX * 48.0f,tilePosY * 48.0f);//Place player such that it collides with the wall
 
-    auto [finalXpos, finalYpos] = player->getPlayerPosition();    
+    auto [finalXpos, finalYpos] = player->getPosition();    
     auto isCollided = collisions_manager.playerWallCollisions(maze,finalXpos, finalYpos);
     
     //A collision should have been detected
@@ -428,8 +428,8 @@ TEST_CASE("COLLISION BETWEEN GHOST AND PLAYER")
     ghost->setPosition(0.0f, 0.0f);
     auto [ghostX, ghostY] = ghost->getPosition();
     auto player = std::make_unique<Player>();
-    player->setPlayerPosition(0.0f, 0.0f);//Move player to collide with ghost
-    auto[playerX, playerY] = player->getPlayerPosition();
+    player->setPosition(0.0f, 0.0f);//Move player to collide with ghost
+    auto[playerX, playerY] = player->getPosition();
     auto isCollided = manage_collisions.playerGhostCollisions(ghostX, ghostY,playerX, playerY);
 
     CHECK_EQ(isCollided, true);
@@ -459,5 +459,4 @@ TEST_CASE("GHOST TYPE CAN BE SET")
     std::vector<std::shared_ptr<Lock>>locks = {};
     auto dt = 1/60.0f;
     ghost->update(game_resources,locks,dt);
-}
-*/
+}*/
