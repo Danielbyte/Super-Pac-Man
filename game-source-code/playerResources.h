@@ -1,5 +1,5 @@
-#ifndef PLAYERRESOURCES
-#define PLAYERRESOURCES
+#ifndef PLAYERRESOURCES_H
+#define PLAYERRESOURCES_H
 #include "raylib-cpp.hpp"
 #include "player.h"
 
