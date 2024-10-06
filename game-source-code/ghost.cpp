@@ -4,7 +4,7 @@ Ghost::Ghost():
 xPosition{-100.0f},
 yPosition{-100.0f},
 ghostSpeed{60.0f},
-currentDirection{GDirection::Still},
+currentDirection{Direction::Still},
 integralDistance{0.0f},
 isInitial{true},
 justSpawned{false}
@@ -80,11 +80,11 @@ float Ghost::calculateLinearDistance()
     return sqrt(pow(xPosition-xTargetPos,2)+(pow(yPosition-yTargetPos,2)));
 }
 
-GDirection Ghost::getOptimalDirection(std::vector<std::shared_ptr<Lock>>& locks, const float dt)
+Direction Ghost::getOptimalDirection(std::vector<std::shared_ptr<Lock>>& locks, const float dt)
 {
-    GDirection bestDir = GDirection::Still;
+    Direction bestDir = Direction::Still;
     auto minDistance = calculateLinearDistance();//The straight line distance will give min distance between ghost and target
-    std::vector<GDirection>directions = {GDirection::Left,GDirection::Up,GDirection::Right, GDirection::Down};
+    std::vector<Direction>directions = {Direction::Left,Direction::Up,Direction::Right, Direction::Down};
     auto isValid = false;
     int TileCol = static_cast<int>(xPosition/48);
     int TileRow = static_cast<int>(yPosition/48);
@@ -108,7 +108,7 @@ GDirection Ghost::getOptimalDirection(std::vector<std::shared_ptr<Lock>>& locks,
         }
     }
 
-    if (bestDir == GDirection::Still)
+    if (bestDir == Direction::Still)
     {
         bestDir = priorityDirection(locks);
     }
@@ -116,7 +116,7 @@ GDirection Ghost::getOptimalDirection(std::vector<std::shared_ptr<Lock>>& locks,
     return bestDir;
 }
 
-void Ghost::getIsValidMove(GDirection _direction, int tileRow, const int tileColumn, bool& isValid,
+void Ghost::getIsValidMove(Direction _direction, int tileRow, const int tileColumn, bool& isValid,
 std::vector<std::shared_ptr<Lock>>& locks)
 {    
     //Check for locked sections
@@ -124,7 +124,7 @@ std::vector<std::shared_ptr<Lock>>& locks)
     auto Offset = 17.0f;   
     switch (_direction)
     {
-        case GDirection::Up:
+        case Direction::Up:
         if (tileRow > 0 && (gameMap[tileRow][tileColumn] != "-" && gameMap[tileRow][tileColumn] != "="
         && gameMap[tileRow][tileColumn] != "┌" && gameMap[tileRow][tileColumn] != "Π" && gameMap[tileRow][tileColumn] != "┐"))
         {
@@ -142,7 +142,7 @@ std::vector<std::shared_ptr<Lock>>& locks)
             isValid = false;
         }
         break;
-        case GDirection::Down:
+        case Direction::Down:
             if ((tileRow + 1) < 12 && (gameMap[tileRow][tileColumn] != "_" && gameMap[tileRow][tileColumn] != "└"
             && gameMap[tileRow][tileColumn] != "┘" && gameMap[tileRow][tileColumn] != "="))
             {
@@ -163,7 +163,7 @@ std::vector<std::shared_ptr<Lock>>& locks)
             }
         break;
         
-        case GDirection::Right:
+        case Direction::Right:
             if ((tileColumn+1) < 11 && (gameMap[tileRow][tileColumn] != "┘" && gameMap[tileRow][tileColumn] != "┐"
             && gameMap[tileRow][tileColumn] != "01" && gameMap[tileRow][tileColumn] != "||" && gameMap[tileRow][tileColumn] != "Π"))
             {
@@ -184,7 +184,7 @@ std::vector<std::shared_ptr<Lock>>& locks)
             }
              break;
 
-        case GDirection::Left:
+        case Direction::Left:
             if ((tileColumn-1) >= 0 && (gameMap[tileRow][tileColumn] != "||" && gameMap[tileRow][tileColumn] != "10"
             && gameMap[tileRow][tileColumn] != "└" && gameMap[tileRow][tileColumn] != "┌" && gameMap[tileRow][tileColumn] != "Π"))
             {
@@ -211,13 +211,13 @@ std::vector<std::shared_ptr<Lock>>& locks)
     }
 }
 
-GDirection Ghost::priorityDirection(std::vector<std::shared_ptr<Lock>>& locks)
+Direction Ghost::priorityDirection(std::vector<std::shared_ptr<Lock>>& locks)
 {
-    GDirection priorityDir = GDirection::Still;
+    Direction priorityDir = Direction::Still;
     auto isValid = false;
     int TileCol = static_cast<int>(xPosition/48);
     int TileRow = static_cast<int>(yPosition/48);
-    std::vector<GDirection>directions = {GDirection::Up,GDirection::Left,GDirection::Down, GDirection::Right};//Store according to their priority
+    std::vector<Direction>directions = {Direction::Up,Direction::Left,Direction::Down, Direction::Right};//Store according to their priority
     for(auto dir : directions)
     {
         if (isOppositeDirection(dir, currentDirection))
@@ -233,28 +233,28 @@ GDirection Ghost::priorityDirection(std::vector<std::shared_ptr<Lock>>& locks)
     return priorityDir;
 }
 
-bool Ghost::isOppositeDirection(GDirection nextDir, GDirection previousDir)
+bool Ghost::isOppositeDirection(Direction nextDir, Direction previousDir)
 {
-    return ((nextDir == GDirection::Up && previousDir == GDirection::Down) ||(nextDir == GDirection::Down && previousDir == GDirection::Up)
-    ||(nextDir == GDirection::Left && previousDir == GDirection::Right) || (nextDir == GDirection::Right && previousDir == GDirection::Left));
+    return ((nextDir == Direction::Up && previousDir == Direction::Down) ||(nextDir == Direction::Down && previousDir == Direction::Up)
+    ||(nextDir == Direction::Left && previousDir == Direction::Right) || (nextDir == Direction::Right && previousDir == Direction::Left));
 }
 
-std::tuple<float,float> Ghost::getNextPosition(GDirection dir, const float dt)
+std::tuple<float,float> Ghost::getNextPosition(Direction dir, const float dt)
 {
     auto[newXpos, newYpos] = getPosition();//Get currentt position
 
     switch (dir)
     {
-    case GDirection::Up:
+    case Direction::Up:
            newYpos -= ghostSpeed*dt;
         break;
-    case GDirection::Down:
+    case Direction::Down:
         newYpos += ghostSpeed*dt;
     break;
-    case GDirection::Left:
+    case Direction::Left:
         newXpos -= ghostSpeed*dt;
     break;
-    case GDirection::Right:
+    case Direction::Right:
         newXpos += ghostSpeed*dt; 
     break;
     default:
@@ -262,7 +262,7 @@ std::tuple<float,float> Ghost::getNextPosition(GDirection dir, const float dt)
     }
     return {newXpos, newYpos};
 }
-std::tuple<int,int> Ghost::getNextTile(GDirection dir)
+std::tuple<int,int> Ghost::getNextTile(Direction dir)
 {
     auto[newXpos, newYpos] = getPosition();//Get currentt position
     int tileX = static_cast<int>(newXpos/48);
@@ -270,16 +270,16 @@ std::tuple<int,int> Ghost::getNextTile(GDirection dir)
 
     switch (dir)
     {
-    case GDirection::Up:
+    case Direction::Up:
            tileY -= 1;
         break;
-    case GDirection::Down:
+    case Direction::Down:
         tileY += 1;
     break;
-    case GDirection::Left:
+    case Direction::Left:
         tileX -= 1;
     break;
-    case GDirection::Right:
+    case Direction::Right:
         tileX += 1; 
     break;
     default:
@@ -294,7 +294,7 @@ void Ghost::updatePosition(std::vector<std::shared_ptr<Lock>>& locks, const floa
     integralDistance += ghostSpeed * dt;
     float nextX, nextY;
     auto isUpdated = false;
-    if (currentDirection == GDirection::Still)
+    if (currentDirection == Direction::Still)
     {
         auto bestDirection = getOptimalDirection(locks,dt);
         auto [_nextX, _nextY] = getNextPosition(bestDirection, dt);
@@ -347,7 +347,7 @@ void Ghost::respawn()
     time_since_respawn.restartTimer();
     mode = Mode::Scatter;
     setPosition(249.0f, 105.0f);
-    currentDirection = GDirection::Still;
+    currentDirection = Direction::Still;
     integralDistance = 0.0f;
     isInitial = true;
 }
