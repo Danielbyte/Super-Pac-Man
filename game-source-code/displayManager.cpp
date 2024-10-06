@@ -102,18 +102,10 @@ void DisplayManager::updateGame()
 
 void DisplayManager::updateGhosts()
 {
-    auto [xPlayerPos, yPlayerPos] = player_obj->getPlayerPosition();
-    auto playerAtePowerPellet = player_obj->consumedPowerPellet();
-    ghost_manager.updateTarget(ghost_objects, xPlayerPos, yPlayerPos);
-    auto ghost_texture = ghost_textures.begin();
+    ghost_manager.updateGhostModes(ghost_objects,player_obj);
+
     for (auto& ghost : ghost_objects)
     {
-        auto justReSpawned = ghost->isJustRespawned();
-        if (playerAtePowerPellet && !justReSpawned)
-        {
-            ghost->setMode(Mode::Frightened);
-            (*ghost_texture) = frightenedGhostT;
-        }
 
        /* if(!playerAtePowerPellet && (ghost->getMode() == Mode::Frightened))
         {
@@ -159,7 +151,6 @@ void DisplayManager::updateGhosts()
         }*/
           
         ghost->update(maze_resources,lock_objects ,1/60.0f);
-        ++ghost_texture;
     }
 }
 

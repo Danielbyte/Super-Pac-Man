@@ -181,9 +181,17 @@ void GhostManager::initialiseGhosts(std::vector<std::shared_ptr<Ghost>>& ghosts)
     InitialiseGhostPositions(ghosts);
 }
 
-void updateGhostModes(std::vector<std::shared_ptr<Ghost>>& ghosts, std::shared_ptr<Player>& player)
+void GhostManager::updateGhostModes(std::vector<std::shared_ptr<Ghost>>& ghosts, std::shared_ptr<Player>& player)
 {
-    
+    auto [xPlayerPos, yPlayerPos] = player->getPlayerPosition();
+    auto playerAtePowerPellet = player->consumedPowerPellet();
+    updateTarget(ghosts, xPlayerPos, yPlayerPos);
+    for (auto& ghost : ghosts)
+    {
+        auto justRespawned = ghost->isJustRespawned();
+        if(playerAtePowerPellet && !justRespawned)
+           ghost->setMode(Mode::Frightened);
+    }
 }
 
 void GhostManager::restartGhostTimers()
