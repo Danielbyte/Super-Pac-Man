@@ -31,6 +31,24 @@ void PlayerResources::updateTexture(std::shared_ptr<Player>& player, std::shared
         }
         return;
     }
+
+      switch (direction)
+      {
+      case Direction::Right:
+          updateRightTextures(player_texture,isSuperPacman);
+          break;
+      case Direction::Left:
+          updateLeftTextures(player_texture,isSuperPacman);
+          break;
+      case Direction::Up:
+          updateUpTextures(player_texture,isSuperPacman);
+          break;
+      case Direction::Down:
+          updateDownTextures(player_texture,isSuperPacman);
+          break;
+      default:
+        break;
+      }
 }
 
 void PlayerResources::loadTextures()
@@ -94,6 +112,7 @@ void PlayerResources::updateRightTextures(std::shared_ptr<raylib::Texture2D>& pl
         playerTexture = (*(rightTexturesNM.begin()));
         return;
     }
+    playerTexture.reset();
     playerTexture = (*(rightTexturesSP.begin()));
 }
 

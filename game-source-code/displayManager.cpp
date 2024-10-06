@@ -295,47 +295,14 @@ void DisplayManager::displayInGameScreen()
     auto playerDirection = player_obj->getPlayerDirection();
     auto isSuperPacman = player_obj->isSuperPacman();
     player_resources.updateTexture(player_obj, player_texture,buttoPressed);
-   /* if (!isSuperPacman)
-    {
-      switch (playerDirection)
-      {
-      case Direction::Right:
-          pacmanRight1_T.Draw(xPlayerPos, yPlayerPos);
-          break;
-      case Direction::Left:
-          pacmanLeft1_T.Draw(xPlayerPos,yPlayerPos);
-          break;
-      case Direction::Up:
-        pacmanUp1_T.Draw(xPlayerPos,yPlayerPos);
-        break;
-      case Direction::Down:
-        pacmanDown1_T.Draw(xPlayerPos,yPlayerPos);
-        break;
-      default:
-        break;
-      }
-    }*/
 
-    if (isSuperPacman)
-    {
-      switch (playerDirection)
-      {
-      case Direction::Right:
-          SuperpacmanRight1_T.Draw(xPlayerPos - 12.5f, yPlayerPos-12.5f);
-          break;
-      case Direction::Left:
-          SuperpacmanLeft1_T.Draw(xPlayerPos - 12.5f,yPlayerPos - 12.5f);
-          break;
-      case Direction::Up:
-        SuperpacmanUp1_T.Draw(xPlayerPos - 12.5f,yPlayerPos-12.5f);
-        break;
-      case Direction::Down:
-        SuperpacmanDown1_T.Draw(xPlayerPos - 12.5f,yPlayerPos-12.5f);
-        break;
-      default:
-        break;
-      }
-    }
+    player_texture->Draw(xPlayerPos, yPlayerPos);
+
+    if (!isSuperPacman)
+       return;
+    
+    auto offset = 12.5f;
+    player_texture->Draw(xPlayerPos-offset, yPlayerPos-offset);
 }
 
 void DisplayManager::drawMaze()
