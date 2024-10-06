@@ -183,7 +183,7 @@ void GhostManager::initialiseGhosts(std::vector<std::shared_ptr<Ghost>>& ghosts)
 
 void GhostManager::updateGhostModes(std::vector<std::shared_ptr<Ghost>>& ghosts, std::shared_ptr<Player>& player)
 {
-    auto [xPlayerPos, yPlayerPos] = player->getPlayerPosition();
+    auto [xPlayerPos, yPlayerPos] = player->getPosition();
     auto playerAtePowerPellet = player->consumedPowerPellet();
     updateTarget(ghosts, xPlayerPos, yPlayerPos);
     for (auto& ghost : ghosts)

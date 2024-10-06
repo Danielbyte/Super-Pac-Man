@@ -5,6 +5,8 @@
 #include <string>
 #include <vector>
 
+enum class Direction{Up, Down, Left, Right, Still};
+
 class Entity
 {
 private:
@@ -13,10 +15,13 @@ protected:
     float xPosition;
     float yPosition;
     std::vector<std::vector<std::string>>gameMap = {};
+    Direction direction;
 public:
     Entity();
+    ~Entity();
     std::tuple<float, float> getPosition() const;
     void setPosition(const float x, const float y);
-    ~Entity();
+    void setDirection(Direction _direction);
+    Direction getDirection() const;
 };
 #endif

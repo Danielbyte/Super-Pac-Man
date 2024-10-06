@@ -1,13 +1,14 @@
 #include "player.h"
 
 Player::Player():
-xPosition{400.0f},//New player center
-yPosition{326.0f},//New player center
 playerSpeed{102.0f},
-playerDirection{Direction::Right},//Pacman initially facing right
+//playerDirection{Direction::Right},//Pacman initially facing right
 superPacman{false},
 atePowerPellet{false}
-{}
+{
+    setDirection(Direction::Right);//Pacman initially facing right
+    setPosition(400.0f, 326.0f);
+}
 
 void Player::movePlayer(bool rightArrowKeyPressed, bool leftArrowKeyPressed,
                         bool downArrowKeyPressed, bool upArrowKeyPressed, 
@@ -16,9 +17,9 @@ void Player::movePlayer(bool rightArrowKeyPressed, bool leftArrowKeyPressed,
 {
     if (rightArrowKeyPressed)
     {
-        playerDirection = Direction::Right;
+        setDirection(Direction::Right);
         bool _willCollide = willCollideWithWall(Direction::Right, maze);
-        auto _willCollide1 = willCoolideWithLock(playerDirection,locks);
+        auto _willCollide1 = willCoolideWithLock(Direction::Right,locks);
         if (_willCollide || _willCollide1)
          return;
         //move player to the right
@@ -29,9 +30,9 @@ void Player::movePlayer(bool rightArrowKeyPressed, bool leftArrowKeyPressed,
 
     if(leftArrowKeyPressed)
     {
-        playerDirection = Direction::Left;
+        setDirection(Direction::Left);
         bool _willCollide = willCollideWithWall(Direction::Left, maze);
-        auto _willCollide1 = willCoolideWithLock(playerDirection,locks);
+        auto _willCollide1 = willCoolideWithLock(Direction::Left,locks);
         if (_willCollide || _willCollide1)
          return;        
         //Move player to the left
@@ -42,9 +43,9 @@ void Player::movePlayer(bool rightArrowKeyPressed, bool leftArrowKeyPressed,
 
     if(downArrowKeyPressed)
     {
-        playerDirection = Direction::Down;
+        setDirection(Direction::Down);
         bool _willCollide = willCollideWithWall(Direction::Down, maze);
-        auto _willCollide1 = willCoolideWithLock(playerDirection,locks);
+        auto _willCollide1 = willCoolideWithLock(Direction::Down,locks);
         if (_willCollide || _willCollide1)
          return;
         //move player downwards
@@ -56,10 +57,10 @@ void Player::movePlayer(bool rightArrowKeyPressed, bool leftArrowKeyPressed,
 
     if (upArrowKeyPressed)
     {
-        playerDirection = Direction::Up;
+        setDirection(Direction::Up);
         //first check if this movement will not result in player collision with wall
         bool _willCollide = willCollideWithWall(Direction::Up, maze);
-        auto _willCollide1 = willCoolideWithLock(playerDirection,locks);
+        auto _willCollide1 = willCoolideWithLock(Direction::Up,locks);
         if (_willCollide || _willCollide1)
          return;
         //move player upwards
@@ -79,21 +80,21 @@ void Player::updatePlayerStates()
     if (elapsed_time >= 5.0f && atePowerPellet)
        toggleOffPowerPellet();
 }
-std::tuple<float, float> Player::getPlayerPosition() const
+/*std::tuple<float, float> Player::getPlayerPosition() const
 {
     return {xPosition, yPosition};
-}
+}*/
 
-void Player::setPlayerPosition(float x, float y)
+/*void Player::setPlayerPosition(float x, float y)
 {
     xPosition = x;
     yPosition = y;
-}
+}*/
 
-Direction Player::getPlayerDirection() const
+/*Direction Player::getPlayerDirection() const
 {
     return playerDirection;
-}
+}*/
 
 bool Player::willCollideWithWall(Direction direcction, std::vector<std::shared_ptr<GameWorldResources>>& maze)
 {

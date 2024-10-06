@@ -7,7 +7,7 @@ PlayerResources::PlayerResources()
 
 void PlayerResources::updateTexture(std::shared_ptr<Player>& player, std::shared_ptr<raylib::Texture2D>& player_texture,const bool buttoPressed)
 {
-    auto direction = player->getPlayerDirection();
+    auto direction = player->getDirection();
     auto isSuperPacman = player->isSuperPacman();
 
     if(!isSuperPacman)

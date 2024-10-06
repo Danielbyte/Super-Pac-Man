@@ -100,7 +100,7 @@ void DisplayManager::updateGhosts()
 
 void DisplayManager::playerGhostCollisions()
 {
-    auto [xPlayerPos, yPlayerPos] = player_obj->getPlayerPosition();
+    auto [xPlayerPos, yPlayerPos] = player_obj->getPosition();
 
     for(auto& ghost : ghost_objects)
     {
@@ -197,7 +197,7 @@ void DisplayManager::handleUserInput(const float dt)
 
 void DisplayManager::updatePlayer()
 {
-    auto [xPos, yPos] = player_obj->getPlayerPosition();
+    auto [xPos, yPos] = player_obj->getPosition();
     collision_manager->playerKeyCollisions(key_objects,xPos,yPos,lock_objects);
 
     auto isSuPerPacman = player_obj->isSuperPacman();
@@ -291,8 +291,8 @@ void DisplayManager::displayInGameScreen()
     drawGhosts();
 
     background = black;//Updating background
-    auto [xPlayerPos, yPlayerPos] = player_obj->getPlayerPosition();
-    auto playerDirection = player_obj->getPlayerDirection();
+    auto [xPlayerPos, yPlayerPos] = player_obj->getPosition();
+    auto playerDirection = player_obj->getDirection();
     auto isSuperPacman = player_obj->isSuperPacman();
     player_resources.updateTexture(player_obj, player_texture,buttoPressed);
 
