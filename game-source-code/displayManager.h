@@ -8,10 +8,10 @@
 #include "fruit.h"
 #include "lock.h"
 #include "ghostManager.h"
-//using namespace raylib;
 #include <iostream>
 #include <memory>
 #include "player.h"
+#include "ghostResources.h"
 
 class DisplayManager
 {
@@ -94,6 +94,7 @@ class DisplayManager
     StopWatch stop_watch;
     GhostManager ghost_manager;
     GameWorldResources game_maze_resources;
+    GhostResources ghost_resources;
     bool isGameOver;
     bool playerWon;
 };

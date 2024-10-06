@@ -29,7 +29,9 @@ playerWon{false}
     game_maze_resources.setMazeWalls(game_world_textures, maze_resources);
     game_maze_resources.loadKeyTextures(key_objects, key_textures);
     game_maze_resources.loadLockTextures(lock_objects, lock_textures);
-    InitGameWorldTextures();
+    ghost_manager.initialiseGhosts(ghost_objects);
+    ghost_resources.initialiseTextures(ghost_objects, ghost_textures);
+    //InitGameWorldTextures();
 }
 
 void DisplayManager::startGame()
@@ -453,27 +455,13 @@ void DisplayManager::InitGameWorldTextures()
 
 void DisplayManager::initialiseGhosts()
 {
-    auto blue = std::make_shared<Ghost>();
-    blue->setType(Type::Blue);
-    ghost_objects.push_back(blue);
     ghost_textures.push_back(blueT);
 
-    auto orange = std::make_shared<Ghost>();
-    orange->setType(Type::Orange);
-    ghost_objects.push_back(orange);
     ghost_textures.push_back(orangeT);
 
-    auto pink = std::make_shared<Ghost>();
-    pink->setType(Type::Pink);
-    ghost_objects.push_back(pink);
     ghost_textures.push_back(pinkT);
 
-    auto red = std::make_shared<Ghost>();
-    red->setType(Type::Red);
-    ghost_objects.push_back(red);
     ghost_textures.push_back(redT);
-
-    ghost_manager.InitialiseGhostPositions(ghost_objects);
 }
 
 void DisplayManager::loadTextures()

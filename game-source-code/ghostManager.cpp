@@ -177,6 +177,8 @@ void GhostManager::initialiseGhosts(std::vector<std::shared_ptr<Ghost>>& ghosts)
     auto red = std::make_shared<Ghost>();
     red->setType(Type::Red);
     ghosts.push_back(red);
+
+    InitialiseGhostPositions(ghosts);
 }
 
 void GhostManager::restartGhostTimers()
