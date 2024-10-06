@@ -296,11 +296,12 @@ void DisplayManager::displayInGameScreen()
     auto isSuperPacman = player_obj->isSuperPacman();
     player_resources.updateTexture(player_obj, player_texture,buttoPressed);
 
-    player_texture->Draw(xPlayerPos, yPlayerPos);
-
     if (!isSuperPacman)
-       return;
-    
+    {
+        player_texture->Draw(xPlayerPos, yPlayerPos);
+        return;
+    }
+       
     auto offset = 12.5f;
     player_texture->Draw(xPlayerPos-offset, yPlayerPos-offset);
 }
