@@ -9,8 +9,6 @@ enum class Type{Pink, Red, Orange, Blue};
 class Ghost : public Entity
 {
 private:
-    float xPosition;
-    float yPosition;
     float xTargetPos, yTargetPos;
     int targetTileX, targetTileY;
     float targetCornePosX, targetCornerPosY;
@@ -37,19 +35,13 @@ private:
     bool justSpawned;
 public:
     Ghost();
-    std::tuple<float, float>getPosition() const;
-    Direction getDirection() const;
     Type getType() const;
     Mode getMode() const;
-    void setDirection(Direction _direction);
     void setType(Type _type);
     void setMode(Mode _mode);
-    void switchMode();
-    float getTargetDistance();
     void updateTarget(const float x, const float y);
     void update(std::vector<std::shared_ptr<GameWorldResources>>& maze,std::vector<std::shared_ptr<Lock>>& locks,
      const float dt);
-    void setPosition(const float xPos, const float yPos);
     void assignCorner(const float x, const float y);
     float calculateLinearDistance();
     void moveToCorner();

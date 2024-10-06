@@ -1,25 +1,12 @@
 #include "ghost.h"
 
 Ghost::Ghost():
-xPosition{-100.0f},
-yPosition{-100.0f},
 ghostSpeed{60.0f},
 currentDirection{Direction::Still},
 integralDistance{0.0f},
 isInitial{true},
 justSpawned{false}
 {}
-
-std::tuple<float, float>Ghost::getPosition() const
-{
-    return {xPosition, yPosition};
-}
-
-void Ghost::setPosition(const float xPos, const float yPos)
-{
-    xPosition = xPos;
-    yPosition = yPos;
-}
 
 Type Ghost::getType() const
 {
