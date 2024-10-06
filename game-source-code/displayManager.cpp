@@ -496,7 +496,7 @@ void DisplayManager::loadTextures()
 
 DisplayManager::~DisplayManager()
 {
-    //Some hoise keeping
+    //Some house keeping
     ghost_textures.clear();
     ghost_objects.clear();
     lock_textures.clear();
@@ -507,5 +507,4 @@ DisplayManager::~DisplayManager()
     key_objects.clear();
     game_world_textures.clear();
     maze_resources.clear();
-
 }

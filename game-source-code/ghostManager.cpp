@@ -160,6 +160,25 @@ std::tuple<int, int> GhostManager::convertToTilePosition(float xPos, float yPos)
     return{x , y};
 }
 
+void GhostManager::initialiseGhosts(std::vector<std::shared_ptr<Ghost>>& ghosts)
+{
+    auto blue = std::make_shared<Ghost>();
+    blue->setType(Type::Blue);
+    ghosts.push_back(blue);
+
+    auto orange = std::make_shared<Ghost>();
+    orange->setType(Type::Orange);
+    ghosts.push_back(orange);
+
+    auto pink = std::make_shared<Ghost>();
+    pink->setType(Type::Pink);
+    ghosts.push_back(pink);
+
+    auto red = std::make_shared<Ghost>();
+    red->setType(Type::Red);
+    ghosts.push_back(red);
+}
+
 void GhostManager::restartGhostTimers()
 {
     red_watch->restartTimer();
