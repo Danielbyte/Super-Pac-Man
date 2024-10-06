@@ -43,7 +43,6 @@ class DisplayManager
     void displayPlayerWonScreen();
     void displayInGameScreen();
     void drawGameWorld();
-    void InitGameWorldTextures();
     void drawMaze();
     void loadTextures();
     void drawKeys();
@@ -52,7 +51,6 @@ class DisplayManager
     void drawLocks();
     void updateLocks();
     void updateFruits();
-    void initialiseGhosts();
     void drawGhosts();
     void updateGhosts();
     void playerGhostCollisions();
@@ -68,9 +66,6 @@ class DisplayManager
     raylib::Texture2D SuperpacmanDown1_T;
     raylib::Texture2D SuperpacmanUp1_T;
 
-    std::shared_ptr<raylib::Texture2D> blueT = std::make_shared<raylib::Texture2D>();
-    std::shared_ptr<raylib::Texture2D> redT = std::make_shared<raylib::Texture2D>();
-    std::shared_ptr<raylib::Texture2D> pinkT = std::make_shared<raylib::Texture2D>();
     std::shared_ptr<raylib::Texture2D> frightenedGhostT = std::make_shared<raylib::Texture2D>();
     std::shared_ptr<raylib::Texture2D> orangeT = std::make_shared<raylib::Texture2D>();
 

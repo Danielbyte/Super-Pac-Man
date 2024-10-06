@@ -31,7 +31,6 @@ playerWon{false}
     game_maze_resources.loadLockTextures(lock_objects, lock_textures);
     ghost_manager.initialiseGhosts(ghost_objects);
     ghost_resources.initialiseTextures(ghost_objects, ghost_textures);
-    //InitGameWorldTextures();
 }
 
 void DisplayManager::startGame()
@@ -116,7 +115,7 @@ void DisplayManager::updateGhosts()
             (*ghost_texture) = frightenedGhostT;
         }
 
-        if(!playerAtePowerPellet && (ghost->getMode() == Mode::Frightened))
+       /* if(!playerAtePowerPellet && (ghost->getMode() == Mode::Frightened))
         {
             ghost->setMode(Mode::Scatter);
             auto ghostType = ghost->getType();
@@ -157,7 +156,7 @@ void DisplayManager::updateGhosts()
             default:
                 break;
             }   
-        }
+        }*/
           
         ghost->update(maze_resources,lock_objects ,1/60.0f);
         ++ghost_texture;
@@ -448,22 +447,6 @@ void DisplayManager::drawGameWorld()
 {
 }
 
-void DisplayManager::InitGameWorldTextures()
-{
-    initialiseGhosts();
-}
-
-void DisplayManager::initialiseGhosts()
-{
-    ghost_textures.push_back(blueT);
-
-    ghost_textures.push_back(orangeT);
-
-    ghost_textures.push_back(pinkT);
-
-    ghost_textures.push_back(redT);
-}
-
 void DisplayManager::loadTextures()
 {
     pacmanRight1_T = LoadTexture("../resources/pacmanRight1.png");
@@ -475,10 +458,6 @@ void DisplayManager::loadTextures()
     SuperpacmanDown1_T = LoadTexture("../resources/SuperpacmanDown1.png");
     SuperpacmanUp1_T = LoadTexture("../resources/SuperpacmanUp1.png");
     
-    blueT->Load("../resources/blue1.png");
-    redT->Load("../resources/red1.png");
-    pinkT->Load("../resources/pink1.png");
-    orangeT->Load("../resources/orange1.png");
     frightenedGhostT->Load("../resources/frightened.png");
 }
 
