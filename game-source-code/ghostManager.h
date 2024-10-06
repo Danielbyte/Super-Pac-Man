@@ -27,5 +27,6 @@ public:
     void updateTarget(std::vector<std::shared_ptr<Ghost>> ghosts, const float xPlayerPos, const float yPlayerPos);
     void restartGhostTimers();//Timers that will manage ghost switching modes
     void initialiseGhosts(std::vector<std::shared_ptr<Ghost>>& ghosts);
+    void updateGhostModes(std::vector<std::shared_ptr<Ghost>>& ghosts, std::shared_ptr<Player>& player);
 };
 #endif

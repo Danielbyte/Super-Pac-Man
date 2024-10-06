@@ -181,6 +181,11 @@ void GhostManager::initialiseGhosts(std::vector<std::shared_ptr<Ghost>>& ghosts)
     InitialiseGhostPositions(ghosts);
 }
 
+void updateGhostModes(std::vector<std::shared_ptr<Ghost>>& ghosts, std::shared_ptr<Player>& player)
+{
+    
+}
+
 void GhostManager::restartGhostTimers()
 {
     red_watch->restartTimer();
