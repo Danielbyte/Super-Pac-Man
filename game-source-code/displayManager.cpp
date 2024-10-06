@@ -106,51 +106,7 @@ void DisplayManager::updateGhosts()
     ghost_resources.updateTextures(ghost_textures,ghost_objects, frightenedGhostT,pinkT,orangeT,redT,blueT);
 
     for (auto& ghost : ghost_objects)
-    {
-
-       /* if(!playerAtePowerPellet && (ghost->getMode() == Mode::Frightened))
-        {
-            ghost->setMode(Mode::Scatter);
-            auto ghostType = ghost->getType();
-            switch (ghostType)
-            {
-            case Type::Blue:
-                (*ghost_texture) = blueT;
-                break;
-            case Type::Pink:
-                 (*ghost_texture) = pinkT;
-                 break;
-            case Type::Red:
-                 (*ghost_texture) = redT;
-                 break;
-            case Type::Orange:
-                 (*ghost_texture) = orangeT;  
-            default:
-                break;
-            }
-        }
-
-        if (justReSpawned)
-        {
-            auto ghostType = ghost->getType();
-            switch (ghostType)
-            {
-            case Type::Blue:
-                (*ghost_texture) = blueT;
-                break;
-            case Type::Pink:
-                 (*ghost_texture) = pinkT;
-                 break;
-            case Type::Red:
-                 (*ghost_texture) = redT;
-                 break;
-            case Type::Orange:
-                 (*ghost_texture) = orangeT;  
-            default:
-                break;
-            }   
-        }*/
-          
+    {          
         ghost->update(maze_resources,lock_objects ,1/60.0f);
     }
 }
