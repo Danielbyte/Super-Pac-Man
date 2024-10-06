@@ -17,7 +17,8 @@ upArrowKeyPressed{false},
 leftArrowKeyPressed{false}, 
 rightArrowKeyPressed{false},
 isGameOver{false},
-playerWon{false}
+playerWon{false},
+buttoPressed{false}
 {
     window->Init(window_width, window_height, "SUPER PAC-MAN");
     loadTextures();
@@ -78,22 +79,7 @@ void DisplayManager::updateGame()
     if(!isPlaying)
     return;
 
-    auto [xPos, yPos] = player_obj->getPlayerPosition();
-    collision_manager->playerKeyCollisions(key_objects,xPos,yPos,lock_objects);
-
-    auto isSuPerPacman = player_obj->isSuperPacman();
-    auto atePowerPellet = player_obj->consumedPowerPellet();
-
-    auto prevPlayerState = isSuPerPacman;
-    auto powerPelletPrevState = atePowerPellet;
-    collision_manager->playerFruitCollisions(fruit_objects, xPos, yPos, isSuPerPacman, atePowerPellet);
-
-    if (isSuPerPacman && (isSuPerPacman != prevPlayerState))//detect a difference in state
-        player_obj->setToSuperPacmanMode();
-
-    if(atePowerPellet && (atePowerPellet != powerPelletPrevState))
-       player_obj->inPowerPelletMode();
-
+    updatePlayer();
     updateKeys();
     updateFruits();
     updateGhosts();
@@ -164,12 +150,14 @@ void DisplayManager::handleUserInput(const float dt)
     upArrowKeyPressed = false;
     leftArrowKeyPressed = false;
     rightArrowKeyPressed = false;
+    buttoPressed = false;
 
     player_obj->updatePlayerStates();
 
     if(IsKeyDown(KEY_UP) && IsKeyUp(KEY_DOWN) && IsKeyUp(KEY_LEFT) && IsKeyUp(KEY_RIGHT))
     {
          upArrowKeyPressed = true;
+         buttoPressed = true;
          player_obj->movePlayer(rightArrowKeyPressed,leftArrowKeyPressed,downArrowKeyPressed,upArrowKeyPressed, maze_resources,
          lock_objects, dt);
     }
@@ -177,6 +165,7 @@ void DisplayManager::handleUserInput(const float dt)
     if(IsKeyDown(KEY_DOWN) && IsKeyUp(KEY_UP) && IsKeyUp(KEY_LEFT) && IsKeyUp(KEY_RIGHT))
     {
         downArrowKeyPressed = true;
+        buttoPressed = true;
         player_obj->movePlayer(rightArrowKeyPressed,leftArrowKeyPressed,downArrowKeyPressed,upArrowKeyPressed, maze_resources,
         lock_objects, dt);
     }
@@ -191,6 +180,7 @@ void DisplayManager::handleUserInput(const float dt)
     if(IsKeyDown(KEY_LEFT) && IsKeyUp(KEY_RIGHT) && IsKeyUp(KEY_UP) && IsKeyUp(KEY_DOWN))
     {
         leftArrowKeyPressed = true;
+        buttoPressed = true;
         player_obj->movePlayer(rightArrowKeyPressed,leftArrowKeyPressed,downArrowKeyPressed,upArrowKeyPressed, maze_resources,
         lock_objects, dt);
     }
@@ -198,10 +188,32 @@ void DisplayManager::handleUserInput(const float dt)
     if(IsKeyDown(KEY_RIGHT) && IsKeyUp(KEY_LEFT) && IsKeyUp(KEY_UP) && IsKeyUp(KEY_DOWN))
     {
         rightArrowKeyPressed = true;
+        buttoPressed = true;
         player_obj->movePlayer(rightArrowKeyPressed,leftArrowKeyPressed,downArrowKeyPressed,upArrowKeyPressed, maze_resources,
         lock_objects, dt);
     }  
 
+}
+
+void DisplayManager::updatePlayer()
+{
+    auto [xPos, yPos] = player_obj->getPlayerPosition();
+    collision_manager->playerKeyCollisions(key_objects,xPos,yPos,lock_objects);
+
+    auto isSuPerPacman = player_obj->isSuperPacman();
+    auto atePowerPellet = player_obj->consumedPowerPellet();
+
+    auto prevPlayerState = isSuPerPacman;
+    auto powerPelletPrevState = atePowerPellet;
+    collision_manager->playerFruitCollisions(fruit_objects, xPos, yPos, isSuPerPacman, atePowerPellet);
+
+    if (isSuPerPacman && (isSuPerPacman != prevPlayerState))//detect a difference in state
+        player_obj->setToSuperPacmanMode();
+
+    if(atePowerPellet && (atePowerPellet != powerPelletPrevState))
+       player_obj->inPowerPelletMode();
+
+    player_resources.updateTexture(player_obj,player_texture, buttoPressed);
 }
 
 void DisplayManager::updateKeys()
@@ -282,7 +294,7 @@ void DisplayManager::displayInGameScreen()
     auto [xPlayerPos, yPlayerPos] = player_obj->getPlayerPosition();
     auto playerDirection = player_obj->getPlayerDirection();
     auto isSuperPacman = player_obj->isSuperPacman();
-    //player_resources.updateTexture(player_obj)
+    player_resources.updateTexture(player_obj, player_texture,buttoPressed);
    /* if (!isSuperPacman)
     {
       switch (playerDirection)

@@ -61,10 +61,11 @@ class DisplayManager
     void drawGhosts();
     void updateGhosts();
     void playerGhostCollisions();
+    void updatePlayer();
     
     //Create Player objects
     std::shared_ptr<Player> player_obj = std::make_shared<Player>(); 
-    //std::
+    std::shared_ptr<raylib::Texture2D> player_texture = std::make_shared<raylib::Texture2D>();
     raylib::Texture2D pacmanRight1_T;
     raylib::Texture2D pacmanLeft1_T;
     raylib::Texture2D pacmanDown1_T;
@@ -100,5 +101,6 @@ class DisplayManager
     PlayerResources player_resources;
     bool isGameOver;
     bool playerWon;
+    bool buttoPressed;
 };
 #endif //DISPLAYMANAGER
