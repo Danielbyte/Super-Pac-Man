@@ -21,7 +21,6 @@ playerWon{false},
 buttoPressed{false}
 {
     window->Init(window_width, window_height, "SUPER PAC-MAN");
-    loadTextures();
     game_world->loadMapFromFile();
     fruit_objects = game_world->getMazeFruits();
     key_objects = game_world->getMazeKeys();
@@ -374,15 +373,6 @@ void DisplayManager::drawGhosts()
 
 void DisplayManager::drawGameWorld()
 {
-}
-
-void DisplayManager::loadTextures()
-{    
-    frightenedGhostT->Load("../resources/frightened.png");
-    blueT->Load("../resources/blue1.png");
-    redT->Load("../resources/red1.png");
-    pinkT->Load("../resources/pink1.png");
-    orangeT->Load("../resources/orange1.png");
 }
 
 DisplayManager::~DisplayManager()
