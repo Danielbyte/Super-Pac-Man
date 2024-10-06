@@ -1,13 +1,30 @@
 #include "playerResources.h"
 
-PlayerResources::PlayerResources(){}
+PlayerResources::PlayerResources()
+{
+    loadTextures();
+}
 
 void PlayerResources::updateTexture(std::shared_ptr<Player>& player, std::shared_ptr<raylib::Texture2D>& player_texture,const bool buttoPressed)
 {
     auto direction = player->getPlayerDirection();
+    auto isSuperPacman = player->isSuperPacman();
+
+    if(!isSuperPacman)
+    {
+        switch (direction)
+        {
+        case Direction::Right:
+            /* code */
+            break;
+        
+        default:
+            break;
+        }
+    }
 }
 
-void PlayerResources::initialiseTexture()
+void PlayerResources::loadTextures()
 {
     //NORMAL MODE
     auto pacmanRight1_T = std::make_shared<raylib::Texture2D>();
@@ -49,4 +66,24 @@ void PlayerResources::initialiseTexture()
     auto SuperpacmanUp1_T = std::make_shared<raylib::Texture2D>();
     SuperpacmanUp1_T->Load("../resources/SuperpacmanUp1.png");
     upTexturesSP.push_back(SuperpacmanUp1_T);
+}
+
+void updateLeftTextures(std::shared_ptr<raylib::Texture2D>& playerTexture, bool isSuperPacman)
+{
+
+}
+
+void updateRightTextures(std::shared_ptr<raylib::Texture2D>& playerTexture, bool isSuperPacman)
+{
+
+}
+
+void updateUpTextures(std::shared_ptr<raylib::Texture2D>& playerTexture, bool isSuperPacman)
+{
+
+}
+
+void updateDownTextures(std::shared_ptr<raylib::Texture2D>& playerTexture, bool isSuperPacman)
+{
+    
 }

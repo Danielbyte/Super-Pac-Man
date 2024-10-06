@@ -12,6 +12,7 @@
 #include <memory>
 #include "player.h"
 #include "ghostResources.h"
+#include "playerResources.h"
 
 class DisplayManager
 {
