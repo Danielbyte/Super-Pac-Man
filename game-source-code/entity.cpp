@@ -3,7 +3,9 @@
 Entity::Entity():
 xPosition{-100.0f},
 yPosition{-100.0f}
-{}
+{
+    gameMap = game_world.getGameMap();
+}
 
 void Entity::setPosition(const float x, const float y)
 {

@@ -23,7 +23,6 @@ private:
     std::tuple<float,float> getNextPosition(Direction dir, const float dt);
     CollisionsManager collision_manager;
     void updatePosition(std::vector<std::shared_ptr<Lock>>& locks, const float dt);
-    std::vector<std::vector<std::string>>gameMap = {};
     GameWorld game_world;
     float integralDistance;//summation of distance travelled by ghost (will be used to monitor if ghost has travelled a tile's distance) 
     void getIsValidMove(Direction _direction, int tileRow, const int tileColumn, bool& isValid,

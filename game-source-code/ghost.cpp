@@ -15,7 +15,6 @@ Type Ghost::getType() const
 
 void Ghost::setType(Type _type)
 {
-    gameMap = game_world.getGameMap();
     type = _type;
 }
 
