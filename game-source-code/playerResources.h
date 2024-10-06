@@ -9,6 +9,7 @@ class PlayerResources
 {
 public:
     PlayerResources();
+    ~PlayerResources();
     void loadTextures();
     void updateTexture(std::shared_ptr<Player>& player, std::shared_ptr<raylib::Texture2D>& player_texture,const bool buttoPressed);
 private:

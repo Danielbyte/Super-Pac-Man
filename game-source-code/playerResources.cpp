@@ -135,3 +135,16 @@ void PlayerResources::updateDownTextures(std::shared_ptr<raylib::Texture2D>& pla
     }
     playerTexture = (*(downTexturesSP.begin()));
 }
+
+PlayerResources::~PlayerResources()
+{
+    //free memory
+    rightTexturesNM.clear();
+    leftTexturesNM.clear();
+    upTexturesNM.clear();
+    downTexturesNM.clear();
+    rightTexturesSP.clear();
+    leftTexturesSP.clear();
+    upTexturesSP.clear();
+    downTexturesSP.clear();
+}
