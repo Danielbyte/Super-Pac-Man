@@ -166,14 +166,14 @@ void DisplayManager::handleUserInput(const float dt)
 
     player_obj->updatePlayerStates();
 
-    if(IsKeyDown(KEY_UP))
+    if(IsKeyDown(KEY_UP) && IsKeyUp(KEY_DOWN) && IsKeyUp(KEY_LEFT) && IsKeyUp(KEY_RIGHT))
     {
-        upArrowKeyPressed = true;
+         upArrowKeyPressed = true;
          player_obj->movePlayer(rightArrowKeyPressed,leftArrowKeyPressed,downArrowKeyPressed,upArrowKeyPressed, maze_resources,
          lock_objects, dt);
     }
 
-    if(IsKeyDown(KEY_DOWN))
+    if(IsKeyDown(KEY_DOWN) && IsKeyUp(KEY_UP) && IsKeyUp(KEY_LEFT) && IsKeyUp(KEY_RIGHT))
     {
         downArrowKeyPressed = true;
         player_obj->movePlayer(rightArrowKeyPressed,leftArrowKeyPressed,downArrowKeyPressed,upArrowKeyPressed, maze_resources,
@@ -187,14 +187,14 @@ void DisplayManager::handleUserInput(const float dt)
         isPlaying = true;
     }
 
-    if(IsKeyDown(KEY_LEFT))
+    if(IsKeyDown(KEY_LEFT) && IsKeyUp(KEY_RIGHT) && IsKeyUp(KEY_UP) && IsKeyUp(KEY_DOWN))
     {
         leftArrowKeyPressed = true;
         player_obj->movePlayer(rightArrowKeyPressed,leftArrowKeyPressed,downArrowKeyPressed,upArrowKeyPressed, maze_resources,
         lock_objects, dt);
     }
 
-    if(IsKeyDown(KEY_RIGHT))
+    if(IsKeyDown(KEY_RIGHT) && IsKeyUp(KEY_LEFT) && IsKeyUp(KEY_UP) && IsKeyUp(KEY_DOWN))
     {
         rightArrowKeyPressed = true;
         player_obj->movePlayer(rightArrowKeyPressed,leftArrowKeyPressed,downArrowKeyPressed,upArrowKeyPressed, maze_resources,
