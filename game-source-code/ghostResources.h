@@ -9,14 +9,16 @@ class GhostResources
 {
 private:
     GhostManager ghost_manager;
-    void assignTextures(std::shared_ptr<raylib::Texture2D>& ghost_texture,
-    std::shared_ptr<raylib::Texture2D>& pinkT, std::shared_ptr<raylib::Texture2D>& oarngeT,
-    std::shared_ptr<raylib::Texture2D>& redT, std::shared_ptr<raylib::Texture2D>& blueT, Type type);
+    void assignTextures(std::shared_ptr<raylib::Texture2D>& ghost_texture,Type type);
+
+    std::shared_ptr<raylib::Texture2D> frightenedT = std::make_shared<raylib::Texture2D>();
+    std::shared_ptr<raylib::Texture2D> pinkT = std::make_shared<raylib::Texture2D>();
+    std::shared_ptr<raylib::Texture2D> orangeT = std::make_shared<raylib::Texture2D>();
+    std::shared_ptr<raylib::Texture2D> redT = std::make_shared<raylib::Texture2D>();
+    std::shared_ptr<raylib::Texture2D> blueT = std::make_shared<raylib::Texture2D>();
 public:
     GhostResources();
     void initialiseTextures(std::vector<std::shared_ptr<Ghost>>& ghosts, std::vector<std::shared_ptr<raylib::Texture2D>>& ghost_textures);
-    void updateTextures(std::vector<std::shared_ptr<raylib::Texture2D>>& ghost_textures, std::vector<std::shared_ptr<Ghost>>& ghosts,
-    std::shared_ptr<raylib::Texture2D>& frightenedT,std::shared_ptr<raylib::Texture2D>& pinkT, std::shared_ptr<raylib::Texture2D>& orangeT,
-    std::shared_ptr<raylib::Texture2D>& redT, std::shared_ptr<raylib::Texture2D>& blueT);
+    void updateTextures(std::vector<std::shared_ptr<raylib::Texture2D>>& ghost_textures, std::vector<std::shared_ptr<Ghost>>& ghosts);
 };
 #endif
