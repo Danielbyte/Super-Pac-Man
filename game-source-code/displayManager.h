@@ -66,14 +66,6 @@ class DisplayManager
     //Create Player objects
     std::shared_ptr<Player> player_obj = std::make_shared<Player>(); 
     std::shared_ptr<raylib::Texture2D> player_texture = std::make_shared<raylib::Texture2D>();
-    raylib::Texture2D pacmanRight1_T;
-    raylib::Texture2D pacmanLeft1_T;
-    raylib::Texture2D pacmanDown1_T;
-    raylib::Texture2D pacmanUp1_T;
-    raylib::Texture2D SuperpacmanRight1_T;
-    raylib::Texture2D SuperpacmanLeft1_T;
-    raylib::Texture2D SuperpacmanDown1_T;
-    raylib::Texture2D SuperpacmanUp1_T;
 
     std::shared_ptr<raylib::Texture2D> frightenedGhostT = std::make_shared<raylib::Texture2D>();
 

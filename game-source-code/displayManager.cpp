@@ -377,16 +377,7 @@ void DisplayManager::drawGameWorld()
 }
 
 void DisplayManager::loadTextures()
-{
-    pacmanRight1_T = LoadTexture("../resources/pacmanRight1.png");
-    pacmanLeft1_T = LoadTexture("../resources/pacmanLeft1.png");
-    pacmanDown1_T = LoadTexture("../resources/pacmanDown1.png");
-    pacmanUp1_T = LoadTexture("../resources/pacmanUp1.png");
-    SuperpacmanRight1_T = LoadTexture("../resources/SuperpacmanRight1.png");
-    SuperpacmanLeft1_T = LoadTexture("../resources/SuperpacmanLeft1.png");
-    SuperpacmanDown1_T = LoadTexture("../resources/SuperpacmanDown1.png");
-    SuperpacmanUp1_T = LoadTexture("../resources/SuperpacmanUp1.png");
-    
+{    
     frightenedGhostT->Load("../resources/frightened.png");
     blueT->Load("../resources/blue1.png");
     redT->Load("../resources/red1.png");
