@@ -36,6 +36,12 @@ class DisplayManager
     //variables to capture player input
     bool downArrowKeyPressed, upArrowKeyPressed, leftArrowKeyPressed, rightArrowKeyPressed;
 
+    //Will do for now
+    std::shared_ptr<raylib::Texture2D>redT = std::make_shared<raylib::Texture2D>();
+    std::shared_ptr<raylib::Texture2D>blueT = std::make_shared<raylib::Texture2D>();
+    std::shared_ptr<raylib::Texture2D>pinkT = std::make_shared<raylib::Texture2D>();
+    std::shared_ptr<raylib::Texture2D>orangeT = std::make_shared<raylib::Texture2D>();
+
     //Utility Functions
     void updateGame();
     void displaySplashScreen();
@@ -67,7 +73,6 @@ class DisplayManager
     raylib::Texture2D SuperpacmanUp1_T;
 
     std::shared_ptr<raylib::Texture2D> frightenedGhostT = std::make_shared<raylib::Texture2D>();
-    std::shared_ptr<raylib::Texture2D> orangeT = std::make_shared<raylib::Texture2D>();
 
     //Game objects
     std::shared_ptr<raylib::Window>window = std::make_shared<raylib::Window>();

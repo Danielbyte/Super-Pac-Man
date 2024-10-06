@@ -103,7 +103,7 @@ void DisplayManager::updateGame()
 void DisplayManager::updateGhosts()
 {
     ghost_manager.updateGhostModes(ghost_objects,player_obj);
-    ghost_resources.updateTextures(ghost_textures,ghost_objects, frightenedGhostT);
+    ghost_resources.updateTextures(ghost_textures,ghost_objects, frightenedGhostT,pinkT,orangeT,redT,blueT);
 
     for (auto& ghost : ghost_objects)
     {
@@ -451,6 +451,10 @@ void DisplayManager::loadTextures()
     SuperpacmanUp1_T = LoadTexture("../resources/SuperpacmanUp1.png");
     
     frightenedGhostT->Load("../resources/frightened.png");
+    blueT->Load("../resources/blue1.png");
+    redT->Load("../resources/red1.png");
+    pinkT->Load("../resources/pink1.png");
+    orangeT->Load("../resources/orange1.png");
 }
 
 DisplayManager::~DisplayManager()
