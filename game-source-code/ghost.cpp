@@ -54,11 +54,7 @@ void Ghost::setMode(Mode _mode)
 void Ghost::update(std::vector<std::shared_ptr<GameWorldResources>>& maze,std::vector<std::shared_ptr<Lock>>& locks,
  const float dt)
 {
-   // if (mode != Mode::Frightened)
-    //{
-       // auto dir = getOptimalDirection(maze, dt);
-        updatePosition(locks, dt);
-   // }
+    updatePosition(locks, dt);
 }
 
 float Ghost::calculateLinearDistance()

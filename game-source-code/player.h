@@ -10,8 +10,6 @@
 class Player : public Entity
 {
 private:
- //float xPosition;
- //float yPosition;
  float playerSpeed;
  bool willCollideWithWall(Direction direction, std::vector<std::shared_ptr<GameWorldResources>>& maze);//function to check if the next move will result in a wall collision
  bool willCoolideWithLock(Direction direction, std::vector<std::shared_ptr<Lock>>& locks);
@@ -25,13 +23,10 @@ public:
     Player();
     void movePlayer(bool rightArrowKeyPressed, bool leftArrowKeyPressed, bool downArrowKeyPressed, bool upArrowKeyPressed
     , std::vector<std::shared_ptr<GameWorldResources>>& maze, std::vector<std::shared_ptr<Lock>>& locks, const float dt);
-    //std::tuple<float, float> getPlayerPosition() const;
-    //Direction playerDirection;
+
     bool isSuperPacman() const;
     bool consumedPowerPellet() const;
 
-    //void setPlayerPosition(float x, float y);
-   // Direction getPlayerDirection() const;
     void setToSuperPacmanMode();
     void inPowerPelletMode();
     void toggleOffSuperPacmanMode();
