@@ -2,7 +2,7 @@
 
 PlayerResources::PlayerResources()
 {
-    loadTextures();
+    //loadTextures();
 }
 
 void PlayerResources::updateTexture(std::shared_ptr<Player>& player, std::shared_ptr<raylib::Texture2D>& player_texture,const bool buttoPressed)
@@ -15,11 +15,21 @@ void PlayerResources::updateTexture(std::shared_ptr<Player>& player, std::shared
         switch (direction)
         {
         case Direction::Right:
+            updateRightTextures(player_texture,isSuperPacman);
             break;
-        
+        case Direction::Left:
+             updateLeftTextures(player_texture, isSuperPacman);
+             break;
+        case Direction::Up:
+             updateUpTextures(player_texture, isSuperPacman);
+             break;
+        case Direction::Down:
+             updateDownTextures(player_texture, isSuperPacman);
+             break;
         default:
             break;
         }
+        return;
     }
 }
 

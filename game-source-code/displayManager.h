@@ -64,6 +64,7 @@ class DisplayManager
     
     //Create Player objects
     std::shared_ptr<Player> player_obj = std::make_shared<Player>(); 
+    //std::
     raylib::Texture2D pacmanRight1_T;
     raylib::Texture2D pacmanLeft1_T;
     raylib::Texture2D pacmanDown1_T;
@@ -96,6 +97,7 @@ class DisplayManager
     GhostManager ghost_manager;
     GameWorldResources game_maze_resources;
     GhostResources ghost_resources;
+    PlayerResources player_resources;
     bool isGameOver;
     bool playerWon;
 };

@@ -31,6 +31,7 @@ playerWon{false}
     game_maze_resources.loadLockTextures(lock_objects, lock_textures);
     ghost_manager.initialiseGhosts(ghost_objects);
     ghost_resources.initialiseTextures(ghost_objects, ghost_textures);
+    player_resources.loadTextures();
 }
 
 void DisplayManager::startGame()
@@ -281,7 +282,8 @@ void DisplayManager::displayInGameScreen()
     auto [xPlayerPos, yPlayerPos] = player_obj->getPlayerPosition();
     auto playerDirection = player_obj->getPlayerDirection();
     auto isSuperPacman = player_obj->isSuperPacman();
-    if (!isSuperPacman)
+    //player_resources.updateTexture(player_obj)
+   /* if (!isSuperPacman)
     {
       switch (playerDirection)
       {
@@ -300,7 +302,7 @@ void DisplayManager::displayInGameScreen()
       default:
         break;
       }
-    }
+    }*/
 
     if (isSuperPacman)
     {
