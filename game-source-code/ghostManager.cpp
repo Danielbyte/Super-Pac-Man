@@ -191,6 +191,10 @@ void GhostManager::updateGhostModes(std::vector<std::shared_ptr<Ghost>>& ghosts,
         auto justRespawned = ghost->isJustRespawned();
         if(playerAtePowerPellet && !justRespawned)
            ghost->setMode(Mode::Frightened);
+        
+        //Toggle of frightened mode
+        if(!playerAtePowerPellet && (ghost->getMode() == Mode::Frightened))
+           ghost->setMode(Mode::Scatter);
     }
 }
 
