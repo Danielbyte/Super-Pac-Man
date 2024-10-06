@@ -103,6 +103,7 @@ void DisplayManager::updateGame()
 void DisplayManager::updateGhosts()
 {
     ghost_manager.updateGhostModes(ghost_objects,player_obj);
+    ghost_resources.updateTextures(ghost_textures,ghost_objects, frightenedGhostT);
 
     for (auto& ghost : ghost_objects)
     {
