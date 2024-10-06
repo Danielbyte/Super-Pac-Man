@@ -15,7 +15,6 @@ void PlayerResources::updateTexture(std::shared_ptr<Player>& player, std::shared
         switch (direction)
         {
         case Direction::Right:
-            /* code */
             break;
         
         default:
@@ -68,22 +67,42 @@ void PlayerResources::loadTextures()
     upTexturesSP.push_back(SuperpacmanUp1_T);
 }
 
-void updateLeftTextures(std::shared_ptr<raylib::Texture2D>& playerTexture, bool isSuperPacman)
+void PlayerResources::updateLeftTextures(std::shared_ptr<raylib::Texture2D>& playerTexture, bool isSuperPacman)
 {
-
+    if (!isSuperPacman)
+    {
+        playerTexture = (*(leftTexturesNM.begin()));
+        return;
+    }
+    playerTexture = (*(leftTexturesSP.begin()));
 }
 
-void updateRightTextures(std::shared_ptr<raylib::Texture2D>& playerTexture, bool isSuperPacman)
+void PlayerResources::updateRightTextures(std::shared_ptr<raylib::Texture2D>& playerTexture, bool isSuperPacman)
 {
-
+    if (!isSuperPacman)
+    {
+        playerTexture = (*(rightTexturesNM.begin()));
+        return;
+    }
+    playerTexture = (*(rightTexturesSP.begin()));
 }
 
-void updateUpTextures(std::shared_ptr<raylib::Texture2D>& playerTexture, bool isSuperPacman)
+void PlayerResources::updateUpTextures(std::shared_ptr<raylib::Texture2D>& playerTexture, bool isSuperPacman)
 {
-
+    if (!isSuperPacman)
+    {
+        playerTexture = (*(upTexturesNM.begin()));
+        return;
+    }
+    playerTexture = (*(upTexturesSP.begin()));
 }
 
-void updateDownTextures(std::shared_ptr<raylib::Texture2D>& playerTexture, bool isSuperPacman)
+void PlayerResources::updateDownTextures(std::shared_ptr<raylib::Texture2D>& playerTexture, bool isSuperPacman)
 {
-    
+    if (!isSuperPacman)
+    {
+        playerTexture = (*(downTexturesNM.begin()));
+        return;
+    }
+    playerTexture = (*(downTexturesSP.begin()));
 }
