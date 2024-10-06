@@ -322,7 +322,6 @@ void DisplayManager::displayInGameScreen()
         break;
       }
     }
-    //EndDrawing();
 }
 
 void DisplayManager::drawMaze()
