@@ -110,14 +110,14 @@ std::vector<std::shared_ptr<Lock>>& locks)
         if (tileRow > 0 && (gameMap[tileRow][tileColumn] != "-" && gameMap[tileRow][tileColumn] != "="
         && gameMap[tileRow][tileColumn] != "┌" && gameMap[tileRow][tileColumn] != "Π" && gameMap[tileRow][tileColumn] != "┐"))
         {
-          if (gameMap[tileRow-1][tileColumn] == "0" || (gameMap[tileRow-1][tileColumn] == "-" || gameMap[tileRow][tileColumn] == "-")
-          || gameMap[tileRow-1][tileColumn] == "01" || gameMap[tileRow-1][tileColumn] == "10"
-          || gameMap[tileRow-1][tileColumn] == "||"|| gameMap[tileRow-1][tileColumn] == "Π"){isValid = true;}
+            if (gameMap[tileRow-1][tileColumn] == "0" || (gameMap[tileRow-1][tileColumn] == "-" || gameMap[tileRow][tileColumn] == "-")
+                || gameMap[tileRow-1][tileColumn] == "01" || gameMap[tileRow-1][tileColumn] == "10"
+                || gameMap[tileRow-1][tileColumn] == "||"|| gameMap[tileRow-1][tileColumn] == "Π"){isValid = true;}
 
-          yPos -= Offset;
-          auto isCollided = collision_manager.lockCollisions(locks,xPos,yPos,false);
-          if (isCollided)
-              isValid = false;
+            yPos -= Offset;
+            auto isCollided = collision_manager.lockCollisions(locks,xPos,yPos,false);
+            if (isCollided)
+                isValid = false;
         }
         else
         {
@@ -164,7 +164,7 @@ std::vector<std::shared_ptr<Lock>>& locks)
             {
                 isValid = false;
             }
-             break;
+        break;
 
         case Direction::Left:
             if ((tileColumn-1) >= 0 && (gameMap[tileRow][tileColumn] != "||" && gameMap[tileRow][tileColumn] != "10"

@@ -21,6 +21,7 @@ playerWon{false},
 buttoPressed{false}
 {
     window->Init(window_width, window_height, "SUPER PAC-MAN");
+    splashScreenT->Load("../resources/Splashscreen.png");
     game_world->loadMapFromFile();
     fruit_objects = game_world->getMazeFruits();
     key_objects = game_world->getMazeKeys();
@@ -262,11 +263,7 @@ void DisplayManager::updateFruits()
 
 void DisplayManager::displaySplashScreen()
 {
-    background = green;
-    raylib::DrawText("WELCOME TO SUPER-PACMAN",50,200,20,black);
-    raylib::DrawText("PRESS ENTER TO START GAME",50,250,20,black);
-    raylib::DrawText("PRESS ARROW KEYS TO MOVE PLAYER",50,300,20,black);
-    raylib::DrawText("PRESS ESCAPE(Esc) TO QUIT GAME",50,350,20,black);
+    splashScreenT->Draw();
 }
 
 void DisplayManager::displayGameOverScreen()

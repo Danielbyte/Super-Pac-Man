@@ -60,7 +60,7 @@ class DisplayManager
     std::shared_ptr<Player> player_obj = std::make_shared<Player>(); 
     std::shared_ptr<raylib::Texture2D> player_texture = std::make_shared<raylib::Texture2D>();
 
-    std::shared_ptr<raylib::Texture2D> frightenedGhostT = std::make_shared<raylib::Texture2D>();
+    std::shared_ptr<raylib::Texture2D> splashScreenT = std::make_shared<raylib::Texture2D>();
 
     //Game objects
     std::shared_ptr<raylib::Window>window = std::make_shared<raylib::Window>();
