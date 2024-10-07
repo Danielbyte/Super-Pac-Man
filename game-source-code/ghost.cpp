@@ -103,7 +103,7 @@ std::vector<std::shared_ptr<Lock>>& locks)
 {    
     //Check for locked sections
     auto [xPos, yPos] = getPosition();
-    auto Offset = 17.0f;   
+    auto Offset = 12.0f;   
     switch (_direction)
     {
         case Direction::Up:
@@ -115,7 +115,7 @@ std::vector<std::shared_ptr<Lock>>& locks)
                 || gameMap[tileRow-1][tileColumn] == "||"|| gameMap[tileRow-1][tileColumn] == "Π"){isValid = true;}
 
             yPos -= Offset;
-            auto isCollided = collision_manager.lockCollisions(locks,xPos,yPos,false);
+            auto isCollided = collision_manager.ghostLockCollisions(locks,xPos,yPos);
             if (isCollided)
                 isValid = false;
         }
@@ -135,7 +135,7 @@ std::vector<std::shared_ptr<Lock>>& locks)
                 || gameMap[tileRow+1][tileColumn] == "||"){isValid = true;}
 
                 yPos += Offset;
-                auto isCollided = collision_manager.lockCollisions(locks,xPos,yPos, false);
+                auto isCollided = collision_manager.ghostLockCollisions(locks,xPos,yPos);
                 if(isCollided)
                    isValid = false;
             }
@@ -155,7 +155,7 @@ std::vector<std::shared_ptr<Lock>>& locks)
                 || gameMap[tileRow][tileColumn+1] == "="){isValid = true;}
 
                 xPos += Offset;
-                auto isCollided = collision_manager.lockCollisions(locks,xPos,yPos, false);
+                auto isCollided = collision_manager.ghostLockCollisions(locks,xPos,yPos);
 
                 if (isCollided)
                    isValid = false;
@@ -177,7 +177,7 @@ std::vector<std::shared_ptr<Lock>>& locks)
                 || gameMap[tileRow][tileColumn-1] == "└"){isValid = true;}
 
                 xPos -= Offset;
-                auto isCollided = collision_manager.lockCollisions(locks,xPos,yPos, false);
+                auto isCollided = collision_manager.ghostLockCollisions(locks,xPos,yPos);
                 if (isCollided)
                     isValid = false;
 

@@ -110,10 +110,10 @@ bool CollisionsManager::lockCollisions(std::vector<std::shared_ptr<Lock>>& lock_
 bool inSupePacmanMode)
 {
     auto lock = lock_objects.begin();
+    auto lockWidth = 0.0f;
+    auto lockLength = 0.0f;
     while(lock != lock_objects.end())
     {
-        auto lockWidth = 0.0f;
-        auto lockLength = 0.0f;
         auto lockType = (*lock)->getLockType();
         switch (lockType)
         {
@@ -180,4 +180,38 @@ bool CollisionsManager::ghostWallCollisions(std::vector<std::shared_ptr<GameWorl
 bool CollisionsManager::playerGhostCollisions(const float xGhostPos, const float yGhostPos, const float xPlayerPos, const float yPlayerPos)
 {
     return(collision->checkCollision(xGhostPos,yGhostPos,ghostWidth,ghostLength,xPlayerPos,yPlayerPos,playerWidth,playerLength));
+}
+
+bool CollisionsManager::ghostLockCollisions(std::vector<std::shared_ptr<Lock>>& lock_objects, const float xGhostPos, const float yGhostPos)
+{
+    auto lock = lock_objects.begin();
+    auto lockWidth = 0.0f;
+    auto lockLength = 0.0f;
+    while(lock != lock_objects.end())
+    {
+        auto lockType = (*lock)->getLockType();
+        switch (lockType)
+        {
+        case LockType::Vertical:
+            lockWidth = verticalLockWidth;
+            lockLength = verticalLockLength;
+            break;
+        case LockType::Horizontal:
+             lockWidth = horizontalLockWidth;
+             lockLength = horizontalLockLength;
+             break;
+        default:
+            break;
+        }
+        auto [xPos, yPos] = (*lock)->getPosition();
+        auto isGhostHouseLock = (*lock)->getIsGhostLock();
+        auto isCollided = collision->checkCollision(xGhostPos, yGhostPos, ghostWidth, ghostLength,
+        xPos, yPos, lockWidth, lockLength);
+
+        if (isCollided && !isGhostHouseLock)
+           return true;
+        ++lock;
+    }
+
+    return false;
 }
