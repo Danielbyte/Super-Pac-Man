@@ -11,6 +11,7 @@ private:
     bool isOpen;
     LockType lock_type;
     int lockId;
+    bool isGhostHouseLock;
 public:
     Lock();
     std::tuple<float, float>getPosition() const;
@@ -21,5 +22,7 @@ public:
     LockType getLockType() const;
     int getLockId() const;
     void setLockId(int id);
+    bool getIsGhostLock() const;
+    void setToGhostHouseLock();
 };
 #endif

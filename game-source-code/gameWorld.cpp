@@ -439,6 +439,7 @@ void GameWorld::placeLocks()
     std::shared_ptr<Lock>lock28 = std::make_shared<Lock>();
     lock28->setPosition(247.0f,143.8f);
     lock28->setLockType(LockType::Horizontal);
+    lock28->setToGhostHouseLock();
     lock28->setLockId(28);
     locks.push_back(lock28);
 

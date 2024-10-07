@@ -5,7 +5,8 @@ xPosition{-100.0f},
 yPosition{-100.0f},
 isOpen{false},
 lockId{-10},
-lock_type{LockType::Unknown}//lock type unknown initially
+lock_type{LockType::Unknown},//lock type unknown initially
+isGhostHouseLock{false}
 {}
 
 std::tuple<float, float> Lock::getPosition() const
@@ -47,4 +48,14 @@ int Lock::getLockId() const
 void Lock::setLockId(int id)
 {
     lockId = id;
+}
+
+bool Lock::getIsGhostLock() const
+{
+    return isGhostHouseLock;
+}
+
+void Lock::setToGhostHouseLock()
+{
+    isGhostHouseLock = true;
 }

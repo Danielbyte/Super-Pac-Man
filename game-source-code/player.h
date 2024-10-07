@@ -3,9 +3,9 @@
 #include<tuple>
 #include "collisionsManager.h"
 #include "gameWorldResources.h"
-#include "lock.h"
 #include "stopwatch.h"
 #include "entity.h"
+#include "lock.h"
 
 class Player : public Entity
 {
