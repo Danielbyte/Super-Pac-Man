@@ -182,7 +182,7 @@ bool CollisionsManager::playerGhostCollisions(const float xGhostPos, const float
     return(collision->checkCollision(xGhostPos,yGhostPos,ghostWidth,ghostLength,xPlayerPos,yPlayerPos,playerWidth,playerLength));
 }
 
-bool CollisionsManager::ghostLockCollisions(std::vector<std::shared_ptr<Lock>>& lock_objects, const float xGhostPos, const float yGhostPos)
+bool CollisionsManager::ghostLockCollisions(std::vector<std::shared_ptr<Lock>>& lock_objects, const float xGhostPos, const float yGhostPos, bool canUseDoor)
 {
     auto lock = lock_objects.begin();
     auto lockWidth = 0.0f;
@@ -208,8 +208,12 @@ bool CollisionsManager::ghostLockCollisions(std::vector<std::shared_ptr<Lock>>& 
         auto isCollided = collision->checkCollision(xGhostPos, yGhostPos, ghostWidth, ghostLength,
         xPos, yPos, lockWidth, lockLength);
 
-        if (isCollided && !isGhostHouseLock)
-           return true;
+        if (isCollided && isGhostHouseLock && canUseDoor)
+           return false;
+
+        if (isCollided)
+            return true;
+            
         ++lock;
     }
 

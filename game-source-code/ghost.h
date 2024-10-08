@@ -3,7 +3,7 @@
 #include "stopwatch.h"
 #include "player.h"
 
-enum class Mode{Frightened, Scatter, Chase};
+enum class Mode{Frightened, Scatter, Chase, Initial};
 enum class Type{Pink, Red, Orange, Blue};
 
 class Ghost : public Entity

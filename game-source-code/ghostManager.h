@@ -12,7 +12,7 @@ private:
     float targetXpos, targetYpos;
     int MAZE_WIDTH, MAZE_HEIGHT;
     float TILE_SIZE;
-    int doorTileX, doorTiley;
+    int doorTileX, doorTileY;
     float red_mode_switch;
     float pink_mode_switch;
     float orange_mode_switch;

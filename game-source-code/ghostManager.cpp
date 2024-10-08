@@ -28,25 +28,26 @@ void GhostManager::InitialiseGhostPositions(std::vector<std::shared_ptr<Ghost>>&
         switch (type)
         {
         case Type::Pink:
-            ghost->setPosition(initialRedXpos, initialRedYpos);
+            ghost->setPosition(initialPinkXpos, initialPinkYpos);
             ghost->assignCorner(0.0f, -48.0f);//Pink's corner @ top-left corner
-            ghost->setMode(Mode::Scatter);//ghost initially in scatter mode
+            ghost->setMode(Mode::Initial);//ghost initial mode
             break;
         case Type::Blue:
             ghost->setPosition(initialBlueXpos, initialBlueYpos);
             ghost->assignCorner(initialRedXpos,initialRedYpos);
             //ghost->assignCorner((MAZE_WIDTH-1)*TILE_SIZE, MAZE_HEIGHT*TILE_SIZE);
-            ghost->setMode(Mode::Scatter);
+            ghost->setMode(Mode::Initial);
             break;
         case Type::Orange:
             ghost->setPosition(initialRedXpos, initialRedYpos);
             ghost->assignCorner(0.0f, MAZE_HEIGHT*TILE_SIZE);
-            ghost->setMode(Mode::Scatter);
+            ghost->setMode(Mode::Initial);
             break;
         case Type::Red:
              ghost->setPosition(initialRedXpos, initialRedYpos);
              ghost->assignCorner((MAZE_WIDTH-1)*TILE_SIZE, -48.0f);//Red's corner @ top-right
              ghost->setMode(Mode::Scatter);//ghost initially in scatter mode
+             ghost->disableDoorUse();
              ghost->moveToCorner();
              break;
         default:
@@ -135,20 +136,30 @@ void GhostManager::updateTarget(std::vector<std::shared_ptr<Ghost>> ghosts, cons
 void GhostManager::setTarget(std::shared_ptr<Ghost> ghost, const float xPlayerPos, const float yPlayerPos)
 {
     auto ghostMode = ghost->getMode();
+    auto[xPos, yPos] = ghost->getPosition();
+    auto [tileX, tileY] = convertToTilePosition(xPos, yPos);
     switch (ghostMode)
     {
     case Mode::Scatter:
         //Ghost should move to respective corner
         ghost->moveToCorner();
-        break;
+    break;
     
     case Mode::Chase:
         ghost->updateTarget(xPlayerPos,yPlayerPos);
-        break;
+    break;
 
     case Mode::Frightened:
         ghost->moveToCorner();
-        break;
+    break;
+    case Mode::Initial:
+         ghost->updateTarget(initialRedXpos,initialRedYpos);
+         if (tileX == doorTileX && tileY == doorTileY)
+         {
+            ghost->setMode(Mode::Scatter);
+            ghost->disableDoorUse();
+         }
+    break;
     
     default:
         break;
