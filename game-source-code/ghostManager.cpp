@@ -65,10 +65,7 @@ void GhostManager::updateTarget(std::vector<std::shared_ptr<Ghost>> ghosts, cons
         auto mode = ghost->getMode();
         if (mode == Mode::Frightened)
         {
-            red_watch->restartTimer();
-            pink_watch->restartTimer();
-            orange_watch->restartTimer();
-            blue_watch->restartTimer();
+            restartGhostTimers();
             red_mode_switch = 1;
             orange_mode_switch = 1;
             pink_mode_switch = 1;

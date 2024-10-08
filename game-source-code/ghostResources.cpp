@@ -47,6 +47,7 @@ void GhostResources::updateTextures(std::vector<std::shared_ptr<raylib::Texture2
             break;
         case Mode::Chase:
         case Mode::Scatter:
+        case Mode::Initial:
              assignTextures(*ghost_texture,type);
              break;
         default:
