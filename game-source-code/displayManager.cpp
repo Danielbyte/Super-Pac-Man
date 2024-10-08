@@ -107,9 +107,9 @@ void DisplayManager::playerGhostCollisions()
         auto[xGhostPos, yGhostPos] = ghost->getPosition();
         auto isCollided = collision_manager->playerGhostCollisions(xGhostPos,yGhostPos,xPlayerPos,yPlayerPos);
         auto isSuperPacman = player_obj->isSuperPacman();
-        if (isCollided && !isSuperPacman)
+        auto ghostMode = ghost->getMode();
+        if (isCollided && !isSuperPacman && ghostMode != Mode::Frightened)
         {
-        
             isGameOver = true;
             isPlaying = false;
         }

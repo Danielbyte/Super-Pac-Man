@@ -240,6 +240,25 @@ void GhostManager::updateGhostModes(std::vector<std::shared_ptr<Ghost>>& ghosts,
             if (ghostFrightened == Mode::Frightened)
             {
                 ghost->respawn();
+                ghost->setToUseGhostDoor();
+                ghost->setMode(Mode::Initial);
+                switch (ghost->getType())
+                {
+                case Type::Blue:
+                    ghost->setPosition(initialBlueXpos,initialBlueYpos);
+                    break;
+                case Type::Pink:
+                    ghost->setPosition(initialPinkXpos, initialPinkYpos);
+                    break;
+                case Type::Red:
+                    ghost->setPosition(initialRedXpos, initialRedYpos);
+                    break;
+                case Type::Orange:
+                    ghost->setPosition(initialOrangeXpos, initialOrangeYpos);
+                    break;
+                default:
+                    break;
+                }
                 continue;
             }
         }
