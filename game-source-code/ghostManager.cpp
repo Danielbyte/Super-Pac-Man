@@ -224,7 +224,25 @@ void GhostManager::updateGhostModes(std::vector<std::shared_ptr<Ghost>>& ghosts,
         
         //Toggle of frightened mode
         if(!playerAtePowerPellet && (ghost->getMode() == Mode::Frightened))
-           ghost->setMode(Mode::Scatter);
+        {
+            ghost->setMode(Mode::Scatter);
+        }
+    }
+
+    for(auto& ghost : ghosts)
+    {
+        auto[xGhostPos, yGhostPos] = ghost->getPosition();
+        auto isCollided = collision_manager.playerGhostCollisions(xGhostPos,yGhostPos,xPlayerPos,yPlayerPos);
+        auto isSuperPacman = player->isSuperPacman();
+        if (isCollided)
+        {
+            auto ghostFrightened = ghost->getMode();
+            if (ghostFrightened == Mode::Frightened)
+            {
+                ghost->respawn();
+                continue;
+            }
+        }
     }
 }
 

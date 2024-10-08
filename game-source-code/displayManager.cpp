@@ -107,19 +107,11 @@ void DisplayManager::playerGhostCollisions()
         auto[xGhostPos, yGhostPos] = ghost->getPosition();
         auto isCollided = collision_manager->playerGhostCollisions(xGhostPos,yGhostPos,xPlayerPos,yPlayerPos);
         auto isSuperPacman = player_obj->isSuperPacman();
-        if (isCollided)
+        if (isCollided && !isSuperPacman)
         {
-            auto ghostFrightened = ghost->getMode();
-            if (ghostFrightened == Mode::Frightened)
-            {
-                ghost->respawn();//Will toggle off for now (Buggy)
-                continue;
-            }
-            if (!isSuperPacman)
-            {
-                isGameOver = true;
-                isPlaying = false;
-            }
+        
+            isGameOver = true;
+            isPlaying = false;
         }
     }
 }
