@@ -14,7 +14,8 @@ MAZE_HEIGHT{12},//consists of 13 tiles
 TILE_SIZE{48.0f},//each tile is a 48 x 48
 red_mode_switch{1},//2 = chase mode, 1 = scatter mode
 pink_mode_switch{1},
-orange_mode_switch{1}
+orange_mode_switch{1},
+blue_mode_switch{1}
 {
     auto [doorTileX, doorTileY] = convertToTilePosition(initialRedXpos, initialRedYpos);
 }
@@ -34,12 +35,11 @@ void GhostManager::InitialiseGhostPositions(std::vector<std::shared_ptr<Ghost>>&
             break;
         case Type::Blue:
             ghost->setPosition(initialBlueXpos, initialBlueYpos);
-            ghost->assignCorner(initialRedXpos,initialRedYpos);
-            //ghost->assignCorner((MAZE_WIDTH-1)*TILE_SIZE, MAZE_HEIGHT*TILE_SIZE);
+            ghost->assignCorner((MAZE_WIDTH-1)*TILE_SIZE, MAZE_HEIGHT*TILE_SIZE);
             ghost->setMode(Mode::Initial);
             break;
         case Type::Orange:
-            ghost->setPosition(initialRedXpos, initialRedYpos);
+            ghost->setPosition(initialOrangeXpos, initialOrangeYpos);
             ghost->assignCorner(0.0f, MAZE_HEIGHT*TILE_SIZE);
             ghost->setMode(Mode::Initial);
             break;
@@ -68,9 +68,11 @@ void GhostManager::updateTarget(std::vector<std::shared_ptr<Ghost>> ghosts, cons
             red_watch->restartTimer();
             pink_watch->restartTimer();
             orange_watch->restartTimer();
+            blue_watch->restartTimer();
             red_mode_switch = 1;
             orange_mode_switch = 1;
             pink_mode_switch = 1;
+            blue_mode_switch = 1;
             setTarget(ghost, xPlayerPos, yPlayerPos);
             continue;
         }
@@ -78,6 +80,7 @@ void GhostManager::updateTarget(std::vector<std::shared_ptr<Ghost>> ghosts, cons
         auto time_elapsed = red_watch->elapsedTime();
         auto pink_time_elapsed = pink_watch->elapsedTime();
         auto orange_time_elapsed = orange_watch->elapsedTime();
+        auto blue_time_elapsed = blue_watch->elapsedTime();
         switch (type)
         {
         case Type::Red:
@@ -125,6 +128,21 @@ void GhostManager::updateTarget(std::vector<std::shared_ptr<Ghost>> ghosts, cons
                 orange_mode_switch = 1;
             }
             break;
+        case Type::Blue:
+            if (blue_time_elapsed >= 5.0f && blue_mode_switch == 1)
+            {
+                ghost->setMode(Mode::Chase);
+                blue_watch->restartTimer();
+                blue_mode_switch = 2;
+                break;  
+            }
+            if (blue_time_elapsed >= 30.0f && blue_mode_switch == 2)
+            {
+                ghost->setMode(Mode::Scatter);
+                blue_watch->restartTimer();
+                blue_mode_switch = 1;
+            }
+            break;
         
         default:
             break;
@@ -137,7 +155,6 @@ void GhostManager::setTarget(std::shared_ptr<Ghost> ghost, const float xPlayerPo
 {
     auto ghostMode = ghost->getMode();
     auto[xPos, yPos] = ghost->getPosition();
-    auto [tileX, tileY] = convertToTilePosition(xPos, yPos);
     switch (ghostMode)
     {
     case Mode::Scatter:
@@ -154,7 +171,7 @@ void GhostManager::setTarget(std::shared_ptr<Ghost> ghost, const float xPlayerPo
     break;
     case Mode::Initial:
          ghost->updateTarget(initialRedXpos,initialRedYpos);
-         if (tileX == doorTileX && tileY == doorTileY)
+         if (yPos <= initialRedYpos)
          {
             ghost->setMode(Mode::Scatter);
             ghost->disableDoorUse();

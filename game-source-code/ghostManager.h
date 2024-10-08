@@ -16,6 +16,7 @@ private:
     float red_mode_switch;
     float pink_mode_switch;
     float orange_mode_switch;
+    float blue_mode_switch;
     void setTarget(std::shared_ptr<Ghost> ghost, const float xPlayerPos, const float yPlayerPos);
     std::unique_ptr<StopWatch>red_watch = std::make_unique<StopWatch>();
     std::unique_ptr<StopWatch>blue_watch = std::make_unique<StopWatch>();
