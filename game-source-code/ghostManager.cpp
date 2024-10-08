@@ -157,10 +157,12 @@ void GhostManager::setTarget(std::shared_ptr<Ghost> ghost, const float xPlayerPo
     case Mode::Scatter:
         //Ghost should move to respective corner
         ghost->moveToCorner();
+        ghost->disableDoorUse();
     break;
     
     case Mode::Chase:
         ghost->updateTarget(xPlayerPos,yPlayerPos);
+        ghost->disableDoorUse();
     break;
 
     case Mode::Frightened:
@@ -223,6 +225,7 @@ void GhostManager::updateGhostModes(std::vector<std::shared_ptr<Ghost>>& ghosts,
         if(!playerAtePowerPellet && (ghost->getMode() == Mode::Frightened))
         {
             ghost->setMode(Mode::Scatter);
+            ghost->disableDoorUse();
         }
     }
 
@@ -230,11 +233,10 @@ void GhostManager::updateGhostModes(std::vector<std::shared_ptr<Ghost>>& ghosts,
     {
         auto[xGhostPos, yGhostPos] = ghost->getPosition();
         auto isCollided = collision_manager.playerGhostCollisions(xGhostPos,yGhostPos,xPlayerPos,yPlayerPos);
-        auto isSuperPacman = player->isSuperPacman();
         if (isCollided)
         {
-            auto ghostFrightened = ghost->getMode();
-            if (ghostFrightened == Mode::Frightened)
+            auto ghostMode= ghost->getMode();
+            if (ghostMode == Mode::Frightened)
             {
                 ghost->respawn();
                 ghost->setToUseGhostDoor();

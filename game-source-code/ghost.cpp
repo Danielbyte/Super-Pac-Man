@@ -104,7 +104,7 @@ std::vector<std::shared_ptr<Lock>>& locks)
 {    
     //Check for locked sections
     auto [xPos, yPos] = getPosition();
-    auto Offset = 15.0f;   
+    auto Offset = 14.0f;   
     switch (_direction)
     {
         case Direction::Up:
