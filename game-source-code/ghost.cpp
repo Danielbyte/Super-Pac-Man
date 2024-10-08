@@ -5,7 +5,8 @@ ghostSpeed{60.0f},
 currentDirection{Direction::Still},
 integralDistance{0.0f},
 isInitial{true},
-justSpawned{false}
+justSpawned{false},
+canUseDoor{true}
 {}
 
 Type Ghost::getType() const
@@ -332,4 +333,19 @@ void Ghost::respawn()
     currentDirection = Direction::Still;
     integralDistance = 0.0f;
     isInitial = true;
+}
+
+bool Ghost::getCanUseDoor() const
+{
+    return canUseDoor;
+}
+
+void Ghost::disableDoorUse()
+{
+    canUseDoor = false;
+}
+
+void Ghost::setToUseGhostDoor()
+{
+    canUseDoor = true;
 }

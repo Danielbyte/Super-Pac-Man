@@ -32,6 +32,7 @@ private:
     std::tuple<int,int> getNextTile(Direction dir);
     StopWatch time_since_respawn;
     bool justSpawned;
+    bool canUseDoor;
 public:
     Ghost();
     Type getType() const;
@@ -46,5 +47,8 @@ public:
     void moveToCorner();
     bool isJustRespawned();
     void respawn();
+    bool getCanUseDoor() const;
+    void setToUseGhostDoor();
+    void disableDoorUse();
 };
 #endif

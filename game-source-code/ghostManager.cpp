@@ -15,7 +15,9 @@ TILE_SIZE{48.0f},//each tile is a 48 x 48
 red_mode_switch{1},//2 = chase mode, 1 = scatter mode
 pink_mode_switch{1},
 orange_mode_switch{1}
-{}
+{
+    auto [doorTileX, doorTileY] = convertToTilePosition(initialRedXpos, initialRedYpos);
+}
 
 void GhostManager::InitialiseGhostPositions(std::vector<std::shared_ptr<Ghost>>& ghosts)
 {
