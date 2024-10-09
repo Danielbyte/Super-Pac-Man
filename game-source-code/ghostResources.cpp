@@ -10,6 +10,12 @@ void GhostResources::initialiseTextures(std::vector<std::shared_ptr<Ghost>>& gho
     orangeT->Load("../resources/orange1.png");
     frightenedT->Load("../resources/frightened.png");
 
+    flattenedblueT->Load("../resources/blue2_flattened.png");
+    flattenedRedT->Load("../resources/red2_flattened.png");
+    flattenedPinkT->Load("../resources/pink2_flattened.png");
+    flattenedOrangeT->Load("../resources/orange2_flattened.png");
+    flattenedFrightenedT->Load("../resources/frightened_flattened.png");
+
     for (auto& ghost : ghosts)
     {
         auto ghostType = ghost->getType();
