@@ -1,6 +1,7 @@
 #ifndef GHOSTMANAGER_H
 #define GHOSTMANAGER_H
 #include "ghost.h"
+#include "scoreManager.h"
 
 class GhostManager
 {
@@ -29,7 +30,7 @@ public:
     void updateTarget(std::vector<std::shared_ptr<Ghost>> ghosts, const float xPlayerPos, const float yPlayerPos);
     void restartGhostTimers();//Timers that will manage ghost switching modes
     void initialiseGhosts(std::vector<std::shared_ptr<Ghost>>& ghosts);
-    void updateGhostModes(std::vector<std::shared_ptr<Ghost>>& ghosts, std::shared_ptr<Player>& player);
+    void updateGhostModes(std::vector<std::shared_ptr<Ghost>>& ghosts, std::shared_ptr<Player>& player, ScoreManager& score_manager);
     CollisionsManager collision_manager;
 };
 #endif

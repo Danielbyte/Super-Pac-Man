@@ -89,7 +89,7 @@ void DisplayManager::updateGame()
 
 void DisplayManager::updateGhosts()
 {
-    ghost_manager.updateGhostModes(ghost_objects,player_obj);
+    ghost_manager.updateGhostModes(ghost_objects,player_obj, score_manager);
     ghost_resources.updateTextures(ghost_textures,ghost_objects, player_obj->isSuperPacman());
 
     for (auto& ghost : ghost_objects)

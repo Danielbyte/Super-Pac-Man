@@ -210,7 +210,7 @@ void GhostManager::initialiseGhosts(std::vector<std::shared_ptr<Ghost>>& ghosts)
     InitialiseGhostPositions(ghosts);
 }
 
-void GhostManager::updateGhostModes(std::vector<std::shared_ptr<Ghost>>& ghosts, std::shared_ptr<Player>& player)
+void GhostManager::updateGhostModes(std::vector<std::shared_ptr<Ghost>>& ghosts, std::shared_ptr<Player>& player, ScoreManager& score_manager)
 {
     auto [xPlayerPos, yPlayerPos] = player->getPosition();
     auto playerAtePowerPellet = player->consumedPowerPellet();
@@ -241,6 +241,7 @@ void GhostManager::updateGhostModes(std::vector<std::shared_ptr<Ghost>>& ghosts,
                 ghost->respawn();
                 ghost->setToUseGhostDoor();
                 ghost->setMode(Mode::Initial);
+                score_manager.updateCurrentScore(ScoreType::FrightenedGhost);
                 switch (ghost->getType())
                 {
                 case Type::Blue:
