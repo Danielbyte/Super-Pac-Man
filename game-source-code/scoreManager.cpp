@@ -18,9 +18,9 @@ int ScoreManager::getHighScore() const
     return highScore;
 }
 
-void ScoreManager::updateHighScore(const int currentScore)
+void ScoreManager::updateHighScore(const int currentScore_)
 {
-    if (currentScore < 0) throw NegativeScoreNotAllowed{};
+    if (currentScore_ < 0) throw NegativeScoreNotAllowed{};
 
     highScoreFile.open("../resources/high_score.txt");
 
@@ -28,8 +28,8 @@ void ScoreManager::updateHighScore(const int currentScore)
     if(highScoreFile.is_open())
     {
         highScoreFile >> highScore;
-        if (highScore < currentScore)
-            highScore = currentScore;
+        if (highScore < currentScore_)
+            highScore = currentScore_;
     }
 
     highScoreFile.close();

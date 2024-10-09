@@ -190,14 +190,14 @@ void DisplayManager::handleUserInput(const float dt)
 void DisplayManager::updatePlayer()
 {
     auto [xPos, yPos] = player_obj->getPosition();
-    collision_manager->playerKeyCollisions(key_objects,xPos,yPos,lock_objects);
+    collision_manager->playerKeyCollisions(key_objects,xPos,yPos,lock_objects, score_manager);
 
     auto isSuPerPacman = player_obj->isSuperPacman();
     auto atePowerPellet = player_obj->consumedPowerPellet();
 
     auto prevPlayerState = isSuPerPacman;
     auto powerPelletPrevState = atePowerPellet;
-    collision_manager->playerFruitCollisions(fruit_objects, xPos, yPos, isSuPerPacman, atePowerPellet);
+    collision_manager->playerFruitCollisions(fruit_objects, xPos, yPos, isSuPerPacman, atePowerPellet, score_manager);
 
     if (isSuPerPacman && (isSuPerPacman != prevPlayerState))//detect a difference in state
         player_obj->setToSuperPacmanMode();

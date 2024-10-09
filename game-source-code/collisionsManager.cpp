@@ -48,7 +48,7 @@ bool CollisionsManager::playerWallCollisions(std::vector<std::shared_ptr<GameWor
 }
 
 void CollisionsManager::playerKeyCollisions(std::vector<std::shared_ptr<Key>>keys, const float xPlayerPos, const float yPlayerPos,
-std::vector<std::shared_ptr<Lock>>& locks)
+std::vector<std::shared_ptr<Lock>>& locks, ScoreManager& score_manager)
 {
     auto key = keys.begin();
     int lockId1 = -100, lockId2 = -100, lockId3 = -100;
@@ -62,6 +62,7 @@ std::vector<std::shared_ptr<Lock>>& locks)
         {
             (*key)->markForDeletion();
             auto [lock1Id, lock2Id] = (*key)->getLockIdsToUnlock();
+            score_manager.updateCurrentScore(ScoreType::Key);
 
             if((*key)->isTripleOpener())
             {
@@ -82,12 +83,13 @@ std::vector<std::shared_ptr<Lock>>& locks)
 }
 
 void CollisionsManager::playerFruitCollisions(std::vector<std::shared_ptr<Fruit>>fruit_objects, const float xPlayerPos, const float yPlayerPos,
-bool& isSuperPacman, bool& atePowerPellet)
+bool& isSuperPacman, bool& atePowerPellet, ScoreManager& score_manager)
 {
     auto fruit = fruit_objects.begin();
     while(fruit != fruit_objects.end())
     {
         auto [xPos, yPos] = (*fruit)->getPosition();
+        auto scoreUpdated = false;
         auto isCollided = collision->checkCollision(xPlayerPos,yPlayerPos,playerWidth,playerLength,xPos,yPos,fruitWidth,fruitHeight);
         if(isCollided)
         {
@@ -95,9 +97,23 @@ bool& isSuperPacman, bool& atePowerPellet)
             if (isSuperPellet && !isSuperPacman)
                 isSuperPacman = true;
 
+            if (isSuperPellet)
+            {
+                score_manager.updateCurrentScore(ScoreType::SuperPellet);
+                scoreUpdated = true;
+            }
+
             auto isPowerPellet = (*fruit)->getIsPowerPellet();
             if(isPowerPellet)
-               atePowerPellet = true;
+            {
+                atePowerPellet = true;
+                score_manager.updateCurrentScore(ScoreType::PowerPellet);
+                scoreUpdated = true;
+            }
+
+            //Update score if it is a normal fruit
+            if (!scoreUpdated)
+                score_manager.updateCurrentScore(ScoreType::Fruit);
 
             (*fruit)->markForDeletion();
         }
