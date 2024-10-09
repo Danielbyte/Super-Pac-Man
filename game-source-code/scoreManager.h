@@ -5,7 +5,7 @@
 #include <fstream>
 
 class NegativeScoreNotAllowed{};
-enum class ScoreType{Fruit, Key, Lock, SuperPellet, PowerPellet, Star, MazeMatchBonus, NoMazeMatchBonus};
+enum class ScoreType{Fruit, Key, SuperPellet, PowerPellet, MazeMatchBonus, NoMazeMatchBonus, FrightenedGhost};
 
 class ScoreManager
 {
@@ -18,10 +18,9 @@ class ScoreManager
         int highScore;
         int fruitScore;
         int keyScore;
-        int lockScore;
+        int frighenedGhostScore;
         int superPelletScore;
         int powerPelletScore;
-        int starScore;
         int mazeMatchStarBonus;
         int noMazeMatchStarBonus;
         int currentScore;

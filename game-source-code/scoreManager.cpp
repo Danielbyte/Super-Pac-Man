@@ -1,6 +1,13 @@
 #include "scoreManager.h"
 
 ScoreManager::ScoreManager():
+fruitScore{10},
+keyScore{50},
+frighenedGhostScore{200},
+superPelletScore{100},
+powerPelletScore{500},
+mazeMatchStarBonus{5000},
+noMazeMatchStarBonus{2000},
 currentScore{0}
 {
     updateHighScore(0);
@@ -37,17 +44,14 @@ void ScoreManager::updateCurrentScore(const ScoreType scoreType)
 {
     switch (scoreType)
     {
-    case ScoreType::Star:
-        currentScore += starScore;
-        break;
     case ScoreType::Fruit:
         currentScore += fruitScore;
         break;
     case ScoreType::Key:
         currentScore += keyScore;
         break;
-    case ScoreType::Lock:
-        currentScore += lockScore;
+    case ScoreType::FrightenedGhost:
+        currentScore += frighenedGhostScore;
         break;
     case ScoreType::MazeMatchBonus:
         currentScore += mazeMatchStarBonus;
