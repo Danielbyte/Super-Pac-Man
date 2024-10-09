@@ -4,7 +4,8 @@ xPosition{-100.0f},
 yPosition{-100.0f},//Initially, at position that is off the screen
 canDelete{false},
 isSuperPellet{false},
-isPowerPellet{false}
+isPowerPellet{false},
+isStar{false}
 {}
 
 void Fruit::setPosition(const float xPos,const float yPos)
@@ -46,4 +47,14 @@ void Fruit::markAsPowerPellet()
 void Fruit::markAsSuperPellet()
 {
     isSuperPellet = true;
+}
+
+void Fruit::markAsStar()
+{
+    isStar = true;
+}
+
+bool Fruit::getIsStar() const
+{
+    return isStar;
 }

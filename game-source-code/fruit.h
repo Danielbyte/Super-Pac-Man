@@ -10,6 +10,7 @@ private:
  bool canDelete;
  bool isSuperPellet;
  bool isPowerPellet;
+ bool isStar;
 public:
     Fruit();
     void setPosition(const float xPos,const float yPos);
@@ -18,7 +19,9 @@ public:
     std::tuple<float, float>getPosition() const;
     bool getIsSuperPellet() const;
     bool getIsPowerPellet() const;
+    bool getIsStar() const;
     void markAsPowerPellet();
     void markAsSuperPellet();
+    void markAsStar();
 };
 #endif
