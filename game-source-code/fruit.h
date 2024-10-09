@@ -1,6 +1,7 @@
 #ifndef FRUIT_H
 #define FRUIT_H
 #include <tuple>
+#include "stopWatch.h"
 
 class Fruit
 {
@@ -11,6 +12,7 @@ private:
  bool isSuperPellet;
  bool isPowerPellet;
  bool isStar;
+ StopWatch lifetime;
 public:
     Fruit();
     void setPosition(const float xPos,const float yPos);
@@ -23,5 +25,6 @@ public:
     void markAsPowerPellet();
     void markAsSuperPellet();
     void markAsStar();
+    float getLifeTime();
 };
 #endif

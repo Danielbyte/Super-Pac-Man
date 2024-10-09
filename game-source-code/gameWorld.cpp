@@ -500,10 +500,22 @@ void GameWorld::placeLocks()
 
 void GameWorld::createStar(std::vector<std::shared_ptr<Fruit>>& fruits)
 {
+    //Delete star after a certain time elapse
+    for(auto& fruit : fruits)
+    {
+        auto isStar = fruit->getIsStar();
+        auto lifetime = fruit->getLifeTime();
+        if (isStar && lifetime >= 7.0f)
+        {
+            fruit->markForDeletion();
+        }
+    }
+
     auto time = star_creation_watch.elapsedTime();
     if (time >= 15.0f)
     {
         placeStar(fruits);
+        restartStarCreationWatch();
     }
 }
 

@@ -22,6 +22,7 @@ buttoPressed{false}
 {
     window->Init(window_width, window_height, "SUPER PAC-MAN");
     splashScreenT->Load("../resources/Splashscreen.png");
+    star->Load("../resources/star.png");
     game_world->loadMapFromFile();
     fruit_objects = game_world->getMazeFruits();
     key_objects = game_world->getMazeKeys();
@@ -167,6 +168,7 @@ void DisplayManager::handleUserInput(const float dt)
         ghost_manager.restartGhostTimers();
         isSplashScreen = false;
         isPlaying = true;
+        game_world->restartStarCreationWatch();
     }
 
     if(IsKeyDown(KEY_LEFT) && IsKeyUp(KEY_RIGHT) && IsKeyUp(KEY_UP) && IsKeyUp(KEY_DOWN))
@@ -245,6 +247,8 @@ void DisplayManager::updateFruits()
             ++fruit_texture;
         }
     }
+    
+    game_world->createStar(fruit_objects);
 
     if (fruit_objects.empty())
     {
@@ -334,9 +338,16 @@ void DisplayManager::drawFruits()
     while(fruit != fruit_objects.end())
     {
         auto [xPos, yPos] = (*fruit)->getPosition();
-        (*fruit_texture)->Draw(xPos, yPos);
-        ++fruit;
-        ++fruit_texture;
+        if ((*fruit)->getIsStar())
+        {
+            star->Draw(xPos, yPos);
+        } 
+        else
+        {
+            (*fruit_texture)->Draw(xPos, yPos);
+            ++fruit_texture;
+        }
+        ++fruit;  
     }
 }
 

@@ -10,7 +10,6 @@
 #include "fruit.h"
 #include "key.h"
 #include "lock.h"
-#include "stopwatch.h"
 
 class GameWorld
 {

@@ -6,7 +6,9 @@ canDelete{false},
 isSuperPellet{false},
 isPowerPellet{false},
 isStar{false}
-{}
+{
+    lifetime.restartTimer();
+}
 
 void Fruit::setPosition(const float xPos,const float yPos)
 {
@@ -57,4 +59,9 @@ void Fruit::markAsStar()
 bool Fruit::getIsStar() const
 {
     return isStar;
+}
+
+float Fruit::getLifeTime()
+{
+    return lifetime.elapsedTime();
 }
