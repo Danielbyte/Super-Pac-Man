@@ -8,6 +8,7 @@ using namespace raylib;
 class GhostResources
 {
 private:
+    bool isFlattened; 
     GhostManager ghost_manager;
     void assignTextures(std::shared_ptr<raylib::Texture2D>& ghost_texture,Type type);
 
@@ -24,6 +25,6 @@ private:
 public:
     GhostResources();
     void initialiseTextures(std::vector<std::shared_ptr<Ghost>>& ghosts, std::vector<std::shared_ptr<raylib::Texture2D>>& ghost_textures);
-    void updateTextures(std::vector<std::shared_ptr<raylib::Texture2D>>& ghost_textures, std::vector<std::shared_ptr<Ghost>>& ghosts);
+    void updateTextures(std::vector<std::shared_ptr<raylib::Texture2D>>& ghost_textures, std::vector<std::shared_ptr<Ghost>>& ghosts,bool flattened);
 };
 #endif

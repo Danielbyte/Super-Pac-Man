@@ -1,6 +1,8 @@
 #include "ghostResources.h"
 
-GhostResources::GhostResources(){}
+GhostResources::GhostResources():
+isFlattened{false}
+{}
 
 void GhostResources::initialiseTextures(std::vector<std::shared_ptr<Ghost>>& ghosts, std::vector<std::shared_ptr<raylib::Texture2D>>& ghost_textures)
 {
@@ -39,8 +41,9 @@ void GhostResources::initialiseTextures(std::vector<std::shared_ptr<Ghost>>& gho
     }
 }
 
-void GhostResources::updateTextures(std::vector<std::shared_ptr<raylib::Texture2D>>& ghost_textures, std::vector<std::shared_ptr<Ghost>>& ghosts)
+void GhostResources::updateTextures(std::vector<std::shared_ptr<raylib::Texture2D>>& ghost_textures, std::vector<std::shared_ptr<Ghost>>& ghosts, bool flattened)
 {
+    isFlattened = flattened;
     auto ghost_texture = ghost_textures.begin();
     for(auto& ghost : ghosts)
     {
@@ -50,6 +53,8 @@ void GhostResources::updateTextures(std::vector<std::shared_ptr<raylib::Texture2
         {
         case Mode::Frightened:
              (*ghost_texture) = frightenedT;
+             if(isFlattened) 
+               (*ghost_texture) = flattenedFrightenedT;
             break;
         case Mode::Chase:
         case Mode::Scatter:
@@ -70,15 +75,23 @@ void GhostResources::assignTextures(std::shared_ptr<raylib::Texture2D>& ghost_te
     {
     case Type::Red:
         ghost_texture = redT;
+        if(isFlattened)
+           ghost_texture = flattenedRedT;
         break;
     case Type::Blue:
          ghost_texture = blueT;
+         if(isFlattened)
+            ghost_texture = flattenedblueT;
         break;
     case Type::Orange:
          ghost_texture = orangeT;
+         if (isFlattened)
+            ghost_texture = flattenedOrangeT;
          break;
     case Type::Pink:
          ghost_texture = pinkT;
+         if (isFlattened)
+            ghost_texture = flattenedPinkT;
          break;
     default:
         break;
