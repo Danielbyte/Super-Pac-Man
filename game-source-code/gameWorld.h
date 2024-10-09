@@ -10,6 +10,7 @@
 #include "fruit.h"
 #include "key.h"
 #include "lock.h"
+#include "stopwatch.h"
 
 class GameWorld
 {
@@ -23,6 +24,9 @@ public:
  static std::vector<std::shared_ptr<Lock>>& getMazeLocks();
  int getNumberOfColumns() const;
  int getNumberOfRows() const;
+ void createStar(std::vector<std::shared_ptr<Fruit>>& fruits);
+ void placeStar(std::vector<std::shared_ptr<Fruit>>& fruits);
+ void restartStarCreationWatch();
 
 private:
  static std::vector<std::vector<std::string>>gameMap; //All game objects should modify and share the same coppy of the game maze
@@ -31,6 +35,7 @@ private:
  static std::vector<std::shared_ptr<Lock>>locks;
  static int numberOfColumns;//number of columns read from game map
  static int numberOfRows;
+ StopWatch star_creation_watch;
 
  //Utility function/s
  static void placeFruits();

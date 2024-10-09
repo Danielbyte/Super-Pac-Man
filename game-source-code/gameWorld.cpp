@@ -498,6 +498,28 @@ void GameWorld::placeLocks()
     locks.push_back(lock37);
 }
 
+void GameWorld::createStar(std::vector<std::shared_ptr<Fruit>>& fruits)
+{
+    auto time = star_creation_watch.elapsedTime();
+    if (time >= 15.0f)
+    {
+        placeStar(fruits);
+    }
+}
+
+void GameWorld::placeStar(std::vector<std::shared_ptr<Fruit>>& fruits)
+{
+    auto star = std::make_shared<Fruit>();
+    star->setPosition(249.0f, 297.0f);
+    star->markAsStar();
+    fruits.push_back(star);
+}
+
+void GameWorld::restartStarCreationWatch()
+{
+    star_creation_watch.restartTimer();
+}
+
 int GameWorld::getNumberOfColumns() const
 {
     return numberOfColumns;
