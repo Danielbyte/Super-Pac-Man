@@ -22,8 +22,9 @@ class ScoreManager
         int superPelletScore;
         int powerPelletScore;
         int starScore;
-        int mazeMatchBonus;
-        int noMazeMatchBonus;
+        int mazeMatchStarBonus;
+        int noMazeMatchStarBonus;
+        int currentScore;
 
         std::ifstream highScoreFile;
         std::ofstream outFile;

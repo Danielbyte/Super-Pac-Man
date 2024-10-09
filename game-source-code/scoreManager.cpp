@@ -1,6 +1,10 @@
 #include "scoreManager.h"
 
-ScoreManager::ScoreManager(){}
+ScoreManager::ScoreManager():
+currentScore{0}
+{
+    updateHighScore(0);
+}
 
 int ScoreManager::getHighScore() const
 {
@@ -27,4 +31,38 @@ void ScoreManager::updateHighScore(const int currentScore)
        outFile << highScore;
 
     outFile.close();
+}
+
+void ScoreManager::updateCurrentScore(const ScoreType scoreType)
+{
+    switch (scoreType)
+    {
+    case ScoreType::Star:
+        currentScore += starScore;
+        break;
+    case ScoreType::Fruit:
+        currentScore += fruitScore;
+        break;
+    case ScoreType::Key:
+        currentScore += keyScore;
+        break;
+    case ScoreType::Lock:
+        currentScore += lockScore;
+        break;
+    case ScoreType::MazeMatchBonus:
+        currentScore += mazeMatchStarBonus;
+        break;
+    case ScoreType::NoMazeMatchBonus:
+         currentScore += noMazeMatchStarBonus;
+         break;
+    case ScoreType::SuperPellet:
+         currentScore += superPelletScore;
+         break;
+    case ScoreType::PowerPellet:
+         currentScore += powerPelletScore;
+         break;
+    default:
+        break;
+    }
+    updateHighScore(currentScore);
 }
