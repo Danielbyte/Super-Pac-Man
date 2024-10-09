@@ -284,6 +284,12 @@ void DisplayManager::displayInGameScreen()
     auto isSuperPacman = player_obj->isSuperPacman();
     player_resources.updateTexture(player_obj, player_texture,buttoPressed);
 
+    //Draw scores
+    auto currentScore = "SCORE: " + std::to_string(score_manager.getCurrentScore());
+    auto highScore = "HIGH SCORE: " + std::to_string(score_manager.getHighScore());
+    raylib::DrawText(currentScore,50,593.5f,15,green);
+    raylib::DrawText(highScore,350,593.5f,15,red);
+
     if (!isSuperPacman)
     {
         player_texture->Draw(xPlayerPos, yPlayerPos);

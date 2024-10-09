@@ -70,3 +70,8 @@ void ScoreManager::updateCurrentScore(const ScoreType scoreType)
     }
     updateHighScore(currentScore);
 }
+
+int ScoreManager::getCurrentScore() const
+{
+    return currentScore;
+}

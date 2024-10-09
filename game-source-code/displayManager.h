@@ -13,6 +13,7 @@
 #include "player.h"
 #include "ghostResources.h"
 #include "playerResources.h"
+#include "scoreManager.h"
 
 class DisplayManager
 {
@@ -81,6 +82,7 @@ class DisplayManager
 
     StopWatch stop_watch;
     GhostManager ghost_manager;
+    ScoreManager score_manager;
     GameWorldResources game_maze_resources;
     GhostResources ghost_resources;
     PlayerResources player_resources;

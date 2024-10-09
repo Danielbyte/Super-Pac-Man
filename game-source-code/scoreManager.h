@@ -12,6 +12,7 @@ class ScoreManager
     public:
         ScoreManager();
         int getHighScore() const;
+        int getCurrentScore() const;
         void updateHighScore(const int currentScore);
         void updateCurrentScore(const ScoreType scoreType);
     private:
