@@ -247,8 +247,21 @@ void DisplayManager::updateFruits()
             ++fruit_texture;
         }
     }
+
+    auto star_iter = star_object.begin();
+    while(star_iter != star_object.end())
+    {
+        if ((*star_iter)->getIfCanDelete())
+        {
+            star_object.erase(star_iter);
+        }
+        else
+        {
+            ++star_iter;
+        }
+    }
     
-    game_world->createStar(fruit_objects);
+    game_world->createStar(star_object);
 
     if (fruit_objects.empty())
     {
@@ -338,16 +351,16 @@ void DisplayManager::drawFruits()
     while(fruit != fruit_objects.end())
     {
         auto [xPos, yPos] = (*fruit)->getPosition();
-        if ((*fruit)->getIsStar())
-        {
-            star->Draw(xPos, yPos);
-        } 
-        else
-        {
-            (*fruit_texture)->Draw(xPos, yPos);
-            ++fruit_texture;
-        }
+  
+        (*fruit_texture)->Draw(xPos, yPos);
+        ++fruit_texture;
         ++fruit;  
+    }
+
+    for (auto& _star : star_object)
+    {
+        auto [xPos, yPos] = _star->getPosition();
+        star->Draw(xPos, yPos);
     }
 }
 

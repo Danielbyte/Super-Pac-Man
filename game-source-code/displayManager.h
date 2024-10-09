@@ -73,6 +73,7 @@ class DisplayManager
     std::vector<std::shared_ptr<Key>>key_objects = {};
     std::vector<std::shared_ptr<raylib::Texture2D>>key_textures = {};
     std::vector<std::shared_ptr<Fruit>>fruit_objects = {};
+    std::vector<std::shared_ptr<Fruit>>star_object = {};
     std::vector<std::shared_ptr<raylib::Texture2D>>fruit_textures = {};
 
     std::vector<std::shared_ptr<Lock>>lock_objects = {};
