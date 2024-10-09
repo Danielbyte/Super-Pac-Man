@@ -4,7 +4,7 @@
 
 DisplayManager::DisplayManager() :
 window_width{528},
-window_height{576},
+window_height{626},
 quitGame{false},
 green{38, 185, 154},
 black{0,0,0,255},
@@ -351,9 +351,13 @@ void DisplayManager::drawGhosts()
 {
     auto ghost = ghost_objects.begin();
     auto ghost_texture = ghost_textures.begin();
+    auto flattenedOffset = 14.0f;
     while(ghost != ghost_objects.end())
     {
         auto[xPos, yPos] = (*ghost)->getPosition();
+        if (player_obj->isSuperPacman())
+            yPos += flattenedOffset;
+
         (*ghost_texture)->Draw(xPos, yPos);
         ++ghost;
         ++ghost_texture;
