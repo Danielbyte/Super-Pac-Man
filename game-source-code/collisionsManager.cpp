@@ -83,7 +83,7 @@ std::vector<std::shared_ptr<Lock>>& locks, ScoreManager& score_manager)
 }
 
 void CollisionsManager::playerFruitCollisions(std::vector<std::shared_ptr<Fruit>>fruit_objects, const float xPlayerPos, const float yPlayerPos,
-bool& isSuperPacman, bool& atePowerPellet, ScoreManager& score_manager)
+bool& isSuperPacman, bool& atePowerPellet, ScoreManager& score_manager, std::shared_ptr<GameWorld>& game_world)
 {
     auto fruit = fruit_objects.begin();
     while(fruit != fruit_objects.end())
@@ -108,6 +108,22 @@ bool& isSuperPacman, bool& atePowerPellet, ScoreManager& score_manager)
             {
                 atePowerPellet = true;
                 score_manager.updateCurrentScore(ScoreType::PowerPellet);
+                scoreUpdated = true;
+            }
+            
+            auto isStar = (*fruit)->getIsStar();
+            if (isStar)
+            {
+                auto [no_match, other_match, maze_symbol_match] = game_world->symbolMatches();
+                if(no_match)
+                  score_manager.updateCurrentScore(ScoreType::Star);
+
+                if (other_match)
+                   score_manager.updateCurrentScore(ScoreType::OtherMatchBonus);
+                
+                if (maze_symbol_match)
+                    score_manager.updateCurrentScore(ScoreType::MazeMatchBonus);
+
                 scoreUpdated = true;
             }
 

@@ -514,6 +514,11 @@ void GameWorld::createStar(std::vector<std::shared_ptr<Fruit>>& fruits)
         }
     }
 
+    if (fruits.empty())
+    {
+        resetFlashingSymbols();
+    }
+
     auto time = star_creation_watch.elapsedTime();
     if (time >= 15.0f)
     {

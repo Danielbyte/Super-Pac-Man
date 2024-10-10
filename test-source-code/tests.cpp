@@ -592,7 +592,7 @@ TEST_CASE("Test Update Current Score - MazeMatchBonus") {
 
 TEST_CASE("Test Update Current Score - NoMazeMatchBonus") {
     ScoreManager scoreManager;
-    scoreManager.updateCurrentScore(ScoreType::NoMazeMatchBonus);
+    scoreManager.updateCurrentScore(ScoreType::OtherMatchBonus);
     CHECK_EQ(scoreManager.getCurrentScore(), 2000);
 }
 

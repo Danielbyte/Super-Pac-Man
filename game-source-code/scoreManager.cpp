@@ -3,11 +3,12 @@
 ScoreManager::ScoreManager():
 fruitScore{10},
 keyScore{50},
+starPoints{500},
 frighenedGhostScore{200},
 superPelletScore{100},
 powerPelletScore{500},
 mazeMatchStarBonus{5000},
-noMazeMatchStarBonus{2000},
+otherMatchStarBonus{2000},
 currentScore{0}
 {
     updateHighScore(0);
@@ -56,14 +57,17 @@ void ScoreManager::updateCurrentScore(const ScoreType scoreType)
     case ScoreType::MazeMatchBonus:
         currentScore += mazeMatchStarBonus;
         break;
-    case ScoreType::NoMazeMatchBonus:
-         currentScore += noMazeMatchStarBonus;
+    case ScoreType::OtherMatchBonus:
+         currentScore += otherMatchStarBonus;
          break;
     case ScoreType::SuperPellet:
          currentScore += superPelletScore;
          break;
     case ScoreType::PowerPellet:
          currentScore += powerPelletScore;
+         break;
+    case ScoreType::Star:
+         currentScore += starPoints;
          break;
     default:
         break;

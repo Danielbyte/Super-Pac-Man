@@ -202,7 +202,8 @@ void DisplayManager::updatePlayer()
 
     auto prevPlayerState = isSuPerPacman;
     auto powerPelletPrevState = atePowerPellet;
-    collision_manager->playerFruitCollisions(fruit_objects, xPos, yPos, isSuPerPacman, atePowerPellet, score_manager);
+    collision_manager->playerFruitCollisions(fruit_objects, xPos, yPos, isSuPerPacman, atePowerPellet, score_manager, game_world);
+    collision_manager->playerFruitCollisions(star_object, xPos, yPos, isSuPerPacman, atePowerPellet, score_manager, game_world);//In case player eats a star
 
     if (isSuPerPacman && (isSuPerPacman != prevPlayerState))//detect a difference in state
         player_obj->setToSuperPacmanMode();
