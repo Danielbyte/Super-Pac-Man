@@ -39,6 +39,7 @@ std::shared_ptr<raylib::Texture2D>cake = std::make_shared<raylib::Texture2D>();
 std::shared_ptr<raylib::Texture2D>fruit = std::make_shared<raylib::Texture2D>();
 std::shared_ptr<raylib::Texture2D>key = std::make_shared<raylib::Texture2D>();
 std::shared_ptr<raylib::Texture2D>burger = std::make_shared<raylib::Texture2D>();
+std::shared_ptr<raylib::Texture2D>unknown = std::make_shared<raylib::Texture2D>();
 //Utility function
 void processTileTexture(std::vector<std::shared_ptr<raylib::Texture2D>>& maze_textures,
 std::vector<std::shared_ptr<GameWorldResources>>& maze_resources,const std::string element,const int tilePosX,const int tilePosY);

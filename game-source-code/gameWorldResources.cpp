@@ -295,6 +295,7 @@ std::shared_ptr<raylib::Texture2D> GameWorldResources::getReferenceSymbolTexture
          return shoe;
          break;
     default:
+        return unknown;
         break;
     }
 }
@@ -307,4 +308,5 @@ void GameWorldResources::loadFlashingSymbolsTextures()
     fruit->Load("../resources/fruit.png");
     key->Load("../resources/key.png");
     burger->Load("../resources/burger.png");
+    unknown->Load("../resources/unknown.png");
 }
