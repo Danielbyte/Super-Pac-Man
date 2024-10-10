@@ -33,6 +33,7 @@ public:
  std::shared_ptr<FlashingSymbols>& getSymbolToShow() const;
  void resetFlashingSymbols();
  std::tuple<float, float> getRefSymbolPosition();
+ void updateFlashingSymbols();
 
 private:
  static std::vector<std::vector<std::string>>gameMap; //All game objects should modify and share the same coppy of the game maze
@@ -50,5 +51,6 @@ private:
  static void placeKeys();
  static void placeLocks();
  void selectReferenceSymbol();
+ int counter;
 };
 #endif

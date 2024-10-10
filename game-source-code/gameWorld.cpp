@@ -1,6 +1,8 @@
 #include "gameWorld.h"
 
-GameWorld::GameWorld(){}
+GameWorld::GameWorld():
+counter{0}
+{}
 
 void GameWorld::loadMapFromFile()
 {
@@ -585,7 +587,6 @@ void GameWorld::selectReferenceSymbol()
     std::mt19937 gen(seed);
     std::uniform_int_distribution<> distr(1, 6);//generate a random number between 1 and 7
     int symbol = distr(gen);
- std::cout <<"Sy: " << symbol << std::endl;
     if (symbol == 1)
     {
         //fruit
@@ -640,4 +641,60 @@ std::tuple<float, float> GameWorld::getRefSymbolPosition()
     auto[x, y] = ReferenceSymbol->getPosition();
 
     return {x, y};
+}
+
+void GameWorld::updateFlashingSymbols()
+{
+    if (flashingSymbol->getSymbolType() == SymbolType::Unknown)
+        return;
+    
+    if (counter > 0 && counter <= 10)
+    {
+        //fruit
+        flashingSymbol->setPosition(200.0f, 296);
+        flashingSymbol->setSymbolType(SymbolType::Fruit);
+        ++counter;
+        return;
+    }
+    if (counter > 10 && counter <= 20)
+    {
+        //Key
+        flashingSymbol->setPosition(208.5f, 304.5f);
+        flashingSymbol->setSymbolType(SymbolType::Key);
+        ++counter;
+        return;
+    }
+    if (counter > 20 && counter <= 30)
+    {
+        //Burger
+        flashingSymbol->setPosition(201.0f, 297.0f);
+        flashingSymbol->setSymbolType(SymbolType::Burger);
+        ++counter;
+        return;
+    }
+    if (counter > 30 && counter <= 40)
+    {
+        //Shoe
+        flashingSymbol->setPosition(201.0f, 297.0f);
+        flashingSymbol->setSymbolType(SymbolType::Shoe);
+        ++counter;
+        return;
+    }
+    if (counter > 40 && counter <= 50)
+    {
+        //Donut
+        flashingSymbol->setPosition(201.0f, 297.0f);
+        flashingSymbol->setSymbolType(SymbolType::Donut);
+        ++counter;
+        return;
+    }
+    if (counter > 50 && counter <= 60)
+    {
+        //Cake
+        flashingSymbol->setPosition(201.0f, 297.0f);
+        flashingSymbol->setSymbolType(SymbolType::Cake);
+        ++counter;
+        return;
+    }
+    counter = 0;
 }
