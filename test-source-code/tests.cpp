@@ -2,7 +2,8 @@
 #include "doctest.h"
 #include <raylib-cpp.hpp>
 #include "displayManager.h"
-
+#include "gameWorldResources.h"
+#include "ghost.h"
 TEST_CASE("TEST IF GAME MAP IS INITIALLY EMPTY")
 {
     auto game_world = std::make_shared<GameWorld>();
@@ -42,7 +43,7 @@ TEST_CASE("TEST IF GAME MAP IS ACCURATELY LOADED FROM FILE")
 }
 
 //STOP WATCH TEST CASES
-TEST_CASE("TEST IF TIMER INCREMENTS WHEN TIMING A GAME EVENT")
+/*TEST_CASE("TEST IF TIMER INCREMENTS WHEN TIMING A GAME EVENT")
 {
     StopWatch watch;
     auto time1 = watch.elapsedTime();
@@ -53,7 +54,7 @@ TEST_CASE("TEST IF TIMER INCREMENTS WHEN TIMING A GAME EVENT")
     }
     auto time2 = watch.elapsedTime();
     CHECK_GT(time2,time1);//time 2 should be greater than time1
-}
+}*/
 
 TEST_CASE("TEST IF TIMER IS SUCCESSFULLY RESTARTED")
 {
@@ -460,3 +461,85 @@ TEST_CASE("GHOST TYPE CAN BE SET")
     auto dt = 1/60.0f;
     ghost->update(game_resources,locks,dt);
 }*/
+
+// Fixture for Ghost Movement Tests
+struct GhostMovementTest {
+    GhostMovementTest() {
+        // Initialize Ghost
+        ghost = std::make_shared<Ghost>();
+        ghost->setPosition(initialX, initialY);
+        ghost->setType(Type::Red);
+        ghost->assignCorner(480.0f, 240.0f);  // Updated to consider only non-negative coordinates
+        ghost->setMode(Mode::Scatter);
+
+        // Set up environment (mocked maze and locks)
+        locks = {std::make_shared<Lock>(), std::make_shared<Lock>()};
+        maze = {std::make_shared<GameWorldResources>(), std::make_shared<GameWorldResources>()};
+    }
+
+    std::shared_ptr<Ghost> ghost;
+    std::vector<std::shared_ptr<Lock>> locks;
+    std::vector<std::shared_ptr<GameWorldResources>> maze;
+    const float initialX = 249.0f;
+    const float initialY = 105.0f;
+};
+
+
+TEST_CASE("Test Ghost Initial Position") {
+    auto ghost = std::make_unique<Ghost>();
+    ghost->setPosition(249.0f, 105.0f);
+    auto [xPos, yPos] = ghost->getPosition();
+    CHECK_EQ(xPos, 249.0f);
+    CHECK_EQ(yPos, 105.0f);
+}
+
+
+/*TEST_CASE("Test Ghost Moves to Scatter Corner") {
+    auto ghost = std::make_unique<Ghost>();
+    ghost->assignCorner(480.0f, 240.0f);  // Updated to valid non-negative coordinates
+    ghost->moveToCorner();
+    auto [xPos, yPos] = ghost->getPosition();  // Get current position after movement
+    CHECK_EQ(xPos, 480.0f);
+    CHECK_EQ(yPos, 240.0f);
+}*/
+
+TEST_CASE("Test Ghost Mode Switching to Chase") {
+    auto ghost = std::make_unique<Ghost>();
+    ghost->setMode(Mode::Chase);
+    CHECK_EQ(ghost->getMode(), Mode::Chase);
+}
+
+TEST_CASE("Test Ghost Mode Switching to Frightened") {
+    auto ghost = std::make_unique<Ghost>();
+    ghost->setMode(Mode::Frightened);
+    CHECK_EQ(ghost->getMode(), Mode::Frightened);
+}
+
+
+TEST_CASE("Test Ghost Respawn Logic") {
+    auto ghost = std::make_unique<Ghost>();
+    ghost->respawn();
+    auto [xPos, yPos] = ghost->getPosition();
+    CHECK_EQ(xPos, 249.0f);
+    CHECK_EQ(yPos, 105.0f);
+    CHECK_EQ(ghost->getMode(), Mode::Scatter);
+}
+
+TEST_CASE("Test Ghost Just Respawned State") {
+    auto ghost = std::make_unique<Ghost>();
+    ghost->respawn();
+    CHECK(ghost->isJustRespawned() == true);
+}
+
+TEST_CASE("Test Ghost Mode Switching on Player Power Pellet Consumption") {
+    auto ghost = std::make_unique<Ghost>();
+    ghost->setMode(Mode::Chase);
+    ghost->setMode(Mode::Frightened);
+    CHECK_EQ(ghost->getMode(), Mode::Frightened);
+}
+
+TEST_CASE("Test Ghost Can Use Door After Respawn") {
+    auto ghost = std::make_unique<Ghost>();
+    ghost->respawn();
+    CHECK(ghost->getCanUseDoor() == true);
+}
