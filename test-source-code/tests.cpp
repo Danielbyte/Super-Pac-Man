@@ -4,6 +4,9 @@
 #include "displayManager.h"
 #include "gameWorldResources.h"
 #include "ghost.h"
+#include "scoreManager.h"
+#include <fstream>
+
 TEST_CASE("TEST IF GAME MAP IS INITIALLY EMPTY")
 {
     auto game_world = std::make_shared<GameWorld>();
@@ -542,4 +545,85 @@ TEST_CASE("Test Ghost Can Use Door After Respawn") {
     auto ghost = std::make_unique<Ghost>();
     ghost->respawn();
     CHECK(ghost->getCanUseDoor() == true);
+}
+
+//////////////////////TEST THE SCORE//////////
+TEST_CASE("Test Initial Score Values") {
+    ScoreManager scoreManager;
+    CHECK_EQ(scoreManager.getCurrentScore(), 0);
+    CHECK_GE(scoreManager.getHighScore(), 0);
+}
+
+TEST_CASE("Test Update Current Score - Fruit") {
+    ScoreManager scoreManager;
+    scoreManager.updateCurrentScore(ScoreType::Fruit);
+    CHECK_EQ(scoreManager.getCurrentScore(), 10);
+}
+
+TEST_CASE("Test Update Current Score - Key") {
+    ScoreManager scoreManager;
+    scoreManager.updateCurrentScore(ScoreType::Key);
+    CHECK_EQ(scoreManager.getCurrentScore(), 50);
+}
+
+TEST_CASE("Test Update Current Score - SuperPellet") {
+    ScoreManager scoreManager;
+    scoreManager.updateCurrentScore(ScoreType::SuperPellet);
+    CHECK_EQ(scoreManager.getCurrentScore(), 100);
+}
+
+TEST_CASE("Test Update Current Score - PowerPellet") {
+    ScoreManager scoreManager;
+    scoreManager.updateCurrentScore(ScoreType::PowerPellet);
+    CHECK_EQ(scoreManager.getCurrentScore(), 500);
+}
+
+TEST_CASE("Test Update Current Score - FrightenedGhost") {
+    ScoreManager scoreManager;
+    scoreManager.updateCurrentScore(ScoreType::FrightenedGhost);
+    CHECK_EQ(scoreManager.getCurrentScore(), 200);
+}
+
+TEST_CASE("Test Update Current Score - MazeMatchBonus") {
+    ScoreManager scoreManager;
+    scoreManager.updateCurrentScore(ScoreType::MazeMatchBonus);
+    CHECK_EQ(scoreManager.getCurrentScore(), 5000);
+}
+
+TEST_CASE("Test Update Current Score - NoMazeMatchBonus") {
+    ScoreManager scoreManager;
+    scoreManager.updateCurrentScore(ScoreType::NoMazeMatchBonus);
+    CHECK_EQ(scoreManager.getCurrentScore(), 2000);
+}
+
+TEST_CASE("Test Update High Score") {
+    ScoreManager scoreManager;
+    scoreManager.updateCurrentScore(ScoreType::PowerPellet);
+    scoreManager.updateHighScore(scoreManager.getCurrentScore());
+    CHECK_GE(scoreManager.getHighScore(), 500);
+}
+
+
+TEST_CASE("Test Negative Score Not Allowed Exception") {
+    ScoreManager scoreManager;
+    CHECK_THROWS_AS(scoreManager.updateHighScore(-100), NegativeScoreNotAllowed);
+}
+
+TEST_CASE("Test Multiple Score Updates") {
+    ScoreManager scoreManager;
+    scoreManager.updateCurrentScore(ScoreType::Fruit);
+    scoreManager.updateCurrentScore(ScoreType::Key);
+    scoreManager.updateCurrentScore(ScoreType::SuperPellet);
+    CHECK_EQ(scoreManager.getCurrentScore(), 160);
+}
+
+TEST_CASE("Test High Score Persists Across Sessions") {
+    {
+        ScoreManager scoreManager;
+        scoreManager.updateCurrentScore(ScoreType::PowerPellet);
+        scoreManager.updateHighScore(scoreManager.getCurrentScore());
+    }
+    
+    ScoreManager newScoreManager;
+    CHECK_GE(newScoreManager.getHighScore(), 500);
 }
