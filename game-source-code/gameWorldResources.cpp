@@ -270,3 +270,41 @@ ObjectType GameWorldResources::getObjectType() const
 {
     return type;
 }
+
+std::shared_ptr<raylib::Texture2D> GameWorldResources::getReferenceSymbolTexture(std::shared_ptr<GameWorld>& game_world)
+{
+    auto syMbolType = game_world->getReferenceSymbol();
+    switch (syMbolType->getSymbolType())
+    {
+    case SymbolType::Fruit:
+        return fruit;
+        break;
+    case SymbolType::Burger:
+         return burger;
+         break;
+    case SymbolType::Cake:
+         return cake;
+         break;
+    case SymbolType::Donut:
+         return donut;
+         break;
+    case SymbolType::Key:
+         return key;
+         break;
+    case SymbolType::Shoe:
+         return shoe;
+         break;
+    default:
+        break;
+    }
+}
+
+void GameWorldResources::loadFlashingSymbolsTextures()
+{
+    shoe->Load("../resources/shoe.png");
+    donut->Load("../resources/donut.png");
+    cake->Load("../resources/cake.png");
+    fruit->Load("../resources/fruit.png");
+    key->Load("../resources/key.png");
+    burger->Load("../resources/burger.png");
+}

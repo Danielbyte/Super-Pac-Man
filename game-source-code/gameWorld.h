@@ -29,7 +29,7 @@ public:
  void createStar(std::vector<std::shared_ptr<Fruit>>& fruits);
  void placeStar(std::vector<std::shared_ptr<Fruit>>& fruits);
  void restartStarCreationWatch();
- std::shared_ptr<FlashingSymbols>& getReferenceSymbol() const;
+ std::shared_ptr<FlashingSymbols> getReferenceSymbol() const;
  std::shared_ptr<FlashingSymbols>& getSymbolToShow() const;
  void resetFlashingSymbols();
 

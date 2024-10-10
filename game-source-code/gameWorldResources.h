@@ -29,10 +29,16 @@ std::vector<std::shared_ptr<raylib::Texture2D>>& maze_textures, std::vector<std:
 void loadFruitTextures(std::vector<std::shared_ptr<Fruit>>& fruits, std::vector<std::shared_ptr<raylib::Texture2D>>& fruit_textures);
 void loadKeyTextures(std::vector<std::shared_ptr<Key>>& keys, std::vector<std::shared_ptr<raylib::Texture2D>>& key_textures);
 void loadLockTextures(std::vector<std::shared_ptr<Lock>>& locks, std::vector<std::shared_ptr<raylib::Texture2D>>& lock_textures);
+void loadFlashingSymbolsTextures();
 private:
 std::shared_ptr<raylib::Texture2D>horizontalWallPiece = std::make_shared<raylib::Texture2D>();
 std::shared_ptr<raylib::Texture2D>verticalWallPiece = std::make_shared<raylib::Texture2D>();
-
+std::shared_ptr<raylib::Texture2D>shoe = std::make_shared<raylib::Texture2D>();
+std::shared_ptr<raylib::Texture2D>donut = std::make_shared<raylib::Texture2D>();
+std::shared_ptr<raylib::Texture2D>cake = std::make_shared<raylib::Texture2D>();
+std::shared_ptr<raylib::Texture2D>fruit = std::make_shared<raylib::Texture2D>();
+std::shared_ptr<raylib::Texture2D>key = std::make_shared<raylib::Texture2D>();
+std::shared_ptr<raylib::Texture2D>burger = std::make_shared<raylib::Texture2D>();
 //Utility function
 void processTileTexture(std::vector<std::shared_ptr<raylib::Texture2D>>& maze_textures,
 std::vector<std::shared_ptr<GameWorldResources>>& maze_resources,const std::string element,const int tilePosX,const int tilePosY);
@@ -44,7 +50,7 @@ void bottomLeftCorner(int tilePosX, int tilePosY, const float xOffset,const floa
 std::vector<std::shared_ptr<raylib::Texture2D>>& maze_textures, std::vector<std::shared_ptr<GameWorldResources>>& maze_resources);
 void bottomRightCorner(int tilePosX, int tilePosY, const float xOffset,const float yOffset,
 std::vector<std::shared_ptr<raylib::Texture2D>>& maze_textures, std::vector<std::shared_ptr<GameWorldResources>>& maze_resources);
-
+std::shared_ptr<raylib::Texture2D> getReferenceSymbolTexture(std::shared_ptr<GameWorld>& game_world);
 float tileScreenPosX;
 float tileScreenPosY;
 GameWorld game_world;

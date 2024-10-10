@@ -630,3 +630,8 @@ void GameWorld::selectReferenceSymbol()
     }
     
 }
+
+std::shared_ptr<FlashingSymbols> GameWorld::getReferenceSymbol() const
+{
+    return ReferenceSymbol;
+}

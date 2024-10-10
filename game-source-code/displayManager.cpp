@@ -31,6 +31,7 @@ buttoPressed{false}
     game_maze_resources.setMazeWalls(game_world_textures, maze_resources);
     game_maze_resources.loadKeyTextures(key_objects, key_textures);
     game_maze_resources.loadLockTextures(lock_objects, lock_textures);
+    game_maze_resources.loadFlashingSymbolsTextures();
     ghost_manager.initialiseGhosts(ghost_objects);
     ghost_resources.initialiseTextures(ghost_objects, ghost_textures);
     player_resources.loadTextures();
