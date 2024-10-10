@@ -52,6 +52,7 @@ private:
  static void placeKeys();
  static void placeLocks();
  void selectReferenceSymbol();
- int counter;
+ float flashPeriod;
+ StopWatch flashing_watch;
 };
 #endif

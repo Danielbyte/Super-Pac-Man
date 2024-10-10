@@ -1,7 +1,7 @@
 #include "gameWorld.h"
 
 GameWorld::GameWorld():
-counter{0}
+flashPeriod{0.2f}
 {}
 
 void GameWorld::loadMapFromFile()
@@ -665,53 +665,48 @@ void GameWorld::updateFlashingSymbols()
         return;
     }
     
-    if (counter >= 0 && counter <= 100)
+    auto time = flashing_watch.elapsedTime();
+    if (time >= 0 && time <= flashPeriod)
     {
         //fruit
         flashingSymbol->setPosition(296.0f, 296);
         flashingSymbol->setSymbolType(SymbolType::Fruit);
-        ++counter;
         return;
     }
-    if (counter > 100 && counter <= 200)
+    if (time > flashPeriod && time <= 2 * flashPeriod)
     {
         //Key
         flashingSymbol->setPosition(304.5f, 304.5f);
         flashingSymbol->setSymbolType(SymbolType::Key);
-        ++counter;
         return;
     }
-    if (counter > 200 && counter <= 300)
+    if (time > 2 * flashPeriod && time <= 3 * flashPeriod)
     {
         //Burger
         flashingSymbol->setPosition(297.0f, 297.0f);
         flashingSymbol->setSymbolType(SymbolType::Burger);
-        ++counter;
         return;
     }
-    if (counter > 300 && counter <= 400)
+    if (time > 3 * flashPeriod && time <= 4 * flashPeriod)
     {
         //Shoe
         flashingSymbol->setPosition(297.0f, 297.0f);
         flashingSymbol->setSymbolType(SymbolType::Shoe);
-        ++counter;
         return;
     }
-    if (counter > 400 && counter <= 500)
+    if (time > 4 * flashPeriod && time <= 5 * flashPeriod)
     {
         //Donut
         flashingSymbol->setPosition(297.0f, 297.0f);
         flashingSymbol->setSymbolType(SymbolType::Donut);
-        ++counter;
         return;
     }
-    if (counter > 500 && counter <= 600)
+    if (time > 5 * flashPeriod && time <= 6 * flashPeriod)
     {
         //Cake
         flashingSymbol->setPosition(297.0f, 297.0f);
         flashingSymbol->setSymbolType(SymbolType::Cake);
-        ++counter;
         return;
     }
-    counter = 0;
+    flashing_watch.restartTimer();
 }
