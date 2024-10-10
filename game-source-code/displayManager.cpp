@@ -32,6 +32,7 @@ buttoPressed{false}
     game_maze_resources.loadKeyTextures(key_objects, key_textures);
     game_maze_resources.loadLockTextures(lock_objects, lock_textures);
     game_maze_resources.loadFlashingSymbolsTextures();
+    reference_symbol = game_maze_resources.getReferenceSymbolTexture(game_world);
     ghost_manager.initialiseGhosts(ghost_objects);
     ghost_resources.initialiseTextures(ghost_objects, ghost_textures);
     player_resources.loadTextures();
@@ -363,6 +364,10 @@ void DisplayManager::drawFruits()
         auto [xPos, yPos] = _star->getPosition();
         star->Draw(xPos, yPos);
     }
+
+    auto [xPos, yPos] = game_world->getRefSymbolPosition();
+    reference_symbol = game_maze_resources.getReferenceSymbolTexture(game_world);
+    reference_symbol->Draw(xPos, yPos);
 }
 
 void DisplayManager::drawLocks()

@@ -2,7 +2,8 @@
 
 FlashingSymbols::FlashingSymbols():
 xPosition{-100.0f},
-yPosition{-100.0f}
+yPosition{-100.0f},
+symbol{SymbolType::Unknown}
 {}
 
 SymbolType FlashingSymbols::getSymbolType() const

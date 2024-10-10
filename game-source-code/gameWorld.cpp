@@ -581,11 +581,11 @@ std::vector<std::shared_ptr<Lock>>& GameWorld::getMazeLocks()
 
 void GameWorld::selectReferenceSymbol()
 {
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_int_distribution<> distr(1, 7);//generate a random number between 1 and 7
+    unsigned seed = static_cast<unsigned>(std::time(nullptr));
+    std::mt19937 gen(seed);
+    std::uniform_int_distribution<> distr(1, 6);//generate a random number between 1 and 7
     int symbol = distr(gen);
-
+ std::cout <<"Sy: " << symbol << std::endl;
     if (symbol == 1)
     {
         //fruit
@@ -626,12 +626,18 @@ void GameWorld::selectReferenceSymbol()
         //Cake
         ReferenceSymbol->setPosition(201.0f, 297.0f);
         ReferenceSymbol->setSymbolType(SymbolType::Cake);
-        return;
     }
     
 }
 
-std::shared_ptr<FlashingSymbols> GameWorld::getReferenceSymbol() const
+SymbolType GameWorld::getReferenceSymbol() const
 {
-    return ReferenceSymbol;
+    return ReferenceSymbol->getSymbolType();
+}
+
+std::tuple<float, float> GameWorld::getRefSymbolPosition()
+{
+    auto[x, y] = ReferenceSymbol->getPosition();
+
+    return {x, y};
 }
