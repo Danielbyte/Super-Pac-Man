@@ -7,9 +7,12 @@
 #include <sstream>
 #include <iostream>
 #include <algorithm>
+#include <random>
+#include <ctime>
 #include "fruit.h"
 #include "key.h"
 #include "lock.h"
+#include "flashingSymbols.h"
 
 class GameWorld
 {
@@ -26,7 +29,8 @@ public:
  void createStar(std::vector<std::shared_ptr<Fruit>>& fruits);
  void placeStar(std::vector<std::shared_ptr<Fruit>>& fruits);
  void restartStarCreationWatch();
- std::shared_ptr<Fruit>& getLeftBoxFruit() const;
+ std::shared_ptr<FlashingSymbols>& getReferenceSymbol() const;
+ std::shared_ptr<FlashingSymbols>& getSymbolToShow() const;
 
 private:
  static std::vector<std::vector<std::string>>gameMap; //All game objects should modify and share the same coppy of the game maze
@@ -36,12 +40,13 @@ private:
  static int numberOfColumns;//number of columns read from game map
  static int numberOfRows;
  StopWatch star_creation_watch;
- std::shared_ptr<Fruit> ReferenceFruit = std::make_shared<Fruit>();//This is the reference symbol
- std::vector<std::shared_ptr<Fruit>> flashingSymbols = {};
+ std::shared_ptr<FlashingSymbols> ReferenceSymbol = std::make_shared<FlashingSymbols>();//This is the reference symbol
+ std::vector<std::shared_ptr<FlashingSymbols>> flashingSymbols = {};
 
  //Utility function/s
  static void placeFruits();
  static void placeKeys();
  static void placeLocks();
+ void selectReferenceSymbol();
 };
 #endif

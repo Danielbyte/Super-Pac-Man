@@ -570,3 +570,43 @@ std::vector<std::shared_ptr<Lock>>& GameWorld::getMazeLocks()
 {
     return locks;
 }
+
+void GameWorld::selectReferenceSymbol()
+{
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> distr(1, 7);//generate a random number between 1 and 7
+    int symbol = distr(gen);
+
+    if (symbol == 1)
+    {
+        //fruit
+        return;
+    }
+    if (symbol == 2)
+    {
+        //Key
+        return;
+    }
+    if (symbol == 3)
+    {
+        //Burger
+        return;
+    }
+    if (symbol == 4)
+    {
+        //Shoe
+        return;
+    }
+    if (symbol == 5)
+    {
+        //Donut
+        return;
+    }
+    if (symbol == 6)
+    {
+        //Cake
+        return;
+    }
+    
+}
