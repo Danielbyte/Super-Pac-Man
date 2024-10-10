@@ -659,10 +659,13 @@ std::tuple<float, float> GameWorld::getFlashingSymbolPosition()
 
 void GameWorld::updateFlashingSymbols()
 {
-    if (flashingSymbol->getSymbolType() == SymbolType::Unknown)
+    if (ReferenceSymbol->getSymbolType() == SymbolType::Unknown)
+    {
+        flashingSymbol->setSymbolType(SymbolType::Unknown);
         return;
+    }
     
-    if (counter > 0 && counter <= 10)
+    if (counter >= 0 && counter <= 100)
     {
         //fruit
         flashingSymbol->setPosition(296.0f, 296);
@@ -670,7 +673,7 @@ void GameWorld::updateFlashingSymbols()
         ++counter;
         return;
     }
-    if (counter > 10 && counter <= 20)
+    if (counter > 100 && counter <= 200)
     {
         //Key
         flashingSymbol->setPosition(304.5f, 304.5f);
@@ -678,7 +681,7 @@ void GameWorld::updateFlashingSymbols()
         ++counter;
         return;
     }
-    if (counter > 20 && counter <= 30)
+    if (counter > 200 && counter <= 300)
     {
         //Burger
         flashingSymbol->setPosition(297.0f, 297.0f);
@@ -686,7 +689,7 @@ void GameWorld::updateFlashingSymbols()
         ++counter;
         return;
     }
-    if (counter > 30 && counter <= 40)
+    if (counter > 300 && counter <= 400)
     {
         //Shoe
         flashingSymbol->setPosition(297.0f, 297.0f);
@@ -694,7 +697,7 @@ void GameWorld::updateFlashingSymbols()
         ++counter;
         return;
     }
-    if (counter > 40 && counter <= 50)
+    if (counter > 400 && counter <= 500)
     {
         //Donut
         flashingSymbol->setPosition(297.0f, 297.0f);
@@ -702,7 +705,7 @@ void GameWorld::updateFlashingSymbols()
         ++counter;
         return;
     }
-    if (counter > 50 && counter <= 60)
+    if (counter > 500 && counter <= 600)
     {
         //Cake
         flashingSymbol->setPosition(297.0f, 297.0f);
