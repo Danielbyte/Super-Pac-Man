@@ -508,6 +508,7 @@ void GameWorld::createStar(std::vector<std::shared_ptr<Fruit>>& fruits)
         if (isStar && lifetime >= 7.0f)
         {
             fruit->markForDeletion();
+            resetFlashingSymbols();
         }
     }
 
@@ -515,8 +516,15 @@ void GameWorld::createStar(std::vector<std::shared_ptr<Fruit>>& fruits)
     if (time >= 15.0f)
     {
         placeStar(fruits);
+        selectReferenceSymbol();
         restartStarCreationWatch();
     }
+}
+
+void GameWorld::resetFlashingSymbols()
+{
+    ReferenceSymbol->setSymbolType(SymbolType::Unknown);
+    flashingSymbol->setSymbolType(SymbolType::Unknown);
 }
 
 void GameWorld::placeStar(std::vector<std::shared_ptr<Fruit>>& fruits)
@@ -581,31 +589,43 @@ void GameWorld::selectReferenceSymbol()
     if (symbol == 1)
     {
         //fruit
+        ReferenceSymbol->setPosition(200.0f, 296);
+        ReferenceSymbol->setSymbolType(SymbolType::Fruit);
         return;
     }
     if (symbol == 2)
     {
         //Key
+        ReferenceSymbol->setPosition(208.5f, 304.5f);
+        ReferenceSymbol->setSymbolType(SymbolType::Key);
         return;
     }
     if (symbol == 3)
     {
         //Burger
+        ReferenceSymbol->setPosition(201.0f, 297.0f);
+        ReferenceSymbol->setSymbolType(SymbolType::Burger);
         return;
     }
     if (symbol == 4)
     {
         //Shoe
+        ReferenceSymbol->setPosition(201.0f, 297.0f);
+        ReferenceSymbol->setSymbolType(SymbolType::Shoe);
         return;
     }
     if (symbol == 5)
     {
         //Donut
+        ReferenceSymbol->setPosition(201.0f, 297.0f);
+        ReferenceSymbol->setSymbolType(SymbolType::Donut);
         return;
     }
     if (symbol == 6)
     {
         //Cake
+        ReferenceSymbol->setPosition(201.0f, 297.0f);
+        ReferenceSymbol->setSymbolType(SymbolType::Cake);
         return;
     }
     

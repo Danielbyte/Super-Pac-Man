@@ -31,6 +31,7 @@ public:
  void restartStarCreationWatch();
  std::shared_ptr<FlashingSymbols>& getReferenceSymbol() const;
  std::shared_ptr<FlashingSymbols>& getSymbolToShow() const;
+ void resetFlashingSymbols();
 
 private:
  static std::vector<std::vector<std::string>>gameMap; //All game objects should modify and share the same coppy of the game maze
@@ -41,7 +42,7 @@ private:
  static int numberOfRows;
  StopWatch star_creation_watch;
  std::shared_ptr<FlashingSymbols> ReferenceSymbol = std::make_shared<FlashingSymbols>();//This is the reference symbol
- std::vector<std::shared_ptr<FlashingSymbols>> flashingSymbols = {};
+ std::shared_ptr<FlashingSymbols> flashingSymbol;
 
  //Utility function/s
  static void placeFruits();
