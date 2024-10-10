@@ -521,6 +521,8 @@ void GameWorld::createStar(std::vector<std::shared_ptr<Fruit>>& fruits)
         selectReferenceSymbol();
         restartStarCreationWatch();
     }
+
+    updateFlashingSymbols();
 }
 
 void GameWorld::resetFlashingSymbols()
@@ -634,6 +636,11 @@ void GameWorld::selectReferenceSymbol()
 SymbolType GameWorld::getReferenceSymbol() const
 {
     return ReferenceSymbol->getSymbolType();
+}
+
+SymbolType GameWorld::getFlashingSymbol() const
+{
+    return flashingSymbol->getSymbolType();
 }
 
 std::tuple<float, float> GameWorld::getRefSymbolPosition()
