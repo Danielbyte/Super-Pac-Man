@@ -27,7 +27,7 @@ public:
     void playerKeyCollisions(std::vector<std::shared_ptr<Key>>key_objects,const float xPlayerPos, const float yPlayerPos,
     std::vector<std::shared_ptr<Lock>>& locks, ScoreManager& score_manager);
     void playerFruitCollisions(std::vector<std::shared_ptr<Fruit>>fruit_objects, const float xPlayerPos, const float yPlayerPos,
-    bool& isSupePacman, bool& atePowerPellet, ScoreManager& score_manager);
+    bool& isSupePacman, bool& atePowerPellet, ScoreManager& score_manager, std::shared_ptr<GameWorld>& game_world);
     bool playerGhostCollisions(const float xGhostPos, const float yGhostPos, const float xPlayerPos, const float yPlayerPos);
     bool lockCollisions(std::vector<std::shared_ptr<Lock>>& lock_objects, const float xPlayerPos, const float yPlayerPos, bool inSupePacmanMode);
     bool ghostWallCollisions(std::vector<std::shared_ptr<GameWorldResources>>& maze, const float ghostXpos, const float ghostYpos);

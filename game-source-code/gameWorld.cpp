@@ -514,6 +514,11 @@ void GameWorld::createStar(std::vector<std::shared_ptr<Fruit>>& fruits)
         }
     }
 
+    if (fruits.empty())
+    {
+        resetFlashingSymbols();
+    }
+
     auto time = star_creation_watch.elapsedTime();
     if (time >= 15.0f)
     {
@@ -709,4 +714,43 @@ void GameWorld::updateFlashingSymbols()
         return;
     }
     flashing_watch.restartTimer();
+}
+
+std::tuple<bool, bool, bool> GameWorld::symbolMatches()
+{
+    auto reference_symbol = ReferenceSymbol->getSymbolType();
+    auto flashing_symbol = flashingSymbol->getSymbolType();
+    auto no_match = true;
+    auto other_match = false;
+    auto maze_symbol_match = false;
+
+    if (flashing_symbol != reference_symbol)
+    {
+        return {no_match, other_match, maze_symbol_match};
+    }
+
+    //This code will execute if symbols are the same
+    //We just need to process "What type of same"
+    switch (reference_symbol)
+    {
+    case SymbolType::Fruit:
+    case SymbolType::Key:
+         no_match = false;
+         other_match = false;
+         maze_symbol_match = true;
+         return{no_match, other_match, maze_symbol_match};
+    break;
+    case SymbolType::Burger:
+    case SymbolType::Cake:
+    case SymbolType::Donut:
+    case SymbolType::Shoe:
+         no_match = false;
+         other_match = true;
+         maze_symbol_match = false;
+         return{no_match, other_match, maze_symbol_match};
+    break;     
+    default:
+        break;
+    }
+     return{no_match, other_match, maze_symbol_match};  
 }
