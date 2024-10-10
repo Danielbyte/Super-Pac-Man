@@ -26,6 +26,7 @@ public:
  void createStar(std::vector<std::shared_ptr<Fruit>>& fruits);
  void placeStar(std::vector<std::shared_ptr<Fruit>>& fruits);
  void restartStarCreationWatch();
+ std::shared_ptr<Fruit>& getLeftBoxFruit() const;
 
 private:
  static std::vector<std::vector<std::string>>gameMap; //All game objects should modify and share the same coppy of the game maze
@@ -35,6 +36,8 @@ private:
  static int numberOfColumns;//number of columns read from game map
  static int numberOfRows;
  StopWatch star_creation_watch;
+ std::shared_ptr<Fruit> ReferenceFruit = std::make_shared<Fruit>();//This is the reference symbol
+ std::vector<std::shared_ptr<Fruit>> flashingSymbols = {};
 
  //Utility function/s
  static void placeFruits();
