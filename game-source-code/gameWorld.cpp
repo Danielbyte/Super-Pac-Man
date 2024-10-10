@@ -650,6 +650,13 @@ std::tuple<float, float> GameWorld::getRefSymbolPosition()
     return {x, y};
 }
 
+std::tuple<float, float> GameWorld::getFlashingSymbolPosition()
+{
+    auto[x, y] = flashingSymbol->getPosition();
+
+    return {x, y};
+}
+
 void GameWorld::updateFlashingSymbols()
 {
     if (flashingSymbol->getSymbolType() == SymbolType::Unknown)

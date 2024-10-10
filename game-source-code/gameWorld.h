@@ -32,6 +32,7 @@ public:
  SymbolType getReferenceSymbol() const;
  void resetFlashingSymbols();
  std::tuple<float, float> getRefSymbolPosition();
+ std::tuple<float, float> getFlashingSymbolPosition();
  void updateFlashingSymbols();
  SymbolType getFlashingSymbol() const;
 
