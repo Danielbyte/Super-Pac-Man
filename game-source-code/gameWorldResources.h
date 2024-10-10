@@ -22,6 +22,7 @@ void initialiseGameBorder(int tilePosX, int tilePosY, const ObjectType _type);
 void setMazeWalls(std::vector<std::shared_ptr<raylib::Texture2D>>& maze_textures,
 std::vector<std::shared_ptr<GameWorldResources>>& maze_resources);
 std::shared_ptr<raylib::Texture2D> getReferenceSymbolTexture(std::shared_ptr<GameWorld> game_world);
+std::shared_ptr<raylib::Texture2D> getFlashingSymbolTexture(std::shared_ptr<GameWorld> game_world);
 void verticalWall(int tilePosX, int tilePosY, const float xOffset,const float yOffset,
 std::vector<std::shared_ptr<raylib::Texture2D>>& maze_textures, std::vector<std::shared_ptr<GameWorldResources>>& maze_resources);
 void horizontalWall(int tilePosX, int tilePosY, const float xOffset,const float yOffset,

@@ -302,6 +302,37 @@ std::shared_ptr<raylib::Texture2D> GameWorldResources::getReferenceSymbolTexture
     return unknown;
 }
 
+std::shared_ptr<raylib::Texture2D> GameWorldResources::getFlashingSymbolTexture(std::shared_ptr<GameWorld> game_world)
+{
+    switch ((game_world->getFlashingSymbol()))
+    {
+    case SymbolType::Fruit:
+        return fruit;
+        break;
+    case SymbolType::Burger:
+         return burger;
+         break;
+    case SymbolType::Cake:
+         return cake;
+         break;
+    case SymbolType::Donut:
+         return donut;
+         break;
+    case SymbolType::Key:
+         return key;
+         break;
+    case SymbolType::Shoe:
+         return shoe;
+         break;
+    case SymbolType::Unknown:
+         return unknown;
+         break;
+    default:
+        break;
+    }
+    return unknown;
+}
+
 void GameWorldResources::loadFlashingSymbolsTextures()
 {
     shoe->Load("../resources/shoe.png");
