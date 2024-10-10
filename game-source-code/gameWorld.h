@@ -42,7 +42,7 @@ private:
  static int numberOfRows;
  StopWatch star_creation_watch;
  std::shared_ptr<FlashingSymbols> ReferenceSymbol = std::make_shared<FlashingSymbols>();//This is the reference symbol
- std::shared_ptr<FlashingSymbols> flashingSymbol;
+ std::shared_ptr<FlashingSymbols> flashingSymbol = std::make_shared<FlashingSymbols>();
 
  //Utility function/s
  static void placeFruits();
