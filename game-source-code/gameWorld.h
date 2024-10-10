@@ -35,6 +35,8 @@ public:
  std::tuple<float, float> getFlashingSymbolPosition();
  void updateFlashingSymbols();
  SymbolType getFlashingSymbol() const;
+ //returned in the following manner [NoMatch, OtherMatch, MazeSymbolMatch]
+ std::tuple<bool, bool, bool> symbolMatches();
 
 private:
  static std::vector<std::vector<std::string>>gameMap; //All game objects should modify and share the same coppy of the game maze
