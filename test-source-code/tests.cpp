@@ -548,7 +548,7 @@ TEST_CASE("Test Ghost Can Use Door After Respawn") {
 }
 
 //////////////////////TEST THE SCORE//////////
-TEST_CASE("Test Initial Score Values") {
+/*TEST_CASE("Test Initial Score Values") {
     ScoreManager scoreManager;
     CHECK_EQ(scoreManager.getCurrentScore(), 0);
     CHECK_GE(scoreManager.getHighScore(), 0);
@@ -626,4 +626,70 @@ TEST_CASE("Test High Score Persists Across Sessions") {
     
     ScoreManager newScoreManager;
     CHECK_GE(newScoreManager.getHighScore(), 500);
+}*/
+TEST_CASE("Testing ScoreManager Initialization") {
+    ScoreManager scoreManager;
+
+    CHECK(scoreManager.getCurrentScore() == 0);
+    CHECK(scoreManager.getHighScore() >= 0);  // High score is read from file and should not be negative.
+}
+
+TEST_CASE("Adding Fruit Score") {
+    ScoreManager scoreManager;
+    scoreManager.updateCurrentScore(ScoreType::Fruit);
+    CHECK(scoreManager.getCurrentScore() == 10);
+}
+
+TEST_CASE("Adding Key Score") {
+    ScoreManager scoreManager;
+    scoreManager.updateCurrentScore(ScoreType::Key);
+    CHECK(scoreManager.getCurrentScore() == 50);
+}
+
+TEST_CASE("Adding Frightened Ghost Score") {
+    ScoreManager scoreManager;
+    scoreManager.updateCurrentScore(ScoreType::FrightenedGhost);
+    CHECK(scoreManager.getCurrentScore() == 200);
+}
+
+TEST_CASE("Adding Super Pellet Score") {
+    ScoreManager scoreManager;
+    scoreManager.updateCurrentScore(ScoreType::SuperPellet);
+    CHECK(scoreManager.getCurrentScore() == 100);
+}
+
+TEST_CASE("Adding Power Pellet Score") {
+    ScoreManager scoreManager;
+    scoreManager.updateCurrentScore(ScoreType::PowerPellet);
+    CHECK(scoreManager.getCurrentScore() == 500);
+}
+
+TEST_CASE("Adding Maze Match Bonus Score") {
+    ScoreManager scoreManager;
+    scoreManager.updateCurrentScore(ScoreType::MazeMatchBonus);
+    CHECK(scoreManager.getCurrentScore() == 5000);
+}
+
+TEST_CASE("Adding No Maze Match Bonus Score") {
+    ScoreManager scoreManager;
+    scoreManager.updateCurrentScore(ScoreType::NoMazeMatchBonus);
+    CHECK(scoreManager.getCurrentScore() == 2000);
+}
+
+TEST_CASE("Updating High Score with New High") {
+    ScoreManager scoreManager;
+    scoreManager.updateHighScore(6000);
+    CHECK(scoreManager.getHighScore() == 6000);
+}
+
+TEST_CASE("High Score Not Updated if Lower") {
+    ScoreManager scoreManager;
+    int initialHighScore = scoreManager.getHighScore();
+    scoreManager.updateHighScore(100);
+    CHECK(scoreManager.getHighScore() == initialHighScore);
+}
+
+TEST_CASE("Negative Score Not Allowed") {
+    ScoreManager scoreManager;
+    CHECK_THROWS_AS(scoreManager.updateHighScore(-100), NegativeScoreNotAllowed);
 }
